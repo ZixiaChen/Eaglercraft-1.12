@@ -1,3 +1,13 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'io.github.zebalu:teavm-gradle-plugin:1.0.0'
+    }
+}
+
 plugins {
     id 'java'
     id 'application'
@@ -67,16 +77,6 @@ dependencies {
 }
 
 //TeaVM stuff
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'io.github.zebalu:teavm-gradle-plugin:1.0.0'
-    }
-}
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
