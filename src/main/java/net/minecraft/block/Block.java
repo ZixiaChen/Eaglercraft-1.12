@@ -52,7 +52,7 @@ import net.minecraft.world.World;
 
 public class Block
 {
-    /** ResourceLocation for the Air block */
+
     private static final ResourceLocation AIR_ID = new ResourceLocation("air");
     public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Block> REGISTRY = new RegistryNamespacedDefaultedByKey<ResourceLocation, Block>(AIR_ID);
     public static final ObjectIntIdentityMap<IBlockState> BLOCK_STATE_IDS = new ObjectIntIdentityMap<IBlockState>();
@@ -62,45 +62,28 @@ public class Block
     private CreativeTabs displayOnCreativeTab;
     protected boolean fullBlock;
 
-    /** How much light is subtracted for going through this block */
     protected int lightOpacity;
     protected boolean translucent;
 
-    /** Amount of light emitted */
     protected int lightValue;
 
-    /**
-     * Flag if block should use the brightest neighbor light value as its own
-     */
     protected boolean useNeighborBrightness;
 
-    /** Indicates how many hits it takes to break a block. */
     protected float blockHardness;
 
-    /** Indicates how much this block can resist explosions */
     protected float blockResistance;
     protected boolean enableStats;
 
-    /**
-     * Flags whether or not this block is of a type that needs random ticking. Ref-counted by ExtendedBlockStorage in
-     * order to broadly cull a chunk from the random chunk update list for efficiency's sake.
-     */
     protected boolean needsRandomTick;
 
-    /** true if the Block contains a Tile Entity */
     protected boolean isBlockContainer;
 
-    /** Sound of stepping on the block */
     protected SoundType blockSoundType;
     public float blockParticleGravity;
     protected final Material blockMaterial;
 
-    /** The Block's MapColor */
     protected final MapColor blockMapColor;
 
-    /**
-     * Determines how much velocity is maintained while moving on top of this block
-     */
     public float slipperiness;
     protected final BlockStateContainer blockState;
     private IBlockState defaultBlockState;
@@ -111,9 +94,6 @@ public class Block
         return REGISTRY.getIDForObject(blockIn);
     }
 
-    /**
-     * Get a unique ID for the given BlockState, containing both BlockID and metadata
-     */
     public static int getStateId(IBlockState state)
     {
         Block block = state.getBlock();
@@ -125,9 +105,6 @@ public class Block
         return REGISTRY.getObjectById(id);
     }
 
-    /**
-     * Get a BlockState by it's ID (see getStateId)
-     */
     public static IBlockState getStateById(int id)
     {
         int i = id & 4095;
@@ -164,9 +141,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Determines if the block is solid enough on the top side to support other blocks, like redstone components.
-     */
     public boolean isTopSolid(IBlockState state)
     {
         return state.getMaterial().isOpaque() && state.isFullCube();
@@ -174,9 +148,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * @return true if the state occupies all of its 1x1x1 cube
-     */
     public boolean isFullBlock(IBlockState state)
     {
         return this.fullBlock;
@@ -196,9 +167,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Used in the renderer to apply ambient occlusion
-     */
     public boolean isTranslucent(IBlockState state)
     {
         return this.translucent;
@@ -212,9 +180,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Should block use the brightest neighbor light value as its own
-     */
     public boolean getUseNeighborBrightness(IBlockState state)
     {
         return this.useNeighborBrightness;
@@ -222,9 +187,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Get a material of block
-     */
     public Material getMaterial(IBlockState state)
     {
         return this.blockMaterial;
@@ -232,9 +194,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Get the MapColor for this Block and the given BlockState
-     */
     public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
         return this.blockMapColor;
@@ -242,17 +201,11 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Convert the given metadata into a BlockState for this Block
-     */
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState();
     }
 
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
     public int getMetaFromState(IBlockState state)
     {
         if (state.getPropertyKeys().isEmpty())
@@ -267,10 +220,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Get the actual Block state of this Block at the given position. This applies properties not visible in the
-     * metadata, such as fence connections.
-     */
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
         return state;
@@ -278,10 +227,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
-     */
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
         return state;
@@ -289,10 +234,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
-     */
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
     {
         return state;
@@ -318,36 +259,24 @@ public class Block
         this(materialIn, materialIn.getMaterialMapColor());
     }
 
-    /**
-     * Sets the footstep sound for the block. Returns the object for convenience in constructing.
-     */
     protected Block setSoundType(SoundType sound)
     {
         this.blockSoundType = sound;
         return this;
     }
 
-    /**
-     * Sets how much light is blocked going through this block. Returns the object for convenience in constructing.
-     */
     protected Block setLightOpacity(int opacity)
     {
         this.lightOpacity = opacity;
         return this;
     }
 
-    /**
-     * Sets the light value that the block emits. Returns resulting block instance for constructing convenience.
-     */
     protected Block setLightLevel(float value)
     {
         this.lightValue = (int)(15.0F * value);
         return this;
     }
 
-    /**
-     * Sets the the blocks resistance to explosions. Returns the object for convenience in constructing.
-     */
     protected Block setResistance(float resistance)
     {
         this.blockResistance = resistance * 3.0F;
@@ -366,9 +295,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Indicate if a material is a normal solid opaque cube
-     */
     public boolean isBlockNormalCube(IBlockState state)
     {
         return state.getMaterial().blocksMovement() && state.isFullCube();
@@ -376,10 +302,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Used for nearly all game logic (non-rendering) purposes. Use Forge-provided isNormalCube(IBlockAccess, BlockPos)
-     * instead.
-     */
     public boolean isNormalCube(IBlockState state)
     {
         return state.getMaterial().isOpaque() && state.isFullCube() && !state.canProvidePower();
@@ -403,9 +325,6 @@ public class Block
         return false;
     }
 
-    /**
-     * Determines if an entity can path through this block
-     */
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
     {
         return !this.blockMaterial.blocksMovement();
@@ -413,26 +332,16 @@ public class Block
 
     @Deprecated
 
-    /**
-     * The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only,
-     * LIQUID for vanilla liquids, INVISIBLE to skip all rendering
-     */
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.MODEL;
     }
 
-    /**
-     * Whether this Block can be replaced directly by other blocks (true for e.g. tall grass)
-     */
     public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos)
     {
         return false;
     }
 
-    /**
-     * Sets how many hits it takes to break a block.
-     */
     protected Block setHardness(float hardness)
     {
         this.blockHardness = hardness;
@@ -457,19 +366,12 @@ public class Block
         return this.blockHardness;
     }
 
-    /**
-     * Sets whether this block type will receive random update ticks
-     */
     protected Block setTickRandomly(boolean shouldTick)
     {
         this.needsRandomTick = shouldTick;
         return this;
     }
 
-    /**
-     * Returns whether or not this block is of a type that needs random ticking. Called for ref-counting purposes by
-     * ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
-     */
     public boolean getTickRandomly()
     {
         return this.needsRandomTick;
@@ -568,9 +470,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Return an AABB (in world coords!) that should be highlighted when the player is targeting this Block
-     */
     public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
     {
         return state.getBoundingBox(worldIn, pos).offset(pos);
@@ -604,9 +503,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Used to determine ambient occlusion and culling when rebuilding chunks for render
-     */
     public boolean isOpaqueCube(IBlockState state)
     {
         return true;
@@ -617,18 +513,11 @@ public class Block
         return this.isCollidable();
     }
 
-    /**
-     * Returns if this block is collidable. Only used by fire, although stairs return that of the block that the stair
-     * is made of (though nobody's going to make fire stairs, right?)
-     */
     public boolean isCollidable()
     {
         return true;
     }
 
-    /**
-     * Called randomly when setTickRandomly is set to true (used by e.g. crops to grow, etc.)
-     */
     public void randomTick(World worldIn, BlockPos pos, IBlockState state, Random random)
     {
         this.updateTick(worldIn, pos, state, random);
@@ -642,58 +531,34 @@ public class Block
     {
     }
 
-    /**
-     * Called after a player destroys this Block - the posiiton pos may no longer hold the state indicated.
-     */
     public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state)
     {
     }
 
     @Deprecated
 
-    /**
-     * Called when a neighboring block was changed and marks that this state should perform any checks during a neighbor
-     * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
-     * block, etc.
-     */
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
     }
 
-    /**
-     * How many world ticks before ticking
-     */
     public int tickRate(World worldIn)
     {
         return 10;
     }
 
-    /**
-     * Called after the block is set in the Chunk data, but before the Tile Entity is set
-     */
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
     }
 
-    /**
-     * Called serverside after this block is replaced with another in Chunk, but before the Tile Entity is updated
-     * 当中国方块被其它方块替换但是tile实体已经被更新时，在服务端被调用
-     */
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
     }
 
-    /**
-     * Returns the quantity of items to drop on block destruction.
-     */
     public int quantityDropped(Random random)
     {
         return 1;
     }
 
-    /**
-     * Get the Item that this Block should drop when harvested.
-     */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(this);
@@ -701,9 +566,6 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Get the hardness of this Block relative to the ability of the given player
-     */
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World worldIn, BlockPos pos)
     {
         float f = state.getBlockHardness(worldIn, pos);
@@ -718,17 +580,11 @@ public class Block
         }
     }
 
-    /**
-     * Spawn this Block's drops into the World as EntityItems
-     */
     public final void dropBlockAsItem(World worldIn, BlockPos pos, IBlockState state, int fortune)
     {
         this.dropBlockAsItemWithChance(worldIn, pos, state, 1.0F, fortune);
     }
 
-    /**
-     * Spawns this Block's drops into the World as EntityItems.
-     */
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
     {
         if (!worldIn.isRemote)
@@ -750,9 +606,6 @@ public class Block
         }
     }
 
-    /**
-     * Spawns the given ItemStack as an EntityItem into the World at the given position
-     */
     public static void spawnAsEntity(World worldIn, BlockPos pos, ItemStack stack)
     {
         if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean("doTileDrops"))
@@ -767,9 +620,6 @@ public class Block
         }
     }
 
-    /**
-     * Spawns the given amount of experience into the World as XP orb entities
-     */
     protected void dropXpOnBlockBreak(World worldIn, BlockPos pos, int amount)
     {
         if (!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops"))
@@ -783,18 +633,11 @@ public class Block
         }
     }
 
-    /**
-     * Gets the metadata of the item this Block can drop. This method is called when the block gets destroyed. It
-     * returns the metadata of the dropped item based on the old metadata of the block.
-     */
     public int damageDropped(IBlockState state)
     {
         return 0;
     }
 
-    /**
-     * Returns how much this block can resist explosions from the passed in entity.
-     */
     public float getExplosionResistance(Entity exploder)
     {
         return this.blockResistance / 5.0F;
@@ -803,9 +646,6 @@ public class Block
     @Deprecated
     @Nullable
 
-    /**
-     * Ray traces through the blocks collision from start vector to end vector returning a ray trace hit.
-     */
     public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
     {
         return this.rayTrace(pos, start, end, blockState.getBoundingBox(worldIn, pos));
@@ -820,9 +660,6 @@ public class Block
         return raytraceresult == null ? null : new RayTraceResult(raytraceresult.hitVec.addVector((double)pos.getX(), (double)pos.getY(), (double)pos.getZ()), raytraceresult.sideHit, pos);
     }
 
-    /**
-     * Called when this Block is destroyed by an Explosion
-     */
     public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
     {
     }
@@ -832,9 +669,6 @@ public class Block
         return BlockRenderLayer.SOLID;
     }
 
-    /**
-     * Check whether this Block can be placed at pos, while aiming at the specified side of an adjacent block
-     */
     public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
     {
         return this.canPlaceBlockAt(worldIn, pos);
@@ -845,25 +679,15 @@ public class Block
         return worldIn.getBlockState(pos).getBlock().blockMaterial.isReplaceable();
     }
 
-    /**
-     * Called when the block is right clicked by a player.
-     */
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         return false;
     }
 
-    /**
-     * Called when the given entity walks on this Block
-     */
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
     {
     }
 
-    /**
-     * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
-     * IBlockstate
-     */
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.getStateFromMeta(meta);
@@ -886,17 +710,11 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Can this block provide power. Only wire currently seems to have this change based on its state.
-     */
     public boolean canProvidePower(IBlockState state)
     {
         return false;
     }
 
-    /**
-     * Called When an Entity Collided with the Block
-     */
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
     }
@@ -907,10 +725,6 @@ public class Block
         return 0;
     }
 
-    /**
-     * Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via
-     * Block.removedByPlayer
-     */
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
     {
         player.addStat(StatList.getBlockStats(this));
@@ -946,24 +760,15 @@ public class Block
         return new ItemStack(item, 1, i);
     }
 
-    /**
-     * Get the quantity dropped based on the given fortune level
-     */
     public int quantityDroppedWithBonus(int fortune, Random random)
     {
         return this.quantityDropped(random);
     }
 
-    /**
-     * Called by ItemBlocks after a block is set in the world, to allow post-place logic
-     */
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
     }
 
-    /**
-     * Return true if an entity can be spawned inside the block (used to get the player's bed spawn location)
-     */
     public boolean canSpawnInBlock()
     {
         return !this.blockMaterial.isSolid() && !this.blockMaterial.isLiquid();
@@ -975,17 +780,11 @@ public class Block
         return this;
     }
 
-    /**
-     * Gets the localized name of this block. Used for the statistics page.
-     */
     public String getLocalizedName()
     {
         return I18n.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 
-    /**
-     * Returns the unlocalized name of the block with "tile." appended to the front.
-     */
     public String getUnlocalizedName()
     {
         return "tile." + this.unlocalizedName;
@@ -993,19 +792,11 @@ public class Block
 
     @Deprecated
 
-    /**
-     * Called on server when World#addBlockEvent is called. If server returns true, then also called on the client. On
-     * the Server, this may perform additional changes to the world, like pistons replacing the block with an extended
-     * base. On the client, the update may involve replacing tile entities or effects such as sounds or particles
-     */
     public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
     {
         return false;
     }
 
-    /**
-     * Return the state of blocks statistics flags - if the block is counted for mined and placed.
-     */
     public boolean getEnableStats()
     {
         return this.enableStats;
@@ -1029,18 +820,11 @@ public class Block
         return state.isBlockNormalCube() ? 0.2F : 1.0F;
     }
 
-    /**
-     * Block's chance to react to a living entity falling on it.
-     */
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
     {
         entityIn.fall(fallDistance, 1.0F);
     }
 
-    /**
-     * Called when an Entity lands on this Block. This method *must* update motionY because the entity will not do that
-     * on its own
-     */
     public void onLanded(World worldIn, Entity entityIn)
     {
         entityIn.motionY = 0.0D;
@@ -1051,17 +835,11 @@ public class Block
         return new ItemStack(Item.getItemFromBlock(this), 1, this.damageDropped(state));
     }
 
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
         items.add(new ItemStack(this));
     }
 
-    /**
-     * Returns the CreativeTab to display the given block on.
-     */
     public CreativeTabs getCreativeTabToDisplayOn()
     {
         return this.displayOnCreativeTab;
@@ -1073,17 +851,10 @@ public class Block
         return this;
     }
 
-    /**
-     * Called before the Block is set to air in the world. Called regardless of if the player's tool can actually
-     * collect this block
-     */
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
     {
     }
 
-    /**
-     * Called similar to random ticks, but only when it is raining.
-     */
     public void fillWithRain(World worldIn, BlockPos pos)
     {
     }
@@ -1093,9 +864,6 @@ public class Block
         return true;
     }
 
-    /**
-     * Return whether this block can drop from an explosion.
-     */
     public boolean canDropFromExplosion(Explosion explosionIn)
     {
         return true;
@@ -1150,9 +918,6 @@ public class Block
         return this.defaultBlockState;
     }
 
-    /**
-     * Get the OffsetType for this Block. Determines if the model is rendered slightly offset.
-     */
     public Block.EnumOffsetType getOffsetType()
     {
         return Block.EnumOffsetType.NONE;

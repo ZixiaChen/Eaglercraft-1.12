@@ -20,35 +20,19 @@ public class MathHelper
     private static final float[] SIN_TABLE_FAST = new float[4096];
     public static boolean fastMath = false;
 
-    /**
-     * A table of sin values computed from 0 (inclusive) to 2*pi (exclusive), with steps of 2*PI / 65536.
-     */
     private static final float[] SIN_TABLE = new float[65536];
     private static final Random RANDOM = new Random();
 
-    /**
-     * Though it looks like an array, this is really more like a mapping.  Key (index of this array) is the upper 5 bits
-     * of the result of multiplying a 32-bit unsigned integer by the B(2, 5) De Bruijn sequence 0x077CB531.  Value
-     * (value stored in the array) is the unique index (from the right) of the leftmost one-bit in a 32-bit unsigned
-     * integer that can cause the upper 5 bits to get that value.  Used for highly optimized "find the log-base-2 of
-     * this number" calculations.
-     */
     private static final int[] MULTIPLY_DE_BRUIJN_BIT_POSITION;
     private static final double FRAC_BIAS;
     private static final double[] ASINE_TAB;
     private static final double[] COS_TAB;
 
-    /**
-     * sin looked up in a table
-     */
     public static float sin(float value)
     {
         return fastMath ? SIN_TABLE_FAST[(int)(value * 651.8986F) & 4095] : SIN_TABLE[(int)(value * 10430.378F) & 65535];
     }
 
-    /**
-     * cos looked up in the sin table with the appropriate offset
-     */
     public static float cos(float value)
     {
         return fastMath ? SIN_TABLE_FAST[(int)((value + ((float)Math.PI / 2F)) * 651.8986F) & 4095] : SIN_TABLE[(int)(value * 10430.378F + 16384.0F) & 65535];
@@ -64,37 +48,23 @@ public class MathHelper
         return (float)Math.sqrt(value);
     }
 
-    /**
-     * Returns the greatest integer less than or equal to the float argument
-     */
     public static int floor(float value)
     {
         int i = (int)value;
         return value < (float)i ? i - 1 : i;
     }
 
-    /**
-     * returns par0 cast as an int, and no greater than Integer.MAX_VALUE-1024
-     */
     public static int fastFloor(double value)
     {
         return (int)(value + 1024.0D) - 1024;
     }
 
-    /**
-     * Returns the greatest integer less than or equal to the double argument
-     * 返回小于或等于双精度参数的最大整数
-     * 向下取整
-     */
     public static int floor(double value)
     {
         int i = (int)value;
         return value < (double)i ? i - 1 : i;
     }
 
-    /**
-     * Long version of floor()
-     */
     public static long lfloor(double value)
     {
         long i = (long)value;
@@ -111,9 +81,6 @@ public class MathHelper
         return value >= 0.0F ? value : -value;
     }
 
-    /**
-     * Returns the unsigned value of an int.
-     */
     public static int abs(int value)
     {
         return value >= 0 ? value : -value;
@@ -131,11 +98,6 @@ public class MathHelper
         return value > (double)i ? i + 1 : i;
     }
 
-    /**
-     * Returns the value of the first parameter, clamped to be within the lower and upper limits given by the second and
-     * third parameters.
-     * 如果num处于min和max之间，返回num，如果在左边，返回min，如果在右边，返回max
-     */
     public static int clamp(int num, int min, int max)
     {
         if (num < min)
@@ -148,10 +110,6 @@ public class MathHelper
         }
     }
 
-    /**
-     * Returns the value of the first parameter, clamped to be within the lower and upper limits given by the second and
-     * third parameters
-     */
     public static float clamp(float num, float min, float max)
     {
         if (num < min)
@@ -188,9 +146,6 @@ public class MathHelper
         }
     }
 
-    /**
-     * Maximum of the absolute value of two numbers.
-     */
     public static double absMax(double p_76132_0_, double p_76132_2_)
     {
         if (p_76132_0_ < 0.0D)
@@ -206,9 +161,6 @@ public class MathHelper
         return p_76132_0_ > p_76132_2_ ? p_76132_0_ : p_76132_2_;
     }
 
-    /**
-     * Buckets an integer with specifed bucket sizes.
-     */
     public static int intFloorDiv(int p_76137_0_, int p_76137_1_)
     {
         return p_76137_0_ < 0 ? -((-p_76137_0_ - 1) / p_76137_1_) - 1 : p_76137_0_ / p_76137_1_;
@@ -261,9 +213,6 @@ public class MathHelper
         return (numerator % denominator + denominator) % denominator;
     }
 
-    /**
-     * the angle is reduced to an angle between -180 and +180 by mod, and a 360 check
-     */
     public static float wrapDegrees(float value)
     {
         value = value % 360.0F;
@@ -281,9 +230,6 @@ public class MathHelper
         return value;
     }
 
-    /**
-     * the angle is reduced to an angle between -180 and +180 by mod, and a 360 check
-     */
     public static double wrapDegrees(double value)
     {
         value = value % 360.0D;
@@ -301,9 +247,6 @@ public class MathHelper
         return value;
     }
 
-    /**
-     * Adjust the angle so that his value is in range [-180;180[
-     */
     public static int clampAngle(int angle)
     {
         angle = angle % 360;
@@ -321,9 +264,6 @@ public class MathHelper
         return angle;
     }
 
-    /**
-     * parses the string as integer or returns the second parameter if it fails
-     */
     public static int getInt(String value, int defaultValue)
     {
         try
@@ -336,17 +276,11 @@ public class MathHelper
         }
     }
 
-    /**
-     * parses the string as integer or returns the second parameter if it fails. this value is capped to par2
-     */
     public static int getInt(String value, int defaultValue, int max)
     {
         return Math.max(max, getInt(value, defaultValue));
     }
 
-    /**
-     * parses the string as double or returns the second parameter if it fails.
-     */
     public static double getDouble(String value, double defaultValue)
     {
         try
@@ -364,12 +298,6 @@ public class MathHelper
         return Math.max(max, getDouble(value, defaultValue));
     }
 
-    /**
-     * Returns the input value rounded up to the next highest power of two.
-     * 返回输入值四舍五入到二的次高幂，就是得到一个最小的，比value值要大的2的次幂
-     * @param value 输入的值
-     * @return 最小的，比value值要大的2的次幂
-     */
     public static int smallestEncompassingPowerOfTwo(int value)
     {
         int i = value - 1;
@@ -381,42 +309,22 @@ public class MathHelper
         return i + 1;
     }
 
-    /**
-     * Is the given value a power of two?  (1, 2, 4, 8, 16, ...)
-     */
     private static boolean isPowerOfTwo(int value)
     {
         return value != 0 && (value & value - 1) == 0;
     }
 
-    /**
-     * Uses a B(2, 5) De Bruijn sequence and a lookup table to efficiently calculate the log-base-two of the given
-     * value. Optimized for cases where the input value is a power-of-two. If the input value is not a power-of-two,
-     * then subtract 1 from the return value.
-     * 使用一个 B(2,5) De Bruijn 序列 和一个 查阅表格去高效地计算log2(Value)的值，当输入值为2的幂次的时候，这种方法会有优化，如果输入的
-     * 值不是2的幂次，就把返回值减去1
-     */
     public static int log2DeBruijn(int value)
     {
-        value = isPowerOfTwo(value) ? value : smallestEncompassingPowerOfTwo(value);//输入的值是2的次方？是，value不变，不是，value是最大的比value小的2的次幂
-        return MULTIPLY_DE_BRUIJN_BIT_POSITION[(int)((long)value * 125613361L >> 27) & 31];//
+        value = isPowerOfTwo(value) ? value : smallestEncompassingPowerOfTwo(value);
+        return MULTIPLY_DE_BRUIJN_BIT_POSITION[(int)((long)value * 125613361L >> 27) & 31];
     }
 
-    /**
-     * Efficiently calculates the floor of the base-2 log of an integer value.  This is effectively the index of the
-     * highest bit that is set.  For example, if the number in binary is 0...100101, this will return 5.
-     */
     public static int log2(int value)
     {
         return log2DeBruijn(value) - (isPowerOfTwo(value) ? 0 : 1);
     }
 
-    /**
-     * Rounds the first parameter up to the next interval of the second parameter.
-     *  
-     * For instance, {@code roundUp(1, 4)} returns 4; {@code roundUp(0, 4)} returns 0; and {@code roundUp(4, 4)} returns
-     * 4.
-     */
     public static int roundUp(int number, int interval)
     {
         if (interval == 0)
@@ -439,17 +347,11 @@ public class MathHelper
         }
     }
 
-    /**
-     * Makes an integer color from the given red, green, and blue float values
-     */
     public static int rgb(float rIn, float gIn, float bIn)
     {
         return rgb(floor(rIn * 255.0F), floor(gIn * 255.0F), floor(bIn * 255.0F));
     }
 
-    /**
-     * Makes a single int color with the given red, green, and blue values.
-     */
     public static int rgb(int rIn, int gIn, int bIn)
     {
         int i = (rIn << 8) + gIn;
@@ -471,9 +373,6 @@ public class MathHelper
         return p_180188_0_ & -16777216 | k1 << 16 | l1 << 8 | i2;
     }
 
-    /**
-     * Gets the decimal portion of the given double. For instance, {@code frac(5.5)} returns {@code .5}.
-     */
     public static double frac(double number)
     {
         return number - Math.floor(number);
@@ -498,9 +397,6 @@ public class MathHelper
         return new UUID(i, j);
     }
 
-    /**
-     * Generates a random UUID using the shared random
-     */
     public static UUID getRandomUUID()
     {
         return getRandomUUID(RANDOM);

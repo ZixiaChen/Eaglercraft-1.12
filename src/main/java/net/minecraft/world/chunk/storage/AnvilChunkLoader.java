@@ -40,7 +40,6 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
     private final Map<ChunkPos, NBTTagCompound> chunksToRemove = Maps.<ChunkPos, NBTTagCompound>newConcurrentMap();
     private final Set<ChunkPos> currentSave = Collections.<ChunkPos>newSetFromMap(Maps.newConcurrentMap());
 
-    /** Save directory for chunks using the Anvil format */
     private final File chunkSaveLocation;
     private final DataFixer fixer;
     private boolean flushing;
@@ -53,9 +52,6 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 
     @Nullable
 
-    /**
-     * Loads the specified(XZ) chunk into the specified world.
-     */
     public Chunk loadChunk(World worldIn, int x, int z) throws IOException
     {
         ChunkPos chunkpos = new ChunkPos(x, z);
@@ -85,9 +81,6 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 
     @Nullable
 
-    /**
-     * Wraps readChunkFromNBT. Checks the coordinates and several NBT tags.
-     */
     protected Chunk checkedReadChunkFromNBT(World worldIn, int x, int z, NBTTagCompound compound)
     {
         if (!compound.hasKey("Level", 10))
@@ -150,9 +143,6 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         ThreadedFileIOBase.getThreadedIOInstance().queueIO(this);
     }
 
-    /**
-     * Returns a boolean stating if the write was unsuccessful.
-     */
     public boolean writeNextIO()
     {
         if (this.chunksToRemove.isEmpty())
@@ -204,24 +194,14 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         dataoutputstream.close();
     }
 
-    /**
-     * Save extra data associated with this Chunk not normally saved during autosave, only during chunk unload.
-     * Currently unused.
-     */
     public void saveExtraChunkData(World worldIn, Chunk chunkIn) throws IOException
     {
     }
 
-    /**
-     * Called every World.tick()
-     */
     public void chunkTick()
     {
     }
 
-    /**
-     * Flushes all pending chunks fully back to disk
-     */
     public void flush()
     {
         try
@@ -272,10 +252,6 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         });
     }
 
-    /**
-     * Writes the Chunk passed as an argument to the NBTTagCompound also passed, using the World argument to retrieve
-     * the Chunk's last update time.
-     */
     private void writeChunkToNBT(Chunk chunkIn, World worldIn, NBTTagCompound compound)
     {
         compound.setInteger("xPos", chunkIn.x);
@@ -374,32 +350,26 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         }
     }
 
-    /**
-     * Reads the data stored in the passed NBTTagCompound and creates a Chunk with that data in the passed World.
-     * Returns the created Chunk.
-     * 读取存储在传递的NBTTagCompound中的数据，并在传递的世界中使用该数据创建块。
-     * 返回创建的chunk
-     */
     private Chunk readChunkFromNBT(World worldIn, NBTTagCompound compound)
     {
-        int i = compound.getInteger("xPos"); //获取chunk的x坐标
-        int j = compound.getInteger("zPos"); //获取chunk的z坐标
-        Chunk chunk = new Chunk(worldIn, i, j);  //创建一个空的chunk对象
-        chunk.setHeightMap(compound.getIntArray("HeightMap")); // 从NBT中读取并设置heightMap
-        chunk.setTerrainPopulated(compound.getBoolean("TerrainPopulated")); //从NBT中读取并设置TerrainPopulated（地形填充）
-        chunk.setLightPopulated(compound.getBoolean("LightPopulated"));  //从NBT中读取并设置LightPopulated（光线填充）
-        chunk.setInhabitedTime(compound.getLong("InhabitedTime"));  //从NBT中读取并设置InhabitedTime（有人居住时间）
-        NBTTagList nbttaglist = compound.getTagList("Sections", 10); //获取section
+        int i = compound.getInteger("xPos"); 
+        int j = compound.getInteger("zPos"); 
+        Chunk chunk = new Chunk(worldIn, i, j);  
+        chunk.setHeightMap(compound.getIntArray("HeightMap")); 
+        chunk.setTerrainPopulated(compound.getBoolean("TerrainPopulated")); 
+        chunk.setLightPopulated(compound.getBoolean("LightPopulated"));  
+        chunk.setInhabitedTime(compound.getLong("InhabitedTime"));  
+        NBTTagList nbttaglist = compound.getTagList("Sections", 10); 
         int k = 16;
-        ExtendedBlockStorage[] aextendedblockstorage = new ExtendedBlockStorage[16];  //创建section空数组
-        boolean flag = worldIn.provider.hasSkyLight();  //获取是否有全局光照
+        ExtendedBlockStorage[] aextendedblockstorage = new ExtendedBlockStorage[16];  
+        boolean flag = worldIn.provider.hasSkyLight();  
 
-        for (int l = 0; l < nbttaglist.tagCount(); ++l) //遍历section
+        for (int l = 0; l < nbttaglist.tagCount(); ++l) 
         {
-            NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(l); //获取一个section的内容
-            int i1 = nbttagcompound.getByte("Y");  //获取section的y值（0-15）
-            ExtendedBlockStorage extendedblockstorage = new ExtendedBlockStorage(i1 << 4, flag); //获取section的真正的y值并创建section对象
-            byte[] abyte = nbttagcompound.getByteArray("Blocks"); //获取方块
+            NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(l); 
+            int i1 = nbttagcompound.getByte("Y");  
+            ExtendedBlockStorage extendedblockstorage = new ExtendedBlockStorage(i1 << 4, flag); 
+            byte[] abyte = nbttagcompound.getByteArray("Blocks"); 
             NibbleArray nibblearray = new NibbleArray(nbttagcompound.getByteArray("Data"));
             NibbleArray nibblearray1 = nbttagcompound.hasKey("Add", 7) ? new NibbleArray(nbttagcompound.getByteArray("Add")) : null;
             extendedblockstorage.getData().setDataFromNBT(abyte, nibblearray, nibblearray1);
@@ -410,11 +380,11 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
                 extendedblockstorage.setSkyLight(new NibbleArray(nbttagcompound.getByteArray("SkyLight")));
             }
 
-            extendedblockstorage.recalculateRefCounts(); //持续计算非空气方块
-            aextendedblockstorage[i1] = extendedblockstorage; //把section加入到section数组中
+            extendedblockstorage.recalculateRefCounts(); 
+            aextendedblockstorage[i1] = extendedblockstorage; 
         }
 
-        chunk.setStorageArrays(aextendedblockstorage);  //把section数组加入到chunk中
+        chunk.setStorageArrays(aextendedblockstorage);  
 
         if (compound.hasKey("Biomes", 7))
         {
