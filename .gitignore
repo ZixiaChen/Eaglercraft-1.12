@@ -4,6 +4,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 runtime/
+javascript/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
