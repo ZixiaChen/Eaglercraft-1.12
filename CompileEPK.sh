@@ -1,0 +1,1 @@
+java -jar "CompileEPK.jar" "src/main/resources" "javascript/assets.epk"
