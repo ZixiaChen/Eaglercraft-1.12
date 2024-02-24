@@ -5,7 +5,7 @@ This client comes with Optifine build in.
 
 ### Compiling
 
-Open this project in IntelliJ and run gradle's clean and build tasks, then look in build/distributions for the compiled runtime zip.
+Download this project and run gradle's clean and build tasks (`./gradlew clean build` on Linux and `gradlew.bat clean build` on Windows), then look in build/distributions for the compiled runtime zip.
 
 ### Web client
 As of right now there is no system to compile an offline download, neither is there a web client.
