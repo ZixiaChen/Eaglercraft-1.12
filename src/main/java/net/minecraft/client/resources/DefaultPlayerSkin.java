@@ -24,7 +24,7 @@ public class DefaultPlayerSkin
      */
     public static ResourceLocation getDefaultSkin(UUID playerUUID)
     {
-        return isSlimSkin(playerUUID) ? TEXTURE_ALEX : TEXTURE_STEVE;
+        return TEXTURE_STEVE;
     }
 
     /**
@@ -32,7 +32,7 @@ public class DefaultPlayerSkin
      */
     public static String getSkinType(UUID playerUUID)
     {
-        return isSlimSkin(playerUUID) ? "slim" : "default";
+        return "default";
     }
 
     /**
@@ -40,6 +40,6 @@ public class DefaultPlayerSkin
      */
     private static boolean isSlimSkin(UUID playerUUID)
     {
-        return (playerUUID.hashCode() & 1) == 1;
+        return false;
     }
 }
