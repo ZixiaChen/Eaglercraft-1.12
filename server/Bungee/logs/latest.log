@@ -30,3 +30,24 @@
 [15:50:34] [main/INFO] [EaglercraftXBungee]: Connected to database: jdbc:sqlite:eaglercraft_skins_cache.db
 [15:50:34] [main/INFO]: Enabled plugin EaglercraftXBungee version 1.0.8 by lax1dude
 [15:50:34] [Netty Boss IO Thread #0/INFO]: Listening on /127.0.0.1:25577
+[16:42:59] [main/ERROR]: Exception in thread "main" java.io.IOError: java.io.IOException: Input/output error
+[16:42:59] [main/ERROR]: 	at org.jline.keymap.BindingReader.readCharacter(BindingReader.java:170)
+[16:42:59] [main/ERROR]: 	at org.jline.keymap.BindingReader.readBinding(BindingReader.java:110)
+[16:42:59] [main/ERROR]: 	at org.jline.keymap.BindingReader.readBinding(BindingReader.java:61)
+[16:42:59] [main/ERROR]: 	at org.jline.reader.impl.LineReaderImpl.doReadBinding(LineReaderImpl.java:923)
+[16:42:59] [main/ERROR]: 	at org.jline.reader.impl.LineReaderImpl.readBinding(LineReaderImpl.java:956)
+[16:42:59] [main/ERROR]: 	at org.jline.reader.impl.LineReaderImpl.readLine(LineReaderImpl.java:651)
+[16:42:59] [main/ERROR]: 	at org.jline.reader.impl.LineReaderImpl.readLine(LineReaderImpl.java:468)
+[16:42:59] [main/ERROR]: 	at net.minecrell.terminalconsole.SimpleTerminalConsole.readCommands(SimpleTerminalConsole.java:158)
+[16:42:59] [main/ERROR]: 	at net.minecrell.terminalconsole.SimpleTerminalConsole.start(SimpleTerminalConsole.java:141)
+[16:42:59] [main/ERROR]: 	at net.md_5.bungee.BungeeCordLauncher.main(BungeeCordLauncher.java:72)
+[16:42:59] [main/ERROR]: 	at net.md_5.bungee.Bootstrap.main(Bootstrap.java:15)
+[16:42:59] [main/ERROR]: Caused by: java.io.IOException: Input/output error
+[16:42:59] [main/ERROR]: 	at java.base/java.io.FileInputStream.read0(Native Method)
+[16:42:59] [main/ERROR]: 	at java.base/java.io.FileInputStream.read(FileInputStream.java:228)
+[16:42:59] [main/ERROR]: 	at org.jline.terminal.impl.AbstractPty$PtyInputStream.read(AbstractPty.java:73)
+[16:42:59] [main/ERROR]: 	at org.jline.utils.NonBlockingInputStream.read(NonBlockingInputStream.java:62)
+[16:42:59] [main/ERROR]: 	at org.jline.utils.NonBlocking$NonBlockingInputStreamReader.read(NonBlocking.java:168)
+[16:42:59] [main/ERROR]: 	at org.jline.utils.NonBlockingReader.read(NonBlockingReader.java:57)
+[16:42:59] [main/ERROR]: 	at org.jline.keymap.BindingReader.readCharacter(BindingReader.java:160)
+[16:42:59] [main/ERROR]: 	... 10 more

@@ -5,9 +5,11 @@ This client comes with Optifine build in.
 
 ### Compiling
 
+Prerequisites: Java 17 and JDK 17 or higher
+
 Download this project and run gradle's clean and build tasks (`./gradlew clean build` on Linux and `gradlew.bat clean build` on Windows), then look in build/distributions for the compiled runtime zip.
 
-##### Releases can be outdated! To get the latest working version compile this repo yourself
+#### Releases can be outdated! To get the latest working version compile this repo yourself
 
 ### Web client
 As of right now there is no system to compile an offline download, neither is there a web client.

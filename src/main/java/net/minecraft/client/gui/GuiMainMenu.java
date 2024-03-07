@@ -679,7 +679,7 @@ public class GuiMainMenu extends GuiScreen
         GlStateManager.scale(f, f, f);
         this.drawCenteredString(this.fontRenderer, this.splashText, 0, -8, -256);
         GlStateManager.popMatrix();
-        String s = "Eaglercraft 1.12.2 (cracked)";
+        String s = "Eaglercraft 1.12 (cracked)";
 
         if (this.mc.isDemo())
         {
