@@ -1,6 +1,6 @@
 # Eaglercraft 1.12 source
 
-[![Java CI with Gradle](https://github.com/catfoolyou/Eaglercraft-1.12/actions/workflows/gradle.yml/badge.svg)](https://github.com/catfoolyou/Eaglercraft-1.12/actions/workflows/gradle.yml)
+[![Java CI with Gradle](https://github.com/catfoolyou/Eaglercraft-1.12/actions/workflows/gradle.yml/badge.svg?branch=dev-actions)](https://github.com/catfoolyou/Eaglercraft-1.12/actions/workflows/gradle.yml)
 
 This repo contains the source code of my Eaglercraft 1.12 project. While I have made a somewhat functioning version of a desktop runtime, the web version has not yet been compiled. Please be patient as I expect to have a working build soon.
 This client comes with Optifine build in.
