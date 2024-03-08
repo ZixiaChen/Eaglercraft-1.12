@@ -37,8 +37,8 @@ jobs:
       
     - uses: actions/upload-artifact@v2
       with:
-        name: Upload runtime
-        path: build/distributions/EaglerGradle-1.0.0.tar
+        name: Eagler-Unix
+        path: build/distributions/
 
   build-windows:
 
@@ -62,9 +62,9 @@ jobs:
         gradle-version: '8.6'
 
     - name: Compile desktop runtime
-      run: gradlew.bat clean build
+      run: gradlew clean build
       
     - uses: actions/upload-artifact@v2
       with:
-        name: Upload runtime
-        path: build/distributions/EaglerGradle-1.0.0.zip
+        name: Eagler-Windows
+        path: build/distributions/
