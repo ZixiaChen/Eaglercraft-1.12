@@ -62,7 +62,7 @@ jobs:
         gradle-version: '8.6'
 
     - name: Compile desktop runtime
-      run: gradlew clean build
+      run: ./gradlew clean build
       
     - uses: actions/upload-artifact@v2
       with:
