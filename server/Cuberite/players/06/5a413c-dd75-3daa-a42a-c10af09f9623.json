@@ -90,13 +90,13 @@
 			"ID" : -1
 		}
 	],
-	"equippedItemSlot" : 0,
-	"food" : 20,
-	"foodExhaustion" : 2.3206500000000005,
-	"foodSaturation" : 4.0,
-	"foodTickTimer" : 65,
+	"equippedItemSlot" : 1,
+	"food" : 17,
+	"foodExhaustion" : 2.3259500238418545,
+	"foodSaturation" : 0.0,
+	"foodTickTimer" : 0,
 	"gamemode" : -1,
-	"health" : 20.0,
+	"health" : 19.0,
 	"inventory" : 
 	[
 		{
@@ -208,13 +208,22 @@
 			"ID" : -1
 		},
 		{
-			"ID" : -1
+			"Count" : 4,
+			"Health" : 0,
+			"ID" : 280,
+			"RepairCost" : 0
 		},
 		{
-			"ID" : -1
+			"Count" : 2,
+			"Health" : 0,
+			"ID" : 262,
+			"RepairCost" : 0
 		},
 		{
-			"ID" : -1
+			"Count" : 2,
+			"Health" : 0,
+			"ID" : 352,
+			"RepairCost" : 0
 		},
 		{
 			"ID" : -1
@@ -239,19 +248,55 @@
 		}
 	],
 	"isflying" : false,
-	"knownItems" : null,
-	"knownRecipes" : null,
+	"knownItems" : 
+	[
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 12,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 1,
+			"ID" : 159,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 262,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 280,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 352,
+			"RepairCost" : 0
+		}
+	],
+	"knownRecipes" : 
+	[
+		"sandstone",
+		"ladder"
+	],
 	"lastknownname" : "Catfoolyou",
 	"position" : 
 	[
-		31.357493234926231,
-		63.0,
-		58.813346609613021
+		-2.4531741507454168,
+		64.0,
+		24.192362929906242
 	],
 	"rotation" : 
 	[
-		-82.200042724609375,
-		11.550004005432129,
+		122.32525634765625,
+		21.81837272644043,
 		0.0
 	],
 	"world" : "world",

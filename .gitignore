@@ -5,6 +5,9 @@ build/
 !**/src/test/**/build/
 src/main/assets/logs/
 server/Cubernite/logs/
+server/Bungee/logs/
+server/logs/
+server/world
 runtime/
 javascript/
 

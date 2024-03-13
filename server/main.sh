@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # Eaglercraft Server
-# Thrown together in a few days by TheCerealist
-# Go love ayun, he gave me the idea.
 
 unset DISPLAY
 

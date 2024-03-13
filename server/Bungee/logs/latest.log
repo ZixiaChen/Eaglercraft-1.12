@@ -1,53 +1,43 @@
-[15:50:33] [main/INFO]: Using mbed TLS based native cipher.
-[15:50:33] [main/INFO]: Using zlib based native compressor.
-[15:50:33] [main/INFO]: Enabled Waterfall version git:Waterfall-Bootstrap:1.20-R0.2-SNAPSHOT:a5bbdbe:543
-[15:50:33] [main/INFO]: Not on Windows, attempting to use enhanced EpollEventLoop
-[15:50:33] [main/INFO]: Epoll is working, utilising it!
-[15:50:33] [main/INFO]: Discovered module: ModuleSpec(name=cmd_alert, file=modules/cmd_alert.jar, provider=JenkinsModuleSource())
-[15:50:33] [main/INFO]: Discovered module: ModuleSpec(name=cmd_find, file=modules/cmd_find.jar, provider=JenkinsModuleSource())
-[15:50:33] [main/INFO]: Discovered module: ModuleSpec(name=cmd_list, file=modules/cmd_list.jar, provider=JenkinsModuleSource())
-[15:50:33] [main/INFO]: Discovered module: ModuleSpec(name=cmd_send, file=modules/cmd_send.jar, provider=JenkinsModuleSource())
-[15:50:33] [main/INFO]: Discovered module: ModuleSpec(name=cmd_server, file=modules/cmd_server.jar, provider=JenkinsModuleSource())
-[15:50:33] [main/INFO]: Discovered module: ModuleSpec(name=reconnect_yaml, file=modules/reconnect_yaml.jar, provider=JenkinsModuleSource())
-[15:50:33] [main/INFO]: Loaded plugin reconnect_yaml version git:reconnect_yaml:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:33] [main/INFO]: Loaded plugin cmd_find version git:cmd_find:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:33] [main/INFO]: Loaded plugin cmd_server version git:cmd_server:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:33] [main/INFO]: Loaded plugin cmd_alert version git:cmd_alert:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:33] [main/INFO]: Loaded plugin cmd_send version git:cmd_send:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:33] [main/INFO]: Loaded plugin cmd_list version git:cmd_list:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:33] [main/INFO] [EaglercraftXBungee]: Loading vanilla profile: lax1dude
-[15:50:34] [Skin Download Thread #1/INFO] [EaglercraftXBungee]: Loaded vanilla profile: lax1dude
-[15:50:34] [main/INFO]: Loaded plugin EaglercraftXBungee version 1.0.8 by lax1dude
-[15:50:34] [main/WARN]: Forced host server pvp is not defined
-[15:50:34] [main/INFO]: Enabled plugin reconnect_yaml version git:reconnect_yaml:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:34] [main/INFO]: Enabled plugin cmd_find version git:cmd_find:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:34] [main/INFO]: Enabled plugin cmd_server version git:cmd_server:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:34] [main/INFO]: Enabled plugin cmd_alert version git:cmd_alert:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:34] [main/INFO]: Enabled plugin cmd_send version git:cmd_send:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:34] [main/INFO]: Enabled plugin cmd_list version git:cmd_list:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[15:50:34] [main/ERROR] [EaglercraftXBungee]: Online mode is set to false! Authentication system has been disabled
-[15:50:34] [Netty Worker IO Thread #0/INFO] [EaglercraftXBungee]: Eaglercraft is listening on: /0.0.0.0:8081
-[15:50:34] [main/INFO] [EaglercraftXBungee]: Connected to database: jdbc:sqlite:eaglercraft_skins_cache.db
-[15:50:34] [main/INFO]: Enabled plugin EaglercraftXBungee version 1.0.8 by lax1dude
-[15:50:34] [Netty Boss IO Thread #0/INFO]: Listening on /127.0.0.1:25577
-[16:42:59] [main/ERROR]: Exception in thread "main" java.io.IOError: java.io.IOException: Input/output error
-[16:42:59] [main/ERROR]: 	at org.jline.keymap.BindingReader.readCharacter(BindingReader.java:170)
-[16:42:59] [main/ERROR]: 	at org.jline.keymap.BindingReader.readBinding(BindingReader.java:110)
-[16:42:59] [main/ERROR]: 	at org.jline.keymap.BindingReader.readBinding(BindingReader.java:61)
-[16:42:59] [main/ERROR]: 	at org.jline.reader.impl.LineReaderImpl.doReadBinding(LineReaderImpl.java:923)
-[16:42:59] [main/ERROR]: 	at org.jline.reader.impl.LineReaderImpl.readBinding(LineReaderImpl.java:956)
-[16:42:59] [main/ERROR]: 	at org.jline.reader.impl.LineReaderImpl.readLine(LineReaderImpl.java:651)
-[16:42:59] [main/ERROR]: 	at org.jline.reader.impl.LineReaderImpl.readLine(LineReaderImpl.java:468)
-[16:42:59] [main/ERROR]: 	at net.minecrell.terminalconsole.SimpleTerminalConsole.readCommands(SimpleTerminalConsole.java:158)
-[16:42:59] [main/ERROR]: 	at net.minecrell.terminalconsole.SimpleTerminalConsole.start(SimpleTerminalConsole.java:141)
-[16:42:59] [main/ERROR]: 	at net.md_5.bungee.BungeeCordLauncher.main(BungeeCordLauncher.java:72)
-[16:42:59] [main/ERROR]: 	at net.md_5.bungee.Bootstrap.main(Bootstrap.java:15)
-[16:42:59] [main/ERROR]: Caused by: java.io.IOException: Input/output error
-[16:42:59] [main/ERROR]: 	at java.base/java.io.FileInputStream.read0(Native Method)
-[16:42:59] [main/ERROR]: 	at java.base/java.io.FileInputStream.read(FileInputStream.java:228)
-[16:42:59] [main/ERROR]: 	at org.jline.terminal.impl.AbstractPty$PtyInputStream.read(AbstractPty.java:73)
-[16:42:59] [main/ERROR]: 	at org.jline.utils.NonBlockingInputStream.read(NonBlockingInputStream.java:62)
-[16:42:59] [main/ERROR]: 	at org.jline.utils.NonBlocking$NonBlockingInputStreamReader.read(NonBlocking.java:168)
-[16:42:59] [main/ERROR]: 	at org.jline.utils.NonBlockingReader.read(NonBlockingReader.java:57)
-[16:42:59] [main/ERROR]: 	at org.jline.keymap.BindingReader.readCharacter(BindingReader.java:160)
-[16:42:59] [main/ERROR]: 	... 10 more
+[16:31:30] [main/INFO]: Using mbed TLS based native cipher.
+[16:31:30] [main/INFO]: Using zlib based native compressor.
+[16:31:30] [main/INFO]: Enabled Waterfall version git:Waterfall-Bootstrap:1.20-R0.2-SNAPSHOT:a5bbdbe:543
+[16:31:30] [main/INFO]: Not on Windows, attempting to use enhanced EpollEventLoop
+[16:31:30] [main/INFO]: Epoll is working, utilising it!
+[16:31:30] [main/INFO]: Discovered module: ModuleSpec(name=cmd_alert, file=modules/cmd_alert.jar, provider=JenkinsModuleSource())
+[16:31:30] [main/INFO]: Discovered module: ModuleSpec(name=cmd_find, file=modules/cmd_find.jar, provider=JenkinsModuleSource())
+[16:31:30] [main/INFO]: Discovered module: ModuleSpec(name=cmd_list, file=modules/cmd_list.jar, provider=JenkinsModuleSource())
+[16:31:30] [main/INFO]: Discovered module: ModuleSpec(name=cmd_send, file=modules/cmd_send.jar, provider=JenkinsModuleSource())
+[16:31:30] [main/INFO]: Discovered module: ModuleSpec(name=cmd_server, file=modules/cmd_server.jar, provider=JenkinsModuleSource())
+[16:31:30] [main/INFO]: Discovered module: ModuleSpec(name=reconnect_yaml, file=modules/reconnect_yaml.jar, provider=JenkinsModuleSource())
+[16:31:30] [main/INFO]: Loaded plugin reconnect_yaml version git:reconnect_yaml:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:30] [main/INFO]: Loaded plugin cmd_find version git:cmd_find:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:30] [main/INFO]: Loaded plugin cmd_server version git:cmd_server:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:30] [main/INFO]: Loaded plugin cmd_alert version git:cmd_alert:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:30] [main/INFO]: Loaded plugin cmd_send version git:cmd_send:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:30] [main/INFO]: Loaded plugin cmd_list version git:cmd_list:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:30] [main/INFO] [EaglercraftXBungee]: Loading vanilla profile: lax1dude
+[16:31:31] [Skin Download Thread #1/INFO] [EaglercraftXBungee]: Loaded vanilla profile: lax1dude
+[16:31:31] [main/INFO]: Loaded plugin EaglercraftXBungee version 1.0.8 by lax1dude
+[16:31:31] [main/WARN]: Forced host server pvp is not defined
+[16:31:31] [main/INFO]: Enabled plugin reconnect_yaml version git:reconnect_yaml:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:31] [main/INFO]: Enabled plugin cmd_find version git:cmd_find:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:31] [main/INFO]: Enabled plugin cmd_server version git:cmd_server:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:31] [main/INFO]: Enabled plugin cmd_alert version git:cmd_alert:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:31] [main/INFO]: Enabled plugin cmd_send version git:cmd_send:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:31] [main/INFO]: Enabled plugin cmd_list version git:cmd_list:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[16:31:31] [main/ERROR] [EaglercraftXBungee]: Online mode is set to false! Authentication system has been disabled
+[16:31:31] [Netty Worker IO Thread #0/INFO] [EaglercraftXBungee]: Eaglercraft is listening on: /0.0.0.0:8081
+[16:31:31] [main/INFO] [EaglercraftXBungee]: Connected to database: jdbc:sqlite:eaglercraft_skins_cache.db
+[16:31:31] [main/INFO]: Enabled plugin EaglercraftXBungee version 1.0.8 by lax1dude
+[16:31:31] [Netty Boss IO Thread #0/INFO]: Listening on /127.0.0.1:25577
+[16:32:40] [main/INFO]: Command not found
+[16:32:44] [main/INFO]: Command not found
+[16:32:53] [Shutdown Thread/INFO]: Closing listener [id: 0xab3a000c, L:/127.0.0.1:25577]
+[16:32:53] [Shutdown Thread/INFO]: Closing pending connections
+[16:32:53] [Shutdown Thread/INFO]: Disconnecting 0 connections
+[16:32:53] [Shutdown Thread/INFO]: Disabling plugins
+[16:32:53] [Shutdown Thread/INFO] [EaglercraftXBungee]: Eaglercraft listener closed: /0.0.0.0:8081
+[16:32:53] [Shutdown Thread/INFO] [EaglercraftXBungee]: Successfully disconnected from database 'jdbc:sqlite:eaglercraft_skins_cache.db'
+[16:32:53] [Shutdown Thread/INFO] [EaglercraftXBungee]: Stopping skin cache HTTP client...
+[16:32:55] [Shutdown Thread/INFO]: Closing IO threads
+[16:32:57] [Shutdown Thread/INFO]: Thank you and goodbye
