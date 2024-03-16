@@ -90,13 +90,13 @@
 			"ID" : -1
 		}
 	],
-	"equippedItemSlot" : 1,
-	"food" : 17,
-	"foodExhaustion" : 2.3259500238418545,
-	"foodSaturation" : 0.0,
+	"equippedItemSlot" : 4,
+	"food" : 16,
+	"foodExhaustion" : 0.96395010728835628,
+	"foodSaturation" : 2.2000000000000002,
 	"foodTickTimer" : 0,
 	"gamemode" : -1,
-	"health" : 19.0,
+	"health" : 9.0,
 	"inventory" : 
 	[
 		{
@@ -226,7 +226,10 @@
 			"RepairCost" : 0
 		},
 		{
-			"ID" : -1
+			"Count" : 2,
+			"Health" : 0,
+			"ID" : 287,
+			"RepairCost" : 0
 		},
 		{
 			"ID" : -1
@@ -241,7 +244,10 @@
 			"ID" : -1
 		},
 		{
-			"ID" : -1
+			"Count" : 12,
+			"Health" : 1,
+			"ID" : 5,
+			"RepairCost" : 0
 		},
 		{
 			"ID" : -1
@@ -252,8 +258,20 @@
 	[
 		{
 			"Count" : 1,
+			"Health" : 1,
+			"ID" : 5,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
 			"Health" : 0,
 			"ID" : 12,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 1,
+			"ID" : 17,
 			"RepairCost" : 0
 		},
 		{
@@ -277,29 +295,61 @@
 		{
 			"Count" : 1,
 			"Health" : 0,
+			"ID" : 287,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
 			"ID" : 352,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 375,
 			"RepairCost" : 0
 		}
 	],
 	"knownRecipes" : 
 	[
+		"chest",
+		"spruce_planks",
+		"stick",
+		"crafting_table",
 		"sandstone",
-		"ladder"
+		"spruce_slab",
+		"spruce_stairs",
+		"wooden_axe",
+		"wooden_pickaxe",
+		"wooden_shovel",
+		"wooden_hoe",
+		"fishing_rod",
+		"bow",
+		"wooden_sword",
+		"spruce_boat",
+		"spruce_door",
+		"oak_trapdoor",
+		"bowl",
+		"ladder",
+		"oak_sign",
+		"spruce_fence",
+		"spruce_fence_gate"
 	],
 	"lastknownname" : "Catfoolyou",
 	"position" : 
 	[
-		-2.4531741507454168,
-		64.0,
-		24.192362929906242
+		-1.4078668566120527,
+		75.0,
+		35.38437570181766
 	],
 	"rotation" : 
 	[
-		122.32525634765625,
-		21.81837272644043,
+		-114.52645874023438,
+		-2.9316184520721436,
 		0.0
 	],
 	"world" : "world",
-	"xpCurrent" : 0,
-	"xpTotal" : 0
+	"xpCurrent" : 8,
+	"xpTotal" : 8
 }

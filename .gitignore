@@ -5,6 +5,7 @@ build/
 !**/src/test/**/build/
 src/main/assets/logs/
 server/Cubernite/logs/
+server/Cubernite/world/
 server/Bungee/logs/
 server/logs/
 server/world
