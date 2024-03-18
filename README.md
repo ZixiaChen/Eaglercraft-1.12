@@ -41,7 +41,8 @@ Unlike Lax1dude's EaglercraftX there is no need for a special LAN relay, and the
 
 ### Connecting to a server
 
-Eaglercraft 1.12 can connect to any cracked minecraft server that does not require authentication. This means that it can play on any existing Eaglercraft 1.5.2 or 1.8.8 servers. Ignore the "server out of date warning". This means that 1.12 clients can play with 1.5.2 and 1.8.8 clients on the same server.
+Eaglercraft 1.12 can connect to any cracked minecraft server that does not require authentication. The 1.12 client can play on any existing Eaglercraft 1.5.2 or 1.8.8 servers.
+
 Eaglercraft 1.12 DOES NOT support websocket `wss://` connections! When connecting to an Eaglercraft server, you CANNOT have `wss://` in the IP. or IT WILL NOT WORK!!
 
 ### Making a Server

@@ -223,7 +223,7 @@ public class GuiMainMenu extends GuiScreen
     {
         this.viewportTexture = new DynamicTexture(256, 256);
         this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
-        this.widthCopyright = this.fontRenderer.getStringWidth("Copyright Mojang AB. Do not distribute!");
+        this.widthCopyright = this.fontRenderer.getStringWidth("Resources Copyright Mojang AB.");
         this.widthCopyrightRest = this.width - this.widthCopyright - 2;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -710,7 +710,7 @@ public class GuiMainMenu extends GuiScreen
             this.drawString(this.fontRenderer, s, 2, this.height - 10, -1);
         }
 
-        this.drawString(this.fontRenderer, "Copyright Mojang AB. Do not distribute!", this.widthCopyrightRest, this.height - 10, -1);
+        this.drawString(this.fontRenderer, "Resources Copyright Mojang AB", this.widthCopyrightRest, this.height - 10, -1);
 
         if (mouseX > this.widthCopyrightRest && mouseX < this.widthCopyrightRest + this.widthCopyright && mouseY > this.height - 10 && mouseY < this.height && Mouse.isInsideWindow())
         {

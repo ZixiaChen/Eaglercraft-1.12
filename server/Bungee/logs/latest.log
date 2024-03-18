@@ -1,58 +1,45 @@
-[14:41:07] [main/INFO]: Using mbed TLS based native cipher.
-[14:41:07] [main/INFO]: Using zlib based native compressor.
-[14:41:07] [main/INFO]: Enabled Waterfall version git:Waterfall-Bootstrap:1.20-R0.2-SNAPSHOT:a5bbdbe:543
-[14:41:07] [main/INFO]: Not on Windows, attempting to use enhanced EpollEventLoop
-[14:41:07] [main/INFO]: Epoll is working, utilising it!
-[14:41:07] [main/INFO]: Discovered module: ModuleSpec(name=cmd_alert, file=modules/cmd_alert.jar, provider=JenkinsModuleSource())
-[14:41:07] [main/INFO]: Discovered module: ModuleSpec(name=cmd_find, file=modules/cmd_find.jar, provider=JenkinsModuleSource())
-[14:41:07] [main/INFO]: Discovered module: ModuleSpec(name=cmd_list, file=modules/cmd_list.jar, provider=JenkinsModuleSource())
-[14:41:07] [main/INFO]: Discovered module: ModuleSpec(name=cmd_send, file=modules/cmd_send.jar, provider=JenkinsModuleSource())
-[14:41:07] [main/INFO]: Discovered module: ModuleSpec(name=cmd_server, file=modules/cmd_server.jar, provider=JenkinsModuleSource())
-[14:41:07] [main/INFO]: Discovered module: ModuleSpec(name=reconnect_yaml, file=modules/reconnect_yaml.jar, provider=JenkinsModuleSource())
-[14:41:07] [main/INFO]: Loaded plugin reconnect_yaml version git:reconnect_yaml:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:07] [main/INFO]: Loaded plugin cmd_find version git:cmd_find:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:07] [main/INFO]: Loaded plugin cmd_server version git:cmd_server:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:07] [main/INFO]: Loaded plugin cmd_alert version git:cmd_alert:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:07] [main/INFO]: Loaded plugin cmd_send version git:cmd_send:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:07] [main/INFO]: Loaded plugin cmd_list version git:cmd_list:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:07] [main/INFO] [EaglercraftXBungee]: Loading vanilla profile: lax1dude
-[14:41:08] [Skin Download Thread #1/INFO] [EaglercraftXBungee]: Loaded vanilla profile: lax1dude
-[14:41:08] [main/INFO]: Loaded plugin EaglercraftXBungee version 1.0.8 by lax1dude
-[14:41:08] [main/WARN]: Forced host server pvp is not defined
-[14:41:08] [main/INFO]: Enabled plugin reconnect_yaml version git:reconnect_yaml:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:08] [main/INFO]: Enabled plugin cmd_find version git:cmd_find:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:08] [main/INFO]: Enabled plugin cmd_server version git:cmd_server:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:08] [main/INFO]: Enabled plugin cmd_alert version git:cmd_alert:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:08] [main/INFO]: Enabled plugin cmd_send version git:cmd_send:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:08] [main/INFO]: Enabled plugin cmd_list version git:cmd_list:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
-[14:41:08] [main/ERROR] [EaglercraftXBungee]: Online mode is set to false! Authentication system has been disabled
-[14:41:08] [Netty Worker IO Thread #0/INFO] [EaglercraftXBungee]: Eaglercraft is listening on: /0.0.0.0:8081
-[14:41:08] [main/INFO] [EaglercraftXBungee]: Connected to database: jdbc:sqlite:eaglercraft_skins_cache.db
-[14:41:08] [main/INFO]: Enabled plugin EaglercraftXBungee version 1.0.8 by lax1dude
-[14:41:08] [Netty Boss IO Thread #0/INFO]: Listening on /127.0.0.1:25577
-[14:41:17] [Netty Worker IO Thread #1/WARN] [EaglercraftXBungee]: [/127.0.0.1:50658]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:17] [Netty Worker IO Thread #2/WARN] [EaglercraftXBungee]: [/127.0.0.1:50668]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:17] [Netty Worker IO Thread #3/WARN] [EaglercraftXBungee]: [/127.0.0.1:50676]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:18] [Netty Worker IO Thread #4/WARN] [EaglercraftXBungee]: [/127.0.0.1:50682]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:18] [Netty Worker IO Thread #5/WARN] [EaglercraftXBungee]: [/127.0.0.1:50698]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:18] [Netty Worker IO Thread #6/WARN] [EaglercraftXBungee]: [/127.0.0.1:50710]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:18] [Netty Worker IO Thread #7/WARN] [EaglercraftXBungee]: [/127.0.0.1:50724]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:18] [Netty Worker IO Thread #8/WARN] [EaglercraftXBungee]: [/127.0.0.1:50730]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:18] [Netty Worker IO Thread #9/WARN] [EaglercraftXBungee]: [/127.0.0.1:50746]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:23] [Netty Worker IO Thread #10/WARN] [EaglercraftXBungee]: [/127.0.0.1:58156]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:23] [Netty Worker IO Thread #11/WARN] [EaglercraftXBungee]: [/127.0.0.1:58158]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:23] [Netty Worker IO Thread #12/WARN] [EaglercraftXBungee]: [/127.0.0.1:58170]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:53] [Netty Worker IO Thread #17/WARN] [EaglercraftXBungee]: [/127.0.0.1:43906]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:53] [Netty Worker IO Thread #18/WARN] [EaglercraftXBungee]: [/127.0.0.1:43908]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:41:53] [Netty Worker IO Thread #19/WARN] [EaglercraftXBungee]: [/127.0.0.1:43922]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:42:44] [Netty Worker IO Thread #20/WARN] [EaglercraftXBungee]: [/127.0.0.1:43384]: Connected without a 'X-Forwarded-For' header, disconnecting...
-[14:45:56] [main/INFO]: Command not found
-[14:45:57] [Shutdown Thread/INFO]: Closing listener [id: 0xcd05b534, L:/127.0.0.1:25577]
-[14:45:57] [Shutdown Thread/INFO]: Closing pending connections
-[14:45:57] [Shutdown Thread/INFO]: Disconnecting 0 connections
-[14:45:57] [Shutdown Thread/INFO]: Disabling plugins
-[14:45:57] [Shutdown Thread/INFO] [EaglercraftXBungee]: Eaglercraft listener closed: /0.0.0.0:8081
-[14:45:57] [Shutdown Thread/INFO] [EaglercraftXBungee]: Successfully disconnected from database 'jdbc:sqlite:eaglercraft_skins_cache.db'
-[14:45:57] [Shutdown Thread/INFO] [EaglercraftXBungee]: Stopping skin cache HTTP client...
-[14:45:59] [Shutdown Thread/INFO]: Closing IO threads
-[14:46:01] [Shutdown Thread/INFO]: Thank you and goodbye
+[14:52:57] [main/INFO]: Using mbed TLS based native cipher.
+[14:52:57] [main/INFO]: Using zlib based native compressor.
+[14:52:57] [main/INFO]: Enabled Waterfall version git:Waterfall-Bootstrap:1.20-R0.2-SNAPSHOT:a5bbdbe:543
+[14:52:57] [main/INFO]: Not on Windows, attempting to use enhanced EpollEventLoop
+[14:52:57] [main/INFO]: Epoll is working, utilising it!
+[14:52:57] [main/INFO]: Discovered module: ModuleSpec(name=cmd_alert, file=modules/cmd_alert.jar, provider=JenkinsModuleSource())
+[14:52:57] [main/INFO]: Discovered module: ModuleSpec(name=cmd_find, file=modules/cmd_find.jar, provider=JenkinsModuleSource())
+[14:52:57] [main/INFO]: Discovered module: ModuleSpec(name=cmd_list, file=modules/cmd_list.jar, provider=JenkinsModuleSource())
+[14:52:57] [main/INFO]: Discovered module: ModuleSpec(name=cmd_send, file=modules/cmd_send.jar, provider=JenkinsModuleSource())
+[14:52:57] [main/INFO]: Discovered module: ModuleSpec(name=cmd_server, file=modules/cmd_server.jar, provider=JenkinsModuleSource())
+[14:52:57] [main/INFO]: Discovered module: ModuleSpec(name=reconnect_yaml, file=modules/reconnect_yaml.jar, provider=JenkinsModuleSource())
+[14:52:57] [main/INFO]: Loaded plugin reconnect_yaml version git:reconnect_yaml:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:57] [main/INFO]: Loaded plugin cmd_find version git:cmd_find:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:57] [main/INFO]: Loaded plugin cmd_server version git:cmd_server:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:57] [main/INFO]: Loaded plugin cmd_alert version git:cmd_alert:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:57] [main/INFO]: Loaded plugin cmd_send version git:cmd_send:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:57] [main/INFO]: Loaded plugin cmd_list version git:cmd_list:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:57] [main/INFO] [EaglercraftXBungee]: Loading vanilla profile: lax1dude
+[14:52:58] [Skin Download Thread #1/INFO] [EaglercraftXBungee]: Loaded vanilla profile: lax1dude
+[14:52:58] [main/INFO]: Loaded plugin EaglercraftXBungee version 1.0.8 by lax1dude
+[14:52:58] [main/WARN]: Forced host server pvp is not defined
+[14:52:58] [main/INFO]: Enabled plugin reconnect_yaml version git:reconnect_yaml:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:58] [main/INFO]: Enabled plugin cmd_find version git:cmd_find:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:58] [main/INFO]: Enabled plugin cmd_server version git:cmd_server:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:58] [main/INFO]: Enabled plugin cmd_alert version git:cmd_alert:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:58] [main/INFO]: Enabled plugin cmd_send version git:cmd_send:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:58] [main/INFO]: Enabled plugin cmd_list version git:cmd_list:1.20-R0.2-SNAPSHOT:a5bbdbe:543 by WaterfallMC
+[14:52:58] [main/ERROR] [EaglercraftXBungee]: Online mode is set to false! Authentication system has been disabled
+[14:52:58] [Netty Worker IO Thread #0/INFO] [EaglercraftXBungee]: Eaglercraft is listening on: /0.0.0.0:8081
+[14:52:58] [main/INFO] [EaglercraftXBungee]: Connected to database: jdbc:sqlite:eaglercraft_skins_cache.db
+[14:52:58] [main/INFO]: Enabled plugin EaglercraftXBungee version 1.0.8 by lax1dude
+[14:52:58] [Netty Boss IO Thread #0/INFO]: Listening on /127.0.0.1:25577
+[14:53:01] [Netty Worker IO Thread #1/WARN] [EaglercraftXBungee]: [/127.0.0.1:47778]: Connected without a 'X-Forwarded-For' header, disconnecting...
+[14:53:10] [Netty Worker IO Thread #2/WARN] [EaglercraftXBungee]: [/127.0.0.1:57986]: Connected without a 'X-Forwarded-For' header, disconnecting...
+[14:53:28] [Netty Worker IO Thread #3/WARN] [EaglercraftXBungee]: [/127.0.0.1:52624]: Connected without a 'X-Forwarded-For' header, disconnecting...
+[14:53:29] [Netty Worker IO Thread #4/WARN] [EaglercraftXBungee]: [/127.0.0.1:52632]: Connected without a 'X-Forwarded-For' header, disconnecting...
+[15:08:05] [Shutdown Thread/INFO]: Closing listener [id: 0x22a7e6b9, L:/127.0.0.1:25577]
+[15:08:05] [Shutdown Thread/INFO]: Closing pending connections
+[15:08:05] [Shutdown Thread/INFO]: Disconnecting 0 connections
+[15:08:05] [Shutdown Thread/INFO]: Disabling plugins
+[15:08:05] [Shutdown Thread/INFO] [EaglercraftXBungee]: Eaglercraft listener closed: /0.0.0.0:8081
+[15:08:05] [Shutdown Thread/INFO] [EaglercraftXBungee]: Successfully disconnected from database 'jdbc:sqlite:eaglercraft_skins_cache.db'
+[15:08:05] [Shutdown Thread/INFO] [EaglercraftXBungee]: Stopping skin cache HTTP client...
+[15:08:07] [Shutdown Thread/INFO]: Closing IO threads
+[15:08:09] [Shutdown Thread/INFO]: Thank you and goodbye
