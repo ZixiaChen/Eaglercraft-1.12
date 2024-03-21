@@ -12,9 +12,6 @@
         "frame": "challenge"
     },
     "parent": "minecraft:nether/brew_potion",
-    "rewards": {
-        "experience": 100
-    },
     "criteria": {
         "all_effects": {
             "trigger": "minecraft:effects_changed",

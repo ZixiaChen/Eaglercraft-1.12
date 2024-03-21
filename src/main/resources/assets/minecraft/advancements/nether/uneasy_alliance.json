@@ -12,9 +12,6 @@
         "frame": "challenge"
     },
     "parent": "minecraft:nether/return_to_sender",
-    "rewards": {
-        "experience": 100
-    },
     "criteria": {
         "killed_ghast": {
             "trigger": "minecraft:player_killed_entity",

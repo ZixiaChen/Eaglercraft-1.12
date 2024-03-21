@@ -12,9 +12,6 @@
         "frame": "challenge"
     },
     "parent": "minecraft:nether/root",
-    "rewards": {
-        "experience": 50
-    },
     "criteria": {
         "killed_ghast": {
             "trigger": "minecraft:player_killed_entity",

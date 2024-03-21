@@ -12,9 +12,6 @@
         "frame": "challenge"
     },
     "parent": "husbandry/breed_an_animal",
-    "rewards": {
-        "experience": 100
-    },
     "criteria": {
         "bred_horse": {
             "trigger": "bred_animals",

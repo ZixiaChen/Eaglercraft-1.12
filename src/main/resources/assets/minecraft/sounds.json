@@ -16,10 +16,7 @@
       "ambient/cave/cave13",
       "ambient/cave/cave14",
       "ambient/cave/cave15",
-      "ambient/cave/cave16",
-      "ambient/cave/cave17",
-      "ambient/cave/cave18"
-
+      "ambient/cave/cave16"
     ],
     "subtitle": "subtitles.ambient.cave"
   },
@@ -4680,30 +4677,6 @@
   "ui.button.click": {
     "sounds": [
       "random/click"
-    ]
-  },
-  "ui.toast.in": {
-    "sounds": [
-      {
-        "name": "ui/toast/in",
-        "volume": 0.4
-      }
-    ]
-  },
-  "ui.toast.out": {
-    "sounds": [
-      {
-        "name": "ui/toast/out",
-        "volume": 0.4
-      }
-    ]
-  },
-  "ui.toast.challenge_complete": {
-    "sounds": [
-      {
-        "name": "ui/toast/challenge_complete",
-        "volume": 0.6
-      }
     ]
   },
   "weather.rain": {

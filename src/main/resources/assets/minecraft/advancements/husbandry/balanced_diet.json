@@ -12,9 +12,6 @@
         "frame": "challenge"
     },
     "parent": "minecraft:husbandry/plant_seed",
-    "rewards": {
-        "experience": 100
-    },
     "criteria": {
         "apple": {
             "trigger": "consume_item",

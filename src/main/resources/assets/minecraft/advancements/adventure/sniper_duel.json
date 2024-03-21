@@ -12,9 +12,6 @@
         "frame": "challenge"
     },
     "parent": "adventure/shoot_arrow",
-    "rewards": {
-        "experience": 50
-    },
     "criteria": {
         "killed_skeleton": {
             "trigger": "minecraft:player_killed_entity",
