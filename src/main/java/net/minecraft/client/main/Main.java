@@ -37,10 +37,7 @@ public class Main
         OptionSpec<String> optionspec7 = optionparser.accepts("proxyUser").withRequiredArg();
         OptionSpec<String> optionspec8 = optionparser.accepts("proxyPass").withRequiredArg();
 
-        Scanner authSystem = new Scanner(System.in);
-        System.out.println("Enter username:");
-
-        OptionSpec<String> optionspec9 = optionparser.accepts("username").withRequiredArg().defaultsTo(authSystem.next());
+        OptionSpec<String> optionspec9 = optionparser.accepts("username").withRequiredArg().defaultsTo("___");
 
         OptionSpec<String> optionspec10 = optionparser.accepts("uuid").withRequiredArg();
         OptionSpec<String> optionspec11 = optionparser.accepts("accessToken").withRequiredArg().required();
