@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 
 public class Session
 {
-    private final String username;
+    private String username;
     private final String playerID;
     private final String token;
     private final Session.Type sessionType;
@@ -36,6 +36,11 @@ public class Session
     public String getUsername()
     {
         return this.username;
+    }
+
+	public void overrideUsername(String name)
+    {
+        this.username = name;
     }
 
     public String getToken()

@@ -55,6 +55,7 @@ import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMemoryErrorScreen;
+import net.minecraft.client.gui.GuiScreenAuth;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.client.gui.GuiScreen;
@@ -614,7 +615,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         }
         else
         {
-            this.displayGuiScreen(new GuiMainMenu());
+            this.displayGuiScreen(new GuiScreenAuth()); // Init main menu screen
         }
 
         this.renderEngine.deleteTexture(this.mojangLogo);
