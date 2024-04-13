@@ -9,7 +9,6 @@ import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 
 /*
@@ -34,7 +33,7 @@ public class GuiScreenAuth extends GuiScreen
         this.buttonList.add(new GuiOptionButton(0, this.width / 2 - 75, this.height / 4 + 120 + 12, I18n.format("Done")));
 		this.Username = new GuiTextField(1, this.fontRenderer, this.width / 2 - 100, 66, 200, 20);
         this.Username.setFocused(true);
-        this.Username.setText("");
+        this.Username.setText(super.mc.getSession().getUsername());
     }
 
     /**
