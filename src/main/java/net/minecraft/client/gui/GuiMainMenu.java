@@ -45,6 +45,8 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import net.catfoolyou.gui.GuiScreenAuth;
+
 public class GuiMainMenu extends GuiScreen
 {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -254,7 +256,7 @@ public class GuiMainMenu extends GuiScreen
         }
 
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, I18n.format("menu.options")));
-        this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit")));
+        this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("Edit Profile")));
         this.buttonList.add(new GuiButtonLanguage(5, this.width / 2 - 124, j + 72 + 12));
 
         synchronized (this.threadLock)
@@ -356,7 +358,7 @@ public class GuiMainMenu extends GuiScreen
 
         if (button.id == 4)
         {
-            this.mc.shutdown();
+            this.mc.displayGuiScreen(new GuiScreenAuth());
         }
 
         if (button.id == 6 && Reflector.GuiModList_Constructor.exists())

@@ -1,4 +1,4 @@
-package net.minecraft.client.gui;
+package net.catfoolyou.gui;
 
 import java.io.IOException;
 import net.minecraft.client.resources.I18n;
@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.*;
 
 /*
  * For once I have actually written some code myself
@@ -30,7 +31,7 @@ public class GuiScreenAuth extends GuiScreen
     public void initGui()
     {
         this.buttonList.clear();
-        this.buttonList.add(new GuiOptionButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, I18n.format("Done")));
+        this.buttonList.add(new GuiOptionButton(0, this.width / 2 - 75, this.height / 4 + 120 + 12, I18n.format("Done")));
 		this.Username = new GuiTextField(1, this.fontRenderer, this.width / 2 - 100, 66, 200, 20);
         this.Username.setFocused(true);
         this.Username.setText("");
