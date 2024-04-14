@@ -21,7 +21,7 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 
 /*
  * For once I have actually written some code myself
- * Not even sure how tf I'm gonna be making the skin system, not even sure this is gonna work
+ * This file contains code written by Lax1dude
  * 
  * Copywrite (c) Catfoolyou 2024
  */
