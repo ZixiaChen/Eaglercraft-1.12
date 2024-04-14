@@ -36,8 +36,7 @@ You can also import and export your existing vanilla Minecraft 1.12 worlds into 
 
 ### LAN Worlds
 
-LAN worlds in Eaglercraft 1.12 work identically to the way LAN works on vanilla 1.12. After opening to LAN you can connect the the given port from another computer in the same network, usually to `192.168.1.x`.
-Unlike Lax1dude's EaglercraftX there is no need for a special LAN relay, and there is no relay support. One downside of this is that it can be practically impossible to play on LAN on a managed wifi connection, though solutions such as rconn might be helpful.
+LAN worlds in Eaglercraft 1.12 are currently broken and don't work. Use a self hosted server and connect to it via LAN instead. See the Making a server section.
 
 ### Connecting to a server
 

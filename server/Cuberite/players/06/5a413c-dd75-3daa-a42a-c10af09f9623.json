@@ -90,13 +90,13 @@
 			"ID" : -1
 		}
 	],
-	"equippedItemSlot" : 4,
-	"food" : 16,
-	"foodExhaustion" : 1.7880501072883541,
-	"foodSaturation" : 2.2000000000000002,
-	"foodTickTimer" : 0,
+	"equippedItemSlot" : 0,
+	"food" : 20,
+	"foodExhaustion" : 1.7888000476836945,
+	"foodSaturation" : 10.800000000000001,
+	"foodTickTimer" : 68,
 	"gamemode" : -1,
-	"health" : 9.0,
+	"health" : 17.0,
 	"inventory" : 
 	[
 		{
@@ -133,7 +133,10 @@
 			"ID" : -1
 		},
 		{
-			"ID" : -1
+			"Count" : 14,
+			"Health" : 1,
+			"ID" : 5,
+			"RepairCost" : 0
 		},
 		{
 			"ID" : -1
@@ -196,7 +199,10 @@
 			"ID" : -1
 		},
 		{
-			"ID" : -1
+			"Count" : 2,
+			"Health" : 0,
+			"ID" : 352,
+			"RepairCost" : 0
 		},
 		{
 			"ID" : -1
@@ -208,9 +214,36 @@
 			"ID" : -1
 		},
 		{
-			"Count" : 4,
+			"ID" : -1
+		},
+		{
+			"Count" : 27,
+			"Health" : 0,
+			"ID" : 3,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 2,
+			"Health" : 0,
+			"ID" : 287,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 4,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 2,
 			"Health" : 0,
 			"ID" : 280,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 31,
+			"ID" : 268,
 			"RepairCost" : 0
 		},
 		{
@@ -222,43 +255,37 @@
 		{
 			"Count" : 2,
 			"Health" : 0,
-			"ID" : 352,
+			"ID" : 295,
 			"RepairCost" : 0
 		},
 		{
-			"Count" : 2,
+			"Count" : 1,
+			"Health" : 14,
+			"ID" : 270,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
 			"Health" : 0,
-			"ID" : 287,
+			"ID" : 50,
 			"RepairCost" : 0
-		},
-		{
-			"Count" : 3,
-			"Health" : 1,
-			"ID" : 17,
-			"RepairCost" : 0
-		},
-		{
-			"ID" : -1
-		},
-		{
-			"ID" : -1
-		},
-		{
-			"ID" : -1
-		},
-		{
-			"Count" : 12,
-			"Health" : 1,
-			"ID" : 5,
-			"RepairCost" : 0
-		},
-		{
-			"ID" : -1
 		}
 	],
 	"isflying" : false,
 	"knownItems" : 
 	[
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 3,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 4,
+			"RepairCost" : 0
+		},
 		{
 			"Count" : 1,
 			"Health" : 1,
@@ -279,6 +306,24 @@
 		},
 		{
 			"Count" : 1,
+			"Health" : 0,
+			"ID" : 50,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 58,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 61,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
 			"Health" : 1,
 			"ID" : 159,
 			"RepairCost" : 0
@@ -287,6 +332,36 @@
 			"Count" : 1,
 			"Health" : 0,
 			"ID" : 262,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 1,
+			"ID" : 263,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 268,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 10,
+			"ID" : 268,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 270,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 14,
+			"ID" : 270,
 			"RepairCost" : 0
 		},
 		{
@@ -304,7 +379,31 @@
 		{
 			"Count" : 1,
 			"Health" : 0,
+			"ID" : 295,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 319,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 320,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
 			"ID" : 352,
+			"RepairCost" : 0
+		},
+		{
+			"Count" : 1,
+			"Health" : 0,
+			"ID" : 367,
 			"RepairCost" : 0
 		},
 		{
@@ -317,23 +416,34 @@
 	"knownRecipes" : 
 	[
 		"chest",
+		"furnace",
 		"spruce_planks",
 		"stick",
+		"torch",
 		"crafting_table",
 		"sandstone",
+		"cobblestone_slab",
 		"spruce_slab",
+		"stone_stairs",
 		"spruce_stairs",
+		"stone_axe",
 		"wooden_axe",
+		"stone_pickaxe",
 		"wooden_pickaxe",
+		"stone_shovel",
 		"wooden_shovel",
+		"stone_hoe",
 		"wooden_hoe",
 		"fishing_rod",
 		"bow",
+		"stone_sword",
 		"wooden_sword",
 		"spruce_boat",
+		"lever",
 		"spruce_door",
 		"oak_trapdoor",
 		"bowl",
+		"cobblestone_wall",
 		"ladder",
 		"oak_sign",
 		"spruce_fence",
@@ -342,17 +452,17 @@
 	"lastknownname" : "Catfoolyou",
 	"position" : 
 	[
-		7.6999999880790746,
-		74.0,
-		33.229071420884608
+		26.300000011920929,
+		67.0,
+		21.082244740450513
 	],
 	"rotation" : 
 	[
-		-14.354761123657227,
-		-80.571563720703125,
+		-105.26336669921875,
+		39.749782562255859,
 		0.0
 	],
 	"world" : "world",
-	"xpCurrent" : 8,
-	"xpTotal" : 8
+	"xpCurrent" : 32,
+	"xpTotal" : 32
 }

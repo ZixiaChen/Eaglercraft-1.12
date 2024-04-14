@@ -4,16 +4,19 @@
 	{
 		"custom" : 
 		{
-			"damage_dealt" : 165,
-			"damage_taken" : 100,
-			"drop" : 0,
-			"fall_one_cm" : 1697,
-			"leave_game" : 5,
-			"mob_kills" : 1,
-			"play_one_minute" : 2877,
-			"sprint_one_cm" : 1207,
-			"time_since_death" : 2877,
-			"walk_one_cm" : 6159
+			"damage_dealt" : 1650,
+			"damage_taken" : 310,
+			"deaths" : 1,
+			"drop" : 16,
+			"fall_one_cm" : 18641,
+			"interact_with_crafting_table" : 5,
+			"interact_with_furnace" : 7,
+			"leave_game" : 10,
+			"mob_kills" : 6,
+			"play_one_minute" : 17496,
+			"sprint_one_cm" : 19348,
+			"time_since_death" : 4355,
+			"walk_one_cm" : 76234
 		}
 	}
 }

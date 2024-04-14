@@ -1,0 +1,79 @@
+     [18:49:48] --- Started Log ---
+     [18:49:48] Cuberite Jenkins x86_64-linux-gnu -DCMAKE_BUILD_TYPE=Release (master) (id: #378)
+     [18:49:48] from commit eda440e0db028587975c867dbacb513d80df4dca built at: Mon Aug 21 11:55:04 UTC 2023
+     [18:49:48] Creating new server instance...
+     [18:49:48] Reading server config...
+     [18:49:48] Starting server...
+Info [18:49:48] Compatible clients: 1.8.x-1.14.4
+Warn [18:49:48] WARNING: There is not a Proxy Forward Secret set up, and any proxy server can forward a player to this server unless closed from the internet.
+     [18:49:48] Loaded 789 crafting recipes
+Warn [18:49:48] Cannot open file "Protocol/1.14.4/base.recipes.txt", no recipe book recipes will be available!
+     [18:49:48] Loaded 1.12.2 380 recipe book
+Warn [18:49:48] Cannot open file "Protocol/1.13/base.recipes.txt", no recipe book recipes will be available!
+     [18:49:48] Loaded 67 furnace recipes and 66 fuels
+     [18:49:48] Loaded 49 brewing recipes
+Warn [18:49:48] Invalid biome ("BambooJungle") specified in AllowedBiomes in cubeset file Prefabs/SinglePieceStructures/JungleTemple.cubeset. Skipping the biome.
+Warn [18:49:48] Invalid biome ("BambooJungleHills") specified in AllowedBiomes in cubeset file Prefabs/SinglePieceStructures/JungleTemple.cubeset. Skipping the biome.
+     [18:49:48] -- Loading Plugins --
+     [18:49:48] Cannot load plugin, folder "Core" not found.
+     [18:49:48] Cannot load plugin, folder "ChatLog" not found.
+     [18:49:48] -- No Plugins Loaded --
+Warn [18:49:49] World "world_the_end": Did not find an acceptable spawnpoint. Generated a random spawnpoint position at {0, 69, 0}
+     [18:49:49] Startup complete, took 1140ms!
+     [18:49:54] A player connected through a proxy without requiring a forwarding secret. If open to the internet, this is very insecure!
+Info [18:49:54] Player Catfoolyou has joined the game
+Info [18:50:03] Player Catfoolyou has left the game
+     [18:50:30] A player connected through a proxy without requiring a forwarding secret. If open to the internet, this is very insecure!
+     [18:50:30] Player "Test223" (8347310d604a3b03b0c6e1fbd835d163) save or statistics file not found, resetting to defaults
+Info [18:50:30] Player Test223 has joined the game
+Warn [18:50:30] AddEntity: Entity at 0x7f7480012cb0 (cPlayer, ID 109) spawning in a non-existent chunk.
+     [18:50:55] A player connected through a proxy without requiring a forwarding secret. If open to the internet, this is very insecure!
+Info [18:50:55] Player Catfoolyou has joined the game
+Info [18:51:59] Player Catfoolyou has left the game
+Info [18:52:03] Player Test223 has left the game
+     [18:55:50] A player connected through a proxy without requiring a forwarding secret. If open to the internet, this is very insecure!
+Info [18:55:50] Player Catfoolyou has joined the game
+Warn [18:55:50] AddEntity: Entity at 0x7f74800bda80 (cPlayer, ID 229) spawning in a non-existent chunk.
+Info [18:55:55] Player Catfoolyou has left the game
+     [18:56:06] Executing console command: "help"
+     [18:56:06] chunkstats      - Displays detailed chunk memory statistics
+     [18:56:06] destroyentities - Destroys all entities in all worlds
+     [18:56:06] help            - Shows the available commands
+     [18:56:06] load            - Adds and enables the specified plugin
+     [18:56:06] reload          - Reloads all plugins
+     [18:56:06] reloadweb       - Reloads the webadmin configuration
+     [18:56:06] restart         - Restarts the server cleanly
+     [18:56:06] stop            - Stops the server cleanly
+     [18:56:06] unload          - Disables the specified plugin
+     [18:56:09] A player connected through a proxy without requiring a forwarding secret. If open to the internet, this is very insecure!
+Info [18:56:09] Player Catfoolyou has joined the game
+     [18:56:13] A player connected through a proxy without requiring a forwarding secret. If open to the internet, this is very insecure!
+Info [18:56:13] Player Test223 has joined the game
+     [18:59:27] Executing console command: "say can you read this"
+     [18:59:27] Unknown command, type 'help' for all commands.
+     [18:59:35] Executing console command: "help"
+     [18:59:35] chunkstats      - Displays detailed chunk memory statistics
+     [18:59:35] destroyentities - Destroys all entities in all worlds
+     [18:59:35] help            - Shows the available commands
+     [18:59:35] load            - Adds and enables the specified plugin
+     [18:59:35] reload          - Reloads all plugins
+     [18:59:35] reloadweb       - Reloads the webadmin configuration
+     [18:59:35] restart         - Restarts the server cleanly
+     [18:59:35] stop            - Stops the server cleanly
+     [18:59:35] unload          - Disables the specified plugin
+Warn [19:01:45] *** Window lost sync at item 2 in SlotArea with 3 items ***
+Warn [19:01:45] My item:    charcoal:1 * 1
+Warn [19:01:45] Their item: -1:0:0 * 0
+Info [19:03:50] Player Catfoolyou has left the game
+     [19:04:27] A player connected through a proxy without requiring a forwarding secret. If open to the internet, this is very insecure!
+Info [19:04:27] Player Catfoolyou has joined the game
+Warn [19:06:53] *** Window lost sync at item 2 in SlotArea with 3 items ***
+Warn [19:06:53] My item:    cookedporkchop:0 * 1
+Warn [19:06:53] Their item: -1:0:0 * 0
+Info [19:07:48] Player Catfoolyou has left the game
+Info [19:07:53] Kicking player Test223 for "Server shutdown"
+Info [19:07:53] Player Test223 has left the game
+     [19:07:54] Shutting down server...
+     [19:07:54] Cleaning up...
+     [19:07:54] Shutdown successful!
+     [19:07:54] --- Stopped Log ---

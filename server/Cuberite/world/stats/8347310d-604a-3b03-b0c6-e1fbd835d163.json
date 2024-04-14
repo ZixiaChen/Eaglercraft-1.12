@@ -1,0 +1,21 @@
+{
+	"DataVersion" : 2566,
+	"stats" : 
+	{
+		"custom" : 
+		{
+			"damage_dealt" : 80,
+			"damage_taken" : 230,
+			"drop" : 0,
+			"fall_one_cm" : 8490,
+			"interact_with_furnace" : 1,
+			"leave_game" : 2,
+			"mob_kills" : 1,
+			"play_one_minute" : 15689,
+			"sneak_time" : 59,
+			"sprint_one_cm" : 1870,
+			"time_since_death" : 15689,
+			"walk_one_cm" : 42477
+		}
+	}
+}
