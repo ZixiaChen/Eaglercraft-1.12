@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.client.gui.*;
+import net.lax1dude.eaglercraft.v1_8.profile.*;
 import net.minecraft.client.gui.inventory.GuiInventory;
 
 /*
@@ -44,7 +45,7 @@ public class GuiScreenAuth extends GuiScreen
      */
     public void initGui()
     {
-		Keyboard.enableRepeatEvents(true);
+	Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
         this.buttonList.add(new GuiButton(0, width / 2 - 100, height / 6 + 168, I18n.format("gui.done")));
 		this.buttonList.add(new GuiButton(1, width / 2 - 21, height / 6 + 110, 71, 20, I18n.format("Add Skin")));
@@ -52,46 +53,10 @@ public class GuiScreenAuth extends GuiScreen
 		this.Username = new GuiTextField(0, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
         this.Username.setFocused(true);
         this.Username.setText(super.mc.getSession().getUsername());
-    }
 
-	public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, EntityLivingBase ent)
-    {
-        GlStateManager.enableColorMaterial();
-        GlStateManager.pushMatrix();
-        GlStateManager.translate((float)posX, (float)posY, 50.0F);
-        GlStateManager.scale((float)(-scale), (float)scale, (float)scale);
-        GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-        float f = ent.renderYawOffset;
-        float f1 = ent.rotationYaw;
-        float f2 = ent.rotationPitch;
-        float f3 = ent.prevRotationYawHead;
-        float f4 = ent.rotationYawHead;
-        GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
-        RenderHelper.enableStandardItemLighting();
-        GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(-((float)Math.atan((double)(mouseY / 40.0F))) * 20.0F, 1.0F, 0.0F, 0.0F);
-        ent.renderYawOffset = (float)Math.atan((double)(mouseX / 40.0F)) * 20.0F;
-        ent.rotationYaw = (float)Math.atan((double)(mouseX / 40.0F)) * 40.0F;
-        ent.rotationPitch = -((float)Math.atan((double)(mouseY / 40.0F))) * 20.0F;
-        ent.rotationYawHead = ent.rotationYaw;
-        ent.prevRotationYawHead = ent.rotationYaw;
-        GlStateManager.translate(0.0F, 0.0F, 0.0F);
-        RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
-        rendermanager.setPlayerViewY(180.0F);
-        rendermanager.setRenderShadow(false);
-        rendermanager.doRenderEntity(ent, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
-        rendermanager.setRenderShadow(true);
-        ent.renderYawOffset = f;
-        ent.rotationYaw = f1;
-        ent.rotationPitch = f2;
-        ent.prevRotationYawHead = f3;
-        ent.rotationYawHead = f4;
-        GlStateManager.popMatrix();
-        RenderHelper.disableStandardItemLighting();
-        GlStateManager.disableRescaleNormal();
-        GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GlStateManager.disableTexture2D();
-        GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
+		this.Skin = new GuiTextField(1, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
+        this.Skin.setFocused(true);
+        this.Skin.setText(super.mc.getSession().getUsername());
     }
 
     /**
@@ -101,7 +66,7 @@ public class GuiScreenAuth extends GuiScreen
     {
         if (button.id == 0)
         {
-			super.mc.getSession().overrideUsername(this.Username.getText());
+	    super.mc.getSession().overrideUsername(this.Username.getText());
             super.mc.displayGuiScreen(new GuiMainMenu());
         }
     }
@@ -146,10 +111,15 @@ public class GuiScreenAuth extends GuiScreen
 		this.oldMouseX = (float)mouseX;
         this.oldMouseY = (float)mouseY;
 
-		int i = 0;
-        int j = 0;
+		int xx = width / 2 - 80;
+		int yy = height / 6 + 130;
 
-		//drawEntityOnScreen(i + 51, j + 75, 30, (float)(i + 51) - this.oldMouseX, (float)(j + 75 - 50) - this.oldMouseY, new EntityPlayer()); //Make a new entityplayer with the desired skin.
+		skinX = width / 2 - 90;
+		skinY = height / 4;
+		xx = skinX + 35;
+		yy = skinY + 117;
+
+		//SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, SkinModel.STEVE);
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
