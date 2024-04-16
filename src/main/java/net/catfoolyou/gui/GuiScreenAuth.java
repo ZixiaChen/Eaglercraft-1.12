@@ -48,13 +48,13 @@ public class GuiScreenAuth extends GuiScreen
 	Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
         this.buttonList.add(new GuiButton(0, width / 2 - 100, height / 6 + 168, I18n.format("gui.done")));
-		this.buttonList.add(new GuiButton(1, width / 2 - 21, height / 6 + 110, 71, 20, I18n.format("Add Skin")));
-		this.buttonList.add(new GuiButton(2, width / 2 - 21 + 71, height / 6 + 110, 72, 20, I18n.format("Clear List")));
-		this.Username = new GuiTextField(0, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
+	this.buttonList.add(new GuiButton(1, width / 2 - 21, height / 6 + 110, 71, 20, I18n.format("Add Skin")));
+	this.buttonList.add(new GuiButton(2, width / 2 - 21 + 71, height / 6 + 110, 72, 20, I18n.format("Clear List")));
+	this.Username = new GuiTextField(0, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
         this.Username.setFocused(true);
         this.Username.setText(super.mc.getSession().getUsername());
 
-		this.Skin = new GuiTextField(1, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
+	this.Skin = new GuiTextField(1, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
         this.Skin.setFocused(true);
         this.Skin.setText(super.mc.getSession().getUsername());
     }
@@ -97,29 +97,28 @@ public class GuiScreenAuth extends GuiScreen
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRenderer, I18n.format("Edit Profile"), this.width / 2, 17, 16777215);
         this.drawString(this.fontRenderer, I18n.format("Username"), width / 2 - 20, height / 6 + 8, 10526880);
-		this.drawString(this.fontRenderer, I18n.format("Player Skin"), width / 2 - 20, height / 6 + 66, 10526880);
+	this.drawString(this.fontRenderer, I18n.format("Player Skin"), width / 2 - 20, height / 6 + 66, 10526880);
         this.Username.drawTextBox();
 
-		int skinX = width / 2 - 120;
-		int skinY = height / 6 + 8;
-		int skinWidth = 80;
-		int skinHeight = 130;
+	int skinX = width / 2 - 120;
+	int skinY = height / 6 + 8;
+	int skinWidth = 80;
+	int skinHeight = 130;
 		
-		this.drawRect(skinX, skinY, skinX + skinWidth, skinY + skinHeight, 0xFFA0A0A0);
-		this.drawRect(skinX + 1, skinY + 1, skinX + skinWidth - 1, skinY + skinHeight - 1, 0xFF000015);
+	this.drawRect(skinX, skinY, skinX + skinWidth, skinY + skinHeight, 0xFFA0A0A0);
+	this.drawRect(skinX + 1, skinY + 1, skinX + skinWidth - 1, skinY + skinHeight - 1, 0xFF000015);
 
-		this.oldMouseX = (float)mouseX;
+	this.oldMouseX = (float)mouseX;
         this.oldMouseY = (float)mouseY;
 
-		int xx = width / 2 - 80;
-		int yy = height / 6 + 130;
+	int xx = width / 2 - 80;
+	int yy = height / 6 + 130;
 
-		skinX = width / 2 - 90;
-		skinY = height / 4;
-		xx = skinX + 35;
-		yy = skinY + 117;
+	skinX = width / 2 - 90;
+	skinY = height / 4;
 
-		//SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, SkinModel.STEVE);
+	SkinPreviewRenderer.initialize();
+	SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, SkinModel.STEVE);
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }

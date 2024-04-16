@@ -1,7 +1,6 @@
 package net.lax1dude.eaglercraft.v1_8.profile;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.model.*;
 import net.minecraft.client.renderer.RenderHelper;
 
 /**
