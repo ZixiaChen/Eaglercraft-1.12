@@ -114,6 +114,8 @@ public class GuiScreenAuth extends GuiScreen
 		int whichDefaultSkin = 0;
 		boolean isCustomSkin = false;
 
+		DefaultPlayerSkin.setDefaultSkin(0);
+
 		int skinX = width / 2 - 120;
 		int skinY = height / 6 + 8;
 		int skinWidth = 80;
