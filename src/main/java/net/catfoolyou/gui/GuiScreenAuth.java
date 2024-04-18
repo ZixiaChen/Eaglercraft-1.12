@@ -20,11 +20,16 @@ import net.minecraft.client.gui.*;
 import net.lax1dude.eaglercraft.v1_8.profile.*;
 import net.minecraft.client.gui.inventory.GuiInventory;
 
+import java.util.UUID;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.resources.*;
+
+
 /*
  * For once I have actually written some code myself
  * This file contains code written by Lax1dude
  * 
- * Copywrite (c) Catfoolyou 2024
+ * Copyright (c) Catfoolyou 2022-2024. All Rights Reserved.
  */
 
 public class GuiScreenAuth extends GuiScreen
@@ -38,6 +43,12 @@ public class GuiScreenAuth extends GuiScreen
 
     /** The old y position of the mouse pointer */
     private float oldMouseY;
+
+    /** The default skin for the Steve model. */
+    private static final ResourceLocation TEXTURE_STEVE = new ResourceLocation("textures/entity/steve.png");
+
+    /** The default skin for the Alex model. */
+    private static final ResourceLocation TEXTURE_ALEX = new ResourceLocation("textures/entity/alex.png");
 
     /**
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
@@ -100,6 +111,9 @@ public class GuiScreenAuth extends GuiScreen
 	this.drawString(this.fontRenderer, I18n.format("Player Skin"), width / 2 - 20, height / 6 + 66, 10526880);
         this.Username.drawTextBox();
 
+	int whichDefaultSkin = 0;
+	boolean isCustomSkin = false;
+
 	int skinX = width / 2 - 120;
 	int skinY = height / 6 + 8;
 	int skinWidth = 80;
@@ -117,8 +131,20 @@ public class GuiScreenAuth extends GuiScreen
 	skinX = width / 2 - 90;
 	skinY = height / 4;
 
+	GlStateManager.enableLighting();
+	GlStateManager.enableDepth();
+	GlStateManager.enableNormalize();
+
 	SkinPreviewRenderer.initialize();
-	SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, SkinModel.STEVE);
+	
+	if(whichDefaultSkin == 0){
+	    mc.getTextureManager().bindTexture(TEXTURE_STEVE);
+	    SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, SkinModel.STEVE);
+	}
+	else{
+	    mc.getTextureManager().bindTexture(TEXTURE_ALEX);
+	    SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, SkinModel.ALEX);
+	}
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
