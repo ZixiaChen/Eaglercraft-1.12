@@ -11,12 +11,14 @@ public class DefaultPlayerSkin
     /** The default skin for the Alex model. */
     private static final ResourceLocation TEXTURE_ALEX = new ResourceLocation("textures/entity/alex.png");
 
+	private static ResourceLocation Skin = TEXTURE_STEVE;
+
     /**
      * Returns the default skind for versions prior to 1.8, which is always the Steve texture.
      */
     public static ResourceLocation getDefaultSkinLegacy()
     {
-        return TEXTURE_STEVE;
+        return Skin;
     }
 
     /**
@@ -24,7 +26,18 @@ public class DefaultPlayerSkin
      */
     public static ResourceLocation getDefaultSkin(UUID playerUUID)
     {
-        return TEXTURE_STEVE;
+        return Skin;
+    }
+
+	public static ResourceLocation setDefaultSkin(int skin)
+    {
+		if(skin == 0){
+			Skin = TEXTURE_STEVE;
+		}
+		if(skin == 1){
+			Skin = TEXTURE_ALEX;
+		}
+        return Skin;
     }
 
     /**
@@ -40,6 +53,12 @@ public class DefaultPlayerSkin
      */
     private static boolean isSlimSkin(UUID playerUUID)
     {
-        return false;
+		if(Skin == TEXTURE_STEVE){
+			return false;
+		}
+		else{
+			return true;		
+		}
+        
     }
 }
