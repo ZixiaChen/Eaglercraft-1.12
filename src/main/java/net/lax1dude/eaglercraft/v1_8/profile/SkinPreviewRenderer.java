@@ -49,8 +49,8 @@ public class SkinPreviewRenderer {
 		}
 		
 		GlStateManager.enableTexture2D();
-		GlStateManager.disableBlend();
-		GlStateManager.disableCull();
+		GlStateManager.enableBlend();
+		GlStateManager.enableCull();
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		
 		GlStateManager.pushMatrix();
