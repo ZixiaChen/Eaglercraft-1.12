@@ -38,16 +38,12 @@ public class GuiScreenAuth extends GuiScreen
 	private GuiTextField Username;
 	private GuiTextField Skin;
 
-	/** The old x position of the mouse pointer */
-	private float oldMouseX;
+	private int whichDefaultSkin = 0;
 
-	/** The old y position of the mouse pointer */
+	private float oldMouseX;
 	private float oldMouseY;
 
-	/** The default skin for the Steve model. */
 	private static final ResourceLocation TEXTURE_STEVE = new ResourceLocation("textures/entity/steve.png");
-
-	/** The default skin for the Alex model. */
 	private static final ResourceLocation TEXTURE_ALEX = new ResourceLocation("textures/entity/alex.png");
 
 	/**
@@ -65,6 +61,8 @@ public class GuiScreenAuth extends GuiScreen
 		this.Username.setFocused(true);
 		this.Username.setText(super.mc.getSession().getUsername());
 
+		whichDefaultSkin = DefaultPlayerSkin.getSkin();
+
 		this.Skin = new GuiTextField(1, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
 		this.Skin.setFocused(true);
 		this.Skin.setText(super.mc.getSession().getUsername());
@@ -77,9 +75,17 @@ public class GuiScreenAuth extends GuiScreen
 	{
 		if (button.id == 0)
 		{
-		super.mc.getSession().overrideUsername(this.Username.getText());
+			super.mc.getSession().overrideUsername(this.Username.getText());
 			super.mc.displayGuiScreen(new GuiMainMenu());
 		}
+		/*if (button.id == 1)
+		{
+			whichDefaultSkin = 0;
+		}
+		if (button.id == 2)
+		{
+			whichDefaultSkin = 1;
+		}*/
 	}
 
 
@@ -111,10 +117,9 @@ public class GuiScreenAuth extends GuiScreen
 		this.drawString(this.fontRenderer, I18n.format("Player Skin"), width / 2 - 20, height / 6 + 66, 10526880);
 		this.Username.drawTextBox();
 
-		int whichDefaultSkin = 0;
 		boolean isCustomSkin = false;
 
-		DefaultPlayerSkin.setDefaultSkin(0);
+		DefaultPlayerSkin.setDefaultSkin(whichDefaultSkin);
 
 		int skinX = width / 2 - 120;
 		int skinY = height / 6 + 8;
