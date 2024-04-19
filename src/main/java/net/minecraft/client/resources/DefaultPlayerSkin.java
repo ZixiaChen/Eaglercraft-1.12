@@ -29,6 +29,19 @@ public class DefaultPlayerSkin
         return Skin;
     }
 
+    public static int getSkin()
+    {
+        if(Skin == TEXTURE_STEVE){
+		return 0;
+	}
+	if(Skin == TEXTURE_ALEX){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+    }
+
 	public static ResourceLocation setDefaultSkin(int skin)
     {
 		if(skin == 0){
