@@ -4,6 +4,7 @@ import java.io.IOException;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.StringUtils;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
@@ -39,6 +40,7 @@ public class GuiScreenAuth extends GuiScreen
 	private GuiTextField Skin;
 
 	private int whichDefaultSkin = 0;
+	private boolean newSkinWaitSteveOrAlex = false; // The eagler equivalent
 
 	private float oldMouseX;
 	private float oldMouseY;
@@ -46,10 +48,28 @@ public class GuiScreenAuth extends GuiScreen
 	private static final ResourceLocation TEXTURE_STEVE = new ResourceLocation("textures/entity/steve.png");
 	private static final ResourceLocation TEXTURE_ALEX = new ResourceLocation("textures/entity/alex.png");
 
-	/**
-	 * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
-	 * window resizes, the buttonList is cleared beforehand.
-	 */
+	private boolean dropDownOpen = false;
+	private String[] dropDownOptions;
+	private int slotsVisible = 0;
+	private int selectedSlot = 0;
+	private int scrollPos = -1;
+	private int skinsHeight = 0;
+	private boolean dragging = false;
+	private int mousex = 0;
+	private int mousey = 0;
+
+	private static final ResourceLocation eaglerGui = new ResourceLocation("textures/gui/eagler_gui.png");
+
+	private void updateOptions() {
+		String[] n = new String[DefaultSkins.defaultSkinsMap.length];
+		int numDefault = DefaultSkins.defaultSkinsMap.length;
+		for(int i = 0; i < numDefault; ++i) {
+			n[i] = DefaultSkins.defaultSkinsMap[i].name;
+		}
+		
+		dropDownOptions = n;
+	}
+
 	public void initGui()
 	{
 		Keyboard.enableRepeatEvents(true);
@@ -62,6 +82,7 @@ public class GuiScreenAuth extends GuiScreen
 		this.Username.setText(super.mc.getSession().getUsername());
 
 		whichDefaultSkin = DefaultPlayerSkin.getSkin();
+		updateOptions();
 
 		this.Skin = new GuiTextField(1, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
 		this.Skin.setFocused(true);
@@ -78,14 +99,6 @@ public class GuiScreenAuth extends GuiScreen
 			super.mc.getSession().overrideUsername(this.Username.getText());
 			super.mc.displayGuiScreen(new GuiMainMenu());
 		}
-		/*if (button.id == 1)
-		{
-			whichDefaultSkin = 0;
-		}
-		if (button.id == 2)
-		{
-			whichDefaultSkin = 1;
-		}*/
 	}
 
 
@@ -104,6 +117,22 @@ public class GuiScreenAuth extends GuiScreen
 		}
 
 		(this.buttonList.get(0)).enabled = !this.Username.getText().isEmpty();
+	}
+
+	public void handleMouseInput() throws IOException {
+		super.handleMouseInput();
+		if(dropDownOpen) {
+			int var1 = Mouse.getEventDWheel();
+			if(var1 < 0) {
+				scrollPos += 3;
+			}
+			if(var1 > 0) {
+				scrollPos -= 3;
+				if(scrollPos < 0) {
+					scrollPos = 0;
+				}
+			}
+		}
 	}
 
 	/**
@@ -135,8 +164,60 @@ public class GuiScreenAuth extends GuiScreen
 		int xx = width / 2 - 80;
 		int yy = height / 6 + 130;
 	
-		skinX = width / 2 - 90;
-		skinY = height / 4;
+		skinX = width / 2 - 20;
+		skinY = height / 6 + 82;
+		skinWidth = 140;
+		skinHeight = 22;
+		
+		drawRect(skinX, skinY, skinX + skinWidth, skinY + skinHeight, -6250336);
+		drawRect(skinX + 1, skinY + 1, skinX + skinWidth - 21, skinY + skinHeight - 1, -16777216);
+		drawRect(skinX + skinWidth - 20, skinY + 1, skinX + skinWidth - 1, skinY + skinHeight - 1, -16777216);
+		
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+
+		mc.getTextureManager().bindTexture(eaglerGui);
+		drawTexturedModalRect(skinX + skinWidth - 18, skinY + 3, 0, 0, 16, 16);
+
+		//Begin experimantal dropdown code
+
+		drawString(this.fontRenderer, dropDownOptions[selectedSlot], skinX + 5, skinY + 7, 14737632);
+
+		skinX = width / 2 - 20;
+		skinY = height / 6 + 103;
+		skinWidth = 140;
+		skinHeight = (height - skinY - 10);
+		slotsVisible = (skinHeight / 10);
+		if(slotsVisible > dropDownOptions.length) slotsVisible = dropDownOptions.length;
+		skinHeight = slotsVisible * 10 + 7;
+		skinsHeight = skinHeight;
+		if(scrollPos == -1) {
+			scrollPos = selectedSlot - 2;
+		}
+		if(scrollPos > (dropDownOptions.length - slotsVisible)) {
+			scrollPos = (dropDownOptions.length - slotsVisible);
+		}
+		if(scrollPos < 0) {
+			scrollPos = 0;
+		}
+		if(dropDownOpen) {
+			drawRect(skinX, skinY, skinX + skinWidth, skinY + skinHeight, -6250336);
+			drawRect(skinX + 1, skinY + 1, skinX + skinWidth - 1, skinY + skinHeight - 1, -16777216);
+			for(int i = 0; i < slotsVisible; i++) {
+				if(i + scrollPos < dropDownOptions.length) {
+					if(selectedSlot == i + scrollPos) {
+						drawRect(skinX + 1, skinY + i*10 + 4, skinX + skinWidth - 1, skinY + i*10 + 14, 0x77ffffff);
+					}else if(mouseX >= skinX && mouseX < (skinX + skinWidth - 10) && mouseY >= (skinY + i*10 + 5) && mouseY < (skinY + i*10 + 15)) {
+						drawRect(skinX + 1, skinY + i*10 + 4, skinX + skinWidth - 1, skinY + i*10 + 14, 0x55ffffff);
+					}
+					drawString(this.fontRenderer, dropDownOptions[i + scrollPos], skinX + 5, skinY + 5 + i*10, 14737632);
+				}
+			}
+			int scrollerSize = skinHeight * slotsVisible / dropDownOptions.length;
+			int scrollerPos = skinHeight * scrollPos / dropDownOptions.length;
+			drawRect(skinX + skinWidth - 4, skinY + scrollerPos + 1, skinX + skinWidth - 1, skinY + scrollerPos + scrollerSize, 0xff888888);
+		}
+
+		//End experimental dropdown code
 
 		GlStateManager.enableLighting();
 		GlStateManager.enableDepth();
@@ -155,4 +236,46 @@ public class GuiScreenAuth extends GuiScreen
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
+
+	protected void mouseClicked(int mx, int my, int button) throws IOException {
+		super.mouseClicked(mx, my, button);
+		Username.mouseClicked(mx, my, button);
+		if (button == 0) {
+			int skinX = width / 2 + 140 - 40;
+			int skinY = height / 6 + 82;
+		
+			if(mx >= skinX && mx < (skinX + 20) && my >= skinY && my < (skinY + 22)) {
+				dropDownOpen = !dropDownOpen;
+				return;
+			}
+			
+			skinX = width / 2 - 20;
+			skinY = height / 6 + 82;
+			int skinWidth = 140;
+			int skinHeight = skinsHeight;
+			
+			if(!(mx >= skinX && mx < (skinX + skinWidth) && my >= skinY && my < (skinY + skinHeight + 22))) {
+				dropDownOpen = false;
+				dragging = false;
+				return;
+			}
+			
+			skinY += 21;
+			
+			if(dropDownOpen && !dragging) {
+				for(int i = 0; i < slotsVisible; i++) {
+					if(i + scrollPos < dropDownOptions.length) {
+						if(selectedSlot != i + scrollPos) {
+							if(mx >= skinX && mx < (skinX + skinWidth - 10) && my >= (skinY + i * 10 + 5) && my < (skinY + i * 10 + 15) && selectedSlot != i + scrollPos) {
+								selectedSlot = i + scrollPos;
+								dropDownOpen = false;
+								dragging = false;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 }
