@@ -37,7 +37,6 @@ public class GuiScreenAuth extends GuiScreen
 {
 
 	private GuiTextField Username;
-	private GuiTextField Skin;
 
 	private int whichDefaultSkin = 0;
 	private boolean newSkinWaitSteveOrAlex = false; // The eagler equivalent
@@ -75,18 +74,16 @@ public class GuiScreenAuth extends GuiScreen
 		Keyboard.enableRepeatEvents(true);
 		this.buttonList.clear();
 		this.buttonList.add(new GuiButton(0, width / 2 - 100, height / 6 + 168, I18n.format("gui.done")));
-		this.buttonList.add(new GuiButton(1, width / 2 - 21, height / 6 + 110, 71, 20, I18n.format("Add Skin")));
-		this.buttonList.add(new GuiButton(2, width / 2 - 21 + 71, height / 6 + 110, 72, 20, I18n.format("Clear List")));
 		this.Username = new GuiTextField(0, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
 		this.Username.setFocused(true);
 		this.Username.setText(super.mc.getSession().getUsername());
 
 		whichDefaultSkin = DefaultPlayerSkin.getSkin();
+		selectedSlot = whichDefaultSkin;
 		updateOptions();
 
-		this.Skin = new GuiTextField(1, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
-		this.Skin.setFocused(true);
-		this.Skin.setText(super.mc.getSession().getUsername());
+		buttonList.add(new GuiButton(1, width / 2 - 21, height / 6 + 110, 71, 20, I18n.format("Add Skin")));
+		buttonList.add(new GuiButton(2, width / 2 - 21 + 71, height / 6 + 110, 72, 20, I18n.format("Clear List")));
 	}
 
 	/**
@@ -148,6 +145,7 @@ public class GuiScreenAuth extends GuiScreen
 
 		boolean isCustomSkin = false;
 
+		whichDefaultSkin = selectedSlot;
 		DefaultPlayerSkin.setDefaultSkin(whichDefaultSkin);
 
 		int skinX = width / 2 - 120;
@@ -163,6 +161,12 @@ public class GuiScreenAuth extends GuiScreen
 
 		int xx = width / 2 - 80;
 		int yy = height / 6 + 130;
+
+		if(dropDownOpen ||  newSkinWaitSteveOrAlex) {
+			super.drawScreen(0, 0, partialTicks);
+		}else {
+			super.drawScreen(mouseX, mouseY, partialTicks);
+		}
 	
 		skinX = width / 2 - 20;
 		skinY = height / 6 + 82;
@@ -234,7 +238,29 @@ public class GuiScreenAuth extends GuiScreen
 			SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, SkinModel.ALEX);
 		}
 
-		super.drawScreen(mouseX, mouseY, partialTicks);
+		//super.drawScreen(mouseX, mouseY, partialTicks);
+	}
+
+	public void updateScreen() {
+		Username.updateCursorCounter();
+		if(dropDownOpen) {
+			if(Mouse.isButtonDown(0)) {
+				int skinX = width / 2 - 20;
+				int skinY = height / 6 + 103;
+				int skinWidth = 140;
+				if(mousex >= (skinX + skinWidth - 10) && mousex < (skinX + skinWidth) && mousey >= skinY && mousey < (skinY + skinsHeight)) {
+					dragging = true;
+				}
+				if(dragging) {
+					int scrollerSize = skinsHeight * slotsVisible / dropDownOptions.length;
+					scrollPos = (mousey - skinY - (scrollerSize / 2)) * dropDownOptions.length / skinsHeight;
+				}
+			}else {
+				dragging = false;
+			}
+		}else {
+			dragging = false;
+		}
 	}
 
 	protected void mouseClicked(int mx, int my, int button) throws IOException {
