@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.client.resources.I18n;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.lax1dude.eaglercraft.v1_8.sp.gui.GuiScreenCreateWorldSelection;
 
 public class GuiWorldSelection extends GuiScreen
 {
@@ -90,7 +91,7 @@ public class GuiWorldSelection extends GuiScreen
             }
             else if (button.id == 3)
             {
-                this.mc.displayGuiScreen(new GuiCreateWorld(this));
+                this.mc.displayGuiScreen(new GuiScreenCreateWorldSelection(this));
             }
             else if (button.id == 4)
             {

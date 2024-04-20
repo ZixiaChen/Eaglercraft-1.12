@@ -60,7 +60,7 @@ public class ResourcePackListEntryServer extends ResourcePackListEntry
             LOGGER.error("Couldn't load metadata info", (Throwable)ioexception);
         }
 
-        return TextFormatting.WHITE + "The default look of Minecraft";
+        return TextFormatting.GRAY + "The default look of Minecraft";
     }
 
     protected boolean canMoveRight()
