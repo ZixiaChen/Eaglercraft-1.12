@@ -1,7 +1,7 @@
 package net.catfoolyou.pakutils;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
+import java.awt.FileDialog;
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -9,20 +9,21 @@ import java.util.zip.ZipInputStream;
 public class FileCopyUtils {
 
     public static boolean copyEPK() {
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("EPK files", "epk");
-        fileChooser.setFileFilter(filter);
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        Frame frame = new Frame();
+        FileDialog fileDialog = new FileDialog(frame, "Select EPK File", FileDialog.LOAD);
+        fileDialog.setFile("*.epk");
+        fileDialog.setVisible(true);
 
-        int result = fileChooser.showOpenDialog(null);
+        String selectedFilePath = fileDialog.getFile();
+        String selectedDirectoryPath = fileDialog.getDirectory();
 
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
+        if (selectedFilePath != null && selectedDirectoryPath != null) {
+            File selectedFile = new File(selectedDirectoryPath, selectedFilePath);
             String destinationDirectory = "." + File.separator + "saves" + File.separator; // Relative path to "./saves/"
 
             try {
                 copyFile(selectedFile, new File(destinationDirectory + selectedFile.getName()));
-                return true; 
+                return true;
             } catch (IOException e) {
                 System.err.println("Error copying file: " + e.getMessage());
             }
@@ -31,15 +32,16 @@ public class FileCopyUtils {
     }
 
     public static boolean copyZip() {
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("ZIP files", "zip");
-        fileChooser.setFileFilter(filter);
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        Frame frame = new Frame();
+        FileDialog fileDialog = new FileDialog(frame, "Select ZIP File", FileDialog.LOAD);
+        fileDialog.setFile("*.zip");
+        fileDialog.setVisible(true);
 
-        int result = fileChooser.showOpenDialog(null);
+        String selectedFilePath = fileDialog.getFile();
+        String selectedDirectoryPath = fileDialog.getDirectory();
 
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
+        if (selectedFilePath != null && selectedDirectoryPath != null) {
+            File selectedFile = new File(selectedDirectoryPath, selectedFilePath);
             String destinationDirectory = "." + File.separator + "saves" + File.separator; // Relative path to "./saves/"
             File destFile = new File(destinationDirectory + selectedFile.getName());
 
