@@ -4,6 +4,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiCreateWorld;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
+import net.catfoolyou.pakutils.FileCopyUtils;
 
 /**
  * Copyright (c) 2022-2024 lax1dude. All Rights Reserved.
@@ -41,13 +42,11 @@ public class GuiScreenCreateWorldSelection extends GuiScreen {
 	}
 	
 	public void updateScreen() {
-		/*if(false && (isImportingEPK || isImportingMCA)) {
-			FileChooserResult fr = EagRuntime.getFileChooserResult();
-			if(fr != null) {
-				this.mc.displayGuiScreen(new GuiScreenNameWorldImport(mainmenu, fr, isImportingEPK ? 0 : (isImportingMCA ? 1 : -1)));
-			}
+		if(false && (isImportingEPK || isImportingMCA)) {
+			//FileChooserResult fr = EagRuntime.getFileChooserResult();
+			this.mc.displayGuiScreen(mainmenu);
 			isImportingEPK = isImportingMCA = false;
-		}*/
+		}
 	}
 	
 	public void drawScreen(int par1, int par2, float par3) {
@@ -73,11 +72,11 @@ public class GuiScreenCreateWorldSelection extends GuiScreen {
 		}else if(par1GuiButton.id == 1) {
 			this.mc.displayGuiScreen(new GuiCreateWorld(mainmenu));
 		}else if(par1GuiButton.id == 2) {
-			isImportingEPK = true;
-			//EagRuntime.displayFileChooser(null, "epk");
+			isImportingEPK = FileCopyUtils.copyEPK();
+			this.mc.displayGuiScreen(mainmenu);
 		}else if(par1GuiButton.id == 3) {
-			isImportingMCA = true;
-			//EagRuntime.displayFileChooser(null, "zip");
+			isImportingMCA = FileCopyUtils.copyZip();
+			this.mc.displayGuiScreen(mainmenu);
 		}
 	}
 
