@@ -47,7 +47,7 @@ public class Main
 
         OptionSpec<String> optionspec9 = optionparser.accepts("username").withRequiredArg().defaultsTo(username);
 
-        OptionSpec<String> optionspec10 = optionparser.accepts("uuid").withRequiredArg();
+        OptionSpec<String> optionspec10 = optionparser.accepts("uuid").withRequiredArg().defaultsTo(username);
         OptionSpec<String> optionspec11 = optionparser.accepts("accessToken").withRequiredArg().required();
         OptionSpec<String> optionspec12 = optionparser.accepts("version").withRequiredArg().required();
         OptionSpec<Integer> optionspec13 = optionparser.accepts("width").withRequiredArg().<Integer>ofType(Integer.class).defaultsTo(Integer.valueOf(854));
