@@ -6,6 +6,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.catfoolyou.pakutils.FileCopyUtils;
 
+import net.catfoolyou.gui.GuiPakErrorScreen;
+
 /**
  * Copyright (c) 2022-2024 lax1dude. All Rights Reserved.
  * 
@@ -72,8 +74,8 @@ public class GuiScreenCreateWorldSelection extends GuiScreen {
 		}else if(par1GuiButton.id == 1) {
 			this.mc.displayGuiScreen(new GuiCreateWorld(mainmenu));
 		}else if(par1GuiButton.id == 2) {
-			isImportingEPK = FileCopyUtils.copyEPK();
-			this.mc.displayGuiScreen(mainmenu);
+			//isImportingEPK = FileCopyUtils.copyEPK();
+			this.mc.displayGuiScreen(new GuiPakErrorScreen());
 		}else if(par1GuiButton.id == 3) {
 			isImportingMCA = FileCopyUtils.copyZip();
 			this.mc.displayGuiScreen(mainmenu);
