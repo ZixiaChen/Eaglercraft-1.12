@@ -102,7 +102,7 @@ public class GuiWorldSelection extends GuiScreen
             }
             else if (button.id == 0)
             {
-                this.mc.displayGuiScreen(this.prevScreen);
+                this.mc.displayGuiScreen(new GuiMainMenu());
             }
             else if (button.id == 5 && guilistworldselectionentry != null)
             {
