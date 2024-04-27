@@ -36,18 +36,20 @@ You can also import and export your existing vanilla Minecraft 1.12 worlds into 
 
 ### LAN Worlds
 
-LAN worlds in Eaglercraft 1.12 are currently broken and don't work. Use a self hosted server and connect to it via LAN instead. See the Making a server section.
+LAN is currently not supported, to start a localhost game you have to start the server inside the `server` folder (See the Making a server section.). Note that this only works on Linux. EaglercraftX clients can connect to this server.
 
 ### Connecting to a server
 
 Eaglercraft 1.12 can connect to any cracked minecraft server that does not require authentication. The 1.12 client can play on any existing Eaglercraft 1.5.2 or 1.8.8 servers.
 
-Eaglercraft 1.12 DOES NOT support websocket `wss://` connections! When connecting to an Eaglercraft server, you CANNOT have `wss://` in the IP. or IT WILL NOT WORK!!
+Eaglercraft 1.12 DOES NOT yet support websocket `wss://` connections! When connecting to an Eaglercraft server, you CANNOT have `wss://` in the IP or IT WILL NOT WORK!!
 
 ### Making a Server
 
 To make a server for Eaglercraft 1.12 there is a modified version of EaglercraftXBungee ("EaglerXBungee") which is included in this repository in the `server` folder, though its Linux-only. To run a server on Windows use the vanilla 1.12 server jar. Existing EaglercraftX clients CANNOT connect to neither the vanilla server nor the modified EaglerXBungee, please keep that in mind.
 If you want to have a server accessible for both Eaglercraft 1.12 clients and EaglercraftX clients, please use Lax1dude's unmodified EaglerXBungee server.
+
+When connecting from EaglercraftX, you MUST use and offline download and use `ws://` instead of `wss://` in the IP or it will not connect.
 
 ### Web client
 As of right now there is no system to compile an offline download, neither is there a web client.
