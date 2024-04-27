@@ -4,8 +4,10 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 src/main/assets/logs/
-server/Cubernite/logs/
-server/Cubernite/world/
+server/Cuberite/logs/
+server/Cuberite/world/
+server/Cuberite/world_nether/
+server/Cuberite/world_the_end/
 server/Bungee/logs/
 server/logs/
 server/world
