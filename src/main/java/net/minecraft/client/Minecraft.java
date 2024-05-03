@@ -2560,7 +2560,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
             this.integratedServer = null;
             this.entityRenderer.resetData();
             this.playerController = null;
-            NarratorChatListener.INSTANCE.clear();
+            //NarratorChatListener.INSTANCE.clear();
         }
 
         this.renderViewEntity = null;

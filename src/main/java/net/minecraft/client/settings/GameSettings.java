@@ -650,7 +650,7 @@ public class GameSettings
 
         if (settingsOption == GameSettings.Options.NARRATOR)
         {
-            if (NarratorChatListener.INSTANCE.isActive())
+            if (false)
             {
                 this.narrator = (this.narrator + value) % NARRATOR_MODES.length;
             }
@@ -659,7 +659,7 @@ public class GameSettings
                 this.narrator = 0;
             }
 
-            NarratorChatListener.INSTANCE.announceMode(this.narrator);
+            //NarratorChatListener.INSTANCE.announceMode(this.narrator);
         }
 
         this.saveOptions();
@@ -944,7 +944,7 @@ public class GameSettings
             }
             else if (settingOption == GameSettings.Options.NARRATOR)
             {
-                return NarratorChatListener.INSTANCE.isActive() ? s1 + getTranslation(NARRATOR_MODES, this.narrator) : s1 + I18n.format("options.narrator.notavailable");
+                return false ? s1 + getTranslation(NARRATOR_MODES, this.narrator) : s1 + I18n.format("options.narrator.notavailable");
             }
             else
             {

@@ -42,7 +42,7 @@ public class ScreenChatOptions extends GuiScreen
                 if (gamesettings$options == GameSettings.Options.NARRATOR)
                 {
                     this.narratorButton = guioptionbutton;
-                    guioptionbutton.enabled = NarratorChatListener.INSTANCE.isActive();
+                    guioptionbutton.enabled = false;
                 }
             }
 
