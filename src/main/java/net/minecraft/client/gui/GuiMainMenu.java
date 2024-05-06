@@ -63,6 +63,21 @@ public class GuiMainMenu extends GuiScreen
     private String splashText;
     private GuiButton buttonResetDemo;
 
+    // Lax what the hell is this
+    private String field_92025_p;
+    private String field_104024_v;
+
+    public static final String field_96138_a = "";
+    private int field_92024_r;
+    private int field_92023_s;
+    private int field_92022_t;
+    private int field_92021_u;
+    private int field_92020_v;
+    private int field_92019_w;
+
+    private final Object field_104025_t = new Object();
+	
+
     /** Timer used to rotate the panorama, increases every tick. */
     private float panoramaTimer;
 
@@ -131,6 +146,8 @@ public class GuiMainMenu extends GuiScreen
         this.openGLWarning2 = MORE_INFO_TEXT;
         this.splashText = "missingno";
         IResource iresource = null;
+
+	this.field_92025_p = "eaglercraft debug runtime";
 
         try
         {
@@ -230,6 +247,7 @@ public class GuiMainMenu extends GuiScreen
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
 
+
         if (calendar.get(2) + 1 == 12 && calendar.get(5) == 24)
         {
             this.splashText = "Merry X-mas!";
@@ -272,23 +290,20 @@ public class GuiMainMenu extends GuiScreen
 
         this.mc.setConnectedToRealms(false);
 
-        if (Minecraft.getMinecraft().gameSettings.getOptionOrdinalValue(GameSettings.Options.REALMS_NOTIFICATIONS) && !this.hasCheckedForRealmsNotification)
-        {
-            RealmsBridge realmsbridge = new RealmsBridge();
-            this.realmsNotification = realmsbridge.getNotificationScreen(this);
-            this.hasCheckedForRealmsNotification = true;
-        }
-
-        if (this.areRealmsNotificationsEnabled())
-        {
-            this.realmsNotification.setGuiSize(this.width, this.height);
-            this.realmsNotification.initGui();
-        }
-
         if (Reflector.NotificationModUpdateScreen_init.exists())
         {
             this.modUpdateNotification = (GuiScreen)Reflector.call(Reflector.NotificationModUpdateScreen_init, this, this.modButton);
         }
+
+	synchronized (this.field_104025_t) {
+			this.field_92023_s = this.fontRenderer.getStringWidth(this.field_92025_p);
+			this.field_92024_r = this.fontRenderer.getStringWidth(field_96138_a);
+			int var6 = Math.max(this.field_92023_s, this.field_92024_r);
+			this.field_92022_t = (this.width - var6) / 2;
+			this.field_92021_u = 82;
+			this.field_92020_v = this.field_92022_t + var6;
+			this.field_92019_w = this.field_92021_u + 12;
+		}
     }
 
     /**
@@ -714,6 +729,14 @@ public class GuiMainMenu extends GuiScreen
         }
 
         this.drawString(this.fontRenderer, "Resources Copyright Mojang AB", this.widthCopyrightRest, this.height - 10, -1);
+
+	if (this.field_92025_p != null && this.field_92025_p.length() > 0) {
+			drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
+			this.drawString(this.fontRenderer, this.field_92025_p, this.field_92022_t, this.field_92021_u, 16777215);
+			// this.drawString(this.fontRenderer, field_96138_a, (this.width -
+			// this.field_92024_r) / 2, ((GuiButton)this.buttonList.get(0)).yPosition - 12,
+			// 16777215);
+		}
 
         if (mouseX > this.widthCopyrightRest && mouseX < this.widthCopyrightRest + this.widthCopyright && mouseY > this.height - 10 && mouseY < this.height && Mouse.isInsideWindow())
         {
