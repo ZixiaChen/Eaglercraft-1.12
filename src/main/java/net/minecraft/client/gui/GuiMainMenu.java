@@ -147,7 +147,7 @@ public class GuiMainMenu extends GuiScreen
         this.splashText = "missingno";
         IResource iresource = null;
 
-	this.field_92025_p = "eaglercraft debug runtime";
+		this.field_92025_p = "eaglercraft debug runtime";
 
         try
         {
@@ -683,6 +683,14 @@ public class GuiMainMenu extends GuiScreen
             this.drawTexturedModalRect(j + 155, 30, 0, 45, 155, 44);
         }
 
+		if (this.field_92025_p != null && this.field_92025_p.length() > 0) {
+			drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
+			this.drawString(this.fontRenderer, this.field_92025_p, this.field_92022_t, this.field_92021_u, 16777215);
+			// this.drawString(this.fontRenderer, field_96138_a, (this.width -
+			// this.field_92024_r) / 2, ((GuiButton)this.buttonList.get(0)).yPosition - 12,
+			// 16777215);
+		}
+
         if (Reflector.ForgeHooksClient_renderMainMenu.exists())
         {
             this.splashText = Reflector.callString(Reflector.ForgeHooksClient_renderMainMenu, this, this.fontRenderer, this.width, this.height, this.splashText);
@@ -730,13 +738,6 @@ public class GuiMainMenu extends GuiScreen
 
         this.drawString(this.fontRenderer, "Resources Copyright Mojang AB", this.widthCopyrightRest, this.height - 10, -1);
 
-	if (this.field_92025_p != null && this.field_92025_p.length() > 0) {
-			drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
-			this.drawString(this.fontRenderer, this.field_92025_p, this.field_92022_t, this.field_92021_u, 16777215);
-			// this.drawString(this.fontRenderer, field_96138_a, (this.width -
-			// this.field_92024_r) / 2, ((GuiButton)this.buttonList.get(0)).yPosition - 12,
-			// 16777215);
-		}
 
         if (mouseX > this.widthCopyrightRest && mouseX < this.widthCopyrightRest + this.widthCopyright && mouseY > this.height - 10 && mouseY < this.height && Mouse.isInsideWindow())
         {
@@ -751,11 +752,6 @@ public class GuiMainMenu extends GuiScreen
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
-
-        if (this.areRealmsNotificationsEnabled())
-        {
-            this.realmsNotification.drawScreen(mouseX, mouseY, partialTicks);
-        }
 
         if (this.modUpdateNotification != null)
         {

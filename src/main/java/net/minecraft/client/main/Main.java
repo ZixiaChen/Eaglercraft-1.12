@@ -37,13 +37,32 @@ public class Main
         OptionSpec<String> optionspec7 = optionparser.accepts("proxyUser").withRequiredArg();
         OptionSpec<String> optionspec8 = optionparser.accepts("proxyPass").withRequiredArg();
 
-		String[] defaultNames = new String[] {
+		String username = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader("./usercache.json"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                int index = line.indexOf("\"name\":");
+                if (index != -1) {
+                    int start = index + "\"name\":".length();
+                    int end = line.indexOf('"', start + 1);
+                    if (end != -1) {
+                        username = line.substring(start + 1, end);
+                        break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }	
+	
+		if(username == null){
+			String[] defaultNames = new String[] {
 				"Yeeish", "Yeeish", "Yee", "Yee", "Yeer", "Yeeler", "Eagler", "Eagl",
 				"Darver", "Darvler", "Vool", "Vigg", "Vigg", "Deev", "Yigg", "Yeeg"
-		};
-
-		Random rand = new Random();
-		String username = defaultNames[rand.nextInt(defaultNames.length)] + defaultNames[rand.nextInt(defaultNames.length)] + (100 + rand.nextInt(900));
+			};
+			Random rand = new Random();
+			username = defaultNames[rand.nextInt(defaultNames.length)] + defaultNames[rand.nextInt(defaultNames.length)] + (100 + rand.nextInt(900));
+		}
 
         OptionSpec<String> optionspec9 = optionparser.accepts("username").withRequiredArg().defaultsTo(username);
 
