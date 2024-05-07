@@ -41,7 +41,6 @@ import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.client.gui.GuiScreenDemo;
-import net.minecraft.client.gui.GuiScreenRealmsProxy;
 import net.minecraft.client.gui.GuiWinGame;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
@@ -214,7 +213,6 @@ import net.minecraft.network.play.server.SPacketWorldBorder;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.realms.DisconnectedRealmsScreen;
 import net.minecraft.scoreboard.IScoreCriteria;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
@@ -874,9 +872,9 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
         if (this.guiScreenServer != null)
         {
-            if (this.guiScreenServer instanceof GuiScreenRealmsProxy)
+            if (false)
             {
-                this.gameController.displayGuiScreen((new DisconnectedRealmsScreen(((GuiScreenRealmsProxy)this.guiScreenServer).getProxy(), "disconnect.lost", reason)).getProxy());
+                this.gameController.displayGuiScreen(new GuiMainMenu());
             }
             else
             {
