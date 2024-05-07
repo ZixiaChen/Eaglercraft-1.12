@@ -35,7 +35,7 @@ jobs:
     - name: Compile desktop runtime
       run: ./gradlew clean build
       
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: Eagler-Unix
         path: build/distributions/
@@ -64,7 +64,7 @@ jobs:
     - name: Compile desktop runtime
       run: ./gradlew clean build
       
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: Eagler-Windows
         path: build/distributions/
