@@ -14,7 +14,6 @@ import javax.crypto.SecretKey;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiScreenRealmsProxy;
 import net.minecraft.network.EnumConnectionState;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.login.INetHandlerLoginClient;
@@ -23,7 +22,6 @@ import net.minecraft.network.login.server.SPacketDisconnect;
 import net.minecraft.network.login.server.SPacketEnableCompression;
 import net.minecraft.network.login.server.SPacketEncryptionRequest;
 import net.minecraft.network.login.server.SPacketLoginSuccess;
-import net.minecraft.realms.DisconnectedRealmsScreen;
 import net.minecraft.util.CryptManager;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -113,9 +111,9 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
      */
     public void onDisconnect(ITextComponent reason)
     {
-        if (this.previousGuiScreen != null && this.previousGuiScreen instanceof GuiScreenRealmsProxy)
+        if (this.previousGuiScreen != null)
         {
-            this.mc.displayGuiScreen((new DisconnectedRealmsScreen(((GuiScreenRealmsProxy)this.previousGuiScreen).getProxy(), "connect.failed", reason)).getProxy());
+            this.mc.displayGuiScreen(this.previousGuiScreen);
         }
         else
         {
