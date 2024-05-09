@@ -8,7 +8,7 @@ This client comes with Optifine built in.
 
 ## Getting Started:
 
-Prerequisites: Java 17 and JDK 17 or higher
+Prerequisites: Java 17 and JDK 17 or higher (preferrably OpenJDK)
 
 ### To compile the latest version of the client, on Windows:
 
@@ -16,7 +16,7 @@ Prerequisites: Java 17 and JDK 17 or higher
 2. Download (clone) this repository to your computer
 3. Run gradle's clean and build tasks `gradlew.bat clean build`, then look in build/distributions for the compiled runtime zip.
 
-### To compile the latest version of the client, on Linux/macOS:
+### To compile the latest version of the client, on Linux:
 
 1. Make sure you have at least Java 17 installed
 2. Download (clone) this repository to your computer
@@ -52,16 +52,5 @@ If you want to have a server accessible for both Eaglercraft 1.12 clients and Ea
 When connecting from EaglercraftX, you MUST use and offline download and use `ws://` instead of `wss://` in the IP or it will not connect.
 
 ### Web client
-As of right now there is no system to compile an offline download, neither is there a web client.
+As of right now there is no system to compile an offline download, neither is there a web client. I have recently begun working on the web client, look at the teavm branch for progress.
 
-## Pros & Cons
-
-Pros:
-- Its a really slimmed down version of the 1.12 client that works
-- ITS FREE!
-- It has Optifine
-
-Cons:
-- No web or offline web client or download
-- It's pirated
-- No dedicated GPU support on Windows (yet)
