@@ -162,7 +162,6 @@ import net.minecraft.profiler.ISnooperInfo;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.profiler.Snooper;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.server.management.PlayerProfileCache;
 import net.minecraft.stats.RecipeBook;
 import net.minecraft.stats.StatisticsManager;
@@ -301,7 +300,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
     @Nullable
 
     /** Instance of IntegratedServer. */
-    private IntegratedServer integratedServer;
+    //private IntegratedServer integratedServer;
     public GuiIngame ingameGUI;
 
     /** Skip render world */
@@ -432,7 +431,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         this.tempDisplayHeight = gameConfig.displayInfo.height;
         this.fullscreen = gameConfig.displayInfo.fullscreen;
         this.jvm64bit = isJvm64bit();
-        this.integratedServer = null;
+        //this.integratedServer = null;
 
         if (gameConfig.serverInfo.serverName != null)
         {
@@ -871,11 +870,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
     {
         List<IResourcePack> list = Lists.newArrayList(this.defaultResourcePacks);
 
-        if (this.integratedServer != null)
-        {
-            this.integratedServer.reload();
-        }
-
         for (ResourcePackRepository.Entry resourcepackrepository$entry : this.mcResourcePackRepository.getRepositoryEntries())
         {
             list.add(resourcepackrepository$entry.getResourcePack());
@@ -1248,7 +1242,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         Thread.yield();
         this.checkGLError("Post render");
         ++this.fpsCounter;
-        boolean flag = this.isSingleplayer() && this.currentScreen != null && this.currentScreen.doesGuiPauseGame() && !this.integratedServer.getPublic();
+        boolean flag = false;
 
         if (this.isGamePaused != flag)
         {
@@ -1570,10 +1564,10 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         {
             this.displayGuiScreen(new GuiIngameMenu());
 
-            if (this.isSingleplayer() && !this.integratedServer.getPublic())
+            /*if (this.isSingleplayer() && !this.integratedServer.getPublic())
             {
                 this.mcSoundHandler.pauseSounds();
-            }
+            }*/
         }
     }
 
@@ -2483,9 +2477,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
             TileEntitySkull.setProfileCache(playerprofilecache);
             TileEntitySkull.setSessionService(minecraftsessionservice);
             PlayerProfileCache.setOnlineMode(false);
-            this.integratedServer = new IntegratedServer(this, folderName, worldName, worldSettingsIn, yggdrasilauthenticationservice, minecraftsessionservice, gameprofilerepository, playerprofilecache);
-            this.integratedServer.startServerThread();
-            this.integratedServerIsRunning = true;
         }
         catch (Throwable throwable)
         {
@@ -2496,38 +2487,9 @@ public class Minecraft implements IThreadListener, ISnooperInfo
             throw new ReportedException(crashreport);
         }
 
-        this.loadingScreen.displaySavingString(I18n.format("menu.loadingLevel"));
-
-        while (!this.integratedServer.serverIsInRunLoop())
-        {
-            String s = this.integratedServer.getUserMessage();
-
-            if (s != null)
-            {
-                this.loadingScreen.displayLoadingString(I18n.format(s));
-            }
-            else
-            {
-                this.loadingScreen.displayLoadingString("");
-            }
-
-            try
-            {
-                Thread.sleep(200L);
-            }
-            catch (InterruptedException var10)
-            {
-                ;
-            }
-        }
+        this.loadingScreen.displaySavingString(I18n.format("Error. Singleplayer not supported."));
 
         this.displayGuiScreen(new GuiScreenWorking());
-        SocketAddress socketaddress = this.integratedServer.getNetworkSystem().addLocalEndpoint();
-        NetworkManager networkmanager = NetworkManager.provideLocalClient(socketaddress);
-        networkmanager.setNetHandler(new NetHandlerLoginClient(networkmanager, this, (GuiScreen)null));
-        networkmanager.sendPacket(new C00Handshake(335, socketaddress.toString(), 0, EnumConnectionState.LOGIN));
-        networkmanager.sendPacket(new CPacketLoginStart(this.getSession().getProfile()));
-        this.myNetworkManager = networkmanager;
     }
 
     /**
@@ -2552,12 +2514,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
                 nethandlerplayclient.cleanup();
             }
 
-            if (this.integratedServer != null && this.integratedServer.isAnvilFileSet())
-            {
-                this.integratedServer.initiateShutdown();
-            }
-
-            this.integratedServer = null;
+            
             this.entityRenderer.resetData();
             this.playerController = null;
             //NarratorChatListener.INSTANCE.clear();
@@ -3046,10 +3003,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
             playerSnooper.addClientStat("resource_pack[" + i++ + "]", resourcepackrepository$entry.getResourcePackName());
         }
 
-        if (this.integratedServer != null && this.integratedServer.getPlayerUsageSnooper() != null)
-        {
-            playerSnooper.addClientStat("snooper_partner", this.integratedServer.getPlayerUsageSnooper().getUniqueID());
-        }
     }
 
     /**
@@ -3057,18 +3010,8 @@ public class Minecraft implements IThreadListener, ISnooperInfo
      */
     private String getCurrentAction()
     {
-        if (this.integratedServer != null)
-        {
-            return this.integratedServer.getPublic() ? "hosting_lan" : "singleplayer";
-        }
-        else if (this.currentServerData != null)
-        {
-            return this.currentServerData.isOnLAN() ? "playing_lan" : "multiplayer";
-        }
-        else
-        {
-            return "out_of_game";
-        }
+        
+        return "out_of_game";
     }
 
     public void addServerTypeToSnooper(Snooper playerSnooper)
@@ -3241,30 +3184,14 @@ public class Minecraft implements IThreadListener, ISnooperInfo
      */
     public boolean isSingleplayer()
     {
-        return this.integratedServerIsRunning && this.integratedServer != null;
+        return false;
     }
 
     @Nullable
 
-    /**
-     * Returns the currently running integrated server
-     */
-    public IntegratedServer getIntegratedServer()
-    {
-        return this.integratedServer;
-    }
 
     public static void stopIntegratedServer()
     {
-        if (instance != null)
-        {
-            IntegratedServer integratedserver = instance.getIntegratedServer();
-
-            if (integratedserver != null)
-            {
-                integratedserver.stopServer();
-            }
-        }
     }
 
     /**

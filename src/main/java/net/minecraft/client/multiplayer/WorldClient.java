@@ -541,7 +541,7 @@ public class WorldClient extends World
         {
             public String call() throws Exception
             {
-                return WorldClient.this.mc.getIntegratedServer() == null ? "Non-integrated multiplayer server" : "Integrated singleplayer server";
+                return "Non-integrated multiplayer server";
             }
         });
         return crashreportcategory;

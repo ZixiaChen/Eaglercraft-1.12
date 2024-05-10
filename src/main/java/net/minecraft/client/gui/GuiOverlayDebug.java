@@ -139,16 +139,6 @@ public class GuiOverlayDebug extends Gui
                         list.add("Light: " + chunk.getLightSubtracted(blockpos, 0) + " (" + chunk.getLightFor(EnumSkyBlock.SKY, blockpos) + " sky, " + chunk.getLightFor(EnumSkyBlock.BLOCK, blockpos) + " block)");
                         DifficultyInstance difficultyinstance = this.mc.world.getDifficultyForLocation(blockpos);
 
-                        if (this.mc.isIntegratedServerRunning() && this.mc.getIntegratedServer() != null)
-                        {
-                            EntityPlayerMP entityplayermp = this.mc.getIntegratedServer().getPlayerList().getPlayerByUUID(this.mc.player.getUniqueID());
-
-                            if (entityplayermp != null)
-                            {
-                                difficultyinstance = entityplayermp.world.getDifficultyForLocation(new BlockPos(entityplayermp));
-                            }
-                        }
-
                         list.add(String.format("Local Difficulty: %.2f // %.2f (Day %d)", difficultyinstance.getAdditionalDifficulty(), difficultyinstance.getClampedAdditionalDifficulty(), this.mc.world.getWorldTime() / 24000L));
                     }
                     else

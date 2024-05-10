@@ -3335,11 +3335,6 @@ public class GameSettings
 
     private void updateWaterOpacity()
     {
-        if (this.mc.isIntegratedServerRunning() && this.mc.getIntegratedServer() != null)
-        {
-            Config.waterOpacityChanged = true;
-        }
-
         ClearWater.updateWaterOpacity(this, this.mc.world);
     }
 

@@ -40,7 +40,6 @@ import net.minecraft.client.gui.GuiMerchant;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenBook;
-import net.minecraft.client.gui.GuiScreenDemo;
 import net.minecraft.client.gui.GuiWinGame;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
@@ -1459,9 +1458,9 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         {
             GameSettings gamesettings = this.gameController.gameSettings;
 
-            if (f == 0.0F)
+            if (false)
             {
-                this.gameController.displayGuiScreen(new GuiScreenDemo());
+                //this.gameController.displayGuiScreen(new GuiScreenDemo());
             }
             else if (f == 101.0F)
             {

@@ -502,9 +502,9 @@ public abstract class PlayerList
 
         PlayerInteractionManager playerinteractionmanager;
 
-        if (this.mcServer.isDemo())
+        if (false)
         {
-            playerinteractionmanager = new DemoPlayerInteractionManager(this.mcServer.getWorld(0));
+            //playerinteractionmanager = new DemoPlayerInteractionManager(this.mcServer.getWorld(0));
         }
         else
         {
@@ -530,9 +530,9 @@ public abstract class PlayerList
         playerIn.dimension = dimension;
         PlayerInteractionManager playerinteractionmanager;
 
-        if (this.mcServer.isDemo())
+        if (false)
         {
-            playerinteractionmanager = new DemoPlayerInteractionManager(this.mcServer.getWorld(playerIn.dimension));
+            //playerinteractionmanager = new DemoPlayerInteractionManager(this.mcServer.getWorld(playerIn.dimension));
         }
         else
         {

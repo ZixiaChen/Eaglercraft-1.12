@@ -38,7 +38,6 @@ import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.client.resources.ResourcePackRepository.Entry;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
@@ -1830,35 +1829,7 @@ public class Config
         }
         else
         {
-            IntegratedServer integratedserver = minecraft.getIntegratedServer();
-
-            if (integratedserver == null)
-            {
-                return null;
-            }
-            else
-            {
-                WorldProvider worldprovider = world.provider;
-
-                if (worldprovider == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    DimensionType dimensiontype = worldprovider.getDimensionType();
-
-                    try
-                    {
-                        WorldServer worldserver = integratedserver.getWorld(dimensiontype.getId());
-                        return worldserver;
-                    }
-                    catch (NullPointerException var5)
-                    {
-                        return null;
-                    }
-                }
-            }
+            return null;
         }
     }
 

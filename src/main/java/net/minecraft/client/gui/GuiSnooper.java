@@ -46,21 +46,12 @@ public class GuiSnooper extends GuiScreen
         this.values.clear();
         this.toggleButton = this.addButton(new GuiButton(1, this.width / 2 - 152, this.height - 30, 150, 20, this.game_settings_2.getKeyBinding(GameSettings.Options.SNOOPER_ENABLED)));
         this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height - 30, 150, 20, I18n.format("gui.done")));
-        boolean flag = this.mc.getIntegratedServer() != null && this.mc.getIntegratedServer().getPlayerUsageSnooper() != null;
+        boolean flag = false;
 
         for (Entry<String, String> entry : (new TreeMap<String, String>(this.mc.getPlayerUsageSnooper().getCurrentStats())).entrySet())
         {
             this.keys.add((flag ? "C " : "") + (String)entry.getKey());
             this.values.add(this.fontRenderer.trimStringToWidth(entry.getValue(), this.width - 220));
-        }
-
-        if (flag)
-        {
-            for (Entry<String, String> entry1 : (new TreeMap<String, String>(this.mc.getIntegratedServer().getPlayerUsageSnooper().getCurrentStats())).entrySet())
-            {
-                this.keys.add("S " + (String)entry1.getKey());
-                this.values.add(this.fontRenderer.trimStringToWidth(entry1.getValue(), this.width - 220));
-            }
         }
 
         this.list = new GuiSnooper.List();

@@ -59,7 +59,6 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.src.Config;
 import net.minecraft.src.CustomColors;
 import net.minecraft.src.Lagometer;
@@ -1335,10 +1334,10 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 {
                     this.timeWorldIcon = Minecraft.getSystemTime();
 
-                    if (!this.mc.getIntegratedServer().isWorldIconSet())
+                    /*if (!this.mc.getIntegratedServer().isWorldIconSet())
                     {
                         this.createWorldIcon();
-                    }
+                    }*/
                 }
 
                 if (OpenGlHelper.shadersSupported)
@@ -1438,37 +1437,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     private void createWorldIcon()
     {
-        if (this.mc.renderGlobal.getRenderedChunks() > 10 && this.mc.renderGlobal.hasNoChunkUpdates() && !this.mc.getIntegratedServer().isWorldIconSet())
-        {
-            BufferedImage bufferedimage = ScreenShotHelper.createScreenshot(this.mc.displayWidth, this.mc.displayHeight, this.mc.getFramebuffer());
-            int i = bufferedimage.getWidth();
-            int j = bufferedimage.getHeight();
-            int k = 0;
-            int l = 0;
-
-            if (i > j)
-            {
-                k = (i - j) / 2;
-                i = j;
-            }
-            else
-            {
-                l = (j - i) / 2;
-            }
-
-            try
-            {
-                BufferedImage bufferedimage1 = new BufferedImage(64, 64, 1);
-                Graphics graphics = bufferedimage1.createGraphics();
-                graphics.drawImage(bufferedimage, 0, 0, 64, 64, k, l, k + i, l + i, (ImageObserver)null);
-                graphics.dispose();
-                ImageIO.write(bufferedimage1, "png", this.mc.getIntegratedServer().getWorldIconFile());
-            }
-            catch (IOException ioexception1)
-            {
-                LOGGER.warn("Couldn't save auto screenshot", (Throwable)ioexception1);
-            }
-        }
+        System.out.println("Couldn't save auto screenshot");
     }
 
     public void renderStreamIndicator(float partialTicks)
@@ -2626,89 +2595,6 @@ public class EntityRenderer implements IResourceManagerReloadListener
     {
         this.serverWaitTimeCurrent = 0;
 
-        if (Config.isSmoothWorld() && Config.isSingleProcessor())
-        {
-            if (this.mc.isIntegratedServerRunning())
-            {
-                IntegratedServer integratedserver = this.mc.getIntegratedServer();
-
-                if (integratedserver != null)
-                {
-                    boolean flag = this.mc.isGamePaused();
-
-                    if (!flag && !(this.mc.currentScreen instanceof GuiDownloadTerrain))
-                    {
-                        if (this.serverWaitTime > 0)
-                        {
-                            Lagometer.timerServer.start();
-                            Config.sleep((long)this.serverWaitTime);
-                            Lagometer.timerServer.end();
-                            this.serverWaitTimeCurrent = this.serverWaitTime;
-                        }
-
-                        long i = System.nanoTime() / 1000000L;
-
-                        if (this.lastServerTime != 0L && this.lastServerTicks != 0)
-                        {
-                            long j = i - this.lastServerTime;
-
-                            if (j < 0L)
-                            {
-                                this.lastServerTime = i;
-                                j = 0L;
-                            }
-
-                            if (j >= 50L)
-                            {
-                                this.lastServerTime = i;
-                                int k = integratedserver.getTickCounter();
-                                int l = k - this.lastServerTicks;
-
-                                if (l < 0)
-                                {
-                                    this.lastServerTicks = k;
-                                    l = 0;
-                                }
-
-                                if (l < 1 && this.serverWaitTime < 100)
-                                {
-                                    this.serverWaitTime += 2;
-                                }
-
-                                if (l > 1 && this.serverWaitTime > 0)
-                                {
-                                    --this.serverWaitTime;
-                                }
-
-                                this.lastServerTicks = k;
-                            }
-                        }
-                        else
-                        {
-                            this.lastServerTime = i;
-                            this.lastServerTicks = integratedserver.getTickCounter();
-                            this.avgServerTickDiff = 1.0F;
-                            this.avgServerTimeDiff = 50.0F;
-                        }
-                    }
-                    else
-                    {
-                        if (this.mc.currentScreen instanceof GuiDownloadTerrain)
-                        {
-                            Config.sleep(20L);
-                        }
-
-                        this.lastServerTime = 0L;
-                        this.lastServerTicks = 0;
-                    }
-                }
-            }
-        }
-        else
-        {
-            this.lastServerTime = 0L;
-            this.lastServerTicks = 0;
-        }
     }
 
     private void frameInit()

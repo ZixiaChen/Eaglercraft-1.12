@@ -30,7 +30,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.WorldServerDemo;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
 import org.apache.commons.io.IOUtils;
@@ -292,8 +291,8 @@ public class GuiMainMenu extends GuiScreen
      */
     private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_)
     {
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer")));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, I18n.format("menu.multiplayer")));
+        //this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer")));
+        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_, I18n.format("menu.multiplayer")));
 
         if (Reflector.GuiModList_Constructor.exists())
         {
@@ -302,7 +301,7 @@ public class GuiMainMenu extends GuiScreen
         }
         else
         {
-            this.githubButton = this.addButton(new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, I18n.format("Fork on Github")));
+            this.githubButton = this.addButton(new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, I18n.format("Fork on Github")));
         }
     }
 
@@ -311,15 +310,6 @@ public class GuiMainMenu extends GuiScreen
      */
     private void addDemoButtons(int p_73972_1_, int p_73972_2_)
     {
-        this.buttonList.add(new GuiButton(11, this.width / 2 - 100, p_73972_1_, I18n.format("menu.playdemo")));
-        this.buttonResetDemo = this.addButton(new GuiButton(12, this.width / 2 - 100, p_73972_1_ + p_73972_2_ * 1, I18n.format("menu.resetdemo")));
-        ISaveFormat isaveformat = this.mc.getSaveLoader();
-        WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
-
-        if (worldinfo == null)
-        {
-            this.buttonResetDemo.enabled = false;
-        }
     }
 
     /**
@@ -339,7 +329,6 @@ public class GuiMainMenu extends GuiScreen
 
         if (button.id == 1)
         {
-            this.mc.displayGuiScreen(new GuiWorldSelection(this));
         }
 
         if (button.id == 2)
@@ -362,20 +351,12 @@ public class GuiMainMenu extends GuiScreen
             this.mc.displayGuiScreen((GuiScreen)Reflector.newInstance(Reflector.GuiModList_Constructor, this));
         }
 
-        if (button.id == 11)
-        {
-            this.mc.launchIntegratedServer("Demo_World", "Demo_World", WorldServerDemo.DEMO_WORLD_SETTINGS);
-        }
+        if (button.id == 11){}
+        
 
         if (button.id == 12)
         {
-            ISaveFormat isaveformat = this.mc.getSaveLoader();
-            WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
-
-            if (worldinfo != null)
-            {
-                this.mc.displayGuiScreen(new GuiYesNo(this, I18n.format("selectWorld.deleteQuestion"), "'" + worldinfo.getWorldName() + "' " + I18n.format("selectWorld.deleteWarning"), I18n.format("selectWorld.deleteButton"), I18n.format("gui.cancel"), 12));
-            }
+            
         }
     }
 
@@ -714,7 +695,7 @@ public class GuiMainMenu extends GuiScreen
         else
         {
             this.drawString(this.fontRenderer, s, 2, this.height - 20, -1);
-	    this.drawString(this.fontRenderer, "Eaglercraft v0.1.3-rc01 (cracked)", 2, this.height - 10, -1);
+	    this.drawString(this.fontRenderer, "Eaglercraft javascript test", 2, this.height - 10, -1);
         }
 
         this.drawString(this.fontRenderer, "Resources Copyright Mojang AB", this.widthCopyrightRest, this.height - 10, -1);

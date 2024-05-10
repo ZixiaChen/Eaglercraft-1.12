@@ -70,7 +70,6 @@ import net.minecraft.world.MinecraftException;
 import net.minecraft.world.ServerWorldEventHandler;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.WorldServerDemo;
 import net.minecraft.world.WorldServerMulti;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.WorldType;
@@ -268,9 +267,9 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 
         if (worldinfo == null)
         {
-            if (this.isDemo())
+            if (false)
             {
-                worldsettings = WorldServerDemo.DEMO_WORLD_SETTINGS;
+                //worldsettings = WorldServerDemo.DEMO_WORLD_SETTINGS;
             }
             else
             {
@@ -307,9 +306,9 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 
             if (i == 0)
             {
-                if (this.isDemo())
+                if (false)
                 {
-                    this.worlds[i] = (WorldServer)(new WorldServerDemo(this, isavehandler, worldinfo, j, this.profiler)).init();
+                    //this.worlds[i] = (WorldServer)(new WorldServerDemo(this, isavehandler, worldinfo, j, this.profiler)).init();
                 }
                 else
                 {
