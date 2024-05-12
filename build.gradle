@@ -11,12 +11,17 @@ sourceSets {
     main {
         java {
             srcDir 'src/main/java'
+			srcDir 'src/teavm/java'
         }
     }
 }
 
 repositories {
     mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.warnings = false
 }
 
 application {

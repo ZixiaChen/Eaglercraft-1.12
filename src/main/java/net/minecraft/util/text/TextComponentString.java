@@ -19,6 +19,19 @@ public class TextComponentString extends TextComponentBase
         return this.text;
     }
 
+	public String getChatComponentText_TextValue() {
+		return this.text;
+	}
+
+	/**+
+	 * Gets the text of this component, without any special
+	 * formatting codes added, for chat. TODO: why is this two
+	 * different methods?
+	 */
+	public String getUnformattedTextForChat() {
+		return this.text;
+	}
+
     /**
      * Gets the raw content of this component (but not its sibling components), without any formatting codes. For
      * example, this is the raw text in a {@link TextComponentString}, but it's the translated text for a {@link

@@ -30,10 +30,10 @@ import org.apache.commons.io.IOUtils;
 
 public class FontRenderer implements IResourceManagerReloadListener
 {
-    private static final ResourceLocation[] UNICODE_PAGE_LOCATIONS = new ResourceLocation[256];
+    public static final ResourceLocation[] UNICODE_PAGE_LOCATIONS = new ResourceLocation[256];
 
     /** Array of width of all the characters in default.png */
-    private final int[] charWidth = new int[256];
+    public final int[] charWidth = new int[256];
 
     /** the height in pixels of default text */
     public int FONT_HEIGHT = 9;
@@ -42,72 +42,72 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Array of the start/end column (in upper/lower nibble) for every glyph in the /font directory.
      */
-    private final byte[] glyphWidth = new byte[65536];
+    public final byte[] glyphWidth = new byte[65536];
 
     /**
      * Array of RGB triplets defining the 16 standard chat colors followed by 16 darker version of the same colors for
      * drop shadows.
      */
-    private final int[] colorCode = new int[32];
-    private ResourceLocation locationFontTexture;
+    public final int[] colorCode = new int[32];
+    public ResourceLocation locationFontTexture;
 
     /** The RenderEngine used to load and setup glyph textures. */
-    private final TextureManager renderEngine;
+    public final TextureManager renderEngine;
 
     /** Current X coordinate at which to draw the next character. */
-    private float posX;
+    public float posX;
 
     /** Current Y coordinate at which to draw the next character. */
-    private float posY;
+    public float posY;
 
     /**
      * If true, strings should be rendered with Unicode fonts instead of the default.png font
      */
-    private boolean unicodeFlag;
+    public boolean unicodeFlag;
 
     /**
      * If true, the Unicode Bidirectional Algorithm should be run before rendering any string.
      */
-    private boolean bidiFlag;
+    public boolean bidiFlag;
 
     /** Used to specify new red value for the current color. */
-    private float red;
+    public float red;
 
     /** Used to specify new blue value for the current color. */
-    private float blue;
+    public float blue;
 
     /** Used to specify new green value for the current color. */
-    private float green;
+    public float green;
 
     /** Used to speify new alpha value for the current color. */
-    private float alpha;
+    public float alpha;
 
     /** Text color of the currently rendering string. */
-    private int textColor;
+    public int textColor;
 
     /** Set if the "k" style (random) is active in currently rendering string */
-    private boolean randomStyle;
+    public boolean randomStyle;
 
     /** Set if the "l" style (bold) is active in currently rendering string */
-    private boolean boldStyle;
+    public boolean boldStyle;
 
     /** Set if the "o" style (italic) is active in currently rendering string */
-    private boolean italicStyle;
+    public boolean italicStyle;
 
     /**
      * Set if the "n" style (underlined) is active in currently rendering string
      */
-    private boolean underlineStyle;
+    public boolean underlineStyle;
 
     /**
      * Set if the "m" style (strikethrough) is active in currently rendering string
      */
-    private boolean strikethroughStyle;
+    public boolean strikethroughStyle;
     public GameSettings gameSettings;
     public ResourceLocation locationFontTextureBase;
     public boolean enabled = true;
     public float offsetBold = 1.0F;
-    private float[] charWidthFloat = new float[256];
+    public float[] charWidthFloat = new float[256];
 
     public FontRenderer(GameSettings gameSettingsIn, ResourceLocation location, TextureManager textureManagerIn, boolean unicode)
     {
@@ -167,7 +167,7 @@ public class FontRenderer implements IResourceManagerReloadListener
         this.readGlyphSizes();
     }
 
-    private void readFontTexture()
+    public void readFontTexture()
     {
         IResource iresource = null;
         BufferedImage bufferedimage;
@@ -261,7 +261,7 @@ public class FontRenderer implements IResourceManagerReloadListener
         }
     }
 
-    private void readGlyphSizes()
+    public void readGlyphSizes()
     {
         IResource iresource = null;
 
@@ -283,7 +283,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Render the given char
      */
-    private float renderChar(char ch, boolean italic)
+    public float renderChar(char ch, boolean italic)
     {
         if (ch != ' ' && ch != 160)
         {
@@ -299,7 +299,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Render a single character with the default.png font at current (posX,posY) location...
      */
-    private float renderDefaultChar(int ch, boolean italic)
+    public float renderDefaultChar(int ch, boolean italic)
     {
         int i = ch % 16 * 8;
         int j = ch / 16 * 8;
@@ -320,7 +320,7 @@ public class FontRenderer implements IResourceManagerReloadListener
         return f;
     }
 
-    private ResourceLocation getUnicodePageLocation(int page)
+    public ResourceLocation getUnicodePageLocation(int page)
     {
         if (UNICODE_PAGE_LOCATIONS[page] == null)
         {
@@ -334,7 +334,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Load one of the /font/glyph_XX.png into a new GL texture and store the texture ID in glyphTextureName array.
      */
-    private void loadGlyphTexture(int page)
+    public void loadGlyphTexture(int page)
     {
         this.bindTexture(this.getUnicodePageLocation(page));
     }
@@ -342,7 +342,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Render a single Unicode character at current (posX,posY) location using one of the /font/glyph_XX.png files...
      */
-    private float renderUnicodeChar(char ch, boolean italic)
+    public float renderUnicodeChar(char ch, boolean italic)
     {
         int i = this.glyphWidth[ch] & 255;
 
@@ -417,7 +417,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Apply Unicode Bidirectional Algorithm to string and return a new possibly reordered string for visual rendering.
      */
-    private String bidiReorder(String text)
+    public String bidiReorder(String text)
     {
         try
         {
@@ -434,7 +434,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Reset all style flag fields in the class to false; called at the start of string rendering
      */
-    private void resetStyles()
+    public void resetStyles()
     {
         this.randomStyle = false;
         this.boldStyle = false;
@@ -446,7 +446,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Render a single line string at the current (posX,posY) and update posX
      */
-    private void renderStringAtPos(String text, boolean shadow)
+    public void renderStringAtPos(String text, boolean shadow)
     {
         for (int i = 0; i < text.length(); ++i)
         {
@@ -620,7 +620,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Render string either left or right aligned depending on bidiFlag
      */
-    private int renderStringAligned(String text, int x, int y, int width, int color, boolean dropShadow)
+    public int renderStringAligned(String text, int x, int y, int width, int color, boolean dropShadow)
     {
         if (this.bidiFlag)
         {
@@ -634,7 +634,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Render single line string by setting GL color, current (posX,posY), and calling renderStringAtPos()
      */
-    private int renderString(String text, float x, float y, int color, boolean dropShadow)
+    public int renderString(String text, float x, float y, int color, boolean dropShadow)
     {
         if (text == null)
         {
@@ -728,7 +728,7 @@ public class FontRenderer implements IResourceManagerReloadListener
         return Math.round(this.getCharWidthFloat(character));
     }
 
-    private float getCharWidthFloat(char p_getCharWidthFloat_1_)
+    public float getCharWidthFloat(char p_getCharWidthFloat_1_)
     {
         if (p_getCharWidthFloat_1_ == 167)
         {
@@ -853,7 +853,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Remove all newline characters from the end of the string
      */
-    private String trimStringNewline(String text)
+    public String trimStringNewline(String text)
     {
         while (text != null && text.endsWith("\n"))
         {
@@ -878,7 +878,7 @@ public class FontRenderer implements IResourceManagerReloadListener
      * Perform actual work of rendering a multi-line string with wordwrap and with darker drop shadow color if flag is
      * set
      */
-    private void renderSplitString(String str, int x, int y, int wrapWidth, boolean addShadow)
+    public void renderSplitString(String str, int x, int y, int wrapWidth, boolean addShadow)
     {
         for (String s : this.listFormattedStringToWidth(str, wrapWidth))
         {
@@ -950,7 +950,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Determines how many characters from the string will fit into the specified width.
      */
-    private int sizeStringToWidth(String str, int wrapWidth)
+    public int sizeStringToWidth(String str, int wrapWidth)
     {
         int i = str.length();
         float f = 0.0F;
@@ -1019,7 +1019,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Checks if the char code is a hexadecimal character, used to set colour.
      */
-    private static boolean isFormatColor(char colorChar)
+    public static boolean isFormatColor(char colorChar)
     {
         return colorChar >= '0' && colorChar <= '9' || colorChar >= 'a' && colorChar <= 'f' || colorChar >= 'A' && colorChar <= 'F';
     }
@@ -1027,7 +1027,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     /**
      * Checks if the char code is O-K...lLrRk-o... used to set special formatting.
      */
-    private static boolean isFormatSpecial(char formatChar)
+    public static boolean isFormatSpecial(char formatChar)
     {
         return formatChar >= 'k' && formatChar <= 'o' || formatChar >= 'K' && formatChar <= 'O' || formatChar == 'r' || formatChar == 'R';
     }

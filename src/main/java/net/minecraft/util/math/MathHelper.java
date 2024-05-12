@@ -28,6 +28,23 @@ public class MathHelper
     private static final double[] ASINE_TAB;
     private static final double[] COS_TAB;
 
+	public static int clamp_int(int num, int min, int max) {
+		return num < min ? min : (num > max ? max : num);
+	}
+
+	/**+
+	 * Returns the value of the first parameter, clamped to be
+	 * within the lower and upper limits given by the second and
+	 * third parameters
+	 */
+	public static float clamp_float(float num, float min, float max) {
+		return num < min ? min : (num > max ? max : num);
+	}
+
+	public static double clamp_double(double num, double min, double max) {
+		return num < min ? min : (num > max ? max : num);
+	}
+
     public static float sin(float value)
     {
         return fastMath ? SIN_TABLE_FAST[(int)(value * 651.8986F) & 4095] : SIN_TABLE[(int)(value * 10430.378F) & 65535];
