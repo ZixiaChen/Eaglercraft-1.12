@@ -22,6 +22,7 @@ repositories {
 
 tasks.withType(JavaCompile) {
     options.warnings = false
+    options.compilerArgs << "-Xmaxerrs" << "1000"
 }
 
 application {

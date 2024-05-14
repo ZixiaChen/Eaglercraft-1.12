@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.SoundCategory;
+import net.minecraft.util.SoundCategory;
 import org.teavm.interop.Async;
 import org.teavm.interop.AsyncCallback;
 import org.teavm.jso.JSObject;
@@ -26,7 +26,7 @@ import org.teavm.jso.webaudio.PannerNode;
 
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * Copyright (c) 2022-2023 LAX1DUDE. All Rights Reserved.

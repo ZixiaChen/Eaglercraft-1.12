@@ -33,8 +33,8 @@ import net.minecraft.client.resources.data.PackMetadataSectionSerializer;
 import net.minecraft.client.resources.data.TextureMetadataSection;
 import net.minecraft.client.resources.data.TextureMetadataSectionSerializer;
 import net.minecraft.network.ServerStatusResponse;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.ITextComponent;
 
 /**
  * Copyright (c) 2022-2023 LAX1DUDE. All Rights Reserved.
@@ -125,13 +125,13 @@ public class JSONTypeProvider {
 	
 	static {
 		
-		registerType(IChatComponent.class, new IChatComponent.Serializer());
-		registerType(ChatStyle.class, new ChatStyle.Serializer());
+		registerType(ITextComponent.class, new ITextComponent.Serializer());
+		registerType(Style.class, new Style.Serializer());
 		registerType(ServerStatusResponse.class, new ServerStatusResponse.Serializer());
-		registerType(ServerStatusResponse.MinecraftProtocolVersionIdentifier.class,
-				new ServerStatusResponse.MinecraftProtocolVersionIdentifier.Serializer());
-		registerType(ServerStatusResponse.PlayerCountData.class,
-				new ServerStatusResponse.PlayerCountData.Serializer());
+		registerType(ServerStatusResponse.Version.class,
+				new ServerStatusResponse.Version.Serializer());
+		registerType(ServerStatusResponse.Players.class,
+				new ServerStatusResponse.Players.Serializer());
 		registerType(ModelBlock.class, new ModelBlock.Deserializer());
 		registerType(BlockPart.class, new BlockPart.Deserializer());
 		registerType(BlockPartFace.class, new BlockPartFace.Deserializer());
