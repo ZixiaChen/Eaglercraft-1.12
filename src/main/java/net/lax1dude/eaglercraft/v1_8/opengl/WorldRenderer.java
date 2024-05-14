@@ -10,7 +10,7 @@ import java.util.Comparator;
 import net.lax1dude.eaglercraft.v1_8.EagRuntime;
 import net.lax1dude.eaglercraft.v1_8.internal.PlatformBufferFunctions;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.minecraft.client.renderer.GLAllocation;
+import net.lax1dude.eaglercraft.v1_8.minecraft.GLAllocation;
 import net.minecraft.util.math.MathHelper;
 
 /**

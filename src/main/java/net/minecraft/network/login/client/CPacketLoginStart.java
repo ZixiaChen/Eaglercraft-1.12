@@ -1,6 +1,7 @@
 package net.minecraft.network.login.client;
 
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.GameProfile;
 import java.io.IOException;
 import java.util.UUID;
 import net.minecraft.network.Packet;
@@ -25,7 +26,7 @@ public class CPacketLoginStart implements Packet<INetHandlerLoginServer>
      */
     public void readPacketData(PacketBuffer buf) throws IOException
     {
-        this.profile = new GameProfile((UUID)null, buf.readString(16));
+        this.profile = new GameProfile((EaglercraftUUID) null, net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer.readStringFromBuffer(16));
     }
 
     /**

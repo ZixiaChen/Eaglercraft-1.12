@@ -30,11 +30,17 @@ public class GuiPasswordTextField extends GuiTextField {
 		text = oldText;
 	}
 
-	public void mouseClicked(int parInt1, int parInt2, int parInt3) {
+	public boolean mouseClicked(int parInt1, int parInt2, int parInt3) {
 		String oldText = text;
 		text = stars(text.length());
 		super.mouseClicked(parInt1, parInt2, parInt3);
 		text = oldText;
+		if (oldText != null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public static String stars(int len) {

@@ -25,6 +25,9 @@ public class GuiConnecting extends GuiScreen
     private static final Logger LOGGER = LogManager.getLogger();
     private NetworkManager networkManager;
     private boolean cancel;
+    private String currentAddress;
+    private String currentPassword;
+	private boolean allowPlaintext;
     private final GuiScreen previousGuiScreen;
 
     public GuiConnecting(GuiScreen parent, Minecraft mcIn, ServerData serverDataIn)
@@ -44,6 +47,22 @@ public class GuiConnecting extends GuiScreen
         mcIn.loadWorld((WorldClient)null);
         this.connect(hostName, port);
     }
+
+    public GuiConnecting(GuiConnecting previous, String password) {
+		this(previous, password, false);
+	}
+
+	public GuiConnecting(GuiConnecting previous, String password, boolean allowPlaintext) {
+		this.mc = previous.mc;
+		this.previousGuiScreen = previous.previousGuiScreen;
+		this.connect(previous.currentAddress, password, allowPlaintext);
+	}
+
+    private void connect(String ip, String password, boolean allowPlaintext) {
+		this.currentAddress = ip;
+		this.currentPassword = password;
+		this.allowPlaintext = allowPlaintext;
+	}
 
     private void connect(final String ip, final int port)
     {

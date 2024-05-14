@@ -18,6 +18,9 @@ public class ChunkCompileTaskGenerator implements Comparable<ChunkCompileTaskGen
     private ChunkCompileTaskGenerator.Status status = ChunkCompileTaskGenerator.Status.PENDING;
     private boolean finished;
 
+    public long goddamnFuckingTimeout = 0l;
+    public long time = 0;
+
     public ChunkCompileTaskGenerator(RenderChunk renderChunkIn, ChunkCompileTaskGenerator.Type typeIn, double distanceSqIn)
     {
         this.renderChunk = renderChunkIn;

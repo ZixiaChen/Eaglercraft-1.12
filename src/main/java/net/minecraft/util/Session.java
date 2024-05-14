@@ -2,9 +2,12 @@ package net.minecraft.util;
 
 import com.google.common.collect.Maps;
 
+import net.lax1dude.eaglercraft.v1_8.EaglercraftRandom;
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.GameProfile;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.UUIDTypeAdapter;
+import net.lax1dude.eaglercraft.v1_8.profile.EaglerProfile;
+
 //import com.mojang.util.UUIDTypeAdapter;
 import java.util.Locale;
 import java.util.Map;
@@ -17,6 +20,7 @@ public class Session
     private final String playerID;
     private final String token;
     private final Session.Type sessionType;
+    private static EaglercraftUUID offlineUUID;
 
     private GameProfile profile;
 
@@ -53,7 +57,11 @@ public class Session
         return this.token;
     }
 
-    public com.mojang.authlib.GameProfile getProfile()
+    public void reset() {
+		update(EaglerProfile.getName(), offlineUUID);
+	}
+
+    public GameProfile getProfile()
     {
         try
         {
@@ -98,4 +106,10 @@ public class Session
             }
         }
     }
+
+    static {
+		byte[] bytes = new byte[16];
+		(new EaglercraftRandom()).nextBytes(bytes);
+		offlineUUID = new EaglercraftUUID(bytes);
+	}
 }

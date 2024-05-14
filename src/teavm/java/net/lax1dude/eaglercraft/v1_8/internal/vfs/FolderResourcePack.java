@@ -3,6 +3,7 @@ package net.lax1dude.eaglercraft.v1_8.internal.vfs;
 import com.google.common.collect.Sets;
 import net.minecraft.client.resources.AbstractResourcePack;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
@@ -25,7 +26,7 @@ public class FolderResourcePack extends AbstractResourcePack {
 	private final String prefix;
 
 	public FolderResourcePack(String resourcePackFileIn, String prefix) {
-		super(resourcePackFileIn);
+		super(new File(resourcePackFileIn));
 		this.prefix = prefix;
 	}
 

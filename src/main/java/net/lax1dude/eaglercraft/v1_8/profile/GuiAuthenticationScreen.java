@@ -1,5 +1,7 @@
 package net.lax1dude.eaglercraft.v1_8.profile;
 
+import java.io.IOException;
+
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.internal.KeyboardConstants;
 import net.lax1dude.eaglercraft.v1_8.internal.PlatformNetworking;
@@ -115,7 +117,7 @@ public class GuiAuthenticationScreen extends GuiScreen {
 		}
 	}
 
-	protected void mouseClicked(int parInt1, int parInt2, int parInt3) {
+	protected void mouseClicked(int parInt1, int parInt2, int parInt3) throws IOException {
 		super.mouseClicked(parInt1, parInt2, parInt3);
 		this.password.mouseClicked(parInt1, parInt2, parInt3);
 	}
