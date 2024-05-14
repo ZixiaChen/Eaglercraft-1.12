@@ -14,7 +14,6 @@ import net.minecraft.client.audio.ISound.AttenuationType;
 import net.minecraft.client.audio.ITickableSound;
 import net.minecraft.util.SoundCategory;
 import net.lax1dude.eaglercraft.v1_8.minecraft.*;
-import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.audio.SoundPoolEntry;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;

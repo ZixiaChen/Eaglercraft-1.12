@@ -1,6 +1,7 @@
 package net.lax1dude.eaglercraft.v1_8.internal.teavm;
 
 import java.io.PrintStream;
+import java.util.Arrays;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -155,7 +156,7 @@ public class MainClass {
 			systemOut.println("MainClass: [INFO] launching eaglercraftx main thread");
 
 			try {
-				Main.appMain(new String[0]);
+				Main.main(concat(new String[] {"--version", "mcp", "--accessToken", "0", "--assetsDir", "assets", "--assetIndex", "1.8", "--userProperties", "{}"}, args));
 			}catch(Throwable t) {
 				systemErr.println("MainClass: [ERROR] unhandled exception caused main thread to exit");
 				EagRuntime.debugPrintStackTraceToSTDERR(t);
@@ -166,6 +167,13 @@ public class MainClass {
 			systemErr.println("MainClass: [ERROR] eaglercraftx main thread has exited");
 		}
 	}
+
+	public static <T> T[] concat(T[] first, T[] second)
+    {
+        T[] result = Arrays.copyOf(first, first.length + second.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
+        return result;
+    }
 	
 	@JSBody(params = {}, script = "if(typeof window.eaglercraftXOpts === \"undefined\") {return null;}"
 			+ "else if(typeof window.eaglercraftXOpts === \"string\") {return window.eaglercraftXOpts;}"

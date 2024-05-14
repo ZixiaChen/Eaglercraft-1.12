@@ -45,6 +45,7 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.annotation.Nullable;
 
@@ -98,6 +99,10 @@ public final class Maps {
 				return entry.getValue();
 			}
 		};
+	}
+
+	public static <K, V> ConcurrentMap<K, V> newConcurrentMap() {
+    	return new MapMaker().<K, V>makeMap();
 	}
 
 	@SuppressWarnings("unchecked")

@@ -8,13 +8,11 @@ import java.util.List;
 import net.lax1dude.eaglercraft.v1_8.EagRuntime;
 import net.lax1dude.eaglercraft.v1_8.internal.IFramebufferGL;
 import net.lax1dude.eaglercraft.v1_8.internal.IRenderbufferGL;
-import net.lax1dude.eaglercraft.v1_8.internal.ITextureGL;
 import net.lax1dude.eaglercraft.v1_8.internal.buffer.IntBuffer;
 import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
 import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.lax1dude.eaglercraft.v1_8.opengl.SpriteLevelMixer;
 import net.lax1dude.eaglercraft.v1_8.vector.Matrix3f;
-import net.minecraft.client.renderer.GLAllocation;
 
 /**
  * Copyright (c) 2022-2023 LAX1DUDE. All Rights Reserved.

@@ -26,7 +26,7 @@ public class CPacketLoginStart implements Packet<INetHandlerLoginServer>
      */
     public void readPacketData(PacketBuffer buf) throws IOException
     {
-        this.profile = new GameProfile((EaglercraftUUID) null, net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer.readStringFromBuffer(16));
+        this.profile = new GameProfile((EaglercraftUUID) null, buf.readString(16));
     }
 
     /**
