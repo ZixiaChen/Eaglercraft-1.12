@@ -13,8 +13,8 @@ import net.minecraft.network.EnumPacketDirection;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.ITextComponent;
 
 /**
  * Copyright (c) 2022-2023 LAX1DUDE. All Rights Reserved.
@@ -52,7 +52,7 @@ public class EaglercraftNetworkManager {
 		return PlatformNetworking.playConnectionState();
 	}
 	
-	public void closeChannel(IChatComponent reason) {
+	public void closeChannel(ITextComponent reason) {
 		PlatformNetworking.playDisconnect();
 		if(nethandler != null) {
 			nethandler.onDisconnect(reason);
@@ -159,7 +159,7 @@ public class EaglercraftNetworkManager {
 				processReceivedPackets(); // catch kick message
 			} catch (IOException e) {
 			}
-			doClientDisconnect(new ChatComponentTranslation("disconnect.endOfStream"));
+			doClientDisconnect(new TextComponentTranslation("disconnect.endOfStream"));
 			return true;
 		}else {
 			return false;
@@ -168,7 +168,7 @@ public class EaglercraftNetworkManager {
 	
 	private boolean clientDisconnected = false;
 	
-	private void doClientDisconnect(IChatComponent msg) {
+	private void doClientDisconnect(ITextComponent msg) {
 		if(!clientDisconnected) {
 			clientDisconnected = true;
 			if(nethandler != null) {

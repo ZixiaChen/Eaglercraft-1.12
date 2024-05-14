@@ -51,40 +51,6 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
         PublicKey publickey = packetIn.getPublicKey();
         String s1 = (new BigInteger(CryptManager.getServerIdHash(s, publickey, secretkey))).toString(16);
 
-        if (this.mc.getCurrentServerData() != null && this.mc.getCurrentServerData().isOnLAN())
-        {
-            try
-            {
-                this.getSessionService().joinServer(this.mc.getSession().getProfile(), this.mc.getSession().getToken(), s1);
-            }
-            catch (AuthenticationException var10)
-            {
-                LOGGER.warn("Couldn't connect to auth servers but will continue to join LAN");
-            }
-        }
-        else
-        {
-            try
-            {
-                this.getSessionService().joinServer(this.mc.getSession().getProfile(), this.mc.getSession().getToken(), s1);
-            }
-            catch (AuthenticationUnavailableException var7)
-            {
-                this.networkManager.closeChannel(new TextComponentTranslation("disconnect.loginFailedInfo", new Object[] {new TextComponentTranslation("disconnect.loginFailedInfo.serversUnavailable", new Object[0])}));
-                return;
-            }
-            catch (InvalidCredentialsException var8)
-            {
-                this.networkManager.closeChannel(new TextComponentTranslation("disconnect.loginFailedInfo", new Object[] {new TextComponentTranslation("disconnect.loginFailedInfo.invalidSession", new Object[0])}));
-                return;
-            }
-            catch (AuthenticationException authenticationexception)
-            {
-                this.networkManager.closeChannel(new TextComponentTranslation("disconnect.loginFailedInfo", new Object[] {authenticationexception.getMessage()}));
-                return;
-            }
-        }
-
         this.networkManager.sendPacket(new CPacketEncryptionResponse(secretkey, publickey, packetIn.getVerifyToken()), new GenericFutureListener < Future <? super Void >> ()
         {
             public void operationComplete(Future <? super Void > p_operationComplete_1_) throws Exception

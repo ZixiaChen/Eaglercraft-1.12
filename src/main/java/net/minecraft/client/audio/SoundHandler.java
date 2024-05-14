@@ -117,6 +117,16 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
         this.sndManager.reloadSoundSystem();
     }
 
+    public static class SoundMap {
+
+		protected final Map<String, SoundList> soundMap;
+
+		public SoundMap(Map<String, SoundList> soundMap) {
+			this.soundMap = soundMap;
+		}
+
+	}
+
     @Nullable
     protected Map<String, SoundList> getSoundMap(InputStream stream)
     {

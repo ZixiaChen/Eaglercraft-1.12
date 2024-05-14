@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 
 public class GuiDisconnected extends GuiScreen
 {
@@ -71,4 +72,8 @@ public class GuiDisconnected extends GuiScreen
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
+
+    public static GuiScreen createRateLimitKick(GuiScreen prev) {
+		return new GuiDisconnected(prev, "connect.failed", new TextComponentTranslation("disconnect.tooManyRequests"));
+	}
 }

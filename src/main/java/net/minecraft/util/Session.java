@@ -1,8 +1,11 @@
 package net.minecraft.util;
 
 import com.google.common.collect.Maps;
-import com.mojang.authlib.GameProfile;
-import com.mojang.util.UUIDTypeAdapter;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.UUIDTypeAdapter;
+//import com.mojang.util.UUIDTypeAdapter;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
@@ -14,6 +17,8 @@ public class Session
     private final String playerID;
     private final String token;
     private final Session.Type sessionType;
+
+    private GameProfile profile;
 
     public Session(String usernameIn, String playerIDIn, String tokenIn, String sessionTypeIn)
     {
@@ -52,14 +57,20 @@ public class Session
     {
         try
         {
-            UUID uuid = UUIDTypeAdapter.fromString(this.getPlayerID());
-            return new GameProfile(uuid, this.getUsername());
+            EaglercraftUUID uuid = UUIDTypeAdapter.fromString(this.getPlayerID());
+            profile = new GameProfile(uuid, this.getUsername());
+            return profile;
         }
         catch (IllegalArgumentException var2)
         {
-            return new GameProfile((UUID)null, this.getUsername());
+            profile = new GameProfile(new EaglercraftUUID(playerID), this.getUsername());
+            return profile;
         }
     }
+
+    public void update(String serverUsername, EaglercraftUUID uuid) {
+		profile = new GameProfile(uuid, serverUsername);
+	}
 
     public static enum Type
     {

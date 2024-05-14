@@ -13,7 +13,7 @@ import net.lax1dude.eaglercraft.v1_8.mojang.authlib.TexturesProperty;
 import net.lax1dude.eaglercraft.v1_8.socket.EaglercraftNetworkManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.client.C17PacketCustomPayload;
+import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -191,7 +191,7 @@ public class ServerSkinCache {
 					logger.error(ex);
 					return defaultCacheEntry;
 				}
-				networkManager.sendPacket(new C17PacketCustomPayload("EAG|Skins-1.8", buffer));
+				networkManager.sendPacket(new CPacketCustomPayload("EAG|Skins-1.8", buffer));
 			}
 			return defaultCacheEntry;
 		}else {
@@ -220,7 +220,7 @@ public class ServerSkinCache {
 					logger.error(ex);
 					return skinModelResponse == SkinModel.ALEX ? defaultSlimCacheEntry : defaultCacheEntry;
 				}
-				networkManager.sendPacket(new C17PacketCustomPayload("EAG|Skins-1.8", buffer));
+				networkManager.sendPacket(new CPacketCustomPayload("EAG|Skins-1.8", buffer));
 			}
 		}
 		return skinModelResponse == SkinModel.ALEX ? defaultSlimCacheEntry : defaultCacheEntry;

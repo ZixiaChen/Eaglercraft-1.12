@@ -11,7 +11,7 @@ public class ServerAddress
     private final String ipAddress;
     private final int serverPort;
 
-    private ServerAddress(String address, int port)
+    public ServerAddress(String address, int port)
     {
         this.ipAddress = address;
         this.serverPort = port;
