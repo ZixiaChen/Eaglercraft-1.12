@@ -50,7 +50,7 @@ public class ItemTransformVec3f
         return i;
     }
 
-    static class Deserializer implements JsonDeserializer<ItemTransformVec3f>
+    public static class Deserializer implements JsonDeserializer<ItemTransformVec3f>
     {
         private static final Vector3f ROTATION_DEFAULT = new Vector3f(0.0F, 0.0F, 0.0F);
         private static final Vector3f TRANSLATION_DEFAULT = new Vector3f(0.0F, 0.0F, 0.0F);

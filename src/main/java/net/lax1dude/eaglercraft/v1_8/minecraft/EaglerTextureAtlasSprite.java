@@ -261,7 +261,7 @@ public class EaglerTextureAtlasSprite {
 					CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Generating mipmaps for frame");
 					CrashReportCategory crashreportcategory = crashreport.makeCategory("Frame being iterated");
 					crashreportcategory.addCrashSection("Frame index", Integer.valueOf(i));
-					crashreportcategory.addCrashSectionCallable("Frame sizes", new Callable<String>() {
+					crashreportcategory.addCrashSection("Frame sizes", new Callable<String>() {
 						public String call() throws Exception {
 							StringBuilder stringbuilder = new StringBuilder();
 

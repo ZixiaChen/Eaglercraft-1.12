@@ -8,7 +8,7 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
 import com.mojang.authlib.AuthenticationService;
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.GameProfile;
 import com.mojang.authlib.GameProfileRepository;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.properties.PropertyMap;
@@ -3230,8 +3230,8 @@ public class Minecraft implements IThreadListener, ISnooperInfo
     {
         if (this.profileProperties.isEmpty())
         {
-            GameProfile gameprofile = this.getSessionService().fillProfileProperties(this.session.getProfile(), false);
-            this.profileProperties.putAll(gameprofile.getProperties());
+            GameProfile gameprofile = this.session.getProfile();
+            //this.profileProperties.putAll(gameprofile.getProperties());
         }
 
         return this.profileProperties;

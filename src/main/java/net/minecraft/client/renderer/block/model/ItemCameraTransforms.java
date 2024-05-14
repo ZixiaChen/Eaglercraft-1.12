@@ -138,7 +138,7 @@ public class ItemCameraTransforms
         return this.getTransform(type) != ItemTransformVec3f.DEFAULT;
     }
 
-    static class Deserializer implements JsonDeserializer<ItemCameraTransforms>
+    public static class Deserializer implements JsonDeserializer<ItemCameraTransforms>
     {
         public ItemCameraTransforms deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException
         {

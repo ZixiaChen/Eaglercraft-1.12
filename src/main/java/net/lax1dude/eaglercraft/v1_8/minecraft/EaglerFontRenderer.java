@@ -3,11 +3,11 @@ package net.lax1dude.eaglercraft.v1_8.minecraft;
 import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
 import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.lax1dude.eaglercraft.v1_8.opengl.InstancedFontRenderer;
-import net.lax1dude.eaglercraft.v1_8.opengl.WorldRenderer;
+import net.lax1dude.eaglercraft.v1_8.opengl.*;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.Tessellator;
+import net.lax1dude.eaglercraft.v1_8.minecraft.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.lax1dude.eaglercraft.v1_8.opengl.VertexFormat;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.ResourceLocation;
 
@@ -57,7 +57,7 @@ public class EaglerFontRenderer extends FontRenderer {
 		return (int) this.posX;
 	}
 
-	protected void renderStringAtPos(String parString1, boolean parFlag) {
+	public void renderStringAtPos(String parString1, boolean parFlag) {
 		if(parString1 == null) return;
 		if(this.unicodeFlag || !decodeASCIICodepointsAndValidate(parString1)) {
 			super.renderStringAtPos(parString1, parFlag);
@@ -72,7 +72,7 @@ public class EaglerFontRenderer extends FontRenderer {
 		
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-		worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+		worldrenderer.begin(7, VertexFormat.POSITION_COLOR);
 		
 		boolean hasStrike = false;
 		
