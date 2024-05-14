@@ -53,7 +53,7 @@ public class Session
         return this.token;
     }
 
-    public GameProfile getProfile()
+    public com.mojang.authlib.GameProfile getProfile()
     {
         try
         {

@@ -13,7 +13,7 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.ISound.AttenuationType;
 import net.minecraft.client.audio.ITickableSound;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.client.audio.SoundEventAccessorComposite;
+import net.lax1dude.eaglercraft.v1_8.minecraft.*;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.audio.SoundPoolEntry;
 import net.minecraft.client.settings.GameSettings;
@@ -124,8 +124,8 @@ public class EaglercraftSoundManager {
 		categoryVolumes = new float[] {
 				settings.getSoundLevel(SoundCategory.MASTER), settings.getSoundLevel(SoundCategory.MUSIC),
 				settings.getSoundLevel(SoundCategory.RECORDS), settings.getSoundLevel(SoundCategory.WEATHER),
-				settings.getSoundLevel(SoundCategory.BLOCKS), settings.getSoundLevel(SoundCategory.MOBS),
-				settings.getSoundLevel(SoundCategory.ANIMALS), settings.getSoundLevel(SoundCategory.PLAYERS),
+				settings.getSoundLevel(SoundCategory.BLOCKS), settings.getSoundLevel(SoundCategory.HOSTILE),
+				settings.getSoundLevel(SoundCategory.NEUTRAL), settings.getSoundLevel(SoundCategory.PLAYERS),
 				settings.getSoundLevel(SoundCategory.AMBIENT), settings.getSoundLevel(SoundCategory.VOICE)
 		};
 		activeSounds = new LinkedList();
@@ -292,7 +292,7 @@ public class EaglercraftSoundManager {
 				logger.warn("Unable to play unknown soundEvent(1): {}", sound.getSoundLocation().toString());
 			}else {
 				SoundPoolEntry etr = accessor.cloneEntry();
-				if (etr == SoundHandler.MISSING_SOUND) {
+				if (etr == SoundHandler.missing_sound) {
 					logger.warn("Unable to play empty soundEvent(2): {}", etr.getSoundPoolEntryLocation().toString());
 				}else {
 					ResourceLocation lc = etr.getSoundPoolEntryLocation();

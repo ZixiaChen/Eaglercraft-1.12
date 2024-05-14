@@ -5,8 +5,7 @@ import java.io.IOException;
 import net.lax1dude.eaglercraft.v1_8.ArrayUtils;
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.crypto.MD5Digest;
-import net.lax1dude.eaglercraft.v1_8.netty.Unpooled;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
 
 /**
  * Copyright (c) 2022-2023 LAX1DUDE. All Rights Reserved.

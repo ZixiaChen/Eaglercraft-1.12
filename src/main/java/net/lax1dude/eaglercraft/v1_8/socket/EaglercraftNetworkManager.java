@@ -6,13 +6,10 @@ import net.lax1dude.eaglercraft.v1_8.internal.EnumEaglerConnectionState;
 import net.lax1dude.eaglercraft.v1_8.internal.PlatformNetworking;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import net.lax1dude.eaglercraft.v1_8.netty.ByteBuf;
-import net.lax1dude.eaglercraft.v1_8.netty.Unpooled;
 import net.minecraft.network.EnumConnectionState;
 import net.minecraft.network.EnumPacketDirection;
 import net.minecraft.network.INetHandler;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.ITextComponent;
 
@@ -78,7 +75,7 @@ public class EaglercraftNetworkManager {
 				
 				Packet pkt;
 				try {
-					pkt = packetState.getPacket(EnumPacketDirection.CLIENTBOUND, pktId);
+					pkt = (Packet) packetState.getPacket(EnumPacketDirection.CLIENTBOUND, pktId);
 				}catch(IllegalAccessException | InstantiationException ex) {
 					throw new IOException("Recieved a packet with type " + pktId + " which is invalid!");
 				}
@@ -111,7 +108,7 @@ public class EaglercraftNetworkManager {
 		
 		int i;
 		try {
-			i = packetState.getPacketId(EnumPacketDirection.SERVERBOUND, pkt);
+			i = packetState.getPacketId(EnumPacketDirection.SERVERBOUND, (net.minecraft.network.Packet<?>) pkt);
 		}catch(Throwable t) {
 			logger.error("Incorrect packet for state: {}", pkt.getClass().getSimpleName());
 			return;

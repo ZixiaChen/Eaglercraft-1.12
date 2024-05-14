@@ -352,7 +352,7 @@ public class GuiScreenEditProfile extends GuiScreen {
 		String text = usernameField.getText();
 		if(text.length() > 16) text = text.substring(0, 16);
 		text = text.replaceAll("[^A-Za-z0-9]", "_");
-		usernameField.updateText(text);
+		usernameField.setText(text);
 		
 		if(k == 200 && selectedSlot > 0) {
 			--selectedSlot;
@@ -364,7 +364,7 @@ public class GuiScreenEditProfile extends GuiScreen {
 		}
 	}
 	
-	protected void mouseClicked(int mx, int my, int button) {
+	protected void mouseClicked(int mx, int my, int button) throws IOException {
 		super.mouseClicked(mx, my, button);
 		usernameField.mouseClicked(mx, my, button);
 		if (button == 0) {

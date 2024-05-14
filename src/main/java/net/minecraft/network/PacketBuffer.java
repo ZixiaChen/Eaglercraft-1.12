@@ -29,6 +29,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+
 public class PacketBuffer extends ByteBuf
 {
     private final ByteBuf buf;
@@ -263,6 +265,15 @@ public class PacketBuffer extends ByteBuf
     {
         return new UUID(this.readLong(), this.readLong());
     }
+
+    public void writeUuid(EaglercraftUUID uuid) {
+		this.writeLong(uuid.getMostSignificantBits());
+		this.writeLong(uuid.getLeastSignificantBits());
+	}
+
+	public EaglercraftUUID readUuid() {
+		return new EaglercraftUUID(this.readLong(), this.readLong());
+	}
 
     /**
      * Writes a compressed int to the buffer. The smallest number of bytes to fit the passed int will be written. Of

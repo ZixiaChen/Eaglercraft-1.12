@@ -13,6 +13,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.minecraft.SoundEventAccessorComposite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
@@ -32,6 +34,8 @@ import org.apache.logging.log4j.Logger;
 
 public class SoundHandler implements IResourceManagerReloadListener, ITickable
 {
+    public static final SoundPoolEntry missing_sound = new SoundPoolEntry(new ResourceLocation("meta:missing_sound"),
+			0.0D, 0.0D, false);
     public static final Sound MISSING_SOUND = new Sound("meta:missing_sound", 1.0F, 1.0F, 1, Sound.Type.FILE, false);
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Gson GSON = (new GsonBuilder()).registerTypeHierarchyAdapter(ITextComponent.class, new ITextComponent.Serializer()).registerTypeAdapter(SoundList.class, new SoundListSerializer()).create();
@@ -125,6 +129,10 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
 			this.soundMap = soundMap;
 		}
 
+	}
+
+    public SoundEventAccessor getSound(ResourceLocation location) {
+		return this.soundRegistry.getObject(location);
 	}
 
     @Nullable

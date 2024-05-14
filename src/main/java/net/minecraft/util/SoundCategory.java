@@ -30,6 +30,40 @@ public enum SoundCategory
         return this.name;
     }
 
+    public int getCategoryId() {
+		if(this.name == "master"){
+            return 0;
+        }
+        else if(this.name == "music"){
+            return 1;
+        }
+        else if(this.name == "record"){
+            return 2;
+        }
+        else if(this.name == "weather"){
+            return 3;
+        }
+        else if(this.name == "block"){
+            return 4;
+        }
+        else if(this.name == "hostile"){
+            return 5;
+        }
+        else if(this.name == "neutral"){
+            return 6;
+        }
+        else if(this.name == "player"){
+            return 7;
+        }
+        else if(this.name == "ambient"){
+            return 8;
+        }
+        else{
+            return 9;
+        }
+        
+	}
+
     public static SoundCategory getByName(String categoryName)
     {
         return SOUND_CATEGORIES.get(categoryName);

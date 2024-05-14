@@ -43,7 +43,7 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import net.catfoolyou.gui.GuiScreenAuth;
+import net.lax1dude.eaglercraft.v1_8.profile.*;
 
 public class GuiMainMenu extends GuiScreen
 {
@@ -343,7 +343,7 @@ public class GuiMainMenu extends GuiScreen
 
         if (button.id == 4)
         {
-            this.mc.displayGuiScreen(new GuiScreenAuth());
+            this.mc.displayGuiScreen(new GuiScreenEditProfile(this));
         }
 
         if (button.id == 6 && Reflector.GuiModList_Constructor.exists())
