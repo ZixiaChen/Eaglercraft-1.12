@@ -1,7 +1,7 @@
 package net.minecraft.server.management;
 
 import com.google.gson.JsonObject;
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.io.File;
 
 public class UserListOps extends UserList<GameProfile, UserListOpsEntry>

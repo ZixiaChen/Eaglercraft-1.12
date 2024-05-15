@@ -1,6 +1,7 @@
 package net.minecraft.init;
 
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.Random;
@@ -422,7 +423,7 @@ public class Bootstrap
 
                                         if (!StringUtils.isNullOrEmpty(s))
                                         {
-                                            gameprofile = new GameProfile((UUID)null, s);
+                                            gameprofile = new GameProfile(new EaglercraftUUID(s), s);
                                         }
                                     }
                                 }

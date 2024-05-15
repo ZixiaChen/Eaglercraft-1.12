@@ -3,9 +3,9 @@ package net.minecraft.server.management;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
-import com.mojang.authlib.Agent;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.ProfileLookupCallback;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
@@ -25,29 +25,9 @@ public class PreYggdrasilConverter
     public static final File OLD_OPS_FILE = new File("ops.txt");
     public static final File OLD_WHITELIST_FILE = new File("white-list.txt");
 
-    private static void lookupNames(MinecraftServer server, Collection<String> names, ProfileLookupCallback callback)
+    private static void lookupNames(MinecraftServer server, Collection<String> names, Object callback)
     {
-        String[] astring = (String[])Iterators.toArray(Iterators.filter(names.iterator(), new Predicate<String>()
-        {
-            public boolean apply(@Nullable String p_apply_1_)
-            {
-                return !StringUtils.isNullOrEmpty(p_apply_1_);
-            }
-        }), String.class);
 
-        if (server.isServerInOnlineMode())
-        {
-            server.getGameProfileRepository().findProfilesByNames(astring, Agent.MINECRAFT, callback);
-        }
-        else
-        {
-            for (String s : astring)
-            {
-                UUID uuid = EntityPlayer.getUUID(new GameProfile((UUID)null, s));
-                GameProfile gameprofile = new GameProfile(uuid, s);
-                callback.onProfileLookupSucceeded(gameprofile);
-            }
-        }
     }
 
     public static String convertMobOwnerIfNeeded(final MinecraftServer server, String username)
@@ -63,29 +43,13 @@ public class PreYggdrasilConverter
             else if (!server.isSinglePlayer() && server.isServerInOnlineMode())
             {
                 final List<GameProfile> list = Lists.<GameProfile>newArrayList();
-                ProfileLookupCallback profilelookupcallback = new ProfileLookupCallback()
-                {
-                    public void onProfileLookupSucceeded(GameProfile p_onProfileLookupSucceeded_1_)
-                    {
-                        server.getPlayerProfileCache().addEntry(p_onProfileLookupSucceeded_1_);
-                        list.add(p_onProfileLookupSucceeded_1_);
-                    }
-                    public void onProfileLookupFailed(GameProfile p_onProfileLookupFailed_1_, Exception p_onProfileLookupFailed_2_)
-                    {
-                        PreYggdrasilConverter.LOGGER.warn("Could not lookup user whitelist entry for {}", p_onProfileLookupFailed_1_.getName(), p_onProfileLookupFailed_2_);
-                    }
-                };
-                lookupNames(server, Lists.newArrayList(username), profilelookupcallback);
-                return !list.isEmpty() && ((GameProfile)list.get(0)).getId() != null ? ((GameProfile)list.get(0)).getId().toString() : "";
-            }
-            else
-            {
-                return EntityPlayer.getUUID(new GameProfile((UUID)null, username)).toString();
+                return username;
             }
         }
         else
         {
             return username;
         }
+        return username;
     }
 }

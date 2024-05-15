@@ -3,8 +3,9 @@ package net.minecraft.nbt;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Optional;
 import com.google.common.collect.UnmodifiableIterator;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.UUID;
 import java.util.Map.Entry;
 import javax.annotation.Nullable;
@@ -45,11 +46,11 @@ public final class NBTUtil
 
         try
         {
-            UUID uuid;
+            EaglercraftUUID uuid;
 
             try
             {
-                uuid = UUID.fromString(s1);
+                uuid = UUIDTypeAdapter.fromString(s1);
             }
             catch (Throwable var12)
             {

@@ -43,6 +43,10 @@ public class GameProfile {
 		this.properties = properties;
 	}
 
+	public GameProfile getGameProfile(){
+		return this;
+	}
+
 	public EaglercraftUUID getId() {
 		return this.id;
 	}

@@ -1,6 +1,6 @@
 package net.minecraft.client.entity;
 
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.io.File;
 import javax.annotation.Nullable;
 import net.minecraft.client.Minecraft;

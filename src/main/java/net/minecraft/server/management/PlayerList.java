@@ -3,7 +3,7 @@ package net.minecraft.server.management;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import io.netty.buffer.Unpooled;
 import java.io.File;
 import java.net.SocketAddress;

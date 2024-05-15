@@ -1,6 +1,7 @@
 package net.minecraft.item;
 
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.UUID;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
@@ -98,7 +99,7 @@ public class ItemSkull extends Item
                                 }
                                 else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isBlank(nbttagcompound.getString("SkullOwner")))
                                 {
-                                    gameprofile = new GameProfile((UUID)null, nbttagcompound.getString("SkullOwner"));
+                                    gameprofile = new GameProfile(new EaglercraftUUID(nbttagcompound.getString("SkullOwner")), nbttagcompound.getString("SkullOwner"));
                                 }
                             }
 
@@ -200,7 +201,7 @@ public class ItemSkull extends Item
 
         if (nbt.hasKey("SkullOwner", 8) && !StringUtils.isBlank(nbt.getString("SkullOwner")))
         {
-            GameProfile gameprofile = new GameProfile((UUID)null, nbt.getString("SkullOwner"));
+            GameProfile gameprofile = new GameProfile(new EaglercraftUUID(nbt.getString("SkullOwner")), nbt.getString("SkullOwner"));
             gameprofile = TileEntitySkull.updateGameprofile(gameprofile);
             nbt.setTag("SkullOwner", NBTUtil.writeGameProfile(new NBTTagCompound(), gameprofile));
             return true;

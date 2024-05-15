@@ -1,9 +1,12 @@
 package net.minecraft.server.network;
 
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
+
+import java.io.IOException;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -69,7 +72,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
         }
         else if (this.currentLoginState == NetHandlerLoginServer.LoginState.DELAY_ACCEPT)
         {
-            EntityPlayerMP entityplayermp = this.server.getPlayerList().getPlayerByUUID(this.loginGameProfile.getId());
+            EntityPlayerMP entityplayermp = null;
 
             if (entityplayermp == null)
             {
@@ -99,6 +102,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void tryAcceptPlayer()
     {
         if (!this.loginGameProfile.isComplete())
@@ -191,10 +195,9 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
                 {
                     GameProfile gameprofile = NetHandlerLoginServer.this.loginGameProfile;
 
-                    try
                     {
                         String s = (new BigInteger(CryptManager.getServerIdHash("", NetHandlerLoginServer.this.server.getKeyPair().getPublic(), NetHandlerLoginServer.this.secretKey))).toString(16);
-                        NetHandlerLoginServer.this.loginGameProfile = NetHandlerLoginServer.this.server.getMinecraftSessionService().hasJoinedServer(new GameProfile((UUID)null, gameprofile.getName()), s, this.getAddress());
+                        //NetHandlerLoginServer.this.loginGameProfile = NetHandlerLoginServer.this.server.getMinecraftSessionService().hasJoinedServer(new GameProfile((UUID)null, gameprofile.getName()), s, this.getAddress());
 
                         if (NetHandlerLoginServer.this.loginGameProfile != null)
                         {
@@ -213,20 +216,6 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
                             NetHandlerLoginServer.LOGGER.error("Username '{}' tried to join with an invalid session", (Object)gameprofile.getName());
                         }
                     }
-                    catch (AuthenticationUnavailableException var3)
-                    {
-                        if (NetHandlerLoginServer.this.server.isSinglePlayer())
-                        {
-                            NetHandlerLoginServer.LOGGER.warn("Authentication servers are down but will let them in anyway!");
-                            NetHandlerLoginServer.this.loginGameProfile = NetHandlerLoginServer.this.getOfflineProfile(gameprofile);
-                            NetHandlerLoginServer.this.currentLoginState = NetHandlerLoginServer.LoginState.READY_TO_ACCEPT;
-                        }
-                        else
-                        {
-                            NetHandlerLoginServer.this.disconnect(new TextComponentTranslation("multiplayer.disconnect.authservers_down", new Object[0]));
-                            NetHandlerLoginServer.LOGGER.error("Couldn't verify username because servers are unavailable");
-                        }
-                    }
                 }
                 @Nullable
                 private InetAddress getAddress()
@@ -240,7 +229,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable
 
     protected GameProfile getOfflineProfile(GameProfile original)
     {
-        UUID uuid = UUID.nameUUIDFromBytes(("OfflinePlayer:" + original.getName()).getBytes(StandardCharsets.UTF_8));
+        EaglercraftUUID uuid = new EaglercraftUUID(("OfflinePlayer:" + original.getName()).getBytes(StandardCharsets.UTF_8));
         return new GameProfile(uuid, original.getName());
     }
 

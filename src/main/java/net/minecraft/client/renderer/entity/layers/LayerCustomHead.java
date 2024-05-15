@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.entity.layers;
 
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.UUID;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
@@ -85,7 +86,7 @@ public class LayerCustomHead implements LayerRenderer<EntityLivingBase>
 
                         if (!StringUtils.isBlank(s))
                         {
-                            gameprofile = TileEntitySkull.updateGameprofile(new GameProfile((UUID)null, s));
+                            gameprofile = TileEntitySkull.updateGameprofile(new GameProfile(new EaglercraftUUID(s), s));
                             nbttagcompound.setTag("SkullOwner", NBTUtil.writeGameProfile(new NBTTagCompound(), gameprofile));
                         }
                     }

@@ -1,7 +1,7 @@
 package net.minecraft.command.server;
 
 import com.google.common.collect.Lists;
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.Collections;
 import java.util.List;
 import javax.annotation.Nullable;

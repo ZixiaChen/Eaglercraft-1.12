@@ -2,7 +2,7 @@ package net.minecraft.client.gui;
 
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.Comparator;
 import java.util.List;
 import javax.annotation.Nullable;

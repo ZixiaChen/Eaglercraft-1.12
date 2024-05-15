@@ -1,7 +1,7 @@
 package net.minecraft.entity.player;
 
 import com.google.common.collect.Lists;
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import io.netty.buffer.Unpooled;
 import java.util.Collection;
 import java.util.Iterator;

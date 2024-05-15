@@ -1,6 +1,7 @@
 package net.minecraft.network.login.server;
 
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.io.IOException;
 import java.util.UUID;
 import net.minecraft.network.Packet;
@@ -27,7 +28,7 @@ public class SPacketLoginSuccess implements Packet<INetHandlerLoginClient>
     {
         String s = buf.readString(36);
         String s1 = buf.readString(16);
-        UUID uuid = UUID.fromString(s);
+        EaglercraftUUID uuid = new EaglercraftUUID(s);
         this.profile = new GameProfile(uuid, s1);
     }
 
@@ -36,7 +37,7 @@ public class SPacketLoginSuccess implements Packet<INetHandlerLoginClient>
      */
     public void writePacketData(PacketBuffer buf) throws IOException
     {
-        UUID uuid = this.profile.getId();
+        EaglercraftUUID uuid = this.profile.getId();
         buf.writeString(uuid == null ? "" : uuid.toString());
         buf.writeString(this.profile.getName());
     }

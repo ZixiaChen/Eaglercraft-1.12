@@ -2,7 +2,7 @@ package net.minecraft.village;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;

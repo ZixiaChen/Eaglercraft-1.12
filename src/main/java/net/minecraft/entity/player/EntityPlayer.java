@@ -2,7 +2,7 @@ package net.minecraft.entity.player;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
-import com.mojang.authlib.GameProfile;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.UUID;
@@ -2463,6 +2463,7 @@ public abstract class EntityPlayer extends EntityLivingBase
     public static UUID getUUID(GameProfile profile)
     {
         UUID uuid = profile.getId();
+        
 
         if (uuid == null)
         {

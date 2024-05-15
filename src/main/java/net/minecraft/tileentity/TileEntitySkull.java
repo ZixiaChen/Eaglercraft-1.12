@@ -1,7 +1,9 @@
 package net.minecraft.tileentity;
 
 import com.google.common.collect.Iterables;
-import com.mojang.authlib.GameProfile;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.properties.Property;
 import java.util.UUID;
@@ -71,7 +73,7 @@ public class TileEntitySkull extends TileEntity implements ITickable
 
                 if (!StringUtils.isNullOrEmpty(s))
                 {
-                    this.playerProfile = new GameProfile((UUID)null, s);
+                    this.playerProfile = new GameProfile(new EaglercraftUUID(s), s);
                     this.updatePlayerProfile();
                 }
             }
@@ -157,11 +159,6 @@ public class TileEntitySkull extends TileEntity implements ITickable
                 else
                 {
                     Property property = (Property)Iterables.getFirst(gameprofile.getProperties().get("textures"), (Object)null);
-
-                    if (property == null)
-                    {
-                        gameprofile = sessionService.fillProfileProperties(gameprofile, true);
-                    }
 
                     return gameprofile;
                 }

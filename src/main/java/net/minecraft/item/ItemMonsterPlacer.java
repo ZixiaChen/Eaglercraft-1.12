@@ -151,7 +151,7 @@ public class ItemMonsterPlacer extends Item
 
             if (nbttagcompound != null && nbttagcompound.hasKey("EntityTag", 10))
             {
-                if (!entityWorld.isRemote && targetEntity.ignoreItemEntityData() && (player == null || !minecraftserver.getPlayerList().canSendCommands(player.getGameProfile())))
+                if (!entityWorld.isRemote && targetEntity.ignoreItemEntityData() && (player == null ))
                 {
                     return;
                 }
