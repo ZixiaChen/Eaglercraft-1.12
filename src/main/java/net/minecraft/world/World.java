@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.advancements.FunctionManager;
 import net.minecraft.block.Block;
@@ -3236,6 +3238,21 @@ public abstract class World implements IBlockAccess
 
     @Nullable
     public EntityPlayer getPlayerEntityByUUID(UUID uuid)
+    {
+        for (int i = 0; i < this.playerEntities.size(); ++i)
+        {
+            EntityPlayer entityplayer = this.playerEntities.get(i);
+
+            if (uuid.equals(entityplayer.getUniqueID()))
+            {
+                return entityplayer;
+            }
+        }
+
+        return null;
+    }
+
+    public EntityPlayer getPlayerEntityByUUID(EaglercraftUUID uuid)
     {
         for (int i = 0; i < this.playerEntities.size(); ++i)
         {

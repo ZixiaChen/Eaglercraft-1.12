@@ -12,12 +12,14 @@ import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.lax1dude.eaglercraft.v1_8.opengl.WorldRenderer;
 import net.lax1dude.eaglercraft.v1_8.opengl.WorldVertexBufferUploader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.RegionRenderCacheBuilder;
 import net.minecraft.client.renderer.chunk.ChunkCompileTaskGenerator;
 import net.minecraft.client.renderer.chunk.CompiledChunk;
 import net.minecraft.client.renderer.chunk.ListedRenderChunk;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumWorldBlockLayer;
 
 public class ChunkUpdateManager {
@@ -58,7 +60,7 @@ public class ChunkUpdateManager {
 			RenderChunk r = generator.getRenderChunk();
 			try {
 				r.resortTransparency(f, f1, f2, generator);
-				if(generator.getCompiledChunk().isLayerEmpty(EnumWorldBlockLayer.TRANSLUCENT)) {
+				if(generator.getCompiledChunk().isLayerEmpty(BlockRenderLayer.TRANSLUCENT)) {
 					throw new EmptyBlockLayerException();
 				}
 			}catch(EmptyBlockLayerException ex) {
@@ -72,7 +74,7 @@ public class ChunkUpdateManager {
 
 		final CompiledChunk compiledchunk = generator.getCompiledChunk();
 		if (chunkcompiletaskgenerator$type == ChunkCompileTaskGenerator.Type.REBUILD_CHUNK) {
-			for (EnumWorldBlockLayer enumworldblocklayer : EnumWorldBlockLayer.values()) {
+			for (BlockRenderLayer enumworldblocklayer : BlockRenderLayer.values()) {
 				if (!compiledchunk.isLayerEmpty(enumworldblocklayer)) {
 					this.uploadChunk(enumworldblocklayer,
 							generator.getRegionRenderCacheBuilder().getWorldRendererByLayer(enumworldblocklayer),
@@ -82,8 +84,8 @@ public class ChunkUpdateManager {
 			}
 			generator.getRenderChunk().setCompiledChunk(compiledchunk);
 		} else if (chunkcompiletaskgenerator$type == ChunkCompileTaskGenerator.Type.RESORT_TRANSPARENCY) {
-			this.uploadChunk(EnumWorldBlockLayer.TRANSLUCENT, generator.getRegionRenderCacheBuilder()
-							.getWorldRendererByLayer(EnumWorldBlockLayer.TRANSLUCENT),
+			this.uploadChunk(BlockRenderLayer.TRANSLUCENT, generator.getRegionRenderCacheBuilder()
+							.getWorldRendererByLayer(BlockRenderLayer.TRANSLUCENT),
 					generator.getRenderChunk(), compiledchunk);
 			generator.getRenderChunk().setCompiledChunk(compiledchunk);
 			generator.setStatus(ChunkCompileTaskGenerator.Status.DONE);
@@ -184,7 +186,7 @@ public class ChunkUpdateManager {
 		}
 	}
 
-	public void uploadChunk(final EnumWorldBlockLayer player, final WorldRenderer chunkRenderer,
+	public void uploadChunk(final BlockRenderLayer player, final WorldRenderer chunkRenderer,
 			final RenderChunk compiledChunkIn, final CompiledChunk parCompiledChunk) {
 		this.uploadDisplayList(chunkRenderer,
 				((ListedRenderChunk) compiledChunkIn).getDisplayList(player, parCompiledChunk), compiledChunkIn);

@@ -5,6 +5,7 @@ import com.google.common.primitives.Doubles;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 import net.minecraft.client.renderer.RegionRenderCacheBuilder;
+import net.minecraft.util.BlockRenderLayer;
 
 public class ChunkCompileTaskGenerator implements Comparable<ChunkCompileTaskGenerator>
 {
@@ -140,6 +141,14 @@ public class ChunkCompileTaskGenerator implements Comparable<ChunkCompileTaskGen
     {
         return this.distanceSq;
     }
+
+    public boolean canExecuteYet() {
+        if (this.type == ChunkCompileTaskGenerator.Type.RESORT_TRANSPARENCY) {
+        	return !this.renderChunk.getCompiledChunk().isLayerEmpty(BlockRenderLayer.TRANSLUCENT);
+        } else {
+     		return true;
+     	}
+ 	}
 
     public static enum Status
     {

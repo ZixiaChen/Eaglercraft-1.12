@@ -2,6 +2,8 @@ package net.minecraft.entity.player;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -2460,9 +2462,9 @@ public abstract class EntityPlayer extends EntityLivingBase
     /**
      * Gets a players UUID given their GameProfie
      */
-    public static UUID getUUID(GameProfile profile)
+    public static EaglercraftUUID getUUID(GameProfile profile)
     {
-        UUID uuid = profile.getId();
+        EaglercraftUUID uuid = profile.getId();
         
 
         if (uuid == null)
@@ -2473,9 +2475,9 @@ public abstract class EntityPlayer extends EntityLivingBase
         return uuid;
     }
 
-    public static UUID getOfflineUUID(String username)
+    public static EaglercraftUUID getOfflineUUID(String username)
     {
-        return UUID.nameUUIDFromBytes(("OfflinePlayer:" + username).getBytes(StandardCharsets.UTF_8));
+        return new EaglercraftUUID(("OfflinePlayer:" + username).getBytes(StandardCharsets.UTF_8));
     }
 
     /**

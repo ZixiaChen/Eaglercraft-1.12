@@ -139,7 +139,7 @@ public class JSONTypeProvider {
 		registerType(ItemTransformVec3f.class, new ItemTransformVec3f.Deserializer());
 		registerType(ItemCameraTransforms.class, new ItemCameraTransforms.Deserializer());
 		registerType(ModelBlockDefinition.class, new ModelBlockDefinition.Deserializer());
-		registerType(ModelBlockDefinition.Variant.class, new ModelBlockDefinition.Variant.Deserializer());
+		//registerType(ModelBlockDefinition.Variant.class, new ModelBlockDefinition.Variant.Deserializer());
 		registerType(SoundList.class, new SoundListSerializer());
 		registerType(SoundMap.class, new SoundMapDeserializer());
 		registerType(TextureMetadataSection.class, new TextureMetadataSectionSerializer());
