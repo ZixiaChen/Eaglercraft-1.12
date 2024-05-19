@@ -1,8 +1,7 @@
 package net.minecraft.client.renderer.tileentity;
 
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 import java.util.Map;
 import java.util.UUID;
 import javax.annotation.Nullable;
@@ -82,17 +81,8 @@ public class TileEntitySkullRenderer extends TileEntitySpecialRenderer<TileEntit
                     if (profile != null)
                     {
                         Minecraft minecraft = Minecraft.getMinecraft();
-                        Map<Type, MinecraftProfileTexture> map = minecraft.getSkinManager().loadSkinFromCache(profile);
-
-                        if (map.containsKey(Type.SKIN))
-                        {
-                            resourcelocation = minecraft.getSkinManager().loadSkin(map.get(Type.SKIN), Type.SKIN);
-                        }
-                        else
-                        {
-                            UUID uuid = EntityPlayer.getUUID(profile);
-                            resourcelocation = DefaultPlayerSkin.getDefaultSkin(uuid);
-                        }
+                        EaglercraftUUID uuid = EntityPlayer.getUUID(profile);
+                        resourcelocation = DefaultPlayerSkin.getDefaultSkin(uuid);
                     }
 
                     this.bindTexture(resourcelocation);

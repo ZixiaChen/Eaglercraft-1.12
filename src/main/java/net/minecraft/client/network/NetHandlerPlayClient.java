@@ -3,8 +3,14 @@ package net.minecraft.client.network;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
+import net.lax1dude.eaglercraft.v1_8.netty.Unpooled;
+import net.lax1dude.eaglercraft.v1_8.profile.ServerSkinCache;
+import net.lax1dude.eaglercraft.v1_8.profile.SkinPackets;
+import net.lax1dude.eaglercraft.v1_8.socket.EaglercraftNetworkManager;
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
+import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
-import io.netty.buffer.Unpooled;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -251,8 +257,6 @@ import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.storage.MapData;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class NetHandlerPlayClient implements INetHandlerPlayClient
 {
@@ -264,6 +268,8 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
      */
     private final NetworkManager netManager;
     private final GameProfile profile;
+
+    private final ServerSkinCache skinCache;
 
     /**
      * Seems to be either null (integrated server) or an instance of either GuiMultiplayer (when connecting to a server)
@@ -286,7 +292,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
      * reset upon respawning
      */
     private boolean doneLoadingTerrain;
-    private final Map<UUID, NetworkPlayerInfo> playerInfoMap = Maps.<UUID, NetworkPlayerInfo>newHashMap();
+    private final Map<EaglercraftUUID, NetworkPlayerInfo> playerInfoMap = Maps.<EaglercraftUUID, NetworkPlayerInfo>newHashMap();
     public int currentServerMaxPlayers = 20;
     private boolean hasStatistics;
     private final ClientAdvancementManager advancementManager;
@@ -304,7 +310,12 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         this.netManager = networkManagerIn;
         this.profile = profileIn;
         this.advancementManager = new ClientAdvancementManager(mcIn);
+        this.skinCache = new ServerSkinCache(networkManagerIn, mcIn.getTextureManager());
     }
+
+    public ServerSkinCache getSkinCache() {
+		return this.skinCache;
+	}
 
     /**
      * Clears the WorldClient instance associated with this NetHandlerPlayClient
@@ -2307,6 +2318,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     }
 
     public NetworkPlayerInfo getPlayerInfo(UUID uniqueId)
+    {
+        return this.playerInfoMap.get(uniqueId);
+    }
+
+    public NetworkPlayerInfo getPlayerInfo(EaglercraftUUID uniqueId)
     {
         return this.playerInfoMap.get(uniqueId);
     }

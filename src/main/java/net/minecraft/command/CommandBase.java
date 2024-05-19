@@ -18,6 +18,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.Map.Entry;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -271,7 +273,7 @@ public abstract class CommandBase implements ICommand
         {
             try
             {
-                p_193512_1_ = p_193512_0_.getPlayerList().getPlayerByUUID(UUID.fromString(p_193512_2_));
+                p_193512_1_ = p_193512_0_.getPlayerList().getPlayerByUUID(new EaglercraftUUID(p_193512_2_));
             }
             catch (IllegalArgumentException var4)
             {
@@ -312,7 +314,7 @@ public abstract class CommandBase implements ICommand
         {
             try
             {
-                UUID uuid = UUID.fromString(target);
+                EaglercraftUUID uuid = new EaglercraftUUID(target);
                 entity = server.getEntityFromUuid(uuid);
 
                 if (entity == null)

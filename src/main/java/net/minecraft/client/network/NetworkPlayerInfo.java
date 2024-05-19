@@ -3,13 +3,10 @@ package net.minecraft.client.network;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Maps;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 import java.util.Map;
 import javax.annotation.Nullable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.DefaultPlayerSkin;
-import net.minecraft.client.resources.SkinManager;
 import net.minecraft.network.play.server.SPacketPlayerListItem;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.ResourceLocation;
@@ -22,7 +19,7 @@ public class NetworkPlayerInfo
      * The GameProfile for the player represented by this NetworkPlayerInfo instance
      */
     private final GameProfile gameProfile;
-    Map<Type, ResourceLocation> playerTextures = Maps.newEnumMap(Type.class);
+    //Map<Type, ResourceLocation> playerTextures = Maps.newEnumMap(Type.class);
     private GameType gameType;
 
     /** Player response time to server in milliseconds */
@@ -93,15 +90,13 @@ public class NetworkPlayerInfo
 
     public ResourceLocation getLocationSkin()
     {
-        this.loadPlayerTextures();
-        return (ResourceLocation)MoreObjects.firstNonNull(this.playerTextures.get(Type.SKIN), DefaultPlayerSkin.getDefaultSkin(this.gameProfile.getId()));
+        return Minecraft.getMinecraft().getConnection().getSkinCache().getSkin(this.gameProfile).getResourceLocation();
     }
 
     @Nullable
     public ResourceLocation getLocationCape()
     {
-        this.loadPlayerTextures();
-        return this.playerTextures.get(Type.CAPE);
+        return null;
     }
 
     @Nullable
@@ -111,51 +106,13 @@ public class NetworkPlayerInfo
      */
     public ResourceLocation getLocationElytra()
     {
-        this.loadPlayerTextures();
-        return this.playerTextures.get(Type.ELYTRA);
+        return null;
     }
 
     @Nullable
     public ScorePlayerTeam getPlayerTeam()
     {
         return Minecraft.getMinecraft().world.getScoreboard().getPlayersTeam(this.getGameProfile().getName());
-    }
-
-    protected void loadPlayerTextures()
-    {
-        synchronized (this)
-        {
-            if (!this.playerTexturesLoaded)
-            {
-                this.playerTexturesLoaded = true;
-                Minecraft.getMinecraft().getSkinManager().loadProfileTextures(this.gameProfile, new SkinManager.SkinAvailableCallback()
-                {
-                    public void skinAvailable(Type typeIn, ResourceLocation location, MinecraftProfileTexture profileTexture)
-                    {
-                        switch (typeIn)
-                        {
-                            case SKIN:
-                                NetworkPlayerInfo.this.playerTextures.put(Type.SKIN, location);
-                                NetworkPlayerInfo.this.skinType = profileTexture.getMetadata("model");
-
-                                if (NetworkPlayerInfo.this.skinType == null)
-                                {
-                                    NetworkPlayerInfo.this.skinType = "default";
-                                }
-
-                                break;
-
-                            case CAPE:
-                                NetworkPlayerInfo.this.playerTextures.put(Type.CAPE, location);
-                                break;
-
-                            case ELYTRA:
-                                NetworkPlayerInfo.this.playerTextures.put(Type.ELYTRA, location);
-                        }
-                    }
-                }, true);
-            }
-        }
     }
 
     public void setDisplayName(@Nullable ITextComponent displayNameIn)

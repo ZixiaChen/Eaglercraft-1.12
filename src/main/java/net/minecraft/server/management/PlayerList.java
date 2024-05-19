@@ -3,6 +3,8 @@ package net.minecraft.server.management;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import io.netty.buffer.Unpooled;
 import java.io.File;
@@ -475,7 +477,7 @@ public abstract class PlayerList
      */
     public EntityPlayerMP createPlayerForUser(GameProfile profile)
     {
-        UUID uuid = EntityPlayer.getUUID(profile);
+        EaglercraftUUID uuid = EntityPlayer.getUUID(profile);
         List<EntityPlayerMP> list = Lists.<EntityPlayerMP>newArrayList();
 
         for (int i = 0; i < this.playerEntityList.size(); ++i)
@@ -1186,7 +1188,7 @@ public abstract class PlayerList
     /**
      * Get's the EntityPlayerMP object representing the player with the UUID.
      */
-    public EntityPlayerMP getPlayerByUUID(UUID playerUUID)
+    public EntityPlayerMP getPlayerByUUID(EaglercraftUUID playerUUID)
     {
         return this.uuidToPlayerMap.get(playerUUID);
     }

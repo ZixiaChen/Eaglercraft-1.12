@@ -16,6 +16,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.advancements.FunctionManager;
 import net.minecraft.block.Block;
@@ -1392,6 +1394,11 @@ public class WorldServer extends World implements IThreadListener
 
     @Nullable
     public Entity getEntityFromUuid(UUID uuid)
+    {
+        return this.entitiesByUuid.get(uuid);
+    }
+
+    public Entity getEntityFromUuid(EaglercraftUUID uuid)
     {
         return this.entitiesByUuid.get(uuid);
     }

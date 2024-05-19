@@ -7,12 +7,7 @@ import com.google.common.hash.Hashing;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
-import com.mojang.authlib.AuthenticationService;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.GameProfile;
-import com.mojang.authlib.GameProfileRepository;
-import com.mojang.authlib.minecraft.MinecraftSessionService;
-import com.mojang.authlib.properties.PropertyMap;
-import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -108,7 +103,6 @@ import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.client.resources.SimpleReloadableResourceManager;
-import net.minecraft.client.resources.SkinManager;
 import net.minecraft.client.resources.data.AnimationMetadataSection;
 import net.minecraft.client.resources.data.AnimationMetadataSectionSerializer;
 import net.minecraft.client.resources.data.FontMetadataSection;
@@ -228,10 +222,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
     public static byte[] memoryReserve = new byte[10485760];
     private static final List<DisplayMode> MAC_DISPLAY_MODES = Lists.newArrayList(new DisplayMode(2560, 1600), new DisplayMode(2880, 1800));
     private final File fileResourcepacks;
-    private final PropertyMap twitchDetails;
-
-    /** The player's GameProfile properties */
-    private final PropertyMap profileProperties;
+    
     private ServerData currentServerData;
 
     /** The RenderEngine instance used by Minecraft */
@@ -375,8 +366,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
     private SoundHandler mcSoundHandler;
     private MusicTicker mcMusicTicker;
     private ResourceLocation mojangLogo;
-    private final MinecraftSessionService sessionService;
-    private SkinManager skinManager;
     private final Queue < FutureTask<? >> scheduledTasks = Queues. < FutureTask<? >> newArrayDeque();
     private final Thread mcThread = Thread.currentThread();
     private ModelManager modelManager;
@@ -416,11 +405,8 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         this.fileResourcepacks = gameConfig.folderInfo.resourcePacksDir;
         this.launchedVersion = gameConfig.gameInfo.version;
         this.versionType = gameConfig.gameInfo.versionType;
-        this.twitchDetails = gameConfig.userInfo.userProperties;
-        this.profileProperties = gameConfig.userInfo.profileProperties;
         this.mcDefaultResourcePack = new DefaultResourcePack(gameConfig.folderInfo.getAssetsIndex());
         this.proxy = gameConfig.userInfo.proxy == null ? Proxy.NO_PROXY : gameConfig.userInfo.proxy;
-        this.sessionService = (new YggdrasilAuthenticationService(this.proxy, UUID.randomUUID().toString())).createMinecraftSessionService();
         this.session = gameConfig.userInfo.session;
         LOGGER.info("Setting user: {}", (Object)this.session.getUsername());
         LOGGER.debug("(Session ID is {})", (Object)this.session.getSessionID());
@@ -550,7 +536,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         this.renderEngine = new TextureManager(this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.renderEngine);
         this.drawSplashScreen(this.renderEngine);
-        this.skinManager = new SkinManager(this.renderEngine, new File(this.fileAssets, "skins"), this.sessionService);
+        //this.skinManager = new SkinManager(this.renderEngine, new File(this.fileAssets, "skins"), this.sessionService);
         this.saveLoader = new AnvilSaveConverter(new File(this.mcDataDir, "saves"), this.dataFixer);
         this.mcSoundHandler = new SoundHandler(this.mcResourceManager, this.gameSettings);
         this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
@@ -2470,12 +2456,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 
         try
         {
-            YggdrasilAuthenticationService yggdrasilauthenticationservice = new YggdrasilAuthenticationService(this.proxy, UUID.randomUUID().toString());
-            MinecraftSessionService minecraftsessionservice = yggdrasilauthenticationservice.createMinecraftSessionService();
-            GameProfileRepository gameprofilerepository = yggdrasilauthenticationservice.createProfileRepository();
-            PlayerProfileCache playerprofilecache = new PlayerProfileCache(gameprofilerepository, new File(this.mcDataDir, MinecraftServer.USER_CACHE_FILE.getName()));
-            TileEntitySkull.setProfileCache(playerprofilecache);
-            TileEntitySkull.setSessionService(minecraftsessionservice);
             PlayerProfileCache.setOnlineMode(false);
         }
         catch (Throwable throwable)
@@ -2556,12 +2536,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         {
             if (!this.integratedServerIsRunning)
             {
-                AuthenticationService authenticationservice = new YggdrasilAuthenticationService(this.proxy, UUID.randomUUID().toString());
-                MinecraftSessionService minecraftsessionservice = authenticationservice.createMinecraftSessionService();
-                GameProfileRepository gameprofilerepository = authenticationservice.createProfileRepository();
-                PlayerProfileCache playerprofilecache = new PlayerProfileCache(gameprofilerepository, new File(this.mcDataDir, MinecraftServer.USER_CACHE_FILE.getName()));
-                TileEntitySkull.setProfileCache(playerprofilecache);
-                TileEntitySkull.setSessionService(minecraftsessionservice);
                 PlayerProfileCache.setOnlineMode(false);
             }
 
@@ -3226,15 +3200,9 @@ public class Minecraft implements IThreadListener, ISnooperInfo
     /**
      * Return the player's GameProfile properties
      */
-    public PropertyMap getProfileProperties()
+    public Object getProfileProperties()
     {
-        if (this.profileProperties.isEmpty())
-        {
-            GameProfile gameprofile = this.session.getProfile();
-            //this.profileProperties.putAll(gameprofile.getProperties());
-        }
-
-        return this.profileProperties;
+        return null;
     }
 
     public Proxy getProxy()
@@ -3341,14 +3309,14 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         }
     }
 
-    public MinecraftSessionService getSessionService()
+    public Object getSessionService()
     {
-        return this.sessionService;
+        return null;
     }
 
-    public SkinManager getSkinManager()
+    public Object getSkinManager()
     {
-        return this.skinManager;
+        return null;
     }
 
     @Nullable

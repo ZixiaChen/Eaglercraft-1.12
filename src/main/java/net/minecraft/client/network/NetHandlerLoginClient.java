@@ -60,9 +60,9 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
         });
     }
 
-    private MinecraftSessionService getSessionService()
+    private Object getSessionService()
     {
-        return this.mc.getSessionService();
+        return null;
     }
 
     public void handleLoginSuccess(SPacketLoginSuccess packetIn)

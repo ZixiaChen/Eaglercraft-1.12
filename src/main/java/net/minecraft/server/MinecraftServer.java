@@ -5,10 +5,9 @@ import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
-import com.mojang.authlib.GameProfileRepository;
-import com.mojang.authlib.minecraft.MinecraftSessionService;
-import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufOutputStream;
 import io.netty.buffer.Unpooled;
@@ -172,9 +171,6 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
     private String userMessage;
     private boolean startProfiling;
     private boolean isGamemodeForced;
-    private final YggdrasilAuthenticationService authService;
-    private final MinecraftSessionService sessionService;
-    private final GameProfileRepository profileRepo;
     private final PlayerProfileCache profileCache;
     private long nanoTimeSinceStatusRefresh;
     public final Queue < FutureTask<? >> futureTaskQueue = Queues. < FutureTask<? >> newArrayDeque();
@@ -182,12 +178,9 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
     private long currentTime = getCurrentTimeMillis();
     private boolean worldIconSet;
 
-    public MinecraftServer(File anvilFileIn, Proxy proxyIn, DataFixer dataFixerIn, YggdrasilAuthenticationService authServiceIn, MinecraftSessionService sessionServiceIn, GameProfileRepository profileRepoIn, PlayerProfileCache profileCacheIn)
+    public MinecraftServer(File anvilFileIn, Proxy proxyIn, DataFixer dataFixerIn, Object authServiceIn, Object sessionServiceIn, Object profileRepoIn, PlayerProfileCache profileCacheIn)
     {
         this.serverProxy = proxyIn;
-        this.authService = authServiceIn;
-        this.sessionService = sessionServiceIn;
-        this.profileRepo = profileRepoIn;
         this.profileCache = profileCacheIn;
         this.anvilFile = anvilFileIn;
         this.networkSystem = new NetworkSystem(this);
@@ -1394,14 +1387,14 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
         this.maxPlayerIdleMinutes = idleTimeout;
     }
 
-    public MinecraftSessionService getMinecraftSessionService()
+    public Object getMinecraftSessionService()
     {
-        return this.sessionService;
+        return null;
     }
 
-    public GameProfileRepository getGameProfileRepository()
+    public Object getGameProfileRepository()
     {
-        return this.profileRepo;
+        return null;
     }
 
     public PlayerProfileCache getPlayerProfileCache()
@@ -1421,6 +1414,24 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
 
     @Nullable
     public Entity getEntityFromUuid(UUID uuid)
+    {
+        for (WorldServer worldserver : this.worlds)
+        {
+            if (worldserver != null)
+            {
+                Entity entity = worldserver.getEntityFromUuid(uuid);
+
+                if (entity != null)
+                {
+                    return entity;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public Entity getEntityFromUuid(EaglercraftUUID uuid)
     {
         for (WorldServer worldserver : this.worlds)
         {

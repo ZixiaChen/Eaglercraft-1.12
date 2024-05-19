@@ -14,9 +14,9 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.mojang.authlib.Agent;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
-import com.mojang.authlib.GameProfileRepository;
-import com.mojang.authlib.ProfileLookupCallback;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -46,9 +46,8 @@ public class PlayerProfileCache
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
     private static boolean onlineMode;
     private final Map<String, PlayerProfileCache.ProfileEntry> usernameToProfileEntryMap = Maps.<String, PlayerProfileCache.ProfileEntry>newHashMap();
-    private final Map<UUID, PlayerProfileCache.ProfileEntry> uuidToProfileEntryMap = Maps.<UUID, PlayerProfileCache.ProfileEntry>newHashMap();
+    private final Map<EaglercraftUUID, PlayerProfileCache.ProfileEntry> uuidToProfileEntryMap = Maps.<EaglercraftUUID, PlayerProfileCache.ProfileEntry>newHashMap();
     private final Deque<GameProfile> gameProfiles = Lists.<GameProfile>newLinkedList();
-    private final GameProfileRepository profileRepo;
     protected final Gson gson;
     private final File usercacheFile;
     private static final ParameterizedType TYPE = new ParameterizedType()
@@ -67,9 +66,8 @@ public class PlayerProfileCache
         }
     };
 
-    public PlayerProfileCache(GameProfileRepository profileRepoIn, File usercacheFileIn)
+    public PlayerProfileCache(Object profileRepoIn, File usercacheFileIn)
     {
-        this.profileRepo = profileRepoIn;
         this.usercacheFile = usercacheFileIn;
         GsonBuilder gsonbuilder = new GsonBuilder();
         gsonbuilder.registerTypeHierarchyAdapter(PlayerProfileCache.ProfileEntry.class, new PlayerProfileCache.Serializer());
@@ -77,27 +75,13 @@ public class PlayerProfileCache
         this.load();
     }
 
-    private static GameProfile lookupProfile(GameProfileRepository profileRepoIn, String name)
+    private static GameProfile lookupProfile(Object profileRepoIn, String name)
     {
         final GameProfile[] agameprofile = new GameProfile[1];
-        ProfileLookupCallback profilelookupcallback = new ProfileLookupCallback()
-        {
-            public void onProfileLookupSucceeded(GameProfile p_onProfileLookupSucceeded_1_)
-            {
-                agameprofile[0] = p_onProfileLookupSucceeded_1_;
-            }
-            public void onProfileLookupFailed(GameProfile p_onProfileLookupFailed_1_, Exception p_onProfileLookupFailed_2_)
-            {
-                agameprofile[0] = null;
-            }
-        };
-        profileRepoIn.findProfilesByNames(new String[] {name}, Agent.MINECRAFT, profilelookupcallback);
-
         if (!isOnlineMode() && agameprofile[0] == null)
         {
-            UUID uuid = EntityPlayer.getUUID(new GameProfile((UUID)null, name));
+            EaglercraftUUID uuid = EntityPlayer.getUUID(new GameProfile(new EaglercraftUUID(name), name));
             GameProfile gameprofile = new GameProfile(uuid, name);
-            profilelookupcallback.onProfileLookupSucceeded(gameprofile);
         }
 
         return agameprofile[0];
@@ -126,7 +110,7 @@ public class PlayerProfileCache
      */
     private void addEntry(GameProfile gameProfile, Date expirationDate)
     {
-        UUID uuid = gameProfile.getId();
+        EaglercraftUUID uuid = gameProfile.getId();
 
         if (expirationDate == null)
         {
@@ -179,7 +163,7 @@ public class PlayerProfileCache
         }
         else
         {
-            GameProfile gameprofile1 = lookupProfile(this.profileRepo, s);
+            GameProfile gameprofile1 = null;
 
             if (gameprofile1 != null)
             {
@@ -206,7 +190,7 @@ public class PlayerProfileCache
     /**
      * Get a player's {@link GameProfile} given their UUID
      */
-    public GameProfile getProfileByUUID(UUID uuid)
+    public GameProfile getProfileByUUID(EaglercraftUUID uuid)
     {
         PlayerProfileCache.ProfileEntry playerprofilecache$profileentry = this.uuidToProfileEntryMap.get(uuid);
         return playerprofilecache$profileentry == null ? null : playerprofilecache$profileentry.getGameProfile();
@@ -301,16 +285,6 @@ public class PlayerProfileCache
     {
         List<PlayerProfileCache.ProfileEntry> list = Lists.<PlayerProfileCache.ProfileEntry>newArrayList();
 
-        for (GameProfile gameprofile : Lists.newArrayList(Iterators.limit(this.gameProfiles.iterator(), limitSize)))
-        {
-            PlayerProfileCache.ProfileEntry playerprofilecache$profileentry = this.getByUUID(gameprofile.getId());
-
-            if (playerprofilecache$profileentry != null)
-            {
-                list.add(playerprofilecache$profileentry);
-            }
-        }
-
         return list;
     }
 
@@ -346,7 +320,7 @@ public class PlayerProfileCache
         {
             JsonObject jsonobject = new JsonObject();
             jsonobject.addProperty("name", p_serialize_1_.getGameProfile().getName());
-            UUID uuid = p_serialize_1_.getGameProfile().getId();
+            EaglercraftUUID uuid = p_serialize_1_.getGameProfile().getId();
             jsonobject.addProperty("uuid", uuid == null ? "" : uuid.toString());
             jsonobject.addProperty("expiresOn", PlayerProfileCache.DATE_FORMAT.format(p_serialize_1_.getExpirationDate()));
             return jsonobject;
@@ -381,11 +355,11 @@ public class PlayerProfileCache
 
                     if (s1 != null && s != null)
                     {
-                        UUID uuid;
+                        EaglercraftUUID uuid;
 
                         try
                         {
-                            uuid = UUID.fromString(s);
+                            uuid = new EaglercraftUUID(s);
                         }
                         catch (Throwable var13)
                         {

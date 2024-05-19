@@ -197,7 +197,7 @@ public abstract class EntityPlayer extends EntityLivingBase
     public EntityPlayer(World worldIn, GameProfile gameProfileIn)
     {
         super(worldIn);
-        this.setUniqueId(getUUID(gameProfileIn));
+        //this.setUniqueId(getUUID(gameProfileIn));
         this.gameProfile = gameProfileIn;
         this.inventoryContainer = new ContainerPlayer(this.inventory, !worldIn.isRemote, this);
         this.openContainer = this.inventoryContainer;
@@ -932,7 +932,7 @@ public abstract class EntityPlayer extends EntityLivingBase
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        this.setUniqueId(getUUID(this.gameProfile));
+        //this.setUniqueId(getUUID(this.gameProfile));
         NBTTagList nbttaglist = compound.getTagList("Inventory", 10);
         this.inventory.readFromNBT(nbttaglist);
         this.inventory.currentItem = compound.getInteger("SelectedItemSlot");
