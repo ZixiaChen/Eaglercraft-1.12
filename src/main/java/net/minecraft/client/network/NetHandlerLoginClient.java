@@ -1,12 +1,8 @@
 package net.minecraft.client.network;
 
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
-import com.mojang.authlib.exceptions.AuthenticationException;
-import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
-import com.mojang.authlib.exceptions.InvalidCredentialsException;
-import com.mojang.authlib.minecraft.MinecraftSessionService;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
+import net.lax1dude.eaglercraft.v1_8.socket.EaglercraftNetworkManager;
+
 import java.math.BigInteger;
 import java.security.PublicKey;
 import javax.annotation.Nullable;
@@ -15,9 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.network.EnumConnectionState;
-import net.minecraft.network.NetworkManager;
 import net.minecraft.network.login.INetHandlerLoginClient;
-import net.minecraft.network.login.client.CPacketEncryptionResponse;
 import net.minecraft.network.login.server.SPacketDisconnect;
 import net.minecraft.network.login.server.SPacketEnableCompression;
 import net.minecraft.network.login.server.SPacketEncryptionRequest;
@@ -34,10 +28,10 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
     private final Minecraft mc;
     @Nullable
     private final GuiScreen previousGuiScreen;
-    private final NetworkManager networkManager;
+    private final EaglercraftNetworkManager networkManager;
     private GameProfile gameProfile;
 
-    public NetHandlerLoginClient(NetworkManager networkManagerIn, Minecraft mcIn, @Nullable GuiScreen previousScreenIn)
+    public NetHandlerLoginClient(EaglercraftNetworkManager networkManagerIn, Minecraft mcIn, @Nullable GuiScreen previousScreenIn)
     {
         this.networkManager = networkManagerIn;
         this.mc = mcIn;
@@ -51,13 +45,13 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
         PublicKey publickey = packetIn.getPublicKey();
         String s1 = (new BigInteger(CryptManager.getServerIdHash(s, publickey, secretkey))).toString(16);
 
-        this.networkManager.sendPacket(new CPacketEncryptionResponse(secretkey, publickey, packetIn.getVerifyToken()), new GenericFutureListener < Future <? super Void >> ()
+        /*this.networkManager.sendPacket(new CPacketEncryptionResponse(secretkey, publickey, packetIn.getVerifyToken()), new GenericFutureListener < Future <? super Void >> ()
         {
             public void operationComplete(Future <? super Void > p_operationComplete_1_) throws Exception
             {
-                NetHandlerLoginClient.this.networkManager.enableEncryption(secretkey);
+                
             }
-        });
+        });*/
     }
 
     private Object getSessionService()
@@ -96,7 +90,7 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient
     {
         if (!this.networkManager.isLocalChannel())
         {
-            this.networkManager.setCompressionThreshold(packetIn.getCompressionThreshold());
+            this.networkManager.setCompressionTreshold(packetIn.getCompressionThreshold());
         }
     }
 }

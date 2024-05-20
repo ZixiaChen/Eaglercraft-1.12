@@ -70,7 +70,7 @@ public class AdvancementList
 
     public void loadAdvancements(Map<ResourceLocation, Advancement.Builder> advancementsIn)
     {
-        Function<ResourceLocation, Advancement> function = Functions.<ResourceLocation, Advancement>forMap(this.advancements, null);
+        Function<ResourceLocation, Advancement> function = (Function<ResourceLocation, Advancement>) Functions.<ResourceLocation, Advancement>forMap(this.advancements, null);
         label42:
 
         while (!advancementsIn.isEmpty())

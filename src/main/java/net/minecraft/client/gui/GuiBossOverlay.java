@@ -2,7 +2,7 @@ package net.minecraft.client.gui;
 
 import com.google.common.collect.Maps;
 import java.util.Map;
-import java.util.UUID;
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.network.play.server.SPacketUpdateBossInfo;
@@ -13,7 +13,7 @@ public class GuiBossOverlay extends Gui
 {
     private static final ResourceLocation GUI_BARS_TEXTURES = new ResourceLocation("textures/gui/bars.png");
     private final Minecraft client;
-    private final Map<UUID, BossInfoClient> mapBossInfos = Maps.<UUID, BossInfoClient>newLinkedHashMap();
+    private final Map<EaglercraftUUID, BossInfoClient> mapBossInfos = Maps.<EaglercraftUUID, BossInfoClient>newLinkedHashMap();
 
     public GuiBossOverlay(Minecraft clientIn)
     {
