@@ -1,6 +1,8 @@
 package net.minecraft.entity;
 
 import java.util.UUID;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.pathfinding.PathNodeType;
@@ -10,7 +12,7 @@ import net.minecraft.world.World;
 
 public abstract class EntityCreature extends EntityLiving
 {
-    public static final UUID FLEEING_SPEED_MODIFIER_UUID = UUID.fromString("E199AD21-BA8A-4C53-8D13-6182D5C69D3A");
+    public static final EaglercraftUUID FLEEING_SPEED_MODIFIER_UUID = new EaglercraftUUID("E199AD21-BA8A-4C53-8D13-6182D5C69D3A");
     public static final AttributeModifier FLEEING_SPEED_MODIFIER = (new AttributeModifier(FLEEING_SPEED_MODIFIER_UUID, "Fleeing speed bonus", 2.0D, 2)).setSaved(false);
     private BlockPos homePosition = BlockPos.ORIGIN;
 
