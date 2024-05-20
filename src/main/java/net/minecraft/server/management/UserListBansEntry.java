@@ -1,6 +1,8 @@
 package net.minecraft.server.management;
 
 import com.google.gson.JsonObject;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.Date;
 import java.util.UUID;
@@ -41,11 +43,11 @@ public class UserListBansEntry extends UserListEntryBan<GameProfile>
         if (json.has("uuid") && json.has("name"))
         {
             String s = json.get("uuid").getAsString();
-            UUID uuid;
+            EaglercraftUUID uuid;
 
             try
             {
-                uuid = UUID.fromString(s);
+                uuid = new EaglercraftUUID(s);
             }
             catch (Throwable var4)
             {

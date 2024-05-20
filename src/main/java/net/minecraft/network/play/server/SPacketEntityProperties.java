@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.network.Packet;
@@ -47,7 +49,7 @@ public class SPacketEntityProperties implements Packet<INetHandlerPlayClient>
 
             for (int l = 0; l < k; ++l)
             {
-                UUID uuid = buf.readUniqueId();
+                EaglercraftUUID uuid = buf.readUniqueId();
                 list.add(new AttributeModifier(uuid, "Unknown synced attribute modifier", buf.readDouble(), buf.readByte()));
             }
 

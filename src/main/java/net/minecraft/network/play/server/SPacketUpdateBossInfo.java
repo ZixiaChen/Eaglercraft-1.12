@@ -2,6 +2,8 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 import java.util.UUID;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -10,7 +12,7 @@ import net.minecraft.world.BossInfo;
 
 public class SPacketUpdateBossInfo implements Packet<INetHandlerPlayClient>
 {
-    private UUID uniqueId;
+    private EaglercraftUUID uniqueId;
     private SPacketUpdateBossInfo.Operation operation;
     private ITextComponent name;
     private float percent;
@@ -152,7 +154,7 @@ public class SPacketUpdateBossInfo implements Packet<INetHandlerPlayClient>
         handler.handleUpdateBossInfo(this);
     }
 
-    public UUID getUniqueId()
+    public EaglercraftUUID getUniqueId()
     {
         return this.uniqueId;
     }

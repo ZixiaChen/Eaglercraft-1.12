@@ -10,11 +10,14 @@ import com.google.gson.JsonSyntaxException;
 import java.util.Random;
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
@@ -36,11 +39,11 @@ public class SetAttributes extends LootFunction
     {
         for (SetAttributes.Modifier setattributes$modifier : this.modifiers)
         {
-            UUID uuid = setattributes$modifier.uuid;
+            EaglercraftUUID uuid = setattributes$modifier.uuid;
 
             if (uuid == null)
             {
-                uuid = UUID.randomUUID();
+                uuid = MathHelper.getRandomUUID();
             }
 
             EntityEquipmentSlot entityequipmentslot = setattributes$modifier.slots[rand.nextInt(setattributes$modifier.slots.length)];
@@ -57,10 +60,10 @@ public class SetAttributes extends LootFunction
         private final int operation;
         private final RandomValueRange amount;
         @Nullable
-        private final UUID uuid;
+        private final EaglercraftUUID uuid;
         private final EntityEquipmentSlot[] slots;
 
-        private Modifier(String modifName, String attrName, int operationIn, RandomValueRange randomAmount, EntityEquipmentSlot[] slotsIn, @Nullable UUID uuidIn)
+        private Modifier(String modifName, String attrName, int operationIn, RandomValueRange randomAmount, EntityEquipmentSlot[] slotsIn, @Nullable EaglercraftUUID uuidIn)
         {
             this.modifierName = modifName;
             this.attributeName = attrName;
@@ -108,7 +111,7 @@ public class SetAttributes extends LootFunction
             String s1 = JsonUtils.getString(jsonObj, "attribute");
             int i = getOperationFromInt(JsonUtils.getString(jsonObj, "operation"));
             RandomValueRange randomvaluerange = (RandomValueRange)JsonUtils.deserializeClass(jsonObj, "amount", context, RandomValueRange.class);
-            UUID uuid = null;
+            EaglercraftUUID uuid = null;
             EntityEquipmentSlot[] aentityequipmentslot;
 
             if (JsonUtils.isString(jsonObj, "slot"))
@@ -143,7 +146,7 @@ public class SetAttributes extends LootFunction
 
                 try
                 {
-                    uuid = UUID.fromString(s2);
+                    uuid = new EaglercraftUUID(s2);
                 }
                 catch (IllegalArgumentException var12)
                 {

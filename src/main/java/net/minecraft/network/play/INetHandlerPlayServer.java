@@ -1,5 +1,6 @@
 package net.minecraft.network.play;
 
+import net.lax1dude.eaglercraft.v1_8.minecraft.C17PacketCustomPayload;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.play.client.CPacketAnimation;
 import net.minecraft.network.play.client.CPacketChatMessage;
@@ -109,6 +110,8 @@ public interface INetHandlerPlayServer extends INetHandler
      * Processes a player starting/stopping flying
      */
     void processPlayerAbilities(CPacketPlayerAbilities packetIn);
+
+    void processVanilla250Packet(C17PacketCustomPayload var1);
 
     /**
      * Processes the player initiating/stopping digging on a particular spot, as well as a player dropping items

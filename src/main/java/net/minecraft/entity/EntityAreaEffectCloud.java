@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.Map.Entry;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -43,7 +45,7 @@ public class EntityAreaEffectCloud extends Entity
     private float radiusOnUse;
     private float radiusPerTick;
     private EntityLivingBase owner;
-    private UUID ownerUniqueId;
+    private EaglercraftUUID ownerUniqueId;
 
     public EntityAreaEffectCloud(World worldIn)
     {

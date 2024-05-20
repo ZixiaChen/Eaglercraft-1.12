@@ -2,6 +2,8 @@ package net.minecraft.entity.passive;
 
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +23,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 {
     protected Block spawnableBlock = Blocks.GRASS;
     private int inLove;
-    private UUID playerInLove;
+    private EaglercraftUUID playerInLove;
 
     public EntityAnimal(World worldIn)
     {

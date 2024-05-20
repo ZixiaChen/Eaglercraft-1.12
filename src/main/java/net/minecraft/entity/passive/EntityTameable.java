@@ -3,6 +3,8 @@ package net.minecraft.entity.passive;
 import com.google.common.base.Optional;
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,7 +25,7 @@ import net.minecraft.world.World;
 public abstract class EntityTameable extends EntityAnimal implements IEntityOwnable
 {
     protected static final DataParameter<Byte> TAMED = EntityDataManager.<Byte>createKey(EntityTameable.class, DataSerializers.BYTE);
-    protected static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.<Optional<UUID>>createKey(EntityTameable.class, DataSerializers.OPTIONAL_UNIQUE_ID);
+    protected static final DataParameter<Optional<EaglercraftUUID>> OWNER_UNIQUE_ID = EntityDataManager.<Optional<EaglercraftUUID>>createKey(EntityTameable.class, DataSerializers.OPTIONAL_UNIQUE_ID);
     protected EntityAISit aiSit;
 
     public EntityTameable(World worldIn)
@@ -80,7 +82,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
         {
             try
             {
-                this.setOwnerId(UUID.fromString(s));
+                this.setOwnerId(new EaglercraftUUID(s));
                 this.setTamed(true);
             }
             catch (Throwable var4)
@@ -187,12 +189,12 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
     }
 
     @Nullable
-    public UUID getOwnerId()
+    public EaglercraftUUID getOwnerId()
     {
-        return (UUID)((Optional)this.dataManager.get(OWNER_UNIQUE_ID)).orNull();
+        return (EaglercraftUUID)((Optional)this.dataManager.get(OWNER_UNIQUE_ID)).orNull();
     }
 
-    public void setOwnerId(@Nullable UUID p_184754_1_)
+    public void setOwnerId(@Nullable EaglercraftUUID p_184754_1_)
     {
         this.dataManager.set(OWNER_UNIQUE_ID, Optional.fromNullable(p_184754_1_));
     }
@@ -213,7 +215,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
     {
         try
         {
-            UUID uuid = this.getOwnerId();
+            EaglercraftUUID uuid = this.getOwnerId();
             return uuid == null ? null : this.world.getPlayerEntityByUUID(uuid);
         }
         catch (IllegalArgumentException var2)

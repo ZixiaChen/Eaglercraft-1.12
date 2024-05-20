@@ -35,9 +35,9 @@ public class PacketBuffer extends ByteBuf
 {
     private final ByteBuf buf;
 
-    public PacketBuffer(ByteBuf wrapped)
+    public PacketBuffer(ByteBuf p_encode_3_)
     {
-        this.buf = wrapped;
+        this.buf = p_encode_3_;
     }
 
     /**
@@ -254,16 +254,16 @@ public class PacketBuffer extends ByteBuf
         return i;
     }
 
-    public PacketBuffer writeUniqueId(UUID uuid)
+    public PacketBuffer writeUniqueId(EaglercraftUUID uuid)
     {
         this.writeLong(uuid.getMostSignificantBits());
         this.writeLong(uuid.getLeastSignificantBits());
         return this;
     }
 
-    public UUID readUniqueId()
+    public EaglercraftUUID readUniqueId()
     {
-        return new UUID(this.readLong(), this.readLong());
+        return new EaglercraftUUID(this.readLong(), this.readLong());
     }
 
     public void writeUuid(EaglercraftUUID uuid) {

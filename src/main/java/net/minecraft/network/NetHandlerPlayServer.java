@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+
+import net.lax1dude.eaglercraft.v1_8.minecraft.C17PacketCustomPayload;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockCommandBlock;
@@ -81,6 +83,7 @@ import net.minecraft.network.play.client.CPacketVehicleMove;
 import net.minecraft.network.play.server.SPacketBlockChange;
 import net.minecraft.network.play.server.SPacketChat;
 import net.minecraft.network.play.server.SPacketConfirmTransaction;
+import net.minecraft.network.play.server.SPacketCustomPayload;
 import net.minecraft.network.play.server.SPacketDisconnect;
 import net.minecraft.network.play.server.SPacketHeldItemChange;
 import net.minecraft.network.play.server.SPacketKeepAlive;
@@ -1919,4 +1922,183 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
             }
         }
     }
+    
+    public void processVanilla250Packet(C17PacketCustomPayload c17packetcustompayload) {
+		if ("MC|BEdit".equals(c17packetcustompayload.getChannelName())) {
+			net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer3 = c17packetcustompayload.getBufferData();
+
+			try {
+				ItemStack itemstack1 = packetbuffer3.readItemStackFromBuffer();
+				if (itemstack1 != null) {
+					if (!ItemWritableBook.isNBTValid(itemstack1.getTagCompound())) {
+						throw new IOException("Invalid book tag!");
+					}
+
+					ItemStack itemstack3 = this.player.inventory.getCurrentItem();
+					if (itemstack3 == null) {
+						return;
+					}
+
+					if (itemstack1.getItem() == Items.WRITABLE_BOOK && itemstack1.getItem() == itemstack3.getItem()) {
+						itemstack3.setTagInfo("pages", itemstack1.getTagCompound().getTagList("pages", 8));
+					}
+
+					return;
+				}
+			} catch (Exception exception3) {
+				LOGGER.error("Couldn\'t handle book info", exception3);
+				LOGGER.error(exception3);
+				return;
+			}
+
+			return;
+		} else if ("MC|BSign".equals(c17packetcustompayload.getChannelName())) {
+			net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer2 = c17packetcustompayload.getBufferData();
+
+			try {
+				ItemStack itemstack = packetbuffer2.readItemStackFromBuffer();
+				if (itemstack != null) {
+					if (!ItemEditableBook.validBookTagContents(itemstack.getTagCompound())) {
+						throw new IOException("Invalid book tag!");
+					}
+
+					ItemStack itemstack2 = this.player.inventory.getCurrentItem();
+					if (itemstack2 == null) {
+						return;
+					}
+
+					if (itemstack.getItem() == Items.WRITTEN_BOOK && itemstack2.getItem() == Items.WRITABLE_BOOK) {
+						itemstack2.setTagInfo("author", new NBTTagString(this.player.getName()));
+						itemstack2.setTagInfo("title", new NBTTagString(itemstack.getTagCompound().getString("title")));
+						itemstack2.setTagInfo("pages", itemstack.getTagCompound().getTagList("pages", 8));
+						itemstack2.setItem(Items.WRITTEN_BOOK);
+					}
+
+					return;
+				}
+			} catch (Exception exception4) {
+				LOGGER.error("Couldn\'t sign book", exception4);
+				LOGGER.error(exception4);
+				return;
+			}
+
+			return;
+		} else if ("MC|TrSel".equals(c17packetcustompayload.getChannelName())) {
+			try {
+				int i = c17packetcustompayload.getBufferData().readInt();
+				Container container = this.player.openContainer;
+				if (container instanceof ContainerMerchant) {
+					((ContainerMerchant) container).setCurrentRecipeIndex(i);
+				}
+			} catch (Exception exception2) {
+				LOGGER.error("Couldn\'t select trade", exception2);
+			}
+		} else if ("MC|AdvCdm".equals(c17packetcustompayload.getChannelName())) {
+			if (!this.serverController.isCommandBlockEnabled()) {
+				this.player.sendMessage(new TextComponentTranslation("advMode.notEnabled", new Object[0]));
+			} else if (this.player.canUseCommand(2, "")
+					&& this.player.capabilities.isCreativeMode) {
+				net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer = c17packetcustompayload.getBufferData();
+
+				try {
+					byte b0 = packetbuffer.readByte();
+					CommandBlockLogic commandblocklogic = null;
+					if (b0 == 0) {
+						TileEntity tileentity = this.player.world.getTileEntity(
+								new BlockPos(packetbuffer.readInt(), packetbuffer.readInt(), packetbuffer.readInt()));
+						if (tileentity instanceof TileEntityCommandBlock) {
+							commandblocklogic = ((TileEntityCommandBlock) tileentity).getCommandBlockLogic();
+						}
+					} else if (b0 == 1) {
+						Entity entity = this.player.world.getEntityByID(packetbuffer.readInt());
+						if (entity instanceof EntityMinecartCommandBlock) {
+							commandblocklogic = ((EntityMinecartCommandBlock) entity).getCommandBlockLogic();
+						}
+					}
+
+					String s1 = packetbuffer.readStringFromBuffer(packetbuffer.readableBytes());
+					boolean flag = packetbuffer.readBoolean();
+					if (commandblocklogic != null) {
+						commandblocklogic.setCommand(s1);
+						commandblocklogic.setTrackOutput(flag);
+						if (!flag) {
+							commandblocklogic.setLastOutput((ITextComponent) null);
+						}
+
+						commandblocklogic.updateCommand();
+						this.player.sendMessage(
+								new TextComponentTranslation("advMode.setCommand.success", new Object[] { s1 }));
+					}
+				} catch (Exception exception1) {
+					LOGGER.error("Couldn\'t set command block", exception1);
+				}
+			} else {
+				this.player.sendMessage(new TextComponentTranslation("advMode.notAllowed", new Object[0]));
+			}
+		} else if ("MC|Beacon".equals(c17packetcustompayload.getChannelName())) {
+			if (this.player.openContainer instanceof ContainerBeacon) {
+				try {
+					net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer1 = c17packetcustompayload.getBufferData();
+					int j = packetbuffer1.readInt();
+					int k = packetbuffer1.readInt();
+					ContainerBeacon containerbeacon = (ContainerBeacon) this.player.openContainer;
+					Slot slot = containerbeacon.getSlot(0);
+					if (slot.getHasStack()) {
+						slot.decrStackSize(1);
+						IInventory iinventory = containerbeacon.func_180611_e();
+						iinventory.setField(1, j);
+						iinventory.setField(2, k);
+						iinventory.markDirty();
+					}
+				} catch (Exception exception) {
+					LOGGER.error("Couldn\'t set beacon", exception);
+				}
+			}
+		} else if ("MC|ItemName".equals(c17packetcustompayload.getChannelName())
+				&& this.player.openContainer instanceof ContainerRepair) {
+			ContainerRepair containerrepair = (ContainerRepair) this.player.openContainer;
+			if (c17packetcustompayload.getBufferData() != null
+					&& c17packetcustompayload.getBufferData().readableBytes() >= 1) {
+				String s = ChatAllowedCharacters
+						.filterAllowedCharacters(c17packetcustompayload.getBufferData().readStringFromBuffer(32767));
+				if (s.length() <= 30) {
+					if (this.serverController.worlds[0].getWorldInfo().getGameRulesInstance()
+							.getBoolean("colorCodes")) {
+						s = net.minecraft.util.StringUtils.stripControlCodes(s);
+					}
+					containerrepair.updateItemName(s);
+				}
+			} else {
+				containerrepair.updateItemName("");
+			}
+		} else if ("EAG|Skins-1.8".equals(c17packetcustompayload.getChannelName())) {
+			byte[] r = new byte[c17packetcustompayload.getBufferData().readableBytes()];
+			c17packetcustompayload.getBufferData().readBytes(r);
+			((EaglerMinecraftServer) serverController).getSkinService().processPacket(r, player);
+		} else if ("EAG|Capes-1.8".equals(c17packetcustompayload.getChannelName())) {
+			byte[] r = new byte[c17packetcustompayload.getBufferData().readableBytes()];
+			c17packetcustompayload.getBufferData().readBytes(r);
+			((EaglerMinecraftServer) serverController).getCapeService().processPacket(r, player);
+		} else if ("EAG|Voice-1.8".equals(c17packetcustompayload.getChannelName())) {
+			IntegratedVoiceService vcs = ((EaglerMinecraftServer) serverController).getVoiceService();
+			if (vcs != null) {
+				vcs.processPacket(c17packetcustompayload.getBufferData(), player);
+			}
+		} else if ("EAG|MyUpdCert-1.8".equals(c17packetcustompayload.getChannelName())) {
+			if (player.updateCertificate == null) {
+				PacketBuffer pb = c17packetcustompayload.getBufferData();
+				byte[] cert = new byte[pb.readableBytes()];
+				pb.readBytes(cert);
+				player.updateCertificate = cert;
+				List<EntityPlayerMP> lst = player.mcServer.getConfigurationManager().func_181057_v();
+				for (int i = 0, l = lst.size(); i < l; ++i) {
+					EntityPlayerMP player = lst.get(i);
+					if (player != player) {
+						player.playerNetServerHandler.sendPacket(new SPacketCustomPayload("EAG|UpdateCert-1.8",
+								new PacketBuffer(Unpooled.buffer(cert, cert.length).writerIndex(cert.length))));
+					}
+				}
+			}
+		}
+	}
 }

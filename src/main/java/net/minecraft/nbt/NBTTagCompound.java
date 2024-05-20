@@ -14,6 +14,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.crash.ICrashReportDetail;
@@ -126,16 +128,16 @@ public class NBTTagCompound extends NBTBase
         this.tagMap.put(key, new NBTTagLong(value));
     }
 
-    public void setUniqueId(String key, UUID value)
+    public void setUniqueId(String key, EaglercraftUUID value)
     {
         this.setLong(key + "Most", value.getMostSignificantBits());
         this.setLong(key + "Least", value.getLeastSignificantBits());
     }
 
     @Nullable
-    public UUID getUniqueId(String key)
+    public EaglercraftUUID getUniqueId(String key)
     {
-        return new UUID(this.getLong(key + "Most"), this.getLong(key + "Least"));
+        return new EaglercraftUUID(this.getLong(key + "Most"), this.getLong(key + "Least"));
     }
 
     public boolean hasUniqueId(String key)

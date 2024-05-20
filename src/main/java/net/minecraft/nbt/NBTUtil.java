@@ -216,7 +216,7 @@ public final class NBTUtil
     /**
      * Creates a new NBTTagCompound which stores a UUID.
      */
-    public static NBTTagCompound createUUIDTag(UUID uuid)
+    public static NBTTagCompound createUUIDTag(EaglercraftUUID uuid)
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         nbttagcompound.setLong("M", uuid.getMostSignificantBits());
@@ -227,9 +227,9 @@ public final class NBTUtil
     /**
      * Reads a UUID from the passed NBTTagCompound.
      */
-    public static UUID getUUIDFromTag(NBTTagCompound tag)
+    public static EaglercraftUUID getUUIDFromTag(NBTTagCompound tag)
     {
-        return new UUID(tag.getLong("M"), tag.getLong("L"));
+        return new EaglercraftUUID(tag.getLong("M"), tag.getLong("L"));
     }
 
     /**

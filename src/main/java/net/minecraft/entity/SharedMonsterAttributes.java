@@ -3,6 +3,8 @@ package net.minecraft.entity;
 import java.util.Collection;
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
@@ -136,7 +138,7 @@ public class SharedMonsterAttributes
      */
     public static AttributeModifier readAttributeModifierFromNBT(NBTTagCompound compound)
     {
-        UUID uuid = compound.getUniqueId("UUID");
+        EaglercraftUUID uuid = compound.getUniqueId("UUID");
 
         try
         {

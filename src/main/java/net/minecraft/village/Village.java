@@ -2,6 +2,8 @@ package net.minecraft.village;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.Iterator;
 import java.util.List;
@@ -508,7 +510,7 @@ public class Village
             if (nbttagcompound1.hasKey("UUID") && this.world != null && this.world.getMinecraftServer() != null)
             {
                 PlayerProfileCache playerprofilecache = this.world.getMinecraftServer().getPlayerProfileCache();
-                GameProfile gameprofile = playerprofilecache.getProfileByUUID(UUID.fromString(nbttagcompound1.getString("UUID")));
+                GameProfile gameprofile = playerprofilecache.getProfileByUUID(new EaglercraftUUID(nbttagcompound1.getString("UUID")));
 
                 if (gameprofile != null)
                 {

@@ -32,6 +32,7 @@ import net.minecraft.util.datafix.IDataFixer;
 import net.minecraft.util.datafix.IDataWalker;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -317,7 +318,7 @@ public class Template
                 nbttaglist.appendTag(new NBTTagDouble(vec3d1.y));
                 nbttaglist.appendTag(new NBTTagDouble(vec3d1.z));
                 nbttagcompound.setTag("Pos", nbttaglist);
-                nbttagcompound.setUniqueId("UUID", UUID.randomUUID());
+                nbttagcompound.setUniqueId("UUID", MathHelper.getRandomUUID());
                 Entity entity;
 
                 try

@@ -3,6 +3,8 @@ package net.minecraft.util.math;
 import java.util.Random;
 import java.util.UUID;
 
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+
 public class MathHelper
 {
     public static final float SQRT_2 = sqrt(2.0F);
@@ -407,14 +409,14 @@ public class MathHelper
         return i;
     }
 
-    public static UUID getRandomUUID(Random rand)
+    public static EaglercraftUUID getRandomUUID(Random rand)
     {
         long i = rand.nextLong() & -61441L | 16384L;
         long j = rand.nextLong() & 4611686018427387903L | Long.MIN_VALUE;
-        return new UUID(i, j);
+        return new EaglercraftUUID(i, j);
     }
 
-    public static UUID getRandomUUID()
+    public static EaglercraftUUID getRandomUUID()
     {
         return getRandomUUID(RANDOM);
     }

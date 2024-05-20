@@ -2,6 +2,8 @@ package net.minecraft.entity.monster;
 
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
@@ -38,7 +40,7 @@ public class EntityZombieVillager extends EntityZombie
      * Ticker used to determine the time remaining for this zombie to convert into a villager when cured.
      */
     private int conversionTime;
-    private UUID converstionStarter;
+    private EaglercraftUUID converstionStarter;
 
     public EntityZombieVillager(World worldIn)
     {
@@ -167,7 +169,7 @@ public class EntityZombieVillager extends EntityZombie
         return ((Boolean)this.getDataManager().get(CONVERTING)).booleanValue();
     }
 
-    protected void startConverting(@Nullable UUID p_191991_1_, int p_191991_2_)
+    protected void startConverting(@Nullable EaglercraftUUID p_191991_1_, int p_191991_2_)
     {
         this.converstionStarter = p_191991_1_;
         this.conversionTime = p_191991_2_;

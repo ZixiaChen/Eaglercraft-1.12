@@ -8,6 +8,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.lang.reflect.Type;
 import java.util.UUID;
@@ -112,7 +114,7 @@ public class ServerStatusResponse
                         {
                             JsonObject jsonobject1 = JsonUtils.getJsonObject(jsonarray.get(i), "player[" + i + "]");
                             String s = JsonUtils.getString(jsonobject1, "id");
-                            agameprofile[i] = new GameProfile(UUID.fromString(s), JsonUtils.getString(jsonobject1, "name"));
+                            agameprofile[i] = new GameProfile(new EaglercraftUUID(s), JsonUtils.getString(jsonobject1, "name"));
                         }
 
                         serverstatusresponse$players.setPlayers(agameprofile);
@@ -135,7 +137,7 @@ public class ServerStatusResponse
                     for (int i = 0; i < p_serialize_1_.getPlayers().length; ++i)
                     {
                         JsonObject jsonobject1 = new JsonObject();
-                        UUID uuid = p_serialize_1_.getPlayers()[i].getId();
+                        EaglercraftUUID uuid = p_serialize_1_.getPlayers()[i].getId();
                         jsonobject1.addProperty("id", uuid == null ? "" : uuid.toString());
                         jsonobject1.addProperty("name", p_serialize_1_.getPlayers()[i].getName());
                         jsonarray.add(jsonobject1);

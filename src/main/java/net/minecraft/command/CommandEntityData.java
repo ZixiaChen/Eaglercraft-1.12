@@ -1,6 +1,8 @@
 package net.minecraft.command;
 
 import java.util.UUID;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.JsonToNBT;
@@ -66,7 +68,7 @@ public class CommandEntityData extends CommandBase
                     throw new CommandException("commands.entitydata.tagError", new Object[] {nbtexception.getMessage()});
                 }
 
-                UUID uuid = entity.getUniqueID();
+                EaglercraftUUID uuid = entity.getUniqueID();
                 nbttagcompound.merge(nbttagcompound2);
                 entity.setUniqueId(uuid);
 

@@ -93,7 +93,7 @@ public class WorldServer extends World implements IThreadListener
     private final PlayerChunkMap playerChunkMap;
     private final Set<NextTickListEntry> pendingTickListEntriesHashSet = Sets.<NextTickListEntry>newHashSet();
     private final TreeSet<NextTickListEntry> pendingTickListEntriesTreeSet = new TreeSet<NextTickListEntry>();
-    private final Map<UUID, Entity> entitiesByUuid = Maps.<UUID, Entity>newHashMap();
+    private final Map<EaglercraftUUID, Entity> entitiesByUuid = Maps.<EaglercraftUUID, Entity>newHashMap();
 
     /** Whether level saving is disabled or not */
     public boolean disableLevelSaving;
@@ -1122,7 +1122,7 @@ public class WorldServer extends World implements IThreadListener
         }
         else
         {
-            UUID uuid = entityIn.getUniqueID();
+            EaglercraftUUID uuid = entityIn.getUniqueID();
 
             if (this.entitiesByUuid.containsKey(uuid))
             {

@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.UUID;
 import javax.annotation.Nullable;
 
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+
 public interface IAttributeInstance
 {
     /**
@@ -26,13 +28,13 @@ public interface IAttributeInstance
     /**
      * Returns attribute modifier, if any, by the given UUID
      */
-    AttributeModifier getModifier(UUID uuid);
+    AttributeModifier getModifier(EaglercraftUUID uuid);
 
     void applyModifier(AttributeModifier modifier);
 
     void removeModifier(AttributeModifier modifier);
 
-    void removeModifier(UUID p_188479_1_);
+    void removeModifier(EaglercraftUUID p_188479_1_);
 
     void removeAllModifiers();
 

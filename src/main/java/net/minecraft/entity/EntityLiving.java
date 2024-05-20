@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.EntityAITasks;
@@ -112,7 +114,7 @@ public abstract class EntityLiving extends EntityLivingBase
     public int randomMobsId = 0;
     public Biome spawnBiome = null;
     public BlockPos spawnPosition = null;
-    private UUID teamUuid = null;
+    private EaglercraftUUID teamUuid = null;
     private String teamUuidString = null;
 
     public EntityLiving(World worldIn)
@@ -134,7 +136,7 @@ public abstract class EntityLiving extends EntityLivingBase
             this.initEntityAI();
         }
 
-        UUID uuid = this.getUniqueID();
+        EaglercraftUUID uuid = this.getUniqueID();
         long i = uuid.getLeastSignificantBits();
         this.randomMobsId = (int)(i & 2147483647L);
     }
@@ -498,7 +500,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
             if (this.leashedToEntity instanceof EntityLivingBase)
             {
-                UUID uuid = this.leashedToEntity.getUniqueID();
+                EaglercraftUUID uuid = this.leashedToEntity.getUniqueID();
                 nbttagcompound2.setUniqueId("UUID", uuid);
             }
             else if (this.leashedToEntity instanceof EntityHanging)
@@ -1497,7 +1499,7 @@ public abstract class EntityLiving extends EntityLivingBase
         {
             if (this.leashNBTTag.hasUniqueId("UUID"))
             {
-                UUID uuid = this.leashNBTTag.getUniqueId("UUID");
+                EaglercraftUUID uuid = this.leashNBTTag.getUniqueId("UUID");
 
                 for (EntityLivingBase entitylivingbase : this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().grow(10.0D)))
                 {
@@ -1682,7 +1684,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
     public Team getTeam()
     {
-        UUID uuid = this.getUniqueID();
+        EaglercraftUUID uuid = this.getUniqueID();
 
         if (this.teamUuid != uuid)
         {

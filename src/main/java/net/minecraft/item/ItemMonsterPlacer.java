@@ -3,6 +3,8 @@ package net.minecraft.item;
 import java.util.List;
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
@@ -157,7 +159,7 @@ public class ItemMonsterPlacer extends Item
                 }
 
                 NBTTagCompound nbttagcompound1 = targetEntity.writeToNBT(new NBTTagCompound());
-                UUID uuid = targetEntity.getUniqueID();
+                EaglercraftUUID uuid = targetEntity.getUniqueID();
                 nbttagcompound1.merge(nbttagcompound.getCompoundTag("EntityTag"));
                 targetEntity.setUniqueId(uuid);
                 targetEntity.readFromNBT(nbttagcompound1);

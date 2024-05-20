@@ -13,21 +13,15 @@ import net.minecraft.world.WorldServer;
 
 public class CPacketSpectate implements Packet<INetHandlerPlayServer>
 {
-    private UUID id;
-    private EaglercraftUUID eagid;
+    private EaglercraftUUID id;
 
     public CPacketSpectate()
     {
     }
 
-    public CPacketSpectate(UUID uniqueIdIn)
-    {
-        this.id = uniqueIdIn;
-    }
-
     public CPacketSpectate(EaglercraftUUID uniqueIdIn)
     {
-        this.eagid = uniqueIdIn;
+        this.id = uniqueIdIn;
     }
 
     /**

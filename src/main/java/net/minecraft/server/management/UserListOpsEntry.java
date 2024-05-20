@@ -1,6 +1,8 @@
 package net.minecraft.server.management;
 
 import com.google.gson.JsonObject;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.UUID;
 
@@ -53,11 +55,11 @@ public class UserListOpsEntry extends UserListEntry<GameProfile>
         if (p_152643_0_.has("uuid") && p_152643_0_.has("name"))
         {
             String s = p_152643_0_.get("uuid").getAsString();
-            UUID uuid;
+            EaglercraftUUID uuid;
 
             try
             {
-                uuid = UUID.fromString(s);
+                uuid = new EaglercraftUUID(s);
             }
             catch (Throwable var4)
             {

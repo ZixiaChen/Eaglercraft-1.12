@@ -1,11 +1,13 @@
 package net.minecraft.world;
 
 import java.util.UUID;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.util.text.ITextComponent;
 
 public abstract class BossInfo
 {
-    private final UUID uniqueId;
+    private final EaglercraftUUID uniqueId;
     protected ITextComponent name;
     protected float percent;
     protected BossInfo.Color color;
@@ -14,7 +16,7 @@ public abstract class BossInfo
     protected boolean playEndBossMusic;
     protected boolean createFog;
 
-    public BossInfo(UUID uniqueIdIn, ITextComponent nameIn, BossInfo.Color colorIn, BossInfo.Overlay overlayIn)
+    public BossInfo(EaglercraftUUID uniqueIdIn, ITextComponent nameIn, BossInfo.Color colorIn, BossInfo.Overlay overlayIn)
     {
         this.uniqueId = uniqueIdIn;
         this.name = nameIn;
@@ -23,7 +25,7 @@ public abstract class BossInfo
         this.percent = 1.0F;
     }
 
-    public UUID getUniqueId()
+    public EaglercraftUUID getUniqueId()
     {
         return this.uniqueId;
     }

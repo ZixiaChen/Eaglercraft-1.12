@@ -79,7 +79,7 @@ public abstract class PlayerList
     /** Reference to the MinecraftServer object. */
     private final MinecraftServer mcServer;
     private final List<EntityPlayerMP> playerEntityList = Lists.<EntityPlayerMP>newArrayList();
-    private final Map<UUID, EntityPlayerMP> uuidToPlayerMap = Maps.<UUID, EntityPlayerMP>newHashMap();
+    private final Map<EaglercraftUUID, EntityPlayerMP> uuidToPlayerMap = Maps.<EaglercraftUUID, EntityPlayerMP>newHashMap();
     private final UserListBans bannedPlayers;
     private final UserListIPBans bannedIPs;
 
@@ -88,8 +88,8 @@ public abstract class PlayerList
 
     /** The Set of all whitelisted players. */
     private final UserListWhitelist whiteListedPlayers;
-    private final Map<UUID, StatisticsManagerServer> playerStatFiles;
-    private final Map<UUID, PlayerAdvancements> advancements;
+    private final Map<EaglercraftUUID, StatisticsManagerServer> playerStatFiles;
+    private final Map<EaglercraftUUID, PlayerAdvancements> advancements;
 
     /** Reference to the PlayerNBTManager object. */
     private IPlayerFileData playerDataManager;
@@ -118,8 +118,8 @@ public abstract class PlayerList
         this.bannedIPs = new UserListIPBans(FILE_IPBANS);
         this.ops = new UserListOps(FILE_OPS);
         this.whiteListedPlayers = new UserListWhitelist(FILE_WHITELIST);
-        this.playerStatFiles = Maps.<UUID, StatisticsManagerServer>newHashMap();
-        this.advancements = Maps.<UUID, PlayerAdvancements>newHashMap();
+        this.playerStatFiles = Maps.<EaglercraftUUID, StatisticsManagerServer>newHashMap();
+        this.advancements = Maps.<EaglercraftUUID, PlayerAdvancements>newHashMap();
         this.mcServer = server;
         this.bannedPlayers.setLanServer(false);
         this.bannedIPs.setLanServer(false);
@@ -192,7 +192,7 @@ public abstract class PlayerList
 
             if (entity1 != null)
             {
-                UUID uuid = nbttagcompound1.getUniqueId("Attach");
+                EaglercraftUUID uuid = nbttagcompound1.getUniqueId("Attach");
 
                 if (entity1.getUniqueID().equals(uuid))
                 {
@@ -420,7 +420,7 @@ public abstract class PlayerList
         worldserver.getPlayerChunkMap().removePlayer(playerIn);
         playerIn.getAdvancements().dispose();
         this.playerEntityList.remove(playerIn);
-        UUID uuid = playerIn.getUniqueID();
+        EaglercraftUUID uuid = playerIn.getUniqueID();
         EntityPlayerMP entityplayermp = this.uuidToPlayerMap.get(uuid);
 
         if (entityplayermp == playerIn)
@@ -1120,7 +1120,7 @@ public abstract class PlayerList
 
     public StatisticsManagerServer getPlayerStatsFile(EntityPlayer playerIn)
     {
-        UUID uuid = playerIn.getUniqueID();
+        EaglercraftUUID uuid = playerIn.getUniqueID();
         StatisticsManagerServer statisticsmanagerserver = uuid == null ? null : (StatisticsManagerServer)this.playerStatFiles.get(uuid);
 
         if (statisticsmanagerserver == null)
@@ -1148,7 +1148,7 @@ public abstract class PlayerList
 
     public PlayerAdvancements getPlayerAdvancements(EntityPlayerMP p_192054_1_)
     {
-        UUID uuid = p_192054_1_.getUniqueID();
+        EaglercraftUUID uuid = p_192054_1_.getUniqueID();
         PlayerAdvancements playeradvancements = this.advancements.get(uuid);
 
         if (playeradvancements == null)

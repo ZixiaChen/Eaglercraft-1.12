@@ -165,10 +165,9 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable {
 					IOUtils.closeQuietly(inputstream);
 				}
 
-				object = new SoundEventAccessor(new SoundPoolEntry(resourcelocation1,
-						(double) soundlist$soundentry.getSoundEntryPitch(),
-						(double) soundlist$soundentry.getSoundEntryVolume(), soundlist$soundentry.isStreaming()),
-						soundlist$soundentry.getSoundEntryWeight());
+				object = new SoundEventAccessorComposite(new SoundPoolEntry(resourcelocation1, (double) soundlist$soundentry.getSoundEntryPitch(),
+						(double) soundlist$soundentry.getSoundEntryVolume(), (double) soundlist$soundentry.isStreaming()),
+						(int) soundlist$soundentry.getSoundEntryWeight());
 				break;
 			case SOUND_EVENT:
 				object = new ISoundEventAccessor<SoundPoolEntry>() {

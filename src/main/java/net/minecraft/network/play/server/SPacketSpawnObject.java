@@ -2,6 +2,8 @@ package net.minecraft.network.play.server;
 
 import java.io.IOException;
 import java.util.UUID;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
@@ -12,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 public class SPacketSpawnObject implements Packet<INetHandlerPlayClient>
 {
     private int entityId;
-    private UUID uniqueId;
+    private EaglercraftUUID uniqueId;
     private double x;
     private double y;
     private double z;
@@ -109,7 +111,7 @@ public class SPacketSpawnObject implements Packet<INetHandlerPlayClient>
         return this.entityId;
     }
 
-    public UUID getUniqueId()
+    public EaglercraftUUID getUniqueId()
     {
         return this.uniqueId;
     }

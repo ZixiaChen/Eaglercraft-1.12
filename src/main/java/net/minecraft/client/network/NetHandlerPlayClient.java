@@ -266,7 +266,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
      * The NetworkManager instance used to communicate with the server, used to respond to various packets (primarilly
      * movement and plugin channel related ones) and check the status of the network connection externally
      */
-    private final NetworkManager netManager;
+    private final EaglercraftNetworkManager netManager;
     private final GameProfile profile;
 
     private final ServerSkinCache skinCache;
@@ -303,7 +303,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
      */
     private final Random avRandomizer = new Random();
 
-    public NetHandlerPlayClient(Minecraft mcIn, GuiScreen p_i46300_2_, NetworkManager networkManagerIn, GameProfile profileIn)
+    public NetHandlerPlayClient(Minecraft mcIn, GuiScreen p_i46300_2_, EaglercraftNetworkManager networkManagerIn, GameProfile profileIn)
     {
         this.gameController = mcIn;
         this.guiScreenServer = p_i46300_2_;
@@ -343,7 +343,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         this.gameController.player.setReducedDebug(packetIn.isReducedDebugInfo());
         this.gameController.playerController.setGameType(packetIn.getGameType());
         this.gameController.gameSettings.sendSettingsToServer();
-        this.netManager.sendPacket(new CPacketCustomPayload("MC|Brand", (new PacketBuffer(Unpooled.buffer())).writeString(ClientBrandRetriever.getClientModName())));
+        this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketCustomPayload("MC|Brand", (new PacketBuffer(Unpooled.buffer())).writeString(ClientBrandRetriever.getClientModName())));
     }
 
     /**
@@ -788,8 +788,8 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         }
 
         entityplayer.setPositionAndRotation(d0, d1, d2, f, f1);
-        this.netManager.sendPacket(new CPacketConfirmTeleport(packetIn.getTeleportId()));
-        this.netManager.sendPacket(new CPacketPlayer.PositionRotation(entityplayer.posX, entityplayer.getEntityBoundingBox().minY, entityplayer.posZ, entityplayer.rotationYaw, entityplayer.rotationPitch, false));
+        this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketConfirmTeleport(packetIn.getTeleportId()));
+        this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketPlayer.PositionRotation(entityplayer.posX, entityplayer.getEntityBoundingBox().minY, entityplayer.posZ, entityplayer.rotationYaw, entityplayer.rotationPitch, false));
 
         if (!this.doneLoadingTerrain)
         {
@@ -899,7 +899,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
     public void sendPacket(Packet<?> packetIn)
     {
-        this.netManager.sendPacket(packetIn);
+        this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) packetIn);
     }
 
     public void handleCollectItem(SPacketCollectItem packetIn)
@@ -1859,7 +1859,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
                     if (file2.isFile())
                     {
-                        this.netManager.sendPacket(new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.ACCEPTED));
+                        this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.ACCEPTED));
                         Futures.addCallback(this.gameController.getResourcePackRepository().setServerResourcePack(file2), this.createDownloadCallback());
                         return;
                     }
@@ -1869,7 +1869,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                     ;
                 }
 
-                this.netManager.sendPacket(new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.FAILED_DOWNLOAD));
+                this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.FAILED_DOWNLOAD));
             }
             else
             {
@@ -1877,12 +1877,12 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
                 if (serverdata != null && serverdata.getResourceMode() == ServerData.ServerResourceMode.ENABLED)
                 {
-                    this.netManager.sendPacket(new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.ACCEPTED));
+                    this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.ACCEPTED));
                     Futures.addCallback(this.gameController.getResourcePackRepository().downloadResourcePack(s, s1), this.createDownloadCallback());
                 }
                 else if (serverdata != null && serverdata.getResourceMode() != ServerData.ServerResourceMode.PROMPT)
                 {
-                    this.netManager.sendPacket(new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.DECLINED));
+                    this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.DECLINED));
                 }
                 else
                 {
@@ -1904,7 +1904,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                                             serverdata1.setResourceMode(ServerData.ServerResourceMode.ENABLED);
                                         }
 
-                                        NetHandlerPlayClient.this.netManager.sendPacket(new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.ACCEPTED));
+                                        NetHandlerPlayClient.this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.ACCEPTED));
                                         Futures.addCallback(NetHandlerPlayClient.this.gameController.getResourcePackRepository().downloadResourcePack(s, s1), NetHandlerPlayClient.this.createDownloadCallback());
                                     }
                                     else
@@ -1914,7 +1914,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                                             serverdata1.setResourceMode(ServerData.ServerResourceMode.DISABLED);
                                         }
 
-                                        NetHandlerPlayClient.this.netManager.sendPacket(new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.DECLINED));
+                                        NetHandlerPlayClient.this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.DECLINED));
                                     }
 
                                     ServerList.saveSingleServer(serverdata1);
@@ -1951,7 +1951,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         }
         catch (URISyntaxException var5)
         {
-            this.netManager.sendPacket(new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.FAILED_DOWNLOAD));
+            this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.FAILED_DOWNLOAD));
             return false;
         }
     }
@@ -1962,11 +1962,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         {
             public void onSuccess(@Nullable Object p_onSuccess_1_)
             {
-                NetHandlerPlayClient.this.netManager.sendPacket(new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.SUCCESSFULLY_LOADED));
+                NetHandlerPlayClient.this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.SUCCESSFULLY_LOADED));
             }
             public void onFailure(Throwable p_onFailure_1_)
             {
-                NetHandlerPlayClient.this.netManager.sendPacket(new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.FAILED_DOWNLOAD));
+                NetHandlerPlayClient.this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.FAILED_DOWNLOAD));
             }
         };
     }
@@ -1999,13 +1999,13 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         if (entity != this.gameController.player && entity.canPassengerSteer())
         {
             entity.setPositionAndRotation(packetIn.getX(), packetIn.getY(), packetIn.getZ(), packetIn.getYaw(), packetIn.getPitch());
-            this.netManager.sendPacket(new CPacketVehicleMove(entity));
+            this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketVehicleMove(entity));
         }
     }
 
     /**
      * Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to
-     * acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? on the
+     * acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? (what the fuck is that?) on the
      * player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server
      * resourcepack for the client to load.
      */
@@ -2307,7 +2307,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     /**
      * Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
      */
-    public NetworkManager getNetworkManager()
+    public EaglercraftNetworkManager getNetworkManager()
     {
         return this.netManager;
     }

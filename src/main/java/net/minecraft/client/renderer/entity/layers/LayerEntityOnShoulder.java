@@ -2,6 +2,8 @@ package net.minecraft.client.renderer.entity.layers;
 
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelParrot;
 import net.minecraft.client.renderer.GlStateManager;
@@ -21,12 +23,12 @@ public class LayerEntityOnShoulder implements LayerRenderer<EntityPlayer>
     protected RenderLivingBase <? extends EntityLivingBase > leftRenderer;
     private ModelBase leftModel;
     private ResourceLocation leftResource;
-    private UUID leftUniqueId;
+    private EaglercraftUUID leftUniqueId;
     private Class<?> leftEntityClass;
     protected RenderLivingBase <? extends EntityLivingBase > rightRenderer;
     private ModelBase rightModel;
     private ResourceLocation rightResource;
-    private UUID rightUniqueId;
+    private EaglercraftUUID rightUniqueId;
     private Class<?> rightEntityClass;
 
     public LayerEntityOnShoulder(RenderManager p_i47370_1_)
@@ -68,7 +70,7 @@ public class LayerEntityOnShoulder implements LayerRenderer<EntityPlayer>
         }
     }
 
-    private LayerEntityOnShoulder.DataHolder renderEntityOnShoulder(EntityPlayer p_192864_1_, @Nullable UUID p_192864_2_, NBTTagCompound p_192864_3_, RenderLivingBase <? extends EntityLivingBase > p_192864_4_, ModelBase p_192864_5_, ResourceLocation p_192864_6_, Class<?> p_192864_7_, float p_192864_8_, float p_192864_9_, float p_192864_10_, float p_192864_11_, float p_192864_12_, float p_192864_13_, float p_192864_14_, boolean p_192864_15_)
+    private LayerEntityOnShoulder.DataHolder renderEntityOnShoulder(EntityPlayer p_192864_1_, @Nullable EaglercraftUUID p_192864_2_, NBTTagCompound p_192864_3_, RenderLivingBase <? extends EntityLivingBase > p_192864_4_, ModelBase p_192864_5_, ResourceLocation p_192864_6_, Class<?> p_192864_7_, float p_192864_8_, float p_192864_9_, float p_192864_10_, float p_192864_11_, float p_192864_12_, float p_192864_13_, float p_192864_14_, boolean p_192864_15_)
     {
         if (p_192864_2_ == null || !p_192864_2_.equals(p_192864_3_.getUniqueId("UUID")))
         {
@@ -108,13 +110,13 @@ public class LayerEntityOnShoulder implements LayerRenderer<EntityPlayer>
 
     class DataHolder
     {
-        public UUID entityId;
+        public EaglercraftUUID entityId;
         public RenderLivingBase <? extends EntityLivingBase > renderer;
         public ModelBase model;
         public ResourceLocation textureLocation;
         public Class<?> clazz;
 
-        public DataHolder(UUID p_i47463_2_, RenderLivingBase <? extends EntityLivingBase > p_i47463_3_, ModelBase p_i47463_4_, ResourceLocation p_i47463_5_, Class<?> p_i47463_6_)
+        public DataHolder(EaglercraftUUID p_i47463_2_, RenderLivingBase <? extends EntityLivingBase > p_i47463_3_, ModelBase p_i47463_4_, ResourceLocation p_i47463_5_, Class<?> p_i47463_6_)
         {
             this.entityId = p_i47463_2_;
             this.renderer = p_i47463_3_;

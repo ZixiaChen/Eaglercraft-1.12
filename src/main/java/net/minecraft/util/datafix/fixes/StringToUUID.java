@@ -1,6 +1,8 @@
 package net.minecraft.util.datafix.fixes;
 
 import java.util.UUID;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.datafix.IFixableData;
 
@@ -15,7 +17,7 @@ public class StringToUUID implements IFixableData
     {
         if (compound.hasKey("UUID", 8))
         {
-            compound.setUniqueId("UUID", UUID.fromString(compound.getString("UUID")));
+            compound.setUniqueId("UUID", new EaglercraftUUID(compound.getString("UUID")));
         }
 
         return compound;

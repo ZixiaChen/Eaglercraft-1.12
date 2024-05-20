@@ -11,6 +11,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
@@ -200,7 +202,7 @@ public abstract class Entity implements ICommandSender
 
     protected EnumFacing teleportDirection;
     private boolean invulnerable;
-    protected UUID entityUniqueID;
+    protected EaglercraftUUID entityUniqueID;
     protected String cachedUniqueIdString;
 
     private final CommandResultStats cmdResultStats;
@@ -2696,13 +2698,13 @@ public abstract class Entity implements ICommandSender
         return this.isBurning();
     }
 
-    public void setUniqueId(UUID uniqueIdIn)
+    public void setUniqueId(EaglercraftUUID uniqueIdIn)
     {
         this.entityUniqueID = uniqueIdIn;
         this.cachedUniqueIdString = this.entityUniqueID.toString();
     }
 
-    public UUID getUniqueID()
+    public EaglercraftUUID getUniqueID()
     {
         return this.entityUniqueID;
     }

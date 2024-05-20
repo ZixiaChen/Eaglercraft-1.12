@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.Map.Entry;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -290,7 +292,7 @@ public class Potion
      */
     public Potion registerPotionAttributeModifier(IAttribute attribute, String uniqueId, double ammount, int operation)
     {
-        AttributeModifier attributemodifier = new AttributeModifier(UUID.fromString(uniqueId), this.getName(), ammount, operation);
+        AttributeModifier attributemodifier = new AttributeModifier(new EaglercraftUUID(uniqueId), this.getName(), ammount, operation);
         this.attributeModifierMap.put(attribute, attributemodifier);
         return this;
     }

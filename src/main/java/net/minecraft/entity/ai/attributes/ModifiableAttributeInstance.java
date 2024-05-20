@@ -3,6 +3,9 @@ package net.minecraft.entity.ai.attributes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -18,7 +21,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
     private final IAttribute genericAttribute;
     private final Map<Integer, Set<AttributeModifier>> mapByOperation = Maps.<Integer, Set<AttributeModifier>>newHashMap();
     private final Map<String, Set<AttributeModifier>> mapByName = Maps.<String, Set<AttributeModifier>>newHashMap();
-    private final Map<UUID, AttributeModifier> mapByUUID = Maps.<UUID, AttributeModifier>newHashMap();
+    private final Map<EaglercraftUUID, AttributeModifier> mapByUUID = Maps.<EaglercraftUUID, AttributeModifier>newHashMap();
     private double baseValue;
     private boolean needsUpdate = true;
     private double cachedValue;
@@ -215,5 +218,17 @@ public class ModifiableAttributeInstance implements IAttributeInstance
         }
 
         return set;
+    }
+
+    @Override
+    public AttributeModifier getModifier(EaglercraftUUID uuid) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getModifier'");
+    }
+
+    @Override
+    public void removeModifier(EaglercraftUUID p_188479_1_) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'removeModifier'");
     }
 }
