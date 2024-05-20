@@ -1,6 +1,6 @@
 package net.minecraft.tileentity;
 
-import io.netty.buffer.ByteBuf;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.annotation.Nullable;

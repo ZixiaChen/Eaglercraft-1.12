@@ -1,10 +1,10 @@
 package net.minecraft.client.gui;
 
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
 import javax.annotation.Nullable;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
+import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.tileentity.CommandBlockBaseLogic;
 import net.minecraft.tileentity.TileEntityCommandBlock;
@@ -134,7 +134,7 @@ public class GuiCommandBlock extends GuiScreen implements ITabCompleter
                 packetbuffer.writeString(this.commandBlockMode.name());
                 packetbuffer.writeBoolean(this.conditional);
                 packetbuffer.writeBoolean(this.automatic);
-                this.mc.getConnection().sendPacket(new CPacketCustomPayload("MC|AutoCmd", packetbuffer));
+                this.mc.getConnection().sendPacket((Packet<?>) new CPacketCustomPayload("MC|AutoCmd", packetbuffer));
 
                 if (!commandblockbaselogic.shouldTrackOutput())
                 {

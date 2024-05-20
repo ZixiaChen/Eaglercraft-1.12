@@ -64,6 +64,11 @@ public class EntityMinecartCommandBlock extends EntityMinecart
         {
             return EntityMinecartCommandBlock.this.world.getMinecraftServer();
         }
+        @Override
+        public void fillInInfo(net.lax1dude.eaglercraft.v1_8.netty.ByteBuf buf) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'fillInInfo'");
+        }
     };
 
     /** Cooldown before command block logic runs again in ticks */

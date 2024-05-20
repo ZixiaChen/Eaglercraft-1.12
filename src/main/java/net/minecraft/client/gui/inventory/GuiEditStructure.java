@@ -1,7 +1,6 @@
 package net.minecraft.client.gui.inventory;
 
 import com.google.common.collect.Lists;
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -11,7 +10,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
+import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.tileentity.TileEntityStructure;
 import net.minecraft.util.ChatAllowedCharacters;
@@ -472,7 +472,7 @@ public class GuiEditStructure extends GuiScreen
             packetbuffer.writeBoolean(this.tileStructure.showsBoundingBox());
             packetbuffer.writeFloat(this.parseIntegrity(this.integrityEdit.getText()));
             packetbuffer.writeVarLong(this.parseSeed(this.seedEdit.getText()));
-            this.mc.getConnection().sendPacket(new CPacketCustomPayload("MC|Struct", packetbuffer));
+            this.mc.getConnection().sendPacket((Packet<?>) new CPacketCustomPayload("MC|Struct", packetbuffer));
             return true;
         }
         catch (Exception exception)

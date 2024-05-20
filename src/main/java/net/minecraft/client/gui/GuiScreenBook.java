@@ -2,7 +2,6 @@ package net.minecraft.client.gui;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonParseException;
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.Nullable;
@@ -15,7 +14,7 @@ import net.minecraft.item.ItemWrittenBook;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.ResourceLocation;
@@ -190,8 +189,8 @@ public class GuiScreenBook extends GuiScreen
                 }
 
                 PacketBuffer packetbuffer = new PacketBuffer(Unpooled.buffer());
-                packetbuffer.writeItemStack(this.book);
-                this.mc.getConnection().sendPacket(new CPacketCustomPayload(s1, packetbuffer));
+                packetbuffer.writeItemStackToBuffer(this.book);
+                this.mc.getConnection().sendPacket((net.minecraft.network.Packet<?>) new CPacketCustomPayload(s1, packetbuffer));
             }
         }
     }

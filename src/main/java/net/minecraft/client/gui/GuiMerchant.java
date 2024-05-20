@@ -1,6 +1,5 @@
 package net.minecraft.client.gui;
 
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -11,7 +10,7 @@ import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerMerchant;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -128,7 +127,7 @@ public class GuiMerchant extends GuiContainer
             ((ContainerMerchant)this.inventorySlots).setCurrentRecipeIndex(this.selectedMerchantRecipe);
             PacketBuffer packetbuffer = new PacketBuffer(Unpooled.buffer());
             packetbuffer.writeInt(this.selectedMerchantRecipe);
-            this.mc.getConnection().sendPacket(new CPacketCustomPayload("MC|TrSel", packetbuffer));
+            this.mc.getConnection().sendPacket((net.minecraft.network.Packet<?>) new CPacketCustomPayload("MC|TrSel", packetbuffer));
         }
     }
 

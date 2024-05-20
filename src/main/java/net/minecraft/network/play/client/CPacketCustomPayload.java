@@ -1,9 +1,7 @@
 package net.minecraft.network.play.client;
 
-import io.netty.buffer.ByteBuf;
 import java.io.IOException;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
 import net.minecraft.network.play.INetHandlerPlayServer;
 
 public class CPacketCustomPayload implements Packet<INetHandlerPlayServer>
@@ -31,7 +29,7 @@ public class CPacketCustomPayload implements Packet<INetHandlerPlayServer>
      */
     public void readPacketData(PacketBuffer buf) throws IOException
     {
-        this.channel = buf.readString(20);
+        this.channel = buf.readStringFromBuffer(20);
         int i = buf.readableBytes();
 
         if (i >= 0 && i <= 32767)
@@ -62,7 +60,7 @@ public class CPacketCustomPayload implements Packet<INetHandlerPlayServer>
 
         if (this.data != null)
         {
-            this.data.release();
+            //this.data.release();
         }
     }
 

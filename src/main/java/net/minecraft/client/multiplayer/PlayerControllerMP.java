@@ -1,6 +1,6 @@
 package net.minecraft.client.multiplayer;
 
-import io.netty.buffer.Unpooled;
+import java.io.IOException;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCommandBlock;
@@ -20,7 +20,8 @@ import net.minecraft.inventory.ClickType;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
+import net.lax1dude.eaglercraft.v1_8.socket.EaglercraftNetworkManager;
 import net.minecraft.network.play.client.CPacketClickWindow;
 import net.minecraft.network.play.client.CPacketCreativeInventoryAction;
 import net.minecraft.network.play.client.CPacketCustomPayload;
@@ -42,6 +43,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.*;
 import net.minecraft.world.GameType;
 import net.minecraft.world.World;
 
@@ -366,19 +368,25 @@ public class PlayerControllerMP
         return this.currentGameType.isCreative() ? 5.0F : 4.5F;
     }
 
-    public void updateController()
-    {
+    public void updateController() {
         this.syncCurrentPlayItem();
-
-        if (this.connection.getNetworkManager().isChannelOpen())
-        {
-            this.connection.getNetworkManager().processReceivedPackets();
-        }
-        else
-        {
+        if (this.connection.getNetworkManager().isChannelOpen()) {
+            try {
+                this.connection.getNetworkManager().processReceivedPackets();
+            } catch (IOException ex) {
+                EaglercraftNetworkManager.logger
+                        .fatal("Unhandled IOException was thrown while processing multiplayer packets!");
+                EaglercraftNetworkManager.logger.fatal(ex);
+                EaglercraftNetworkManager.logger.fatal("Disconnecting...");
+                this.connection.getNetworkManager()
+                        .closeChannel(new TextComponentTranslation("Exception thrown: " + ex.toString()));
+            }
+            this.connection.getSkinCache().flush();
+            // this.connection.getCapeCache().flush();
+        } else {
             this.connection.getNetworkManager().checkDisconnected();
         }
-    }
+    }    
 
     private boolean isHittingPosition(BlockPos pos)
     {
@@ -673,6 +681,6 @@ public class PlayerControllerMP
 
     public void pickItem(int index)
     {
-        this.connection.sendPacket(new CPacketCustomPayload("MC|PickItem", (new PacketBuffer(Unpooled.buffer())).writeVarInt(index)));
+        this.connection.sendPacket((net.minecraft.network.Packet<?>) new CPacketCustomPayload());
     }
 }

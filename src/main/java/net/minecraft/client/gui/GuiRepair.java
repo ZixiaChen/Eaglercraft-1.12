@@ -1,6 +1,5 @@
 package net.minecraft.client.gui;
 
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,7 +12,8 @@ import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
+import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -144,7 +144,7 @@ public class GuiRepair extends GuiContainer implements IContainerListener
         }
 
         this.anvil.updateItemName(s);
-        this.mc.player.connection.sendPacket(new CPacketCustomPayload("MC|ItemName", (new PacketBuffer(Unpooled.buffer())).writeString(s)));
+        this.mc.player.connection.sendPacket((Packet<?>) new CPacketCustomPayload("MC|ItemName", (new PacketBuffer(Unpooled.buffer())).writeString(s)));
     }
 
     /**

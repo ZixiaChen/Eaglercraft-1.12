@@ -1,6 +1,5 @@
 package net.minecraft.client.gui.inventory;
 
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -14,7 +13,8 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.ContainerBeacon;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
+import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketCloseWindow;
 import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.potion.Potion;
@@ -145,7 +145,7 @@ public class GuiBeacon extends GuiContainer
             PacketBuffer packetbuffer = new PacketBuffer(Unpooled.buffer());
             packetbuffer.writeInt(this.tileBeacon.getField(1));
             packetbuffer.writeInt(this.tileBeacon.getField(2));
-            this.mc.getConnection().sendPacket(new CPacketCustomPayload("MC|Beacon", packetbuffer));
+            this.mc.getConnection().sendPacket((Packet<?>) new CPacketCustomPayload("MC|Beacon", packetbuffer));
             this.mc.player.connection.sendPacket(new CPacketCloseWindow(this.mc.player.openContainer.windowId));
             this.mc.displayGuiScreen((GuiScreen)null);
         }

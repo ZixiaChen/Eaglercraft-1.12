@@ -3,7 +3,7 @@ package net.minecraft.tileentity;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import io.netty.buffer.ByteBuf;
+import net.lax1dude.eaglercraft.v1_8.netty.*;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.minecraft.block.Block;

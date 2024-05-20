@@ -59,6 +59,11 @@ public class TileEntityCommandBlock extends TileEntity
         {
             return TileEntityCommandBlock.this.world.getMinecraftServer();
         }
+        @Override
+        public void fillInInfo(net.lax1dude.eaglercraft.v1_8.netty.ByteBuf buf) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'fillInInfo'");
+        }
     };
 
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
