@@ -1,6 +1,7 @@
 package net.minecraft.network.play.client;
 
 import java.io.IOException;
+import net.minecraft.network.Packet;
 import net.lax1dude.eaglercraft.v1_8.netty.*;
 import net.minecraft.network.play.INetHandlerPlayServer;
 
@@ -72,5 +73,17 @@ public class CPacketCustomPayload implements Packet<INetHandlerPlayServer>
     public PacketBuffer getBufferData()
     {
         return this.data;
+    }
+
+    @Override
+    public void readPacketData(net.minecraft.network.PacketBuffer buf) throws IOException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'readPacketData'");
+    }
+
+    @Override
+    public void writePacketData(net.minecraft.network.PacketBuffer buf) throws IOException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'writePacketData'");
     }
 }

@@ -1526,11 +1526,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
         if ("MC|BEdit".equals(s))
         {
-            PacketBuffer packetbuffer = packetIn.getBufferData();
+            net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer = packetIn.getBufferData();
 
             try
             {
-                ItemStack itemstack = packetbuffer.readItemStack();
+                ItemStack itemstack = packetbuffer.readItemStackFromBuffer();
 
                 if (itemstack.isEmpty())
                 {
@@ -1561,11 +1561,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
         }
         else if ("MC|BSign".equals(s))
         {
-            PacketBuffer packetbuffer1 = packetIn.getBufferData();
+            net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer1 = packetIn.getBufferData();
 
             try
             {
-                ItemStack itemstack3 = packetbuffer1.readItemStack();
+                ItemStack itemstack3 = packetbuffer1.readItemStackFromBuffer();
 
                 if (itemstack3.isEmpty())
                 {
@@ -1639,7 +1639,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 return;
             }
 
-            PacketBuffer packetbuffer2 = packetIn.getBufferData();
+            net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer2 = packetIn.getBufferData();
 
             try
             {
@@ -1665,7 +1665,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                     }
                 }
 
-                String s6 = packetbuffer2.readString(packetbuffer2.readableBytes());
+                String s6 = packetbuffer2.readStringFromBuffer(packetbuffer2.readableBytes());
                 boolean flag2 = packetbuffer2.readBoolean();
 
                 if (commandblockbaselogic1 != null)
@@ -1701,7 +1701,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 return;
             }
 
-            PacketBuffer packetbuffer3 = packetIn.getBufferData();
+            net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer3 = packetIn.getBufferData();
 
             try
             {
@@ -1716,9 +1716,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                     commandblockbaselogic = tileentitycommandblock.getCommandBlockLogic();
                 }
 
-                String s7 = packetbuffer3.readString(packetbuffer3.readableBytes());
+                String s7 = packetbuffer3.readStringFromBuffer(packetbuffer3.readableBytes());
                 boolean flag3 = packetbuffer3.readBoolean();
-                TileEntityCommandBlock.Mode tileentitycommandblock$mode = TileEntityCommandBlock.Mode.valueOf(packetbuffer3.readString(16));
+                TileEntityCommandBlock.Mode tileentitycommandblock$mode = TileEntityCommandBlock.Mode.valueOf(packetbuffer3.readStringFromBuffer(16));
                 boolean flag = packetbuffer3.readBoolean();
                 boolean flag1 = packetbuffer3.readBoolean();
 
@@ -1773,7 +1773,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
             {
                 try
                 {
-                    PacketBuffer packetbuffer4 = packetIn.getBufferData();
+                    net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer4 = packetIn.getBufferData();
                     int i1 = packetbuffer4.readInt();
                     int k1 = packetbuffer4.readInt();
                     ContainerBeacon containerbeacon = (ContainerBeacon)this.player.openContainer;
@@ -1802,7 +1802,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
                 if (packetIn.getBufferData() != null && packetIn.getBufferData().readableBytes() >= 1)
                 {
-                    String s5 = ChatAllowedCharacters.filterAllowedCharacters(packetIn.getBufferData().readString(32767));
+                    String s5 = ChatAllowedCharacters.filterAllowedCharacters(packetIn.getBufferData().readStringFromBuffer(32767));
 
                     if (s5.length() <= 35)
                     {
@@ -1822,7 +1822,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 return;
             }
 
-            PacketBuffer packetbuffer5 = packetIn.getBufferData();
+            net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer5 = packetIn.getBufferData();
 
             try
             {
@@ -1834,9 +1834,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 {
                     TileEntityStructure tileentitystructure = (TileEntityStructure)tileentity1;
                     int l1 = packetbuffer5.readByte();
-                    String s8 = packetbuffer5.readString(32);
+                    String s8 = packetbuffer5.readStringFromBuffer(32);
                     tileentitystructure.setMode(TileEntityStructure.Mode.valueOf(s8));
-                    tileentitystructure.setName(packetbuffer5.readString(64));
+                    tileentitystructure.setName(packetbuffer5.readStringFromBuffer(64));
                     int i2 = MathHelper.clamp(packetbuffer5.readInt(), -32, 32);
                     int j2 = MathHelper.clamp(packetbuffer5.readInt(), -32, 32);
                     int k2 = MathHelper.clamp(packetbuffer5.readInt(), -32, 32);
@@ -1845,11 +1845,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                     int i3 = MathHelper.clamp(packetbuffer5.readInt(), 0, 32);
                     int j = MathHelper.clamp(packetbuffer5.readInt(), 0, 32);
                     tileentitystructure.setSize(new BlockPos(l2, i3, j));
-                    String s2 = packetbuffer5.readString(32);
+                    String s2 = packetbuffer5.readStringFromBuffer(32);
                     tileentitystructure.setMirror(Mirror.valueOf(s2));
-                    String s3 = packetbuffer5.readString(32);
+                    String s3 = packetbuffer5.readStringFromBuffer(32);
                     tileentitystructure.setRotation(Rotation.valueOf(s3));
-                    tileentitystructure.setMetadata(packetbuffer5.readString(128));
+                    tileentitystructure.setMetadata(packetbuffer5.readStringFromBuffer(128));
                     tileentitystructure.setIgnoresEntities(packetbuffer5.readBoolean());
                     tileentitystructure.setShowAir(packetbuffer5.readBoolean());
                     tileentitystructure.setShowBoundingBox(packetbuffer5.readBoolean());
@@ -1906,11 +1906,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
         }
         else if ("MC|PickItem".equals(s))
         {
-            PacketBuffer packetbuffer6 = packetIn.getBufferData();
+            net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer packetbuffer6 = packetIn.getBufferData();
 
             try
             {
-                int j1 = packetbuffer6.readVarInt();
+                int j1 = packetbuffer6.readVarIntFromBuffer();
                 this.player.inventory.pickItem(j1);
                 this.player.connection.sendPacket(new SPacketSetSlot(-2, this.player.inventory.currentItem, this.player.inventory.getStackInSlot(this.player.inventory.currentItem)));
                 this.player.connection.sendPacket(new SPacketSetSlot(-2, j1, this.player.inventory.getStackInSlot(j1)));

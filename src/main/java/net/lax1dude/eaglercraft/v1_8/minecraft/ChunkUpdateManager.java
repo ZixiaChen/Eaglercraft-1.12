@@ -77,15 +77,14 @@ public class ChunkUpdateManager {
 			for (BlockRenderLayer enumworldblocklayer : BlockRenderLayer.values()) {
 				if (!compiledchunk.isLayerEmpty(enumworldblocklayer)) {
 					this.uploadChunk(enumworldblocklayer,
-							generator.getRegionRenderCacheBuilder().getWorldRendererByLayer(enumworldblocklayer),
+							generator.getRegionRenderCacheBuilder().getWorldRendererByLayer2(enumworldblocklayer),
 							generator.getRenderChunk(), compiledchunk);
 					generator.setStatus(ChunkCompileTaskGenerator.Status.DONE);
 				}
 			}
 			generator.getRenderChunk().setCompiledChunk(compiledchunk);
 		} else if (chunkcompiletaskgenerator$type == ChunkCompileTaskGenerator.Type.RESORT_TRANSPARENCY) {
-			this.uploadChunk(BlockRenderLayer.TRANSLUCENT, generator.getRegionRenderCacheBuilder()
-							.getWorldRendererByLayer(BlockRenderLayer.TRANSLUCENT),
+			this.uploadChunk(BlockRenderLayer.TRANSLUCENT, generator.getRegionRenderCacheBuilder().getWorldRendererByLayer2(BlockRenderLayer.TRANSLUCENT),
 					generator.getRenderChunk(), compiledchunk);
 			generator.getRenderChunk().setCompiledChunk(compiledchunk);
 			generator.setStatus(ChunkCompileTaskGenerator.Status.DONE);

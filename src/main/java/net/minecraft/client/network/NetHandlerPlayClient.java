@@ -343,7 +343,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         this.gameController.player.setReducedDebug(packetIn.isReducedDebugInfo());
         this.gameController.playerController.setGameType(packetIn.getGameType());
         this.gameController.gameSettings.sendSettingsToServer();
-        this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketCustomPayload("MC|Brand", (new PacketBuffer(Unpooled.buffer())).writeString(ClientBrandRetriever.getClientModName())));
+        this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketCustomPayload("MC|Brand", (new net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer(Unpooled.buffer())).writeString(ClientBrandRetriever.getClientModName())));
     }
 
     /**
