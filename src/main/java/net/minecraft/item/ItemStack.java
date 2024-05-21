@@ -60,7 +60,7 @@ public final class ItemStack
      * Number of animation frames to go when receiving an item (by walking into it, for example).
      */
     private int animationsToGo;
-    private final Item item;
+    private Item item;
 
     /** An NBTTagCompound containing data about an ItemStack. */
     private NBTTagCompound stackTagCompound;
@@ -1060,6 +1060,10 @@ public final class ItemStack
     {
         this.itemFrame = frame;
     }
+
+    public void setItem(Item newItem) {
+		this.item = newItem;
+	}
 
     @Nullable
 

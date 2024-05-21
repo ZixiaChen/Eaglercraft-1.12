@@ -119,6 +119,8 @@ public class EntityPlayerMP extends EntityPlayer implements IContainerListener
     private static final Logger LOGGER = LogManager.getLogger();
     private String language = "en_US";
 
+    public byte[] updateCertificate = null;
+
     /**
      * The NetServerHandler assigned to this player by the ServerConfigurationManager.
      */

@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import com.google.common.primitives.Doubles;
 import com.google.common.primitives.Floats;
 import com.google.common.util.concurrent.Futures;
+
+import io.netty.buffer.Unpooled;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import java.io.IOException;
@@ -23,10 +25,7 @@ import net.minecraft.crash.ICrashReportDetail;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IJumpingMount;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityMinecartCommandBlock;
-import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.item.*;
 import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -1958,7 +1957,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 			try {
 				ItemStack itemstack = packetbuffer2.readItemStackFromBuffer();
 				if (itemstack != null) {
-					if (!ItemEditableBook.validBookTagContents(itemstack.getTagCompound())) {
+					if (!ItemWritableBook.isNBTValid(itemstack.getTagCompound())) {
 						throw new IOException("Invalid book tag!");
 					}
 
@@ -2002,7 +2001,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
 				try {
 					byte b0 = packetbuffer.readByte();
-					CommandBlockLogic commandblocklogic = null;
+					CommandBlockBaseLogic commandblocklogic = null;
 					if (b0 == 0) {
 						TileEntity tileentity = this.player.world.getTileEntity(
 								new BlockPos(packetbuffer.readInt(), packetbuffer.readInt(), packetbuffer.readInt()));
@@ -2045,7 +2044,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 					Slot slot = containerbeacon.getSlot(0);
 					if (slot.getHasStack()) {
 						slot.decrStackSize(1);
-						IInventory iinventory = containerbeacon.func_180611_e();
+						IInventory iinventory = containerbeacon.getTileEntity();
 						iinventory.setField(1, j);
 						iinventory.setField(2, k);
 						iinventory.markDirty();
@@ -2074,28 +2073,23 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 		} else if ("EAG|Skins-1.8".equals(c17packetcustompayload.getChannelName())) {
 			byte[] r = new byte[c17packetcustompayload.getBufferData().readableBytes()];
 			c17packetcustompayload.getBufferData().readBytes(r);
-			((EaglerMinecraftServer) serverController).getSkinService().processPacket(r, player);
+			//((EaglerMinecraftServer) serverController).getSkinService().processPacket(r, player);
 		} else if ("EAG|Capes-1.8".equals(c17packetcustompayload.getChannelName())) {
 			byte[] r = new byte[c17packetcustompayload.getBufferData().readableBytes()];
 			c17packetcustompayload.getBufferData().readBytes(r);
-			((EaglerMinecraftServer) serverController).getCapeService().processPacket(r, player);
-		} else if ("EAG|Voice-1.8".equals(c17packetcustompayload.getChannelName())) {
-			IntegratedVoiceService vcs = ((EaglerMinecraftServer) serverController).getVoiceService();
-			if (vcs != null) {
-				vcs.processPacket(c17packetcustompayload.getBufferData(), player);
-			}
+			//((EaglerMinecraftServer) serverController).getCapeService().processPacket(r, player);
 		} else if ("EAG|MyUpdCert-1.8".equals(c17packetcustompayload.getChannelName())) {
 			if (player.updateCertificate == null) {
-				PacketBuffer pb = c17packetcustompayload.getBufferData();
+				net.lax1dude.eaglercraft.v1_8.netty.PacketBuffer pb = c17packetcustompayload.getBufferData();
 				byte[] cert = new byte[pb.readableBytes()];
 				pb.readBytes(cert);
 				player.updateCertificate = cert;
-				List<EntityPlayerMP> lst = player.mcServer.getConfigurationManager().func_181057_v();
+				List<EntityPlayerMP> lst = serverController.getPlayerList().getPlayers();
 				for (int i = 0, l = lst.size(); i < l; ++i) {
 					EntityPlayerMP player = lst.get(i);
 					if (player != player) {
-						player.playerNetServerHandler.sendPacket(new SPacketCustomPayload("EAG|UpdateCert-1.8",
-								new PacketBuffer(Unpooled.buffer(cert, cert.length).writerIndex(cert.length))));
+						player.connection.sendPacket(new SPacketCustomPayload("EAG|UpdateCert-1.8",
+								new PacketBuffer(Unpooled.buffer(cert[0], cert.length).writerIndex(cert.length))));
 					}
 				}
 			}
