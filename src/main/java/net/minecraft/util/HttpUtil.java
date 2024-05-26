@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-import com.google.common.util.concurrent.ListenableFuture;
+import net.lax1dude.eaglercraft.v1_8.futures.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
