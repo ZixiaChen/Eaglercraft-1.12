@@ -11,7 +11,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.src.Config;
-import shadersmod.client.Shaders;
 
 public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingBase<T>
 {

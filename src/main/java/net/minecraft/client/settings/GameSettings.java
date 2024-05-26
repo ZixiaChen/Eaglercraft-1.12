@@ -57,7 +57,6 @@ import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import shadersmod.client.Shaders;
 
 public class GameSettings
 {

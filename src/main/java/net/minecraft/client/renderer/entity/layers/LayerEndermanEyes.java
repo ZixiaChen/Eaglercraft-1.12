@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.entity.RenderEnderman;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.src.Config;
 import net.minecraft.util.ResourceLocation;
-import shadersmod.client.Shaders;
 
 public class LayerEndermanEyes implements LayerRenderer<EntityEnderman>
 {

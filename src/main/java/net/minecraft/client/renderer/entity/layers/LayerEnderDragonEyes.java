@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.entity.RenderDragon;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.src.Config;
 import net.minecraft.util.ResourceLocation;
-import shadersmod.client.Shaders;
 
 public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
 {

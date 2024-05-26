@@ -4,7 +4,6 @@ import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockRenderLayer;
-import shadersmod.client.ShadersRender;
 
 public class VboRenderList extends ChunkRenderContainer
 {

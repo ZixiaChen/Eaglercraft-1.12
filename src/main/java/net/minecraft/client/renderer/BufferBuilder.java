@@ -23,7 +23,6 @@ import net.minecraft.world.IBlockAccess;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import org.lwjgl.opengl.GL11;
-import shadersmod.client.SVertexBuilder;
 
 public class BufferBuilder
 {

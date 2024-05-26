@@ -29,7 +29,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
-import shadersmod.client.SVertexBuilder;
 
 public class BlockModelRenderer
 {

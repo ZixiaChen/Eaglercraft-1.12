@@ -110,9 +110,6 @@ import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.util.vector.Vector4f;
-import shadersmod.client.Shaders;
-import shadersmod.client.ShadersRender;
-import shadersmod.client.ShadowUtils;
 
 public class RenderGlobal implements IWorldEventListener, IResourceManagerReloadListener {
    private static final Logger field_147599_m = LogManager.getLogger();

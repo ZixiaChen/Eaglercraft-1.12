@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.src.Config;
 import net.minecraft.src.Reflector;
-import shadersmod.client.SVertexBuilder;
 
 public class WorldVertexBufferUploader
 {

@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.src.Config;
 import net.minecraft.util.ResourceLocation;
-import shadersmod.client.Shaders;
 
 public class LayerSpiderEyes<T extends EntitySpider> implements LayerRenderer<T>
 {

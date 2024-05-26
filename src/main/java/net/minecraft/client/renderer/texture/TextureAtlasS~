@@ -20,7 +20,6 @@ import net.minecraft.src.Config;
 import net.minecraft.src.TextureUtils;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
-import shadersmod.client.Shaders;
 
 public class TextureAtlasSprite {
    private final String field_110984_i;

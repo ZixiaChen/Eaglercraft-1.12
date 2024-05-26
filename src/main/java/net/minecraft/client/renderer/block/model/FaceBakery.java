@@ -14,7 +14,6 @@ import net.minecraftforge.common.model.ITransformation;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.util.vector.Vector4f;
-import shadersmod.client.Shaders;
 
 public class FaceBakery
 {

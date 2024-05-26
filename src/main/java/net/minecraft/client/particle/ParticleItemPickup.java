@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.src.Config;
 import net.minecraft.world.World;
-import shadersmod.client.Shaders;
 
 public class ParticleItemPickup extends Particle
 {

@@ -14,7 +14,6 @@ import net.minecraft.src.GuiQualitySettingsOF;
 import net.minecraft.src.GuiScreenOF;
 import net.minecraft.src.Lang;
 import net.minecraft.src.TooltipManager;
-import shadersmod.client.GuiShaders;
 
 public class GuiVideoSettings extends GuiScreenOF
 {

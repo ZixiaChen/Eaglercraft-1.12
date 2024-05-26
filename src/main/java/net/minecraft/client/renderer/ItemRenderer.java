@@ -32,7 +32,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.storage.MapData;
-import shadersmod.client.Shaders;
 
 public class ItemRenderer
 {

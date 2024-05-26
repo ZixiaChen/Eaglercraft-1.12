@@ -16,8 +16,6 @@ import net.minecraft.src.CustomItems;
 import net.minecraft.src.Reflector;
 import net.minecraft.src.ReflectorForge;
 import net.minecraft.util.ResourceLocation;
-import shadersmod.client.Shaders;
-import shadersmod.client.ShadersRender;
 
 public abstract class LayerArmorBase<T extends ModelBase> implements LayerRenderer<EntityLivingBase>
 {

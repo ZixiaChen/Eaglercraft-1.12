@@ -2,7 +2,6 @@ package net.minecraft.client.renderer.vertex;
 
 import net.minecraft.src.Config;
 import net.minecraft.src.Reflector;
-import shadersmod.client.SVertexFormat;
 
 public class DefaultVertexFormats
 {
