@@ -75,7 +75,7 @@ public class Quaternion extends Vector implements ReadableVector4f {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see org.lwjgl.util.vector.WritableVector2f#set(float, float)
+	 * @see net.lax1dude.eaglercraft.v1_8.vector.WritableVector2f#set(float, float)
 	 */
 	public void set(float x, float y) {
 		this.x = x;
@@ -85,7 +85,7 @@ public class Quaternion extends Vector implements ReadableVector4f {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see org.lwjgl.util.vector.WritableVector3f#set(float, float, float)
+	 * @see net.lax1dude.eaglercraft.v1_8.vector.WritableVector3f#set(float, float, float)
 	 */
 	public void set(float x, float y, float z) {
 		this.x = x;
@@ -96,7 +96,7 @@ public class Quaternion extends Vector implements ReadableVector4f {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see org.lwjgl.util.vector.WritableVector4f#set(float, float, float,
+	 * @see net.lax1dude.eaglercraft.v1_8.vector.WritableVector4f#set(float, float, float,
 	 *      float)
 	 */
 	public void set(float x, float y, float z, float w) {
@@ -236,7 +236,7 @@ public class Quaternion extends Vector implements ReadableVector4f {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.lwjgl.util.vector.Vector#load(java.nio.FloatBuffer)
+	 * @see net.lax1dude.eaglercraft.v1_8.vector.Vector#load(java.nio.FloatBuffer)
 	 */
 	public Vector load(FloatBuffer buf) {
 		x = buf.get();
@@ -273,7 +273,7 @@ public class Quaternion extends Vector implements ReadableVector4f {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.lwjgl.util.vector.ReadableVector#store(java.nio.FloatBuffer)
+	 * @see net.lax1dude.eaglercraft.v1_8.vector.ReadableVector#store(java.nio.FloatBuffer)
 	 */
 	public Vector store(FloatBuffer buf) {
 		buf.put(x);

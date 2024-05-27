@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.util.vector.Matrix4f;
+import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
 
 public class ShaderUniform
 {

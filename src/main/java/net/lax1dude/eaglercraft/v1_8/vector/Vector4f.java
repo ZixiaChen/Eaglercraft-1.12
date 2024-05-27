@@ -71,7 +71,7 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.lwjgl.util.vector.WritableVector2f#set(float, float)
+	 * @see net.lax1dude.eaglercraft.v1_8.vector.WritableVector2f#set(float, float)
 	 */
 	public void set(float x, float y) {
 		this.x = x;
@@ -79,7 +79,7 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.lwjgl.util.vector.WritableVector3f#set(float, float, float)
+	 * @see net.lax1dude.eaglercraft.v1_8.vector.WritableVector3f#set(float, float, float)
 	 */
 	public void set(float x, float y, float z) {
 		this.x = x;
@@ -88,7 +88,7 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.lwjgl.util.vector.WritableVector4f#set(float, float, float, float)
+	 * @see net.lax1dude.eaglercraft.v1_8.vector.WritableVector4f#set(float, float, float, float)
 	 */
 	public void set(float x, float y, float z, float w) {
 		this.x = x;

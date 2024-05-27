@@ -10,8 +10,8 @@ import net.minecraftforge.common.model.IModelPart;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.ITransformation;
 import net.minecraftforge.common.model.TRSRTransformation;
-import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector3f;
+import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
+import net.lax1dude.eaglercraft.v1_8.vector.Vector3f;
 
 public enum ModelRotation implements IModelState, ITransformation
 {
