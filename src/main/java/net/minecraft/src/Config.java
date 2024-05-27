@@ -263,107 +263,17 @@ public class Config
 
     private static GlVersion getGlVersionLwjgl()
     {
-        if (GLContext.getCapabilities().OpenGL44)
-        {
-            return new GlVersion(4, 4);
-        }
-        else if (GLContext.getCapabilities().OpenGL43)
-        {
-            return new GlVersion(4, 3);
-        }
-        else if (GLContext.getCapabilities().OpenGL42)
-        {
-            return new GlVersion(4, 2);
-        }
-        else if (GLContext.getCapabilities().OpenGL41)
-        {
-            return new GlVersion(4, 1);
-        }
-        else if (GLContext.getCapabilities().OpenGL40)
-        {
-            return new GlVersion(4, 0);
-        }
-        else if (GLContext.getCapabilities().OpenGL33)
-        {
-            return new GlVersion(3, 3);
-        }
-        else if (GLContext.getCapabilities().OpenGL32)
-        {
-            return new GlVersion(3, 2);
-        }
-        else if (GLContext.getCapabilities().OpenGL31)
-        {
-            return new GlVersion(3, 1);
-        }
-        else if (GLContext.getCapabilities().OpenGL30)
-        {
-            return new GlVersion(3, 0);
-        }
-        else if (GLContext.getCapabilities().OpenGL21)
-        {
-            return new GlVersion(2, 1);
-        }
-        else if (GLContext.getCapabilities().OpenGL20)
-        {
-            return new GlVersion(2, 0);
-        }
-        else if (GLContext.getCapabilities().OpenGL15)
-        {
-            return new GlVersion(1, 5);
-        }
-        else if (GLContext.getCapabilities().OpenGL14)
-        {
-            return new GlVersion(1, 4);
-        }
-        else if (GLContext.getCapabilities().OpenGL13)
-        {
-            return new GlVersion(1, 3);
-        }
-        else if (GLContext.getCapabilities().OpenGL12)
-        {
-            return new GlVersion(1, 2);
-        }
-        else
-        {
-            return GLContext.getCapabilities().OpenGL11 ? new GlVersion(1, 1) : new GlVersion(1, 0);
-        }
+        return null;
     }
 
     public static GlVersion getGlVersion()
     {
-        if (glVersion == null)
-        {
-            String s = GL11.glGetString(GL11.GL_VERSION);
-            glVersion = parseGlVersion(s, (GlVersion)null);
-
-            if (glVersion == null)
-            {
-                glVersion = getGlVersionLwjgl();
-            }
-
-            if (glVersion == null)
-            {
-                glVersion = new GlVersion(1, 0);
-            }
-        }
-
-        return glVersion;
+        return new GlVersion(1, 0);
     }
 
     public static GlVersion getGlslVersion()
     {
-        if (glslVersion == null)
-        {
-            String s = GL11.glGetString(GL20.GL_SHADING_LANGUAGE_VERSION);
-            glslVersion = parseGlVersion(s, (GlVersion)null);
-
-            if (glslVersion == null)
-            {
-                glslVersion = new GlVersion(1, 10);
-            }
-        }
-
-        return glslVersion;
+        return new GlVersion(1, 10);
     }
 
     public static GlVersion parseGlVersion(String p_parseGlVersion_0_, GlVersion p_parseGlVersion_1_)

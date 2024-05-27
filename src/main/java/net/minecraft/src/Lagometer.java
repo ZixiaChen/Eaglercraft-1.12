@@ -4,12 +4,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.profiler.Profiler;
-import org.lwjgl.opengl.GL11;
 
 public class Lagometer
 {
@@ -150,7 +149,7 @@ public class Lagometer
                 GlStateManager.pushMatrix();
                 GlStateManager.loadIdentity();
                 GlStateManager.translate(0.0F, 0.0F, -2000.0F);
-                GL11.glLineWidth(1.0F);
+                //GL11.glLineWidth(1.0F);
                 GlStateManager.disableTexture2D();
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder bufferbuilder = tessellator.getBuffer();

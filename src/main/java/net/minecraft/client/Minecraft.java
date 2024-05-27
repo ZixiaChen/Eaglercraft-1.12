@@ -200,7 +200,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
@@ -406,7 +405,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         this.launchedVersion = gameConfig.gameInfo.version;
         this.versionType = gameConfig.gameInfo.versionType;
         this.mcDefaultResourcePack = new DefaultResourcePack(gameConfig.folderInfo.getAssetsIndex());
-        this.proxy = gameConfig.userInfo.proxy == null ? Proxy.NO_PROXY : gameConfig.userInfo.proxy;
+        this.proxy = null;
         this.session = gameConfig.userInfo.session;
         LOGGER.info("Setting user: {}", (Object)this.session.getUsername());
         LOGGER.debug("(Session ID is {})", (Object)this.session.getSessionID());
