@@ -72,7 +72,7 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
 
     protected void renderLeash(T entityLivingIn, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        if (!Config.isShaders() || !Shaders.isShadowPass)
+        if (!Config.isShaders())
         {
             Entity entity = entityLivingIn.getLeashedToEntity();
 
@@ -115,7 +115,7 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
 
                 if (Config.isShaders())
                 {
-                    Shaders.beginLeash();
+                    //Shaders.beginLeash();
                 }
 
                 int i = 24;
@@ -165,7 +165,7 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
 
                 if (Config.isShaders())
                 {
-                    Shaders.endLeash();
+                    //Shaders.endLeash();
                 }
 
                 GlStateManager.enableLighting();

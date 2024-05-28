@@ -30,8 +30,8 @@ public class DefaultVertexFormats
     {
         if (Config.isShaders())
         {
-            BLOCK = SVertexFormat.makeDefVertexFormatBlock();
-            ITEM = SVertexFormat.makeDefVertexFormatItem();
+            //BLOCK = SVertexFormat.makeDefVertexFormatBlock();
+            //ITEM = SVertexFormat.makeDefVertexFormatItem();
         }
         else
         {

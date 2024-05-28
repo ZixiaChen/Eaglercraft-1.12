@@ -154,14 +154,14 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 
     public static void renderEnchantedGlint(RenderLivingBase<?> p_188364_0_, EntityLivingBase p_188364_1_, ModelBase model, float p_188364_3_, float p_188364_4_, float p_188364_5_, float p_188364_6_, float p_188364_7_, float p_188364_8_, float p_188364_9_)
     {
-        if (!Config.isShaders() || !Shaders.isShadowPass)
+        if (!Config.isShaders())
         {
             float f = (float)p_188364_1_.ticksExisted + p_188364_5_;
             p_188364_0_.bindTexture(ENCHANTED_ITEM_GLINT_RES);
 
             if (Config.isShaders())
             {
-                ShadersRender.renderEnchantedGlintBegin();
+                //ShadersRender.renderEnchantedGlintBegin();
             }
 
             Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
@@ -199,7 +199,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
 
             if (Config.isShaders())
             {
-                ShadersRender.renderEnchantedGlintEnd();
+                //ShadersRender.renderEnchantedGlintEnd();
             }
         }
     }

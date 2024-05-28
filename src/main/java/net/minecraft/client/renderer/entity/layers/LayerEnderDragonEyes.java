@@ -36,7 +36,7 @@ public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
 
         if (Config.isShaders())
         {
-            Shaders.beginSpiderEyes();
+            //Shaders.beginSpiderEyes();
         }
 
         Config.getRenderGlobal().renderOverlayEyes = true;
@@ -45,7 +45,7 @@ public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
 
         if (Config.isShaders())
         {
-            Shaders.endSpiderEyes();
+            //Shaders.endSpiderEyes();
         }
 
         Minecraft.getMinecraft().entityRenderer.setupFogColor(false);

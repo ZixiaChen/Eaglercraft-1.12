@@ -33,7 +33,7 @@ public class VboRenderList extends ChunkRenderContainer
     {
         if (Config.isShaders())
         {
-            ShadersRender.setupArrayPointersVbo();
+            //ShadersRender.setupArrayPointersVbo();
         }
         else
         {
