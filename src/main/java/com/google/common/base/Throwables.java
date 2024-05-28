@@ -70,6 +70,16 @@ public final class Throwables {
 		}
 	}
 
+	public static void throwIfUnchecked(Throwable throwable) {
+		checkNotNull(throwable);
+		if (throwable instanceof RuntimeException) {
+		  throw (RuntimeException) throwable;
+		}
+		if (throwable instanceof Error) {
+		  throw (Error) throwable;
+		}
+	  }
+
 	/**
 	 * Propagates {@code throwable} exactly as-is, if and only if it is an instance
 	 * of {@link RuntimeException} or {@link Error}. Example usage:

@@ -183,8 +183,8 @@ public class GuiVideoSettings extends GuiScreenOF
                 }
 
                 this.mc.gameSettings.saveOptions();
-                GuiShaders guishaders = new GuiShaders(this, this.guiGameSettings);
-                this.mc.displayGuiScreen(guishaders);
+                //GuiShaders guishaders = new GuiShaders(this, this.guiGameSettings);
+                //this.mc.displayGuiScreen(guishaders);
             }
         }
     }

@@ -30,15 +30,7 @@ public class DynamicTexture extends AbstractTexture
         this.height = textureHeight;
         this.dynamicTextureData = new int[textureWidth * textureHeight * 3];
 
-        if (Config.isShaders())
-        {
-            ShadersTex.initDynamicTexture(this.getGlTextureId(), textureWidth, textureHeight, this);
-            this.shadersInitialized = true;
-        }
-        else
-        {
-            TextureUtil.allocateTexture(this.getGlTextureId(), textureWidth, textureHeight);
-        }
+        TextureUtil.allocateTexture(this.getGlTextureId(), textureWidth, textureHeight);
     }
 
     public void loadTexture(IResourceManager resourceManager) throws IOException
@@ -47,20 +39,7 @@ public class DynamicTexture extends AbstractTexture
 
     public void updateDynamicTexture()
     {
-        if (Config.isShaders())
-        {
-            if (!this.shadersInitialized)
-            {
-                ShadersTex.initDynamicTexture(this.getGlTextureId(), this.width, this.height, this);
-                this.shadersInitialized = true;
-            }
-
-            ShadersTex.updateDynamicTexture(this.getGlTextureId(), this.dynamicTextureData, this.width, this.height, this);
-        }
-        else
-        {
-            TextureUtil.uploadTexture(this.getGlTextureId(), this.dynamicTextureData, this.width, this.height);
-        }
+        TextureUtil.uploadTexture(this.getGlTextureId(), this.dynamicTextureData, this.width, this.height);
     }
 
     public int[] getTextureData()

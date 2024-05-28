@@ -38,21 +38,21 @@ public interface ListeningExecutorService extends ExecutorService {
    * @throws RejectedExecutionException {@inheritDoc}
    */
   @Override
-  <T> ListenableFuture<T> submit(Callable<T> task);
+  <T> Future<T> submit(Callable<T> task);
 
   /**
    * @return a {@code ListenableFuture} representing pending completion of the task
    * @throws RejectedExecutionException {@inheritDoc}
    */
   @Override
-  ListenableFuture<?> submit(Runnable task);
+  Future<?> submit(Runnable task);
 
   /**
    * @return a {@code ListenableFuture} representing pending completion of the task
    * @throws RejectedExecutionException {@inheritDoc}
    */
   @Override
-  <T> ListenableFuture<T> submit(Runnable task, T result);
+  <T> Future<T> submit(Runnable task, T result);
 
   /**
    * {@inheritDoc}

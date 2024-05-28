@@ -49,7 +49,7 @@ import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
-import org.lwjgl.opengl.Display;
+import net.lax1dude.eaglercraft.v1_8.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -1872,7 +1872,7 @@ public class Config
                 }
                 catch (LWJGLException lwjglexception1)
                 {
-                    lwjglexception1.printStackTrace();
+                    //lwjglexception1.printStackTrace();
 
                     try
                     {

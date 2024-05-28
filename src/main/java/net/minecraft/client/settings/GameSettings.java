@@ -3318,10 +3318,6 @@ public class GameSettings
         this.ofDrippingWaterLava = true;
         this.ofAnimatedTerrain = true;
         this.ofAnimatedTextures = true;
-        Shaders.setShaderPack(Shaders.packNameNone);
-        Shaders.configAntialiasingLevel = 0;
-        Shaders.uninit();
-        Shaders.storeConfig();
         this.updateWaterOpacity();
         this.mc.refreshResources();
         this.saveOptions();
