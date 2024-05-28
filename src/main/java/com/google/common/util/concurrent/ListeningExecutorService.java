@@ -15,7 +15,6 @@
 package com.google.common.util.concurrent;
 
 import java.util.Collection;
-import net.lax1dude.eaglercraft.v1_8.futures.ListenableFuture;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;

@@ -899,7 +899,7 @@ public final class MoreExecutors {
    * @since 17.0
    */
   @Beta
-  @CanIgnoreReturnValue
+  
    // concurrency
   public static boolean shutdownAndAwaitTermination(
       ExecutorService service, long timeout, TimeUnit unit) {
