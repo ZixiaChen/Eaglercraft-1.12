@@ -31,6 +31,7 @@ import java.util.Iterator;
 
 import com.google.common.annotations.Beta;
 import com.google.common.base.Ascii;
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.hash.Funnels;
 import com.google.common.hash.HashCode;
@@ -105,6 +106,11 @@ public abstract class ByteSource implements InputSupplier<InputStream> {
 	public final InputStream getInput() throws IOException {
 		return openStream();
 	}
+
+	public Optional<Long> sizeIfKnown() {
+		return Optional.absent();
+	}
+	
 
 	/**
 	 * Opens a new buffered {@link InputStream} for reading from this source. The

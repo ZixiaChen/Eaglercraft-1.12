@@ -36,6 +36,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Nullable;
 
@@ -164,6 +165,10 @@ public final class Sets {
 	public static <E> HashSet<E> newHashSet() {
 		return new HashSet<E>();
 	}
+
+	public static <E> Set<E> newConcurrentHashSet() {
+		return Collections.newSetFromMap(new ConcurrentHashMap<E, Boolean>());
+	  }
 
 	/**
 	 * Creates a <i>mutable</i> {@code HashSet} instance containing the given

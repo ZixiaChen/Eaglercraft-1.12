@@ -2,7 +2,6 @@ package net.minecraft.client.gui;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import com.google.common.util.concurrent.Runnables;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;

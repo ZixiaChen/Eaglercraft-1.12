@@ -17,6 +17,7 @@
 package com.google.common.base;
 
 import java.lang.ref.WeakReference;
+import java.util.Locale;
 
 import com.google.common.annotations.GwtCompatible;
 
@@ -43,4 +44,8 @@ final class Platform {
 		WeakReference<? extends Enum<?>> ref = Enums.getEnumConstants(enumClass).get(value);
 		return ref == null ? Optional.<T>absent() : Optional.of(enumClass.cast(ref.get()));
 	}
+
+	static String formatCompact4Digits(double value) {
+		return String.format(Locale.ROOT, "%.4g", value);
+	  }
 }
