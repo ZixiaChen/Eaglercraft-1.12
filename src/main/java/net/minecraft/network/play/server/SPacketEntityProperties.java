@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.entity.ai.attributes.AttributeModifier;

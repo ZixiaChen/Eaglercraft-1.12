@@ -9,8 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.UUID;
 import java.util.Map.Entry;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.HttpUtil;
 
@@ -18,7 +19,7 @@ public class Snooper
 {
     private final Map<String, Object> snooperStats = Maps.<String, Object>newHashMap();
     private final Map<String, Object> clientStats = Maps.<String, Object>newHashMap();
-    private final String uniqueID = UUID.randomUUID().toString();
+    private final String uniqueID = new EaglercraftUUID("S-n-o-o-p").toString();
 
     /** URL of the server to send the report to */
     private final URL serverUrl;

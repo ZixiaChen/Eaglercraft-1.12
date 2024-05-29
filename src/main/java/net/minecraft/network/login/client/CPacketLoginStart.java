@@ -3,7 +3,6 @@ package net.minecraft.network.login.client;
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.GameProfile;
 import java.io.IOException;
-import java.util.UUID;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.login.INetHandlerLoginServer;

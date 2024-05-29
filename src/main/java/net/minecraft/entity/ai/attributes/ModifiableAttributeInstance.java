@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
 import javax.annotation.Nullable;
 
 public class ModifiableAttributeInstance implements IAttributeInstance
@@ -82,7 +83,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
     /**
      * Returns attribute modifier, if any, by the given UUID
      */
-    public AttributeModifier getModifier(UUID uuid)
+    public AttributeModifier getModifier(EaglercraftUUID uuid)
     {
         return this.mapByUUID.get(uuid);
     }
@@ -145,7 +146,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
         this.flagForUpdate();
     }
 
-    public void removeModifier(UUID p_188479_1_)
+    public void removeModifier(EaglercraftUUID p_188479_1_)
     {
         AttributeModifier attributemodifier = this.getModifier(p_188479_1_);
 
@@ -218,17 +219,5 @@ public class ModifiableAttributeInstance implements IAttributeInstance
         }
 
         return set;
-    }
-
-    @Override
-    public AttributeModifier getModifier(EaglercraftUUID uuid) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getModifier'");
-    }
-
-    @Override
-    public void removeModifier(EaglercraftUUID p_188479_1_) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeModifier'");
     }
 }

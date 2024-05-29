@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
-import java.util.UUID;
 
 public class UserListWhitelistEntry extends UserListEntry<GameProfile>
 {

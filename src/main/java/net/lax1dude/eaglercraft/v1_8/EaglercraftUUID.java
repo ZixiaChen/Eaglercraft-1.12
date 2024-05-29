@@ -1,6 +1,7 @@
 package net.lax1dude.eaglercraft.v1_8;
 
 import net.lax1dude.eaglercraft.v1_8.crypto.MD5Digest;
+import java.util.UUID;
 
 /**
  * Copyright (c) 2022-2023 LAX1DUDE. All Rights Reserved.

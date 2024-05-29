@@ -3,7 +3,6 @@ package net.minecraft.item;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Multimap;
 import java.util.List;
-import java.util.UUID;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.block.BlockDispenser;

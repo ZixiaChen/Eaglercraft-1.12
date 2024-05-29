@@ -34,6 +34,9 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
+
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
+
 import java.io.IOException;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
@@ -57,7 +60,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerArray;
@@ -654,17 +656,17 @@ public final class TypeAdapters {
   public static final TypeAdapterFactory INET_ADDRESS_FACTORY =
       newTypeHierarchyFactory(InetAddress.class, INET_ADDRESS);
 
-  public static final TypeAdapter<UUID> UUID =
-      new TypeAdapter<UUID>() {
+  public static final TypeAdapter<EaglercraftUUID> EaglercraftUUID =
+      new TypeAdapter<EaglercraftUUID>() {
         @Override
-        public UUID read(JsonReader in) throws IOException {
+        public EaglercraftUUID read(JsonReader in) throws IOException {
           if (in.peek() == JsonToken.NULL) {
             in.nextNull();
             return null;
           }
           String s = in.nextString();
           try {
-            return java.util.UUID.fromString(s);
+            return new EaglercraftUUID(s);
           } catch (IllegalArgumentException e) {
             throw new JsonSyntaxException(
                 "Failed parsing '" + s + "' as UUID; at path " + in.getPreviousPath(), e);
@@ -672,12 +674,12 @@ public final class TypeAdapters {
         }
 
         @Override
-        public void write(JsonWriter out, UUID value) throws IOException {
+        public void write(JsonWriter out, EaglercraftUUID value) throws IOException {
           out.value(value == null ? null : value.toString());
         }
       };
 
-  public static final TypeAdapterFactory UUID_FACTORY = newFactory(UUID.class, UUID);
+  public static final TypeAdapterFactory UUID_FACTORY = newFactory(EaglercraftUUID.class, EaglercraftUUID);
 
   public static final TypeAdapter<Currency> CURRENCY =
       new TypeAdapter<Currency>() {

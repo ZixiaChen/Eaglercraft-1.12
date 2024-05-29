@@ -24,7 +24,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
 import java.util.Map.Entry;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
@@ -2315,11 +2314,6 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
     public Collection<NetworkPlayerInfo> getPlayerInfoMap()
     {
         return this.playerInfoMap.values();
-    }
-
-    public NetworkPlayerInfo getPlayerInfo(UUID uniqueId)
-    {
-        return this.playerInfoMap.get(uniqueId);
     }
 
     public NetworkPlayerInfo getPlayerInfo(EaglercraftUUID uniqueId)

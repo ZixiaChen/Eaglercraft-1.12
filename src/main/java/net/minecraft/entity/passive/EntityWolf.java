@@ -1,7 +1,6 @@
 package net.minecraft.entity.passive;
 
 import com.google.common.base.Predicate;
-import java.util.UUID;
 import javax.annotation.Nullable;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;

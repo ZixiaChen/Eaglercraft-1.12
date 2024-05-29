@@ -6,7 +6,6 @@ import com.google.common.collect.UnmodifiableIterator;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
-import java.util.UUID;
 import java.util.Map.Entry;
 import javax.annotation.Nullable;
 import net.minecraft.block.Block;

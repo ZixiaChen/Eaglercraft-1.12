@@ -33,7 +33,6 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.UUID;
 import javax.annotation.Nullable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.JsonUtils;
@@ -197,7 +196,7 @@ public class PlayerProfileCache
     /**
      * Get a {@link ProfileEntry} by UUID
      */
-    private PlayerProfileCache.ProfileEntry getByUUID(UUID uuid)
+    private PlayerProfileCache.ProfileEntry getByUUID(EaglercraftUUID uuid)
     {
         PlayerProfileCache.ProfileEntry playerprofilecache$profileentry = this.uuidToProfileEntryMap.get(uuid);
 

@@ -8,7 +8,6 @@ import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;

@@ -5,7 +5,6 @@ import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.Random;
-import java.util.UUID;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;

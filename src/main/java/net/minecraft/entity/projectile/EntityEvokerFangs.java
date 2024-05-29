@@ -1,6 +1,5 @@
 package net.minecraft.entity.projectile;
 
-import java.util.UUID;
 import javax.annotation.Nullable;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;

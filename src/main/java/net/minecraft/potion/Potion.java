@@ -2,7 +2,6 @@ package net.minecraft.potion;
 
 import com.google.common.collect.Maps;
 import java.util.Map;
-import java.util.UUID;
 import java.util.Map.Entry;
 import javax.annotation.Nullable;
 

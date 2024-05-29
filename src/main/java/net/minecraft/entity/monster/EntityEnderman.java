@@ -6,7 +6,6 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 import java.util.Random;
 import java.util.Set;
-import java.util.UUID;
 import javax.annotation.Nullable;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;

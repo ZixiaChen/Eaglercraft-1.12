@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.util.Date;
-import java.util.UUID;
 
 public class UserListBansEntry extends UserListEntryBan<GameProfile>
 {

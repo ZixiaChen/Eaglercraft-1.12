@@ -12,7 +12,6 @@ import com.google.gson.JsonSerializer;
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
 import java.lang.reflect.Type;
-import java.util.UUID;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.text.ITextComponent;
 

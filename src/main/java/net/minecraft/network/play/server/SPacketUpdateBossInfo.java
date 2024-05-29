@@ -1,7 +1,6 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.network.Packet;

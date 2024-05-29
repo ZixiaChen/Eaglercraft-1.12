@@ -1,6 +1,5 @@
 package net.minecraft.client.resources;
 
-import java.util.UUID;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.util.ResourceLocation;
@@ -26,10 +25,6 @@ public class DefaultPlayerSkin
     /**
      * Retrieves the default skin for this player. Depending on the model used this will be Alex or Steve.
      */
-    public static ResourceLocation getDefaultSkin(UUID playerUUID)
-    {
-        return Skin;
-    }
 
     public static ResourceLocation getDefaultSkin(EaglercraftUUID playerUUID)
     {
@@ -63,10 +58,6 @@ public class DefaultPlayerSkin
     /**
      * Retrieves the type of skin that a player is using. The Alex model is slim while the Steve model is default.
      */
-    public static String getSkinType(UUID playerUUID)
-    {
-        return "default";
-    }
 
     public static String getSkinType(EaglercraftUUID playerUUID)
     {
@@ -76,7 +67,7 @@ public class DefaultPlayerSkin
     /**
      * Checks if a players skin model is slim or the default. The Alex model is slime while the Steve model is default.
      */
-    private static boolean isSlimSkin(UUID playerUUID)
+    private static boolean isSlimSkin(EaglercraftUUID playerUUID)
     {
 		if(Skin == TEXTURE_STEVE){
 			return false;
