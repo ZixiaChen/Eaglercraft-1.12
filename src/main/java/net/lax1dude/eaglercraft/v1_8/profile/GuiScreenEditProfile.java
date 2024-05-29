@@ -241,7 +241,11 @@ public class GuiScreenEditProfile extends GuiScreen {
 			}
 
 			mc.getTextureManager().bindTexture(texture);
-			SkinPreviewRenderer.renderBiped(xx, yy, newSkinWaitSteveOrAlex ? width / 2 : mx, newSkinWaitSteveOrAlex ? height / 2 : my, model);
+
+			if(model != null){
+				SkinPreviewRenderer.renderBiped(xx, yy, newSkinWaitSteveOrAlex ? width / 2 : mx, newSkinWaitSteveOrAlex ? height / 2 : my, model);
+			}
+			
 		}
 	}
 

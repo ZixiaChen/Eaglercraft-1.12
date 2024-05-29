@@ -1,9 +1,6 @@
 package net.lax1dude.eaglercraft.v1_8.profile;
 
 import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelPlayer;
-import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.RenderHelper;
 
 /**
@@ -35,7 +32,7 @@ public class SkinPreviewRenderer {
 	}
 
 	public static void renderBiped(int x, int y, int mx, int my, SkinModel skinModel) {
-		ModelBiped model;
+		ModelBiped model = playerModelSteve;
 		switch(skinModel) {
 		case STEVE:
 		default:
@@ -67,7 +64,7 @@ public class SkinPreviewRenderer {
 		GlStateManager.rotate(((x - mx) * 0.06f), 0.0f, 1.0f, 0.0f);
 		GlStateManager.translate(0.0f, -1.0f, 0.0f);
 		
-		model.render(null, 0.0f, 0.0f, (float)(System.currentTimeMillis() % 2000000) / 50f, ((x - mx) * 0.06f), ((y - my) * -0.1f), 0.0625f);
+		//model.render(null, 0.0f, 0.0f, (float)(System.currentTimeMillis() % 2000000) / 50f, ((x - mx) * 0.06f), ((y - my) * -0.1f), 0.0625f);
 		
 		GlStateManager.popMatrix();
 		GlStateManager.disableLighting();

@@ -179,7 +179,6 @@ public class GuiOptions extends GuiScreen
             if (button.id == 104)
             {
                 this.mc.gameSettings.saveOptions();
-                this.mc.displayGuiScreen(new GuiSnooper(this, this.settings));
             }
 
             if (button.id == 200)
