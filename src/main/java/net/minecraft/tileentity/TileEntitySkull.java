@@ -4,8 +4,6 @@ import com.google.common.collect.Iterables;
 
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.*;
-import com.mojang.authlib.minecraft.MinecraftSessionService;
-import com.mojang.authlib.properties.Property;
 import java.util.UUID;
 import javax.annotation.Nullable;
 import net.minecraft.block.BlockSkull;
@@ -27,16 +25,16 @@ public class TileEntitySkull extends TileEntity implements ITickable
     private int dragonAnimatedTicks;
     private boolean dragonAnimated;
     private static PlayerProfileCache profileCache;
-    private static MinecraftSessionService sessionService;
+    //private static MinecraftSessionService sessionService;
 
     public static void setProfileCache(PlayerProfileCache profileCacheIn)
     {
         profileCache = profileCacheIn;
     }
 
-    public static void setSessionService(MinecraftSessionService sessionServiceIn)
+    public static void setSessionService(Object sessionServiceIn)
     {
-        sessionService = sessionServiceIn;
+        //sessionService = sessionServiceIn;
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
@@ -148,7 +146,7 @@ public class TileEntitySkull extends TileEntity implements ITickable
             {
                 return input;
             }
-            else if (profileCache != null && sessionService != null)
+            else if (profileCache != null)
             {
                 GameProfile gameprofile = profileCache.getGameProfileForUsername(input.getName());
 

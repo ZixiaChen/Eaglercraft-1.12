@@ -406,7 +406,7 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         this.launchedVersion = gameConfig.gameInfo.version;
         this.versionType = gameConfig.gameInfo.versionType;
         this.mcDefaultResourcePack = new DefaultResourcePack(gameConfig.folderInfo.getAssetsIndex());
-        this.proxy = gameConfig.userInfo.proxy == null ? Proxy.NO_PROXY : gameConfig.userInfo.proxy;
+        this.proxy = null;
         this.session = gameConfig.userInfo.session;
         LOGGER.info("Setting user: {}", (Object)this.session.getUsername());
         LOGGER.debug("(Session ID is {})", (Object)this.session.getSessionID());
