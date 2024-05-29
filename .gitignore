@@ -4,6 +4,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 src/main/assets/logs/
+runtime/
+UnpackRuntime.sh
+logs/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

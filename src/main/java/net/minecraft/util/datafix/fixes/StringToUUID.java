@@ -1,7 +1,5 @@
 package net.minecraft.util.datafix.fixes;
 
-import java.util.UUID;
-
 import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.datafix.IFixableData;

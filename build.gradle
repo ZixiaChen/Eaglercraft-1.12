@@ -73,8 +73,10 @@ dependencies {
     implementation files('lib/libraries/com/google/code/findbugs/jsr305/3.0.1/jsr305-3.0.1.jar') // JSR
     
     //TeaVM
-    teavm(teavm.libs.jso)
-    teavm(teavm.libs.jsoApis)
+    implementation 'org.teavm:teavm-jso:0.7.0'
+    implementation 'org.teavm:teavm-jso-apis:0.7.0'
+    //teavm(teavm.libs.jso)
+    //teavm(teavm.libs.jsoApis)
 }
 
 teavm.js {

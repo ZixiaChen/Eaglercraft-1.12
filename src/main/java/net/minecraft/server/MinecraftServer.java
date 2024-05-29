@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Queue;
 import java.util.Random;
-import java.util.UUID;
+import net.lax1dude.eaglercraft.v1_8.EaglercraftUUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -1413,24 +1413,6 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
     }
 
     @Nullable
-    public Entity getEntityFromUuid(UUID uuid)
-    {
-        for (WorldServer worldserver : this.worlds)
-        {
-            if (worldserver != null)
-            {
-                Entity entity = worldserver.getEntityFromUuid(uuid);
-
-                if (entity != null)
-                {
-                    return entity;
-                }
-            }
-        }
-
-        return null;
-    }
-
     public Entity getEntityFromUuid(EaglercraftUUID uuid)
     {
         for (WorldServer worldserver : this.worlds)
