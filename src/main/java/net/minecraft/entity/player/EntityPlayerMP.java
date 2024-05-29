@@ -111,8 +111,8 @@ import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.ILootContainer;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class EntityPlayerMP extends EntityPlayer implements IContainerListener
 {

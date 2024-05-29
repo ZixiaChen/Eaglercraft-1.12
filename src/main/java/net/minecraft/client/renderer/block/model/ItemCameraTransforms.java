@@ -8,7 +8,7 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.MathHelper;
-import net.lax1dude.eaglercraft.v1_8.vector.Quaternion;
+import org.lwjgl.util.vector.Quaternion;
 
 public class ItemCameraTransforms
 {

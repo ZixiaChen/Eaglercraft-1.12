@@ -45,8 +45,8 @@ import net.minecraft.world.WorldProviderEnd;
 import net.minecraft.world.end.DragonFightManager;
 import net.minecraft.world.gen.feature.WorldGenEndPodium;
 import net.minecraft.world.storage.loot.LootTableList;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class EntityDragon extends EntityLiving implements IEntityMultiPart, IMob
 {

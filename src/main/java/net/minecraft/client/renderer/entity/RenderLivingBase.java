@@ -20,8 +20,9 @@ import net.minecraft.src.Reflector;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.optifine.entity.model.CustomEntityModels;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import shadersmod.client.Shaders;
 
 public abstract class RenderLivingBase<T extends EntityLivingBase> extends Render<T>
 {

@@ -11,6 +11,7 @@ import net.lax1dude.eaglercraft.v1_8.profile.EaglerProfile;
 //import com.mojang.util.UUIDTypeAdapter;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 import javax.annotation.Nullable;
 
 public class Session
@@ -30,13 +31,6 @@ public class Session
         this.token = tokenIn;
         this.sessionType = Session.Type.setSessionType(sessionTypeIn);
     }
-    
-    public Session() {
-		this.playerID = "";
-        this.token = "";
-        this.sessionType = null;
-        reset();
-	}
 
     public String getSessionID()
     {

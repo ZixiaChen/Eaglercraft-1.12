@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.src.Config;
 import net.minecraft.util.ResourceLocation;
+import shadersmod.client.Shaders;
 
 public class LayerSpiderEyes<T extends EntitySpider> implements LayerRenderer<T>
 {
@@ -43,7 +44,7 @@ public class LayerSpiderEyes<T extends EntitySpider> implements LayerRenderer<T>
 
         if (Config.isShaders())
         {
-            //Shaders.beginSpiderEyes();
+            Shaders.beginSpiderEyes();
         }
 
         Config.getRenderGlobal().renderOverlayEyes = true;
@@ -52,7 +53,7 @@ public class LayerSpiderEyes<T extends EntitySpider> implements LayerRenderer<T>
 
         if (Config.isShaders())
         {
-            //Shaders.endSpiderEyes();
+            Shaders.endSpiderEyes();
         }
 
         Minecraft.getMinecraft().entityRenderer.setupFogColor(false);

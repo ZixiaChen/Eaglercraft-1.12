@@ -5,12 +5,15 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import java.io.IOException;
 import java.util.List;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 
 public class NettyPacketDecoder extends ByteToMessageDecoder
 {
     private static final Logger LOGGER = LogManager.getLogger();
+    private static final Marker RECEIVED_PACKET_MARKER = MarkerManager.getMarker("PACKET_RECEIVED", NetworkManager.NETWORK_PACKETS_MARKER);
     private final EnumPacketDirection direction;
 
     public NettyPacketDecoder(EnumPacketDirection direction)
@@ -44,7 +47,7 @@ public class NettyPacketDecoder extends ByteToMessageDecoder
 
                     if (LOGGER.isDebugEnabled())
                     {
-                        //LOGGER.debug(RECEIVED_PACKET_MARKER, " IN: [{}:{}] {}", p_decode_1_.channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get(), Integer.valueOf(i), packet.getClass().getName());
+                        LOGGER.debug(RECEIVED_PACKET_MARKER, " IN: [{}:{}] {}", p_decode_1_.channel().attr(NetworkManager.PROTOCOL_ATTRIBUTE_KEY).get(), Integer.valueOf(i), packet.getClass().getName());
                     }
                 }
             }

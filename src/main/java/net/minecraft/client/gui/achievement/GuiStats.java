@@ -27,7 +27,7 @@ import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatCrafting;
 import net.minecraft.stats.StatList;
 import net.minecraft.stats.StatisticsManager;
-import net.lax1dude.eaglercraft.v1_8.Mouse;
+import org.lwjgl.input.Mouse;
 
 public class GuiStats extends GuiScreen implements IProgressMeter
 {

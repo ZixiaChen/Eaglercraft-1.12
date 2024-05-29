@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-import net.lax1dude.eaglercraft.v1_8.futures.ListenableFuture;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -26,8 +26,8 @@ import javax.annotation.Nullable;
 import net.minecraft.util.text.translation.I18n;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class HttpUtil
 {
@@ -136,7 +136,7 @@ public class HttpUtil
 
     public static ListenableFuture<Object> downloadResourcePack(final File saveFile, final String packUrl, final Map<String, String> p_180192_2_, final int maxSize, @Nullable final IProgressUpdate p_180192_4_, final Proxy p_180192_5_)
     {
-        ListenableFuture<?> listenablefuture = (ListenableFuture<?>) DOWNLOADER_EXECUTOR.submit(new Runnable()
+        ListenableFuture<?> listenablefuture = DOWNLOADER_EXECUTOR.submit(new Runnable()
         {
             public void run()
             {

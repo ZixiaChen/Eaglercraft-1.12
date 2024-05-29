@@ -38,8 +38,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
-import net.lax1dude.eaglercraft.v1_8.Keyboard;
-import net.lax1dude.eaglercraft.v1_8.Mouse;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
 public class GuiContainerCreative extends InventoryEffectRenderer
 {

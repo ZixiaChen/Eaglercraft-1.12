@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.block.model;
 
 import net.minecraft.util.EnumFacing;
-import net.lax1dude.eaglercraft.v1_8.vector.Vector3f;
+import org.lwjgl.util.vector.Vector3f;
 
 public class BlockPartRotation
 {

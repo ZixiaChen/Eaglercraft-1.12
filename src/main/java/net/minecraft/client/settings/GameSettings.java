@@ -51,12 +51,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import net.lax1dude.eaglercraft.v1_8.Keyboard;
-import net.lax1dude.eaglercraft.v1_8.Mouse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import shadersmod.client.Shaders;
 
 public class GameSettings
 {
@@ -3318,6 +3319,10 @@ public class GameSettings
         this.ofDrippingWaterLava = true;
         this.ofAnimatedTerrain = true;
         this.ofAnimatedTextures = true;
+        Shaders.setShaderPack(Shaders.packNameNone);
+        Shaders.configAntialiasingLevel = 0;
+        Shaders.uninit();
+        Shaders.storeConfig();
         this.updateWaterOpacity();
         this.mc.refreshResources();
         this.saveOptions();

@@ -61,6 +61,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import shadersmod.client.Shaders;
+import shadersmod.client.ShadersRender;
 
 public class RenderItem implements IResourceManagerReloadListener
 {

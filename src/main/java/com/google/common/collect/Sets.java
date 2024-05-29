@@ -36,7 +36,6 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Nullable;
 
@@ -1263,10 +1262,6 @@ public final class Sets {
 			return index != null && (mask & (1 << index)) != 0;
 		}
 	}
-
-	public static <E> Set<E> newConcurrentHashSet() {
-		return Collections.newSetFromMap(new ConcurrentHashMap<E, Boolean>());
-	  }
 
 	private static final class PowerSet<E> extends AbstractSet<Set<E>> {
 		final ImmutableMap<E, Integer> inputSet;

@@ -22,7 +22,7 @@ import net.minecraft.client.util.JsonException;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.IOUtils;
-import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
+import org.lwjgl.util.vector.Matrix4f;
 
 public class ShaderGroup
 {

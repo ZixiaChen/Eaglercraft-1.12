@@ -18,7 +18,7 @@ import net.minecraft.network.play.client.CPacketCustomPayload;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.lax1dude.eaglercraft.v1_8.Keyboard;
+import org.lwjgl.input.Keyboard;
 
 public class GuiRepair extends GuiContainer implements IContainerListener
 {

@@ -10,8 +10,8 @@ import java.util.Map.Entry;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import net.minecraft.util.ResourceLocation;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AdvancementList
 {

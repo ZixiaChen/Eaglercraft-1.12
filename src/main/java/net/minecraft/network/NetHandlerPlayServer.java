@@ -119,8 +119,8 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.GameType;
 import net.minecraft.world.WorldServer;
 import org.apache.commons.lang3.StringUtils;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 {

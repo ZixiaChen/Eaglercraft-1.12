@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.StringUtils;
-import net.lax1dude.eaglercraft.v1_8.Keyboard;
+import org.lwjgl.input.Keyboard;
 
 public class GuiScreenAddServer extends GuiScreen
 {

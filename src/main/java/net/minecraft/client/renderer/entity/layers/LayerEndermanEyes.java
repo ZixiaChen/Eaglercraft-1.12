@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.RenderEnderman;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.src.Config;
 import net.minecraft.util.ResourceLocation;
+import shadersmod.client.Shaders;
 
 public class LayerEndermanEyes implements LayerRenderer<EntityEnderman>
 {
@@ -36,7 +37,7 @@ public class LayerEndermanEyes implements LayerRenderer<EntityEnderman>
 
         if (Config.isShaders())
         {
-            //Shaders.beginSpiderEyes();
+            Shaders.beginSpiderEyes();
         }
 
         Config.getRenderGlobal().renderOverlayEyes = true;
@@ -45,7 +46,7 @@ public class LayerEndermanEyes implements LayerRenderer<EntityEnderman>
 
         if (Config.isShaders())
         {
-            //Shaders.endSpiderEyes();
+            Shaders.endSpiderEyes();
         }
 
         Minecraft.getMinecraft().entityRenderer.setupFogColor(false);

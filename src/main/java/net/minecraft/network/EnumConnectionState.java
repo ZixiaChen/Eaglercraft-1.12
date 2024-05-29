@@ -121,7 +121,7 @@ import net.minecraft.network.status.client.CPacketPing;
 import net.minecraft.network.status.client.CPacketServerQuery;
 import net.minecraft.network.status.server.SPacketPong;
 import net.minecraft.network.status.server.SPacketServerInfo;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
+import org.apache.logging.log4j.LogManager;
 
 public enum EnumConnectionState
 {

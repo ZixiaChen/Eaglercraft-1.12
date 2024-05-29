@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.IntHashMap;
-import net.lax1dude.eaglercraft.v1_8.Keyboard;
+import org.lwjgl.input.Keyboard;
 
 public class KeyBinding implements Comparable<KeyBinding>
 {

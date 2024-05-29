@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.math.MathHelper;
-import net.lax1dude.eaglercraft.v1_8.vector.Vector3f;
+import org.lwjgl.util.vector.Vector3f;
 
 public class BlockPart
 {

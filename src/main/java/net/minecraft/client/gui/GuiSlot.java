@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.MathHelper;
-import net.lax1dude.eaglercraft.v1_8.Mouse;
+import org.lwjgl.input.Mouse;
 
 public abstract class GuiSlot
 {

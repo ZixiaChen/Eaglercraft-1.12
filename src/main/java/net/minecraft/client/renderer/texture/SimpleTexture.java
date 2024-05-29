@@ -9,8 +9,9 @@ import net.minecraft.client.resources.data.TextureMetadataSection;
 import net.minecraft.src.Config;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.IOUtils;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import shadersmod.client.ShadersTex;
 
 public class SimpleTexture extends AbstractTexture
 {

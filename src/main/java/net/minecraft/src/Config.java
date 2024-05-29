@@ -45,11 +45,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
 import org.apache.commons.io.IOUtils;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
-import net.lax1dude.eaglercraft.v1_8.Display;
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -58,6 +58,7 @@ import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.glu.GLU;
+import shadersmod.client.Shaders;
 
 public class Config
 {
@@ -111,6 +112,7 @@ public class Config
         }
 
         stringbuffer.append("OptiFine_1.12_HD_U_C4");
+        String s = Shaders.getShaderPackName();
 
         if (s != null)
         {
@@ -140,6 +142,7 @@ public class Config
         checkDisplayMode();
         minecraftThread = Thread.currentThread();
         updateThreadPriorities();
+        Shaders.startup(Minecraft.getMinecraft());
     }
 
     public static void checkInitialized()
@@ -263,17 +266,107 @@ public class Config
 
     private static GlVersion getGlVersionLwjgl()
     {
-        return null;
+        if (GLContext.getCapabilities().OpenGL44)
+        {
+            return new GlVersion(4, 4);
+        }
+        else if (GLContext.getCapabilities().OpenGL43)
+        {
+            return new GlVersion(4, 3);
+        }
+        else if (GLContext.getCapabilities().OpenGL42)
+        {
+            return new GlVersion(4, 2);
+        }
+        else if (GLContext.getCapabilities().OpenGL41)
+        {
+            return new GlVersion(4, 1);
+        }
+        else if (GLContext.getCapabilities().OpenGL40)
+        {
+            return new GlVersion(4, 0);
+        }
+        else if (GLContext.getCapabilities().OpenGL33)
+        {
+            return new GlVersion(3, 3);
+        }
+        else if (GLContext.getCapabilities().OpenGL32)
+        {
+            return new GlVersion(3, 2);
+        }
+        else if (GLContext.getCapabilities().OpenGL31)
+        {
+            return new GlVersion(3, 1);
+        }
+        else if (GLContext.getCapabilities().OpenGL30)
+        {
+            return new GlVersion(3, 0);
+        }
+        else if (GLContext.getCapabilities().OpenGL21)
+        {
+            return new GlVersion(2, 1);
+        }
+        else if (GLContext.getCapabilities().OpenGL20)
+        {
+            return new GlVersion(2, 0);
+        }
+        else if (GLContext.getCapabilities().OpenGL15)
+        {
+            return new GlVersion(1, 5);
+        }
+        else if (GLContext.getCapabilities().OpenGL14)
+        {
+            return new GlVersion(1, 4);
+        }
+        else if (GLContext.getCapabilities().OpenGL13)
+        {
+            return new GlVersion(1, 3);
+        }
+        else if (GLContext.getCapabilities().OpenGL12)
+        {
+            return new GlVersion(1, 2);
+        }
+        else
+        {
+            return GLContext.getCapabilities().OpenGL11 ? new GlVersion(1, 1) : new GlVersion(1, 0);
+        }
     }
 
     public static GlVersion getGlVersion()
     {
-        return new GlVersion(1, 0);
+        if (glVersion == null)
+        {
+            String s = GL11.glGetString(GL11.GL_VERSION);
+            glVersion = parseGlVersion(s, (GlVersion)null);
+
+            if (glVersion == null)
+            {
+                glVersion = getGlVersionLwjgl();
+            }
+
+            if (glVersion == null)
+            {
+                glVersion = new GlVersion(1, 0);
+            }
+        }
+
+        return glVersion;
     }
 
     public static GlVersion getGlslVersion()
     {
-        return new GlVersion(1, 10);
+        if (glslVersion == null)
+        {
+            String s = GL11.glGetString(GL20.GL_SHADING_LANGUAGE_VERSION);
+            glslVersion = parseGlVersion(s, (GlVersion)null);
+
+            if (glslVersion == null)
+            {
+                glslVersion = new GlVersion(1, 10);
+            }
+        }
+
+        return glslVersion;
     }
 
     public static GlVersion parseGlVersion(String p_parseGlVersion_0_, GlVersion p_parseGlVersion_1_)
@@ -560,6 +653,10 @@ public class Config
         {
             return gameSettings.ofClouds == 2;
         }
+        else if (isShaders() && !Shaders.shaderPackClouds.isDefault())
+        {
+            return Shaders.shaderPackClouds.isFancy();
+        }
         else if (texturePackClouds != 0)
         {
             return texturePackClouds == 2;
@@ -575,6 +672,10 @@ public class Config
         if (gameSettings.ofClouds != 0)
         {
             return gameSettings.ofClouds == 3;
+        }
+        else if (isShaders() && !Shaders.shaderPackClouds.isDefault())
+        {
+            return Shaders.shaderPackClouds.isOff();
         }
         else if (texturePackClouds != 0)
         {
@@ -813,7 +914,7 @@ public class Config
 
     public static float getAmbientOcclusionLevel()
     {
-        return gameSettings.ofAoLevel;
+        return isShaders() && Shaders.aoLevel >= 0.0F ? Shaders.aoLevel : gameSettings.ofAoLevel;
     }
 
     public static String arrayToString(Object[] p_arrayToString_0_)
@@ -1067,7 +1168,7 @@ public class Config
         }
         else
         {
-            return true;
+            return !isShaders() || Shaders.isSun();
         }
     }
 
@@ -1079,13 +1180,13 @@ public class Config
         }
         else
         {
-            return true;
+            return !isShaders() || Shaders.isMoon();
         }
     }
 
     public static boolean isVignetteEnabled()
     {
-        if (false)
+        if (isShaders() && !Shaders.isVignette())
         {
             return false;
         }
@@ -1532,7 +1633,7 @@ public class Config
 
     public static boolean isShaders()
     {
-        return false;
+        return Shaders.shaderPackLoaded;
     }
 
     public static String[] readLines(File p_readLines_0_) throws IOException
@@ -1872,7 +1973,7 @@ public class Config
                 }
                 catch (LWJGLException lwjglexception1)
                 {
-                    //lwjglexception1.printStackTrace();
+                    lwjglexception1.printStackTrace();
 
                     try
                     {
@@ -2239,7 +2340,7 @@ public class Config
         }
         else
         {
-            return false;
+            return isShaders() ? Shaders.isDynamicHandLight() : true;
         }
     }
 

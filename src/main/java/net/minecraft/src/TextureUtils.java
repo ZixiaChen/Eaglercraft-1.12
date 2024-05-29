@@ -33,6 +33,8 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.opengl.GLContext;
+import shadersmod.client.MultiTexID;
+import shadersmod.client.Shaders;
 
 public class TextureUtils
 {
@@ -246,7 +248,7 @@ public class TextureUtils
             RandomMobs.resetTextures();
             CustomItems.updateModels();
             CustomEntityModels.update();
-            //Shaders.resourcesReloaded();
+            Shaders.resourcesReloaded();
             Lang.resourcesReloaded();
             Config.updateTexturePackClouds();
             SmartLeaves.updateLeavesModels();
@@ -296,7 +298,7 @@ public class TextureUtils
             public void restoreLastBlurMipmap()
             {
             }
-            public Object getMultiTexID()
+            public MultiTexID getMultiTexID()
             {
                 return null;
             }

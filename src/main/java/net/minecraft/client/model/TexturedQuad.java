@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.src.Config;
 import net.minecraft.util.math.Vec3d;
+import shadersmod.client.SVertexFormat;
 
 public class TexturedQuad
 {

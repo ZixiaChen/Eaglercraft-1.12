@@ -32,6 +32,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.storage.MapData;
+import shadersmod.client.Shaders;
 
 public class ItemRenderer {
    private static final ResourceLocation field_110931_c = new ResourceLocation("textures/map/map_background.png");

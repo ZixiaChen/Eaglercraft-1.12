@@ -5,6 +5,7 @@ import java.util.Map;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
+import shadersmod.client.Shaders;
 
 public class CrashReporter
 {
@@ -112,7 +113,7 @@ public class CrashReporter
             p_extendCrashReport_0_.addCrashSection("Multitexture", "" + Config.isMultiTexture());
         }
 
-        p_extendCrashReport_0_.addCrashSection("Shaders", "" + null);
+        p_extendCrashReport_0_.addCrashSection("Shaders", "" + Shaders.getShaderPackName());
         p_extendCrashReport_0_.addCrashSection("OpenGlVersion", "" + Config.openGlVersion);
         p_extendCrashReport_0_.addCrashSection("OpenGlRenderer", "" + Config.openGlRenderer);
         p_extendCrashReport_0_.addCrashSection("OpenGlVendor", "" + Config.openGlVendor);

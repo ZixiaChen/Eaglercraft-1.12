@@ -6,7 +6,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
 import org.apache.commons.io.FileUtils;
-import net.lax1dude.eaglercraft.v1_8.Keyboard;
+import org.lwjgl.input.Keyboard;
 
 public class GuiWorldEdit extends GuiScreen
 {

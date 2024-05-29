@@ -1,6 +1,8 @@
 package net.minecraft.client.main;
 
+import com.mojang.authlib.properties.PropertyMap;
 import java.io.File;
+import java.net.Proxy;
 import javax.annotation.Nullable;
 import net.minecraft.client.resources.ResourceIndex;
 import net.minecraft.client.resources.ResourceIndexFolder;
@@ -85,14 +87,20 @@ public class GameConfiguration
             this.serverPort = serverPortIn;
         }
     }
-    
 
     public static class UserInformation
     {
         public final Session session;
+        public final PropertyMap userProperties;
+        public final PropertyMap profileProperties;
+        public final Proxy proxy;
 
-		public UserInformation(Session parSession) {
-			this.session = parSession;
-		}
+        public UserInformation(Session sessionIn, PropertyMap userPropertiesIn, PropertyMap profilePropertiesIn, Proxy proxyIn)
+        {
+            this.session = sessionIn;
+            this.userProperties = userPropertiesIn;
+            this.profileProperties = profilePropertiesIn;
+            this.proxy = proxyIn;
+        }
     }
 }

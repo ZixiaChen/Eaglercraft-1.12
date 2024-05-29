@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.RenderDragon;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.src.Config;
 import net.minecraft.util.ResourceLocation;
+import shadersmod.client.Shaders;
 
 public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
 {
@@ -36,7 +37,7 @@ public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
 
         if (Config.isShaders())
         {
-            //Shaders.beginSpiderEyes();
+            Shaders.beginSpiderEyes();
         }
 
         Config.getRenderGlobal().renderOverlayEyes = true;
@@ -45,7 +46,7 @@ public class LayerEnderDragonEyes implements LayerRenderer<EntityDragon>
 
         if (Config.isShaders())
         {
-            //Shaders.endSpiderEyes();
+            Shaders.endSpiderEyes();
         }
 
         Minecraft.getMinecraft().entityRenderer.setupFogColor(false);

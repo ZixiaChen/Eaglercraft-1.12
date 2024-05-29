@@ -24,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.optifine.entity.model.IEntityRenderer;
+import shadersmod.client.Shaders;
 
 public abstract class Render<T extends Entity> implements IEntityRenderer
 {

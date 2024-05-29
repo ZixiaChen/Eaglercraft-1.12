@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.src.Config;
+import shadersmod.client.Shaders;
 
 public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingBase<T>
 {
@@ -72,7 +73,7 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
 
     protected void renderLeash(T entityLivingIn, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        if (!Config.isShaders())
+        if (!Config.isShaders() || !Shaders.isShadowPass)
         {
             Entity entity = entityLivingIn.getLeashedToEntity();
 
@@ -115,7 +116,7 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
 
                 if (Config.isShaders())
                 {
-                    //Shaders.beginLeash();
+                    Shaders.beginLeash();
                 }
 
                 int i = 24;
@@ -165,7 +166,7 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
 
                 if (Config.isShaders())
                 {
-                    //Shaders.endLeash();
+                    Shaders.endLeash();
                 }
 
                 GlStateManager.enableLighting();

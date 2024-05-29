@@ -12,7 +12,7 @@ import net.minecraft.util.ITabCompleter;
 import net.minecraft.util.TabCompleter;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.lax1dude.eaglercraft.v1_8.Keyboard;
+import org.lwjgl.input.Keyboard;
 
 public class GuiCommandBlock extends GuiScreen implements ITabCompleter
 {

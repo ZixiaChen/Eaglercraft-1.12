@@ -19,8 +19,8 @@ import net.minecraft.network.login.server.SPacketLoginSuccess;
 import net.minecraft.util.CryptManager;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
-import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class NetHandlerLoginClient implements INetHandlerLoginClient
 {
