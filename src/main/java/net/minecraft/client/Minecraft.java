@@ -242,6 +242,8 @@ public class Minecraft implements IThreadListener
     private boolean connectedToRealms;
     private final Timer timer = new Timer(20.0F);
 
+    public int bungeeOutdatedMsgTimer = 0;
+
     /** Instance of PlayerUsageSnooper. */
     //private final Snooper usageSnooper = new Snooper("client", this, MinecraftServer.getCurrentTimeMillis());
     public WorldClient world;
@@ -1103,6 +1105,10 @@ public class Minecraft implements IThreadListener
             LOGGER.error("{}: {}", Integer.valueOf(i), s);
         }
     }
+
+    public void clearTitles() {
+		ingameGUI.displayTitle(null, null, -1, -1, -1);
+	}
 
     /**
      * Shuts down the minecraft applet by stopping the resource downloads, and clearing up GL stuff; called when the

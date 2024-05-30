@@ -45,9 +45,14 @@ public class ConnectionHandshake {
 	private static final int protocolV3 = 3;
 	
 	private static final Logger logger = LogManager.getLogger();
+
+	public static String pluginVersion = null;
+	public static String pluginBrand = null;
 	
 	public static boolean attemptHandshake(Minecraft mc, GuiConnecting connecting, GuiScreen ret, String password, boolean allowPlaintext) {
 		try {
+			pluginVersion = null;
+			pluginBrand = null;
 			ByteArrayOutputStream bao = new ByteArrayOutputStream();
 			DataOutputStream d = new DataOutputStream(bao);
 			
@@ -149,6 +154,9 @@ public class ConnectionHandshake {
 
 				logger.info("Server version: {}", versionStr);
 				logger.info("Server brand: {}", brandStr);
+
+				pluginVersion = versionStr;
+				pluginBrand = brandStr;
 				
 				int authType = di.read();
 				int saltLength = (int)di.readShort() & 0xFFFF;
