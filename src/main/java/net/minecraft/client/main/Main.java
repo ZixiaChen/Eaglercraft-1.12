@@ -47,7 +47,7 @@ public class Main
 				new GameConfiguration.DisplayInformation(854, 480, false, true),
                 new GameConfiguration.FolderInformation(new File("."), new File(new File("."), "assets/"), new File(new File("."), "resourcepacks/"), "1.8"),
 				new GameConfiguration.GameInformation(false, "1.12", "release"),
-                new GameConfiguration.ServerInformation("server", 25565));
+                new GameConfiguration.ServerInformation(null, 25565));
 		PlatformRuntime.setThreadName("Client thread");
         Runtime.getRuntime().addShutdownHook(new Thread("Client Shutdown Thread")
         {
