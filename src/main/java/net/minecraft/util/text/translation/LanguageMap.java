@@ -57,7 +57,7 @@ public class LanguageMap
         }
         catch (IOException var7)
         {
-            ;
+            System.err.println(var7);
         }
     }
 

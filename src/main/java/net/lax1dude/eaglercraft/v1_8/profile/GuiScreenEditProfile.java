@@ -1,5 +1,11 @@
 package net.lax1dude.eaglercraft.v1_8.profile;
 
+import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.GL_DEPTH_BUFFER_BIT;
+import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.GL_ONE_MINUS_SRC_ALPHA;
+import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.GL_SRC_ALPHA;
+
+import java.io.IOException;
+
 import net.lax1dude.eaglercraft.v1_8.EagRuntime;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
@@ -11,10 +17,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-
-import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.*;
-
-import java.io.IOException;
 
 /**
  * Copyright (c) 2022-2023 LAX1DUDE. All Rights Reserved.
@@ -46,7 +48,7 @@ public class GuiScreenEditProfile extends GuiScreen {
 
 	private boolean newSkinWaitSteveOrAlex = false;
 
-	private static final ResourceLocation eaglerGui = new ResourceLocation("eagler:gui/eagler_gui.png");
+	private static final ResourceLocation eaglerGui = new ResourceLocation("eagler/gui/eagler_gui.png");
 
 	protected String screenTitle = "Edit Profile";
 
@@ -57,14 +59,14 @@ public class GuiScreenEditProfile extends GuiScreen {
 
 	public void initGui() {
 		Keyboard.enableRepeatEvents(true);
-		screenTitle = I18n.format("editProfile.title");
+		screenTitle = I18n.format("Edit Profile");
 		usernameField = new GuiTextField(0, this.fontRenderer, width / 2 - 20 + 1, height / 6 + 24 + 1, 138, 20);
 		usernameField.setFocused(true);
 		usernameField.setText(EaglerProfile.getName());
 		selectedSlot = EaglerProfile.presetSkinId == -1 ? EaglerProfile.customSkinId : (EaglerProfile.presetSkinId + EaglerProfile.customSkins.size());
 		buttonList.add(new GuiButton(0, width / 2 - 100, height / 6 + 168, I18n.format("gui.done")));
-		buttonList.add(new GuiButton(1, width / 2 - 21, height / 6 + 110, 71, 20, I18n.format("editProfile.addSkin")));
-		buttonList.add(new GuiButton(2, width / 2 - 21 + 71, height / 6 + 110, 72, 20, I18n.format("editProfile.clearSkin")));
+		buttonList.add(new GuiButton(1, width / 2 - 21, height / 6 + 110, 71, 20, I18n.format("Add Skin")));
+		buttonList.add(new GuiButton(2, width / 2 - 21 + 71, height / 6 + 110, 72, 20, I18n.format("Clear List")));
 	}
 
 	private void updateOptions() {
@@ -83,8 +85,8 @@ public class GuiScreenEditProfile extends GuiScreen {
 	public void drawScreen(int mx, int my, float partialTicks) {
 		drawDefaultBackground();
 		drawCenteredString(this.fontRenderer, screenTitle, width / 2, 15, 16777215);
-		drawString(this.fontRenderer, I18n.format("editProfile.username"), width / 2 - 20, height / 6 + 8, 10526880);
-		drawString(this.fontRenderer, I18n.format("editProfile.playerSkin"), width / 2 - 20, height / 6 + 66, 10526880);
+		drawString(this.fontRenderer, I18n.format("Username"), width / 2 - 20, height / 6 + 8, 10526880);
+		drawString(this.fontRenderer, I18n.format("Player Skin"), width / 2 - 20, height / 6 + 66, 10526880);
 		
 		mousex = mx;
 		mousey = my;
@@ -196,6 +198,8 @@ public class GuiScreenEditProfile extends GuiScreen {
 			}
 			
 			mc.getTextureManager().bindTexture(newSkin.getResource());
+
+			SkinPreviewRenderer.initialize();
 			SkinPreviewRenderer.renderBiped(xx, yy, mx, my, SkinModel.STEVE);
 			
 			skinX = width / 2 + 20;
@@ -221,7 +225,10 @@ public class GuiScreenEditProfile extends GuiScreen {
 			}
 			
 			mc.getTextureManager().bindTexture(newSkin.getResource());
+
+			SkinPreviewRenderer.initialize();
 			SkinPreviewRenderer.renderBiped(xx, yy, mx, my, SkinModel.ALEX);
+
 		}else {
 			skinX = this.width / 2 - 120;
 			skinY = this.height / 6 + 8;
@@ -241,6 +248,7 @@ public class GuiScreenEditProfile extends GuiScreen {
 			}
 
 			mc.getTextureManager().bindTexture(texture);
+			SkinPreviewRenderer.initialize();
 
 			if(model != null){
 				SkinPreviewRenderer.renderBiped(xx, yy, newSkinWaitSteveOrAlex ? width / 2 : mx, newSkinWaitSteveOrAlex ? height / 2 : my, model);

@@ -37,7 +37,7 @@ public class CustomSkin {
 	
 	public void load() {
 		if(resourceLocation == null) {
-			resourceLocation = new ResourceLocation("eagler:skins/custom/tex_" + texId++);
+			resourceLocation = new ResourceLocation("eagler/skins/custom/tex_" + texId++);
 			Minecraft.getMinecraft().getTextureManager().loadTexture(resourceLocation, textureInstance);
 		}
 	}

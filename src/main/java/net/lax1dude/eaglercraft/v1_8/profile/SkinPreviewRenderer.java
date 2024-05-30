@@ -64,7 +64,9 @@ public class SkinPreviewRenderer {
 		GlStateManager.rotate(((x - mx) * 0.06f), 0.0f, 1.0f, 0.0f);
 		GlStateManager.translate(0.0f, -1.0f, 0.0f);
 		
-		//model.render(null, 0.0f, 0.0f, (float)(System.currentTimeMillis() % 2000000) / 50f, ((x - mx) * 0.06f), ((y - my) * -0.1f), 0.0625f);
+		if(model != null){
+			model.render(null, 0.0f, 0.0f, (float)(System.currentTimeMillis() % 2000000) / 50f, ((x - mx) * 0.06f), ((y - my) * -0.1f), 0.0625f);
+		}
 		
 		GlStateManager.popMatrix();
 		GlStateManager.disableLighting();

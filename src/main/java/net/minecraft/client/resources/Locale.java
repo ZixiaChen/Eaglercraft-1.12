@@ -40,7 +40,7 @@ public class Locale
                 }
                 catch (IOException var9)
                 {
-                    ;
+                    System.out.println("Lang file not found");
                 }
             }
         }
