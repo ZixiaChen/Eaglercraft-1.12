@@ -60,8 +60,6 @@ dependencies {
     implementation files('lib/libraries/it/unimi/dsi/fastutil/7.1.0/fastutil-7.1.0.jar')
     implementation files('lib/libraries/vecmath-1.5.2.jar')
 
-    implementation files('lib/libraries/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1.jar') // Apache
-
     implementation files('lib/libraries/org/lwjgl/lwjgl/lwjgl/2.9.4-nightly-20150209/lwjgl-2.9.4-nightly-20150209.jar') // LWJGL
     implementation files('lib/libraries/org/lwjgl/lwjgl/lwjgl_util/2.9.4-nightly-20150209/lwjgl_util-2.9.4-nightly-20150209.jar')
     
