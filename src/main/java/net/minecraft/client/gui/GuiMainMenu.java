@@ -136,7 +136,7 @@ public class GuiMainMenu extends GuiScreen
         this.splashText = "missingno";
         IResource iresource = null;
 
-		this.field_92025_p = "eaglercraft debug runtime";
+		this.field_92025_p = "eaglercraft javascript runtime";
 
         try
         {
@@ -694,7 +694,7 @@ public class GuiMainMenu extends GuiScreen
         else
         {
             this.drawString(this.fontRenderer, s, 2, this.height - 20, -1);
-	    this.drawString(this.fontRenderer, "Eaglercraft javascript test", 2, this.height - 10, -1);
+	    this.drawString(this.fontRenderer, "Eaglercraft 26w01a (cracked)", 2, this.height - 10, -1);
         }
 
         this.drawString(this.fontRenderer, "Resources Copyright Mojang AB", this.widthCopyrightRest, this.height - 10, -1);
