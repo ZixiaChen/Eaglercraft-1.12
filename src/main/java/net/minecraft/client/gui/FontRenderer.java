@@ -416,7 +416,7 @@ public class FontRenderer implements IResourceManagerReloadListener
      */
     public String bidiReorder(String text)
     {
-        return null;
+        return text;
     }
 
     /**
