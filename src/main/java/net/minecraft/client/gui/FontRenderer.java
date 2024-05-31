@@ -1,8 +1,5 @@
 package net.minecraft.client.gui;
 
-import com.ibm.icu.text.ArabicShaping;
-import com.ibm.icu.text.ArabicShapingException;
-import com.ibm.icu.text.Bidi;
 import java.awt.image.BufferedImage;
 import java.io.Closeable;
 import java.io.IOException;
@@ -419,16 +416,7 @@ public class FontRenderer implements IResourceManagerReloadListener
      */
     private String bidiReorder(String text)
     {
-        try
-        {
-            Bidi bidi = new Bidi((new ArabicShaping(8)).shape(text), 127);
-            bidi.setReorderingMode(0);
-            return bidi.writeReordered(2);
-        }
-        catch (ArabicShapingException var31)
-        {
-            return text;
-        }
+        return text;
     }
 
     /**
