@@ -30,8 +30,6 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GLContext;
-import oshi.SystemInfo;
-import oshi.hardware.Processor;
 
 public class OpenGlHelper
 {
@@ -309,12 +307,12 @@ public class OpenGlHelper
 
         try
         {
-            Processor[] aprocessor = (new SystemInfo()).getHardware().getProcessors();
-            cpu = String.format("%dx %s", aprocessor.length, aprocessor[0]).replaceAll("\\s+", " ");
+            //Processor[] aprocessor = (new SystemInfo()).getHardware().getProcessors();
+            cpu = String.format("%dx %s").replaceAll("\\s+", " ");
         }
         catch (Throwable var3)
         {
-            ;
+            System.out.println("Could not get CPU info");
         }
     }
 
