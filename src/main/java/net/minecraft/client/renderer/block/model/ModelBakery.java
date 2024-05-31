@@ -770,7 +770,7 @@ public class ModelBakery
 
                     if (Reflector.ForgeHooksClient.exists())
                     {
-                        flag = TRSRTransformation.isInteger(p_bakeModel_2_.getMatrix());
+                        //flag = TRSRTransformation.isInteger(p_bakeModel_2_.getMatrix());
                     }
 
                     if (blockpartface.cullFace != null && flag)

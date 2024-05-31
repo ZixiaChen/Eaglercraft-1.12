@@ -10,7 +10,7 @@ public class TRSRTransformation
         throw new NotImplementedException("Forge dummy class");
     }
 
-    public static boolean isInteger(javax.vecmath.Matrix4f matrix)
+    public static boolean isInteger(Matrix4f matrix)
     {
         throw new NotImplementedException("Forge dummy class");
     }

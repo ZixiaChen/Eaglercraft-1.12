@@ -11,9 +11,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.common.model.ITransformation;
-import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector3f;
-import org.lwjgl.util.vector.Vector4f;
+import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
+import net.lax1dude.eaglercraft.v1_8.vector.Vector3f;
+import net.lax1dude.eaglercraft.v1_8.vector.Vector4f;
 import shadersmod.client.Shaders;
 
 public class FaceBakery

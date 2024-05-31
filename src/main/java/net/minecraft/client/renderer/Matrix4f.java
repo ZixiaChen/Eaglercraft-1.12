@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer;
 
-public class Matrix4f extends org.lwjgl.util.vector.Matrix4f
+public class Matrix4f extends net.lax1dude.eaglercraft.v1_8.vector.Matrix4f
 {
     public Matrix4f(float[] matrix)
     {

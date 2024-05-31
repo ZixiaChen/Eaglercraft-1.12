@@ -1,7 +1,7 @@
 package net.minecraft.client.gui.recipebook;
 
 import com.google.common.collect.Lists;
-import it.unimi.dsi.fastutil.ints.IntList;
+import net.catfoolyou.fastutil.ints.IntList;
 import java.util.BitSet;
 import java.util.List;
 import net.minecraft.client.util.RecipeItemHelper;

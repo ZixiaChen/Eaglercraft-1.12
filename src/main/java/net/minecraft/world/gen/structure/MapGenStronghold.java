@@ -1,7 +1,7 @@
 package net.minecraft.world.gen.structure;
 
 import com.google.common.collect.Lists;
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import net.catfoolyou.fastutil.objects.ObjectIterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;

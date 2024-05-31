@@ -2,9 +2,9 @@ package net.minecraft.world.gen;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import net.catfoolyou.fastutil.longs.Long2ObjectMap;
+import net.catfoolyou.fastutil.longs.Long2ObjectOpenHashMap;
+import net.catfoolyou.fastutil.objects.ObjectIterator;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;

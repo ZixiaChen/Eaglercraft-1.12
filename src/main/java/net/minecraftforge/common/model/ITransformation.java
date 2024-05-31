@@ -1,6 +1,6 @@
 package net.minecraftforge.common.model;
 
-import javax.vecmath.Matrix4f;
+import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
 import net.minecraft.util.EnumFacing;
 
 public interface ITransformation

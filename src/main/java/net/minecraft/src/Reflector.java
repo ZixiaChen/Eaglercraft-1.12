@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import net.catfoolyou.fastutil.longs.Long2ObjectMap;
 import java.io.Reader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Optional;
-import javax.vecmath.Matrix4f;
+import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;

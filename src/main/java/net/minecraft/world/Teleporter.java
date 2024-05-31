@@ -1,8 +1,8 @@
 package net.minecraft.world;
 
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import net.catfoolyou.fastutil.longs.Long2ObjectMap;
+import net.catfoolyou.fastutil.longs.Long2ObjectOpenHashMap;
+import net.catfoolyou.fastutil.objects.ObjectIterator;
 import java.util.Random;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;
