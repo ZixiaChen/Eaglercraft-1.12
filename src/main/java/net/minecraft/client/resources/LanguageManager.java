@@ -10,8 +10,8 @@ import java.util.SortedSet;
 import net.minecraft.client.resources.data.LanguageMetadataSection;
 import net.minecraft.client.resources.data.MetadataSerializer;
 import net.minecraft.util.text.translation.LanguageMap;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
+import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 
 public class LanguageManager implements IResourceManagerReloadListener
 {

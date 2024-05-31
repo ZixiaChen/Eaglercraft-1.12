@@ -26,10 +26,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.MarkerManager;
+import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
+import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import paulscode.sound.SoundSystem;
 import paulscode.sound.SoundSystemConfig;
 import paulscode.sound.SoundSystemException;
@@ -41,7 +39,7 @@ import paulscode.sound.libraries.LibraryLWJGLOpenAL;
 public class SoundManager
 {
     /** The marker used for logging */
-    private static final Marker LOG_MARKER = MarkerManager.getMarker("SOUNDS");
+    //private static final Marker LOG_MARKER = MarkerManager.getMarker("SOUNDS");
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Set<ResourceLocation> UNABLE_TO_PLAY = Sets.<ResourceLocation>newHashSet();
 
@@ -87,7 +85,7 @@ public class SoundManager
         }
         catch (SoundSystemException soundsystemexception)
         {
-            LOGGER.error(LOG_MARKER, "Error linking with the LibraryJavaSound plug-in", (Throwable)soundsystemexception);
+            LOGGER.error("Error linking with the LibraryJavaSound plug-in", (Throwable)soundsystemexception);
         }
     }
 
@@ -151,13 +149,13 @@ public class SoundManager
                         SoundManager.this.sndSystem = SoundManager.this.new SoundSystemStarterThread();
                         SoundManager.this.loaded = true;
                         SoundManager.this.sndSystem.setMasterVolume(SoundManager.this.options.getSoundLevel(SoundCategory.MASTER));
-                        SoundManager.LOGGER.info(SoundManager.LOG_MARKER, "Sound engine started");
+                        SoundManager.LOGGER.info("Sound engine started");
                     }
                 }, "Sound Library Loader")).start();
             }
             catch (RuntimeException runtimeexception)
             {
-                LOGGER.error(LOG_MARKER, "Error starting SoundSystem. Turning off sounds & music", (Throwable)runtimeexception);
+                LOGGER.error( "Error starting SoundSystem. Turning off sounds & music", (Throwable)runtimeexception);
                 this.options.setSoundLevel(SoundCategory.MASTER, 0.0F);
                 this.options.saveOptions();
             }
@@ -283,7 +281,7 @@ public class SoundManager
                     }
 
                     iterator.remove();
-                    LOGGER.debug(LOG_MARKER, "Removed channel {} because it's not playing anymore", (Object)s1);
+                    LOGGER.debug("Removed channel {} because it's not playing anymore", (Object)s1);
                     this.sndSystem.removeSource(s1);
                     this.playingSoundsStopTime.remove(s1);
 
@@ -373,7 +371,7 @@ public class SoundManager
             {
                 if (UNABLE_TO_PLAY.add(resourcelocation))
                 {
-                    LOGGER.warn(LOG_MARKER, "Unable to play unknown soundEvent: {}", (Object)resourcelocation);
+                    LOGGER.warn("Unable to play unknown soundEvent: {}", (Object)resourcelocation);
                 }
             }
             else
@@ -388,7 +386,7 @@ public class SoundManager
 
                 if (this.sndSystem.getMasterVolume() <= 0.0F)
                 {
-                    LOGGER.debug(LOG_MARKER, "Skipped playing soundEvent: {}, master volume was zero", (Object)resourcelocation);
+                    LOGGER.debug("Skipped playing soundEvent: {}, master volume was zero", (Object)resourcelocation);
                 }
                 else
                 {
@@ -398,7 +396,7 @@ public class SoundManager
                     {
                         if (UNABLE_TO_PLAY.add(resourcelocation))
                         {
-                            LOGGER.warn(LOG_MARKER, "Unable to play empty soundEvent: {}", (Object)resourcelocation);
+                            LOGGER.warn("Unable to play empty soundEvent: {}", (Object)resourcelocation);
                         }
                     }
                     else
@@ -417,7 +415,7 @@ public class SoundManager
 
                         if (f1 == 0.0F)
                         {
-                            LOGGER.debug(LOG_MARKER, "Skipped playing sound {}, volume was zero.", (Object)sound.getSoundLocation());
+                            LOGGER.debug("Skipped playing sound {}, volume was zero.", (Object)sound.getSoundLocation());
                         }
                         else
                         {
@@ -434,7 +432,7 @@ public class SoundManager
                                 this.sndSystem.newSource(false, s, getURLForSoundResource(resourcelocation1), resourcelocation1.toString(), flag, p_sound.getXPosF(), p_sound.getYPosF(), p_sound.getZPosF(), p_sound.getAttenuationType().getTypeInt(), f);
                             }
 
-                            LOGGER.debug(LOG_MARKER, "Playing sound {} for event {} as channel {}", sound.getSoundLocation(), resourcelocation, s);
+                            LOGGER.debug("Playing sound {} for event {} as channel {}", sound.getSoundLocation(), resourcelocation, s);
                             this.sndSystem.setPitch(s, f2);
                             this.sndSystem.setVolume(s, f1);
                             this.sndSystem.play(s);
@@ -475,7 +473,7 @@ public class SoundManager
 
             if (flag)
             {
-                LOGGER.debug(LOG_MARKER, "Pausing channel {}", (Object)s);
+                LOGGER.debug("Pausing channel {}", (Object)s);
                 this.sndSystem.pause(s);
                 this.pausedChannels.add(s);
             }
@@ -489,7 +487,7 @@ public class SoundManager
     {
         for (String s : this.pausedChannels)
         {
-            LOGGER.debug(LOG_MARKER, "Resuming channel {}", (Object)s);
+            LOGGER.debug("Resuming channel {}", (Object)s);
             this.sndSystem.play(s);
         }
 
