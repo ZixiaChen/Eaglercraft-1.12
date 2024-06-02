@@ -1,9 +1,9 @@
 package net.minecraft.item.crafting;
 
 import com.google.common.base.Predicate;
-import net.catfoolyou.fastutil.ints.IntArrayList;
-import net.catfoolyou.fastutil.ints.IntComparators;
-import net.catfoolyou.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntComparators;
+import it.unimi.dsi.fastutil.ints.IntList;
 import javax.annotation.Nullable;
 import net.minecraft.client.util.RecipeItemHelper;
 import net.minecraft.item.Item;

@@ -1,11 +1,11 @@
 package net.minecraft.client.gui.recipebook;
 
 import com.google.common.collect.Lists;
-import net.catfoolyou.fastutil.ints.IntArrayList;
-import net.catfoolyou.fastutil.ints.IntList;
-import net.catfoolyou.fastutil.ints.IntListIterator;
-import net.catfoolyou.fastutil.objects.ObjectLinkedOpenHashSet;
-import net.catfoolyou.fastutil.objects.ObjectSet;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.ints.IntListIterator;
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
+import it.unimi.dsi.fastutil.objects.ObjectSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;

@@ -2,8 +2,8 @@ package net.minecraft.client.util;
 
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.Lists;
-import net.catfoolyou.fastutil.objects.Object2IntMap;
-import net.catfoolyou.fastutil.objects.Object2IntOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;

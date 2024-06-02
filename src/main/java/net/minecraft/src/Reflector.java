@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import net.catfoolyou.fastutil.longs.Long2ObjectMap;
+import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import java.io.Reader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

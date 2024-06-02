@@ -2,8 +2,8 @@ package net.minecraft.entity.passive;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
-import net.catfoolyou.fastutil.ints.Int2ObjectMap;
-import net.catfoolyou.fastutil.ints.Int2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

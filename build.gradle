@@ -16,6 +16,12 @@ sourceSets {
     }
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -58,7 +64,7 @@ dependencies {
     implementation files('lib/libraries/commons-io/commons-io/2.5/commons-io-2.5.jar')
     implementation files('lib/libraries/commons-codec/commons-codec/1.10/commons-codec-1.10.jar')
 
-    //implementation files('lib/libraries/it/unimi/dsi/fastutil/7.1.0/fastutil-7.1.0.jar')
+    implementation files('lib/libraries/it/unimi/dsi/fastutil/7.1.0/fastutil-7.1.0.jar')
 
     implementation files('lib/libraries/org/lwjgl/lwjgl/lwjgl/2.9.4-nightly-20150209/lwjgl-2.9.4-nightly-20150209.jar') // LWJGL
     implementation files('lib/libraries/org/lwjgl/lwjgl/lwjgl_util/2.9.4-nightly-20150209/lwjgl_util-2.9.4-nightly-20150209.jar')

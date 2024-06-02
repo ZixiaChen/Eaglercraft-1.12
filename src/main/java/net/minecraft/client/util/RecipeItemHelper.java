@@ -1,14 +1,14 @@
 package net.minecraft.client.util;
 
 import com.google.common.collect.Lists;
-import net.catfoolyou.fastutil.ints.Int2IntMap;
-import net.catfoolyou.fastutil.ints.Int2IntOpenHashMap;
-import net.catfoolyou.fastutil.ints.IntAVLTreeSet;
-import net.catfoolyou.fastutil.ints.IntArrayList;
-import net.catfoolyou.fastutil.ints.IntCollection;
-import net.catfoolyou.fastutil.ints.IntIterator;
-import net.catfoolyou.fastutil.ints.IntList;
-import net.catfoolyou.fastutil.ints.IntListIterator;
+import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
+import it.unimi.dsi.fastutil.ints.IntAVLTreeSet;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntCollection;
+import it.unimi.dsi.fastutil.ints.IntIterator;
+import it.unimi.dsi.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.ints.IntListIterator;
 import java.util.BitSet;
 import java.util.List;
 import java.util.function.Predicate;
