@@ -32,7 +32,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.storage.MapData;
-import shadersmod.client.Shaders;
 
 public class ItemRenderer
 {
@@ -71,7 +70,7 @@ public class ItemRenderer
             GlStateManager.pushMatrix();
             boolean flag = this.itemRenderer.shouldRenderItemIn3D(heldStack) && block.getBlockLayer() == BlockRenderLayer.TRANSLUCENT;
 
-            if (flag && (!Config.isShaders() || !Shaders.renderItemKeepDepthMask))
+            if (flag)
             {
                 GlStateManager.depthMask(false);
             }
@@ -372,7 +371,7 @@ public class ItemRenderer
 
     public void renderItemInFirstPerson(AbstractClientPlayer p_187457_1_, float p_187457_2_, float p_187457_3_, EnumHand p_187457_4_, float p_187457_5_, ItemStack p_187457_6_, float p_187457_7_)
     {
-        if (!Config.isShaders() || !Shaders.isSkipRenderHand(p_187457_4_))
+        if (true)
         {
             boolean flag = p_187457_4_ == EnumHand.MAIN_HAND;
             EnumHandSide enumhandside = flag ? p_187457_1_.getPrimaryHand() : p_187457_1_.getPrimaryHand().opposite();
@@ -557,7 +556,7 @@ public class ItemRenderer
      */
     private void renderWaterOverlayTexture(float partialTicks)
     {
-        if (!Config.isShaders() || Shaders.isUnderwaterOverlay())
+        if (true)
         {
             this.mc.getTextureManager().bindTexture(RES_UNDERWATER_OVERLAY);
             Tessellator tessellator = Tessellator.getInstance();
@@ -666,21 +665,11 @@ public class ItemRenderer
         if (this.equippedProgressMainHand < 0.1F)
         {
             this.itemStackMainHand = itemstack;
-
-            if (Config.isShaders())
-            {
-                Shaders.setItemToRenderMain(this.itemStackMainHand);
-            }
         }
 
         if (this.equippedProgressOffHand < 0.1F)
         {
             this.itemStackOffHand = itemstack1;
-
-            if (Config.isShaders())
-            {
-                Shaders.setItemToRenderOff(this.itemStackOffHand);
-            }
         }
     }
 

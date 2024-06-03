@@ -61,8 +61,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
-import shadersmod.client.Shaders;
-import shadersmod.client.ShadersRender;
 
 public class RenderItem implements IResourceManagerReloadListener
 {
@@ -199,18 +197,13 @@ public class RenderItem implements IResourceManagerReloadListener
     {
         if (!Config.isCustomItems() || CustomItems.isUseGlint())
         {
-            if (!Config.isShaders() || !Shaders.isShadowPass)
+            if (true)
             {
                 GlStateManager.depthMask(false);
                 GlStateManager.depthFunc(514);
                 GlStateManager.disableLighting();
                 GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE);
                 this.textureManager.bindTexture(RES_ITEM_GLINT);
-
-                if (Config.isShaders() && !this.renderItemGui)
-                {
-                    ShadersRender.renderEnchantedGlintBegin();
-                }
 
                 GlStateManager.matrixMode(5890);
                 GlStateManager.pushMatrix();
@@ -233,11 +226,6 @@ public class RenderItem implements IResourceManagerReloadListener
                 GlStateManager.depthFunc(515);
                 GlStateManager.depthMask(true);
                 this.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-
-                if (Config.isShaders() && !this.renderItemGui)
-                {
-                    ShadersRender.renderEnchantedGlintEnd();
-                }
             }
         }
     }

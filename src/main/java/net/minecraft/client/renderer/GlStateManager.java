@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.opengl.GL14;
-import org.lwjgl.opengl.GLContext;
+import org.lwjgl.opengl.GLCapabilities;
 import net.lax1dude.eaglercraft.v1_8.vector.Quaternion;
 
 public class GlStateManager
@@ -117,12 +117,12 @@ public class GlStateManager
 
     public static void glLight(int light, int pname, FloatBuffer params)
     {
-        GL11.glLight(light, pname, params);
+        GL11.glLightfv(light, pname, params);
     }
 
     public static void glLightModel(int pname, FloatBuffer params)
     {
-        GL11.glLightModel(pname, params);
+        GL11.glLightModelfv(pname, params);
     }
 
     public static void glNormal3f(float nx, float ny, float nz)
@@ -285,7 +285,7 @@ public class GlStateManager
 
     public static void glFog(int pname, FloatBuffer param)
     {
-        GL11.glFog(pname, param);
+        GL11.glFogfv(pname, param);
     }
 
     public static void glFogi(int pname, int param)
@@ -389,7 +389,7 @@ public class GlStateManager
 
     public static void texGen(GlStateManager.TexGen texGen, int pname, FloatBuffer params)
     {
-        GL11.glTexGen(texGenCoord(texGen).coord, pname, params);
+        GL11.glTexGenfv(texGenCoord(texGen).coord, pname, params);
     }
 
     private static GlStateManager.TexGenCoord texGenCoord(GlStateManager.TexGen texGen)
@@ -434,7 +434,7 @@ public class GlStateManager
 
     public static void glTexEnv(int target, int parameterName, FloatBuffer parameters)
     {
-        GL11.glTexEnv(target, parameterName, parameters);
+        GL11.glTexEnvfv(target, parameterName, parameters);
     }
 
     public static void glTexEnvi(int target, int parameterName, int parameter)
@@ -609,7 +609,7 @@ public class GlStateManager
 
     public static void getFloat(int pname, FloatBuffer params)
     {
-        GL11.glGetFloat(pname, params);
+        GL11.glGetFloatv(pname, params);
     }
 
     public static void ortho(double left, double right, double bottom, double top, double zNear, double zFar)
@@ -644,7 +644,7 @@ public class GlStateManager
 
     public static void multMatrix(FloatBuffer matrix)
     {
-        GL11.glMultMatrix(matrix);
+        GL11.glMultMatrixf(matrix);
     }
 
     public static void rotate(Quaternion quaternionIn)
@@ -831,7 +831,7 @@ public class GlStateManager
 
     public static void glGetInteger(int parameterName, IntBuffer parameters)
     {
-        GL11.glGetInteger(parameterName, parameters);
+        GL11.glGetIntegerv(parameterName, parameters);
     }
 
     public static int glGetInteger(int parameterName)
@@ -1231,23 +1231,23 @@ public class GlStateManager
                 GlStateManager.disableAlpha();
                 GlStateManager.alphaFunc(519, 0.0F);
                 GlStateManager.disableLighting();
-                GL11.glLightModel(GL11.GL_LIGHT_MODEL_AMBIENT, RenderHelper.setColorBuffer(0.2F, 0.2F, 0.2F, 1.0F));
+                GL11.glLightModelfv(GL11.GL_LIGHT_MODEL_AMBIENT, RenderHelper.setColorBuffer(0.2F, 0.2F, 0.2F, 1.0F));
 
                 for (int i = 0; i < 8; ++i)
                 {
                     GlStateManager.disableLight(i);
-                    GL11.glLight(GL11.GL_LIGHT0 + i, GL11.GL_AMBIENT, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
-                    GL11.glLight(GL11.GL_LIGHT0 + i, GL11.GL_POSITION, RenderHelper.setColorBuffer(0.0F, 0.0F, 1.0F, 0.0F));
+                    GL11.glLightfv(GL11.GL_LIGHT0 + i, GL11.GL_AMBIENT, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
+                    GL11.glLightfv(GL11.GL_LIGHT0 + i, GL11.GL_POSITION, RenderHelper.setColorBuffer(0.0F, 0.0F, 1.0F, 0.0F));
 
                     if (i == 0)
                     {
-                        GL11.glLight(GL11.GL_LIGHT0 + i, GL11.GL_DIFFUSE, RenderHelper.setColorBuffer(1.0F, 1.0F, 1.0F, 1.0F));
-                        GL11.glLight(GL11.GL_LIGHT0 + i, GL11.GL_SPECULAR, RenderHelper.setColorBuffer(1.0F, 1.0F, 1.0F, 1.0F));
+                        GL11.glLightfv(GL11.GL_LIGHT0 + i, GL11.GL_DIFFUSE, RenderHelper.setColorBuffer(1.0F, 1.0F, 1.0F, 1.0F));
+                        GL11.glLightfv(GL11.GL_LIGHT0 + i, GL11.GL_SPECULAR, RenderHelper.setColorBuffer(1.0F, 1.0F, 1.0F, 1.0F));
                     }
                     else
                     {
-                        GL11.glLight(GL11.GL_LIGHT0 + i, GL11.GL_DIFFUSE, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
-                        GL11.glLight(GL11.GL_LIGHT0 + i, GL11.GL_SPECULAR, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
+                        GL11.glLightfv(GL11.GL_LIGHT0 + i, GL11.GL_DIFFUSE, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
+                        GL11.glLightfv(GL11.GL_LIGHT0 + i, GL11.GL_SPECULAR, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
                     }
                 }
 
@@ -1265,9 +1265,9 @@ public class GlStateManager
                 GlStateManager.setFogDensity(1.0F);
                 GlStateManager.setFogStart(0.0F);
                 GlStateManager.setFogEnd(1.0F);
-                GL11.glFog(GL11.GL_FOG_COLOR, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 0.0F));
+                GL11.glFogfv(GL11.GL_FOG_COLOR, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 0.0F));
 
-                if (GLContext.getCapabilities().GL_NV_fog_distance)
+                if (GLCapabilities.getCapabilities().GL_NV_fog_distance)
                 {
                     GL11.glFogi(GL11.GL_FOG_MODE, 34140);
                 }
@@ -1301,7 +1301,7 @@ public class GlStateManager
                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MIN_LOD, -1000);
                 GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL14.GL_TEXTURE_LOD_BIAS, 0.0F);
                 GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
-                GL11.glTexEnv(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_COLOR, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 0.0F));
+                GL11.glTexEnvfv(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_COLOR, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 0.0F));
                 GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL13.GL_COMBINE_RGB, GL11.GL_MODULATE);
                 GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL13.GL_COMBINE_ALPHA, GL11.GL_MODULATE);
                 GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL13.GL_SOURCE0_RGB, GL11.GL_TEXTURE);

@@ -89,9 +89,9 @@ import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
-import org.lwjgl.opengl.Display;
+import net.lax1dude.eaglercraft.v1_8.Display;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLContext;
+import org.lwjgl.opengl.GLCapabilities;
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.Project;
 
@@ -2270,7 +2270,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 GlStateManager.setFogEnd(f2);
             }
 
-            if (GLContext.getCapabilities().GL_NV_fog_distance && Config.isFogFancy())
+            if (GLCapabilities.getCapabilities().GL_NV_fog_distance && Config.isFogFancy())
             {
                 GlStateManager.glFogi(34138, 34139);
             }
@@ -2331,7 +2331,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 GlStateManager.setFogEnd(f1);
             }
 
-            if (GLContext.getCapabilities().GL_NV_fog_distance)
+            if (GLCapabilities.getCapabilities().GL_NV_fog_distance)
             {
                 if (Config.isFogFancy())
                 {

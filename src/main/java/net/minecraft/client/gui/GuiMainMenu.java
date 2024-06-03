@@ -35,7 +35,7 @@ import org.apache.commons.io.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
-import org.lwjgl.opengl.GLContext;
+import org.lwjgl.opengl.GLCapabilities;
 import org.lwjgl.util.glu.Project;
 
 import java.awt.Desktop;
@@ -180,7 +180,7 @@ public class GuiMainMenu extends GuiScreen
         this.minceraftRoll = RANDOM.nextFloat();
         this.openGLWarning1 = "";
 
-        if (!GLContext.getCapabilities().OpenGL20 && !OpenGlHelper.areShadersSupported())
+        if (!GLCapabilities.getCapabilities().OpenGL20 && !OpenGlHelper.areShadersSupported())
         {
             this.openGLWarning1 = I18n.format("title.oldgl1");
             this.openGLWarning2 = I18n.format("title.oldgl2");

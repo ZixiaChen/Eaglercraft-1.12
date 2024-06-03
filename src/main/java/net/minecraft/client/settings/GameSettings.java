@@ -57,7 +57,6 @@ import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import shadersmod.client.Shaders;
 
 public class GameSettings
 {
@@ -3319,10 +3318,6 @@ public class GameSettings
         this.ofDrippingWaterLava = true;
         this.ofAnimatedTerrain = true;
         this.ofAnimatedTextures = true;
-        Shaders.setShaderPack(Shaders.packNameNone);
-        Shaders.configAntialiasingLevel = 0;
-        Shaders.uninit();
-        Shaders.storeConfig();
         this.updateWaterOpacity();
         this.mc.refreshResources();
         this.saveOptions();

@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.src.Config;
 import net.minecraft.util.math.Vec3d;
-import shadersmod.client.SVertexFormat;
 
 public class TexturedQuad
 {
@@ -62,14 +61,7 @@ public class TexturedQuad
             f2 = -f2;
         }
 
-        if (Config.isShaders())
-        {
-            renderer.begin(7, SVertexFormat.defVertexFormatTextured);
-        }
-        else
-        {
-            renderer.begin(7, DefaultVertexFormats.OLDMODEL_POSITION_TEX_NORMAL);
-        }
+        renderer.begin(7, DefaultVertexFormats.OLDMODEL_POSITION_TEX_NORMAL);
 
         for (int i = 0; i < 4; ++i)
         {
