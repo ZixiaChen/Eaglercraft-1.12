@@ -67,6 +67,7 @@ dependencies {
     implementation files('lib/libraries/org/lwjgl/lwjgl-jemalloc.jar')
     implementation files('lib/libraries/org/lwjgl/lwjgl-openal.jar')
     implementation files('lib/libraries/org/lwjgl/lwjgl-opengles.jar')
+    implementation files('lib/libraries/org/lwjgl/lwjgl-opengl.jar')
 
     // Websockets
     implementation files('lib/libraries/org/websockets/Java-WebSocket-1.5.1-with-dependencies.jar')
