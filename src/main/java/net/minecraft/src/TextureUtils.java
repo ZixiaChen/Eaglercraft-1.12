@@ -32,7 +32,7 @@ import net.optifine.entity.model.CustomEntityModels;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GLContext;
+import org.lwjgl.opengl.GLCapabilities;
 
 public class TextureUtils
 {
@@ -380,7 +380,7 @@ public class TextureUtils
 
     public static void applyAnisotropicLevel()
     {
-        if (GLContext.getCapabilities().GL_EXT_texture_filter_anisotropic)
+        if (GLCapabilities.getCapabilities().GL_EXT_texture_filter_anisotropic)
         {
             float f = GL11.glGetFloat(34047);
             float f1 = (float)Config.getAnisotropicFilterLevel();

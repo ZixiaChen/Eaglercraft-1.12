@@ -55,7 +55,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.opengl.GL30;
-import org.lwjgl.opengl.GLContext;
+import org.lwjgl.opengl.GLCapabilities;
 import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.glu.GLU;
 

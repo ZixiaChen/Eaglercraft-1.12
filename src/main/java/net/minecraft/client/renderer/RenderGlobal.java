@@ -110,9 +110,6 @@ import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.vector.Vector3f;
 import net.lax1dude.eaglercraft.v1_8.vector.Vector4f;
-import shadersmod.client.Shaders;
-import shadersmod.client.ShadersRender;
-import shadersmod.client.ShadowUtils;
 
 public class RenderGlobal implements IWorldEventListener, IResourceManagerReloadListener
 {
@@ -729,12 +726,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             }
 
             this.world.profiler.endStartSection("entities");
-            boolean flag4 = Config.isShaders();
-
-            if (flag4)
-            {
-                Shaders.beginEntities();
-            }
 
             boolean flag5 = this.mc.gameSettings.fancyGraphics;
             this.mc.gameSettings.fancyGraphics = Config.isDroppedItemsFancy();
@@ -765,10 +756,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                                     ++this.countEntitiesRendered;
                                     this.renderedEntity = entity2;
 
-                                    if (flag4)
-                                    {
-                                        Shaders.nextEntity(entity2);
-                                    }
 
                                     this.renderManager.renderEntityStatic(entity2, partialTicks, false);
                                     this.renderedEntity = null;
@@ -797,11 +784,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                 {
                     if (!flag || Reflector.callBoolean(entity3, Reflector.ForgeEntity_shouldRenderInPass, i))
                     {
-                        if (flag4)
-                        {
-                            Shaders.nextEntity(entity3);
-                        }
-
                         this.renderManager.renderMultipass(entity3, partialTicks);
                     }
                 }
@@ -827,11 +809,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
                         if (!flag || Reflector.callBoolean(entity4, Reflector.ForgeEntity_shouldRenderInPass, i))
                         {
-                            if (flag4)
-                            {
-                                Shaders.nextEntity(entity4);
-                            }
-
                             this.renderManager.renderEntityStatic(entity4, partialTicks, false);
                         }
                     }
@@ -872,11 +849,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
                         if (!flag || Reflector.callBoolean(entity5, Reflector.ForgeEntity_shouldRenderInPass, i))
                         {
-                            if (flag4)
-                            {
-                                Shaders.nextEntity(entity5);
-                            }
-
                             this.renderManager.renderEntityStatic(entity5, partialTicks, false);
                         }
                     }
@@ -891,12 +863,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
             this.mc.gameSettings.fancyGraphics = flag5;
             FontRenderer fontrenderer = TileEntityRendererDispatcher.instance.getFontRenderer();
-
-            if (flag4)
-            {
-                Shaders.endEntities();
-                Shaders.beginBlockEntities();
-            }
 
             this.world.profiler.endStartSection("blockentities");
             RenderHelper.enableStandardItemLighting();
@@ -959,11 +925,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                             }
                         }
 
-                        if (flag4)
-                        {
-                            Shaders.nextBlockEntity(tileentity1);
-                        }
-
                         TileEntityRendererDispatcher.instance.render(tileentity1, partialTicks, -1);
                         ++this.countTileEntitiesRendered;
                         fontrenderer.enabled = true;
@@ -977,11 +938,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                 {
                     if (!flag1 || Reflector.callBoolean(tileentity, Reflector.ForgeTileEntity_shouldRenderInPass, i))
                     {
-                        if (flag4)
-                        {
-                            Shaders.nextBlockEntity(tileentity);
-                        }
-
                         TileEntityRendererDispatcher.instance.render(tileentity, partialTicks, -1);
                     }
                 }
@@ -1023,11 +979,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
                     if (tileentity2 != null && iblockstate.hasCustomBreakingProgress())
                     {
-                        if (flag4)
-                        {
-                            Shaders.nextBlockEntity(tileentity2);
-                        }
-
                         TileEntityRendererDispatcher.instance.render(tileentity2, partialTicks, destroyblockprogress.getPartialBlockDamage());
                     }
                 }
@@ -1163,56 +1114,11 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             this.displayListEntitiesDirty = true;
         }
 
-        if (Shaders.isShadowPass)
-        {
-            this.renderInfos = this.renderInfosShadow;
-            this.renderInfosEntities = this.renderInfosEntitiesShadow;
-            this.renderInfosTileEntities = this.renderInfosTileEntitiesShadow;
+        this.renderInfos = this.renderInfosNormal;
+        this.renderInfosEntities = this.renderInfosEntitiesNormal;
+        this.renderInfosTileEntities = this.renderInfosTileEntitiesNormal;
 
-            if (!flag && this.displayListEntitiesDirty)
-            {
-                this.renderInfos.clear();
-                this.renderInfosEntities.clear();
-                this.renderInfosTileEntities.clear();
-                RenderInfoLazy renderinfolazy = new RenderInfoLazy();
-                Iterator<RenderChunk> iterator = ShadowUtils.makeShadowChunkIterator(this.world, partialTicks, viewEntity, this.renderDistanceChunks, this.viewFrustum);
-
-                while (iterator.hasNext())
-                {
-                    RenderChunk renderchunk1 = iterator.next();
-
-                    if (renderchunk1 != null)
-                    {
-                        renderinfolazy.setRenderChunk(renderchunk1);
-
-                        if (!renderchunk1.compiledChunk.isEmpty() || renderchunk1.needsUpdate())
-                        {
-                            this.renderInfos.add(renderinfolazy.getRenderInfo());
-                        }
-
-                        BlockPos blockpos = renderchunk1.getPosition();
-
-                        if (ChunkUtils.hasEntities(this.world.getChunkFromBlockCoords(blockpos)))
-                        {
-                            this.renderInfosEntities.add(renderinfolazy.getRenderInfo());
-                        }
-
-                        if (renderchunk1.getCompiledChunk().getTileEntities().size() > 0)
-                        {
-                            this.renderInfosTileEntities.add(renderinfolazy.getRenderInfo());
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            this.renderInfos = this.renderInfosNormal;
-            this.renderInfosEntities = this.renderInfosEntitiesNormal;
-            this.renderInfosTileEntities = this.renderInfosTileEntitiesNormal;
-        }
-
-        if (!flag && this.displayListEntitiesDirty && !Shaders.isShadowPass)
+        if (!flag && this.displayListEntitiesDirty)
         {
             this.displayListEntitiesDirty = false;
 
@@ -1347,49 +1253,42 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
         Lagometer.timerVisibility.end();
 
-        if (Shaders.isShadowPass)
-        {
-            Shaders.mcProfilerEndSection();
-        }
-        else
-        {
-            this.mc.mcProfiler.endStartSection("rebuildNear");
-            Set<RenderChunk> set = this.chunksToUpdate;
-            this.chunksToUpdate = Sets.<RenderChunk>newLinkedHashSet();
-            Lagometer.timerChunkUpdate.start();
+        this.mc.mcProfiler.endStartSection("rebuildNear");
+        Set<RenderChunk> set = this.chunksToUpdate;
+        this.chunksToUpdate = Sets.<RenderChunk>newLinkedHashSet();
+        Lagometer.timerChunkUpdate.start();
 
-            for (RenderGlobal.ContainerLocalRenderInformation renderglobal$containerlocalrenderinformation2 : this.renderInfos)
+        for (RenderGlobal.ContainerLocalRenderInformation renderglobal$containerlocalrenderinformation2 : this.renderInfos)
+        {
+            RenderChunk renderchunk4 = renderglobal$containerlocalrenderinformation2.renderChunk;
+
+            if (renderchunk4.needsUpdate() || set.contains(renderchunk4))
             {
-                RenderChunk renderchunk4 = renderglobal$containerlocalrenderinformation2.renderChunk;
+                this.displayListEntitiesDirty = true;
+                BlockPos blockpos2 = renderchunk4.getPosition();
+                boolean flag4 = blockpos1.distanceSq((double)(blockpos2.getX() + 8), (double)(blockpos2.getY() + 8), (double)(blockpos2.getZ() + 8)) < 768.0D;
 
-                if (renderchunk4.needsUpdate() || set.contains(renderchunk4))
+                if (!flag4)
                 {
-                    this.displayListEntitiesDirty = true;
-                    BlockPos blockpos2 = renderchunk4.getPosition();
-                    boolean flag4 = blockpos1.distanceSq((double)(blockpos2.getX() + 8), (double)(blockpos2.getY() + 8), (double)(blockpos2.getZ() + 8)) < 768.0D;
-
-                    if (!flag4)
-                    {
-                        this.chunksToUpdate.add(renderchunk4);
-                    }
-                    else if (!renderchunk4.isPlayerUpdate())
-                    {
-                        this.chunksToUpdateForced.add(renderchunk4);
-                    }
-                    else
-                    {
-                        this.mc.mcProfiler.startSection("build near");
-                        this.renderDispatcher.updateChunkNow(renderchunk4);
-                        renderchunk4.clearNeedsUpdate();
-                        this.mc.mcProfiler.endSection();
-                    }
+                    this.chunksToUpdate.add(renderchunk4);
+                }
+                else if (!renderchunk4.isPlayerUpdate())
+                {
+                    this.chunksToUpdateForced.add(renderchunk4);
+                }
+                else
+                {
+                    this.mc.mcProfiler.startSection("build near");
+                    this.renderDispatcher.updateChunkNow(renderchunk4);
+                    renderchunk4.clearNeedsUpdate();
+                    this.mc.mcProfiler.endSection();
                 }
             }
-
-            Lagometer.timerChunkUpdate.end();
-            this.chunksToUpdate.addAll(set);
-            this.mc.mcProfiler.endSection();
         }
+
+        Lagometer.timerChunkUpdate.end();
+        this.chunksToUpdate.addAll(set);
+        this.mc.mcProfiler.endSection();
     }
 
     private Set<EnumFacing> getVisibleFacings(BlockPos pos)
@@ -1582,17 +1481,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             GlStateManager.glEnableClientState(32886);
         }
 
-        if (Config.isShaders())
-        {
-            ShadersRender.preRenderChunkLayer(blockLayerIn);
-        }
-
         this.renderContainer.renderChunkLayer(blockLayerIn);
-
-        if (Config.isShaders())
-        {
-            ShadersRender.postRenderChunkLayer(blockLayerIn);
-        }
 
         if (OpenGlHelper.useVbo())
         {
@@ -1639,12 +1528,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
     public void updateClouds()
     {
-        if (Config.isShaders() && Keyboard.isKeyDown(61) && Keyboard.isKeyDown(19))
-        {
-            Shaders.uninit();
-            Shaders.loadShaderPack();
-            Reflector.Minecraft_actionKeyF3.setValue(this.mc, Boolean.TRUE);
-        }
 
         ++this.cloudTickCounter;
 
@@ -1762,20 +1645,9 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         else if (this.mc.world.provider.isSurfaceWorld())
         {
             GlStateManager.disableTexture2D();
-            boolean flag = Config.isShaders();
-
-            if (flag)
-            {
-                Shaders.disableTexture2D();
-            }
 
             Vec3d vec3d = this.world.getSkyColor(this.mc.getRenderViewEntity(), partialTicks);
             vec3d = CustomColors.getSkyColor(vec3d, this.mc.world, this.mc.getRenderViewEntity().posX, this.mc.getRenderViewEntity().posY + 1.0D, this.mc.getRenderViewEntity().posZ);
-
-            if (flag)
-            {
-                Shaders.setSkyColor(vec3d);
-            }
 
             float f = (float)vec3d.x;
             float f1 = (float)vec3d.y;
@@ -1797,17 +1669,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             GlStateManager.depthMask(false);
             GlStateManager.enableFog();
 
-            if (flag)
-            {
-                Shaders.enableFog();
-            }
-
             GlStateManager.color(f, f1, f2);
-
-            if (flag)
-            {
-                Shaders.preSkyList();
-            }
 
             if (Config.isSkyEnabled())
             {
@@ -1828,11 +1690,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
             GlStateManager.disableFog();
 
-            if (flag)
-            {
-                Shaders.disableFog();
-            }
-
             GlStateManager.disableAlpha();
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
@@ -1842,11 +1699,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             if (afloat != null && Config.isSunMoonEnabled())
             {
                 GlStateManager.disableTexture2D();
-
-                if (flag)
-                {
-                    Shaders.disableTexture2D();
-                }
 
                 GlStateManager.shadeModel(7425);
                 GlStateManager.pushMatrix();
@@ -1886,11 +1738,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
             GlStateManager.enableTexture2D();
 
-            if (flag)
-            {
-                Shaders.enableTexture2D();
-            }
-
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.pushMatrix();
             float f15 = 1.0F - this.world.getRainStrength(partialTicks);
@@ -1898,17 +1745,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
             CustomSky.renderSky(this.world, this.renderEngine, partialTicks);
 
-            if (flag)
-            {
-                Shaders.preCelestialRotate();
-            }
-
             GlStateManager.rotate(this.world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
-
-            if (flag)
-            {
-                Shaders.postCelestialRotate();
-            }
 
             float f16 = 30.0F;
 
@@ -1945,11 +1782,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
             GlStateManager.disableTexture2D();
 
-            if (flag)
-            {
-                Shaders.disableTexture2D();
-            }
-
             float f17 = this.world.getStarBrightness(partialTicks) * f15;
 
             if (f17 > 0.0F && Config.isStarsEnabled() && !CustomSky.hasSkyLayers(this.world))
@@ -1976,18 +1808,8 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             GlStateManager.enableAlpha();
             GlStateManager.enableFog();
 
-            if (flag)
-            {
-                Shaders.enableFog();
-            }
-
             GlStateManager.popMatrix();
             GlStateManager.disableTexture2D();
-
-            if (flag)
-            {
-                Shaders.disableTexture2D();
-            }
 
             GlStateManager.color(0.0F, 0.0F, 0.0F);
             double d0 = this.mc.player.getPositionEyes(partialTicks).y - this.world.getHorizon();
@@ -2064,11 +1886,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             GlStateManager.popMatrix();
             GlStateManager.enableTexture2D();
 
-            if (flag)
-            {
-                Shaders.enableTexture2D();
-            }
-
             GlStateManager.depthMask(true);
         }
     }
@@ -2091,11 +1908,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
             if (this.mc.world.provider.isSurfaceWorld())
             {
-                if (Config.isShaders())
-                {
-                    Shaders.beginClouds();
-                }
-
                 if (Config.isCloudsFancy())
                 {
                     this.renderCloudsFancy(partialTicks, pass, p_180447_3_, p_180447_5_, p_180447_7_);
@@ -2164,11 +1976,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                     GlStateManager.disableBlend();
                     GlStateManager.enableCull();
-                }
-
-                if (Config.isShaders())
-                {
-                    Shaders.endClouds();
                 }
             }
         }
@@ -2564,10 +2371,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         GlStateManager.enableAlpha();
         GlStateManager.pushMatrix();
 
-        if (Config.isShaders())
-        {
-            ShadersRender.beginBlockDamage();
-        }
     }
 
     private void postRenderDamagedBlocks()
@@ -2578,11 +2381,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         GlStateManager.enableAlpha();
         GlStateManager.depthMask(true);
         GlStateManager.popMatrix();
-
-        if (Config.isShaders())
-        {
-            ShadersRender.endBlockDamage();
-        }
     }
 
     public void drawBlockDamageTexture(Tessellator tessellatorIn, BufferBuilder worldRendererIn, Entity entityIn, float partialTicks)
@@ -2669,12 +2467,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.glLineWidth(2.0F);
             GlStateManager.disableTexture2D();
-
-            if (Config.isShaders())
-            {
-                Shaders.disableTexture2D();
-            }
-
             GlStateManager.depthMask(false);
             BlockPos blockpos = movingObjectPositionIn.getBlockPos();
             IBlockState iblockstate = this.world.getBlockState(blockpos);
@@ -2689,11 +2481,6 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
             GlStateManager.depthMask(true);
             GlStateManager.enableTexture2D();
-
-            if (Config.isShaders())
-            {
-                Shaders.enableTexture2D();
-            }
 
             GlStateManager.disableBlend();
         }
