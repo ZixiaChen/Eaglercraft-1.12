@@ -1,5 +1,7 @@
 package net.lax1dude.eaglercraft.v1_8.internal.lwjgl;
 
+import java.util.Arrays;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -47,9 +49,16 @@ public class LWJGLEntryPoint {
 		
 		EagRuntime.create();
 		
-		Main.appMain(new String[0]);
+		Main.main(concat(new String[] {"--version", "mcp", "--accessToken", "0", "--assetsDir", "assets", "--assetIndex", "1.8", "--userProperties", "{}"}, args));;
 		
 	}
+
+	public static <T> T[] concat(T[] first, T[] second)
+    {
+        T[] result = Arrays.copyOf(first, first.length + second.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
+        return result;
+    }
 	
 	private static void getANGLEPlatformFromArgs(String[] args) {
 		for(int i = 0; i < args.length; ++i) {
