@@ -13,7 +13,7 @@ import net.minecraft.client.network.ServerPinger;
 import net.minecraft.client.resources.I18n;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import org.lwjgl.input.Keyboard;
+import net.lax1dude.eaglercraft.v1_8.Keyboard;
 
 public class GuiMultiplayer extends GuiScreen
 {

@@ -2,7 +2,6 @@ package net.minecraft.client.renderer.vertex;
 
 import net.minecraft.src.Config;
 import net.minecraft.src.Reflector;
-import shadersmod.client.SVertexFormat;
 
 public class DefaultVertexFormats
 {
@@ -29,16 +28,8 @@ public class DefaultVertexFormats
 
     public static void updateVertexFormats()
     {
-        if (Config.isShaders())
-        {
-            BLOCK = SVertexFormat.makeDefVertexFormatBlock();
-            ITEM = SVertexFormat.makeDefVertexFormatItem();
-        }
-        else
-        {
-            BLOCK = BLOCK_VANILLA;
-            ITEM = ITEM_VANILLA;
-        }
+        BLOCK = BLOCK_VANILLA;
+        ITEM = ITEM_VANILLA;
 
         if (Reflector.Attributes_DEFAULT_BAKED_FORMAT.exists())
         {

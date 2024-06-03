@@ -11,7 +11,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.src.Config;
-import shadersmod.client.Shaders;
 
 public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingBase<T>
 {
@@ -73,7 +72,7 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
 
     protected void renderLeash(T entityLivingIn, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        if (!Config.isShaders() || !Shaders.isShadowPass)
+        if (true)
         {
             Entity entity = entityLivingIn.getLeashedToEntity();
 
@@ -113,11 +112,6 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
                 GlStateManager.disableTexture2D();
                 GlStateManager.disableLighting();
                 GlStateManager.disableCull();
-
-                if (Config.isShaders())
-                {
-                    Shaders.beginLeash();
-                }
 
                 int i = 24;
                 double d16 = 0.025D;
@@ -163,11 +157,6 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
                 }
 
                 tessellator.draw();
-
-                if (Config.isShaders())
-                {
-                    Shaders.endLeash();
-                }
 
                 GlStateManager.enableLighting();
                 GlStateManager.enableTexture2D();

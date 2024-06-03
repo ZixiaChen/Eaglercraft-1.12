@@ -58,7 +58,6 @@ import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.glu.GLU;
-import shadersmod.client.Shaders;
 
 public class Config
 {
@@ -112,7 +111,7 @@ public class Config
         }
 
         stringbuffer.append("OptiFine_1.12_HD_U_C4");
-        String s = Shaders.getShaderPackName();
+        String s = "Stock graphics";
 
         if (s != null)
         {
@@ -142,7 +141,6 @@ public class Config
         checkDisplayMode();
         minecraftThread = Thread.currentThread();
         updateThreadPriorities();
-        Shaders.startup(Minecraft.getMinecraft());
     }
 
     public static void checkInitialized()
@@ -653,10 +651,6 @@ public class Config
         {
             return gameSettings.ofClouds == 2;
         }
-        else if (isShaders() && !Shaders.shaderPackClouds.isDefault())
-        {
-            return Shaders.shaderPackClouds.isFancy();
-        }
         else if (texturePackClouds != 0)
         {
             return texturePackClouds == 2;
@@ -672,10 +666,6 @@ public class Config
         if (gameSettings.ofClouds != 0)
         {
             return gameSettings.ofClouds == 3;
-        }
-        else if (isShaders() && !Shaders.shaderPackClouds.isDefault())
-        {
-            return Shaders.shaderPackClouds.isOff();
         }
         else if (texturePackClouds != 0)
         {
@@ -914,7 +904,7 @@ public class Config
 
     public static float getAmbientOcclusionLevel()
     {
-        return isShaders() && Shaders.aoLevel >= 0.0F ? Shaders.aoLevel : gameSettings.ofAoLevel;
+        return gameSettings.ofAoLevel;
     }
 
     public static String arrayToString(Object[] p_arrayToString_0_)
@@ -1168,7 +1158,7 @@ public class Config
         }
         else
         {
-            return !isShaders() || Shaders.isSun();
+            return true;
         }
     }
 
@@ -1180,17 +1170,13 @@ public class Config
         }
         else
         {
-            return !isShaders() || Shaders.isMoon();
+            return true;
         }
     }
 
     public static boolean isVignetteEnabled()
     {
-        if (isShaders() && !Shaders.isVignette())
-        {
-            return false;
-        }
-        else if (gameSettings.ofVignette == 0)
+        if (gameSettings.ofVignette == 0)
         {
             return gameSettings.fancyGraphics;
         }
@@ -1633,7 +1619,7 @@ public class Config
 
     public static boolean isShaders()
     {
-        return Shaders.shaderPackLoaded;
+        return false;
     }
 
     public static String[] readLines(File p_readLines_0_) throws IOException
@@ -2340,7 +2326,7 @@ public class Config
         }
         else
         {
-            return isShaders() ? Shaders.isDynamicHandLight() : true;
+            return true;
         }
     }
 

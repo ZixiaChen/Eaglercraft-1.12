@@ -12,7 +12,6 @@ import net.minecraft.src.Config;
 import net.minecraft.tileentity.TileEntityEndPortal;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import shadersmod.client.ShadersRender;
 
 public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileEntityEndPortal>
 {
@@ -25,7 +24,7 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
 
     public void render(TileEntityEndPortal te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        if (!Config.isShaders() || !ShadersRender.renderEndPortal(te, x, y, z, partialTicks, destroyStage, this.getOffset()))
+        if (true)
         {
             GlStateManager.disableLighting();
             RANDOM.setSeed(31100L);

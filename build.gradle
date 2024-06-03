@@ -16,12 +16,6 @@ sourceSets {
     }
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
 repositories {
     mavenCentral()
 }
@@ -47,11 +41,8 @@ distributions {
 }
 
 dependencies {
-    implementation files('lib/libraries/net/java/dev/jna/jna/4.4.0/jna-4.4.0.jar')
-    implementation files('lib/libraries/net/java/dev/jna/platform/3.4.0/platform-3.4.0.jar')
-    implementation files('lib/libraries/net/java/jinput/jinput/2.0.5/jinput-2.0.5.jar')
-    implementation files('lib/libraries/net/java/jutils/jutils/1.0.0/jutils-1.0.0.jar')
-    implementation files('lib/libraries/net/sf/jopt-simple/jopt-simple/5.0.3/jopt-simple-5.0.3.jar')
+    //implementation files('lib/libraries/net/java/dev/jna/jna/4.4.0/jna-4.4.0.jar') // Stuff for working with native libs
+    //implementation files('lib/libraries/net/java/dev/jna/platform/3.4.0/platform-3.4.0.jar')
 
     implementation files('lib/libraries/com/paulscode/codecjorbis/20101023/codecjorbis-20101023.jar')
     implementation files('lib/libraries/com/paulscode/codecwav/20101023/codecwav-20101023.jar')
@@ -61,8 +52,8 @@ dependencies {
 
     implementation files('lib/libraries/io/netty/netty-all/4.1.9.Final/netty-all-4.1.9.Final.jar')
         
-    implementation files('lib/libraries/commons-io/commons-io/2.5/commons-io-2.5.jar')
-    implementation files('lib/libraries/commons-codec/commons-codec/1.10/commons-codec-1.10.jar')
+    implementation files('lib/libraries/commons-io/commons-io/2.5/commons-io-2.5.jar') // IO stuff (no shit!)
+    implementation files('lib/libraries/commons-codec/commons-codec/1.10/commons-codec-1.10.jar') // Encoding/decoding
 
     implementation files('lib/libraries/it/unimi/dsi/fastutil/7.1.0/fastutil-7.1.0.jar')
 

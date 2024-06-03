@@ -44,7 +44,7 @@ import net.minecraft.stats.RecipeBook;
 import net.minecraft.util.ResourceLocation;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import org.lwjgl.input.Keyboard;
+import net.lax1dude.eaglercraft.v1_8.Keyboard;
 
 public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
 {

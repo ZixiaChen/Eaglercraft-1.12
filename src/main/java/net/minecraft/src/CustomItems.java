@@ -35,8 +35,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
-import shadersmod.client.Shaders;
-import shadersmod.client.ShadersRender;
 
 public class CustomItems
 {
@@ -1059,10 +1057,6 @@ public class CustomItems
         {
             return false;
         }
-        else if (Config.isShaders() && Shaders.isShadowPass)
-        {
-            return false;
-        }
         else if (p_renderCustomArmorEffect_1_ == null)
         {
             return false;
@@ -1109,11 +1103,6 @@ public class CustomItems
                                     {
                                         flag = true;
 
-                                        if (Config.isShaders())
-                                        {
-                                            ShadersRender.renderEnchantedGlintBegin();
-                                        }
-
                                         GlStateManager.enableBlend();
                                         GlStateManager.depthFunc(514);
                                         GlStateManager.depthMask(false);
@@ -1149,11 +1138,6 @@ public class CustomItems
                     GlStateManager.depthMask(true);
                     GlStateManager.depthFunc(515);
                     GlStateManager.disableBlend();
-
-                    if (Config.isShaders())
-                    {
-                        ShadersRender.renderEnchantedGlintEnd();
-                    }
                 }
 
                 return flag;

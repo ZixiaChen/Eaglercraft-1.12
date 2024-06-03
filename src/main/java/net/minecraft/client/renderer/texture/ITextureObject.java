@@ -2,7 +2,6 @@ package net.minecraft.client.renderer.texture;
 
 import java.io.IOException;
 import net.minecraft.client.resources.IResourceManager;
-import shadersmod.client.MultiTexID;
 
 public interface ITextureObject
 {
@@ -14,5 +13,5 @@ public interface ITextureObject
 
     int getGlTextureId();
 
-    MultiTexID getMultiTexID();
+    Object getMultiTexID();
 }

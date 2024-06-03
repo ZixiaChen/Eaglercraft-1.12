@@ -14,7 +14,6 @@ import net.minecraftforge.common.model.ITransformation;
 import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
 import net.lax1dude.eaglercraft.v1_8.vector.Vector3f;
 import net.lax1dude.eaglercraft.v1_8.vector.Vector4f;
-import shadersmod.client.Shaders;
 
 public class FaceBakery
 {
@@ -143,10 +142,6 @@ public class FaceBakery
         switch (p_178412_0_)
         {
             case DOWN:
-                if (Config.isShaders())
-                {
-                    return Shaders.blockLightLevel05;
-                }
 
                 return 0.5F;
 
@@ -155,19 +150,13 @@ public class FaceBakery
 
             case NORTH:
             case SOUTH:
-                if (Config.isShaders())
-                {
-                    return Shaders.blockLightLevel08;
-                }
+                
 
                 return 0.8F;
 
             case WEST:
             case EAST:
-                if (Config.isShaders())
-                {
-                    return Shaders.blockLightLevel06;
-                }
+                
 
                 return 0.6F;
 
