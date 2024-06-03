@@ -1732,7 +1732,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     private void renderCloudsCheck(RenderGlobal renderGlobalIn, float partialTicks, int pass, double x, double y, double z)
     {
-        if (this.mc.gameSettings.renderDistanceChunks >= 4 && !Config.isCloudsOff()))
+        if (this.mc.gameSettings.renderDistanceChunks >= 4 && !Config.isCloudsOff())
         {
             this.mc.mcProfiler.endStartSection("clouds");
             GlStateManager.matrixMode(5889);
