@@ -40,7 +40,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkCache;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import shadersmod.client.SVertexBuilder;
 
 public class RenderChunk
 {
@@ -289,11 +288,6 @@ public class RenderChunk
 
                     if (compiledchunk.isLayerStarted(blockrenderlayer1))
                     {
-                        if (Config.isShaders())
-                        {
-                            SVertexBuilder.calcNormalChunkLayer(generator.getRegionRenderCacheBuilder().getWorldRendererByLayer(blockrenderlayer1));
-                        }
-
                         this.postRenderBlocks(blockrenderlayer1, x, y, z, generator.getRegionRenderCacheBuilder().getWorldRendererByLayer(blockrenderlayer1), compiledchunk);
                     }
                 }

@@ -24,7 +24,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.optifine.entity.model.IEntityRenderer;
-import shadersmod.client.Shaders;
 
 public abstract class Render<T extends Entity> implements IEntityRenderer
 {
@@ -204,7 +203,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
      */
     private void renderShadow(Entity entityIn, double x, double y, double z, float shadowAlpha, float partialTicks)
     {
-        if (!Config.isShaders() || !Shaders.shouldSkipDefaultShadow)
+        if (true)
         {
             GlStateManager.enableBlend();
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);

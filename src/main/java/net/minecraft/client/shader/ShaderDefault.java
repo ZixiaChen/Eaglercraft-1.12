@@ -1,6 +1,6 @@
 package net.minecraft.client.shader;
 
-import org.lwjgl.util.vector.Matrix4f;
+import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
 
 public class ShaderDefault extends ShaderUniform
 {

@@ -38,7 +38,6 @@ import net.minecraft.util.math.MathHelper;
 import org.apache.commons.io.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import shadersmod.client.ShadersTex;
 
 public class TextureMap extends AbstractTexture implements ITickableTextureObject
 {
@@ -110,7 +109,6 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
     public void loadTexture(IResourceManager resourceManager) throws IOException
     {
-        ShadersTex.resManager = resourceManager;
 
         if (this.iconCreator != null)
         {
@@ -138,7 +136,6 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
     public void loadTextureAtlas(IResourceManager resourceManager)
     {
-        ShadersTex.resManager = resourceManager;
         Config.dbg("Multitexture: " + Config.isMultiTexture());
 
         if (Config.isMultiTexture())
@@ -190,16 +187,8 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
                 try
                 {
                     PngSizeInfo pngsizeinfo = PngSizeInfo.makeFromResource(resourceManager.getResource(resourcelocation));
-
-                    if (Config.isShaders())
-                    {
-                        iresource = ShadersTex.loadResource(resourceManager, resourcelocation);
-                    }
-                    else
-                    {
-                        iresource = resourceManager.getResource(resourcelocation);
-                    }
-
+                    iresource = resourceManager.getResource(resourcelocation);
+                    
                     boolean flag = iresource.getMetadata("animation") != null;
                     textureatlassprite1.loadSprite(pngsizeinfo, flag);
                 }
@@ -292,24 +281,14 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
         LOGGER.info("Created: {}x{} {}-atlas", Integer.valueOf(stitcher.getCurrentWidth()), Integer.valueOf(stitcher.getCurrentHeight()), this.basePath);
 
-        if (Config.isShaders())
-        {
-            ShadersTex.allocateTextureMap(this.getGlTextureId(), this.mipmapLevels, stitcher.getCurrentWidth(), stitcher.getCurrentHeight(), stitcher, this);
-        }
-        else
-        {
-            TextureUtil.allocateTextureImpl(this.getGlTextureId(), this.mipmapLevels, stitcher.getCurrentWidth(), stitcher.getCurrentHeight());
-        }
+        TextureUtil.allocateTextureImpl(this.getGlTextureId(), this.mipmapLevels, stitcher.getCurrentWidth(), stitcher.getCurrentHeight());
+        
 
         Map<String, TextureAtlasSprite> map = Maps.<String, TextureAtlasSprite>newHashMap(this.mapRegisteredSprites);
 
         for (TextureAtlasSprite textureatlassprite2 : stitcher.getStichSlots())
         {
-            if (Config.isShaders())
-            {
-                ShadersTex.setIconName(ShadersTex.setSprite(textureatlassprite2).getIconName());
-            }
-
+            
             if (textureatlassprite2 == this.missingImage || this.generateMipmaps(resourceManager, textureatlassprite2))
             {
                 String s = textureatlassprite2.getIconName();
@@ -318,14 +297,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
                 try
                 {
-                    if (Config.isShaders())
-                    {
-                        ShadersTex.uploadTexSubForLoadAtlas(textureatlassprite2.getFrameTextureData(0), textureatlassprite2.getIconWidth(), textureatlassprite2.getIconHeight(), textureatlassprite2.getOriginX(), textureatlassprite2.getOriginY(), false, false);
-                    }
-                    else
-                    {
-                        TextureUtil.uploadTextureMipmap(textureatlassprite2.getFrameTextureData(0), textureatlassprite2.getIconWidth(), textureatlassprite2.getIconHeight(), textureatlassprite2.getOriginX(), textureatlassprite2.getOriginY(), false, false);
-                    }
+                    TextureUtil.uploadTextureMipmap(textureatlassprite2.getFrameTextureData(0), textureatlassprite2.getIconWidth(), textureatlassprite2.getIconHeight(), textureatlassprite2.getOriginX(), textureatlassprite2.getOriginY(), false, false);
                 }
                 catch (Throwable throwable)
                 {
@@ -507,11 +479,6 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
     public void updateAnimations()
     {
-        if (Config.isShaders())
-        {
-            ShadersTex.updatingTex = this.getMultiTexID();
-        }
-
         boolean flag3 = false;
         boolean flag4 = false;
         TextureUtil.bindTexture(this.getGlTextureId());
@@ -562,7 +529,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         {
             if (flag3)
             {
-                TextureUtil.bindTexture(this.getMultiTexID().norm);
+                //TextureUtil.bindTexture(this.getMultiTexID().norm);
 
                 for (TextureAtlasSprite textureatlassprite9 : this.listAnimatedSprites)
                 {
@@ -580,7 +547,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
             if (flag4)
             {
-                TextureUtil.bindTexture(this.getMultiTexID().spec);
+                //TextureUtil.bindTexture(this.getMultiTexID().spec);
 
                 for (TextureAtlasSprite textureatlassprite10 : this.listAnimatedSprites)
                 {
@@ -600,11 +567,6 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
             {
                 TextureUtil.bindTexture(this.getGlTextureId());
             }
-        }
-
-        if (Config.isShaders())
-        {
-            ShadersTex.updatingTex = null;
         }
     }
 

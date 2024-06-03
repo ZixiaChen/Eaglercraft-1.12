@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.src.Config;
 import net.minecraft.world.World;
-import shadersmod.client.Shaders;
 
 public class ParticleItemPickup extends Particle
 {
@@ -35,12 +34,6 @@ public class ParticleItemPickup extends Particle
     {
         int i = 0;
 
-        if (Config.isShaders())
-        {
-            i = Shaders.activeProgram;
-            Shaders.nextEntity(this.item);
-        }
-
         float f = ((float)this.age + partialTicks) / (float)this.maxAge;
         f = f * f;
         double d0 = this.item.posX;
@@ -62,11 +55,6 @@ public class ParticleItemPickup extends Particle
         d8 = d8 - interpPosZ;
         GlStateManager.enableLighting();
         this.renderManager.doRenderEntity(this.item, d6, d7, d8, this.item.rotationYaw, partialTicks, false);
-
-        if (Config.isShaders())
-        {
-            Shaders.useProgram(i);
-        }
     }
 
     public void onUpdate()

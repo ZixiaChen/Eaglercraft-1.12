@@ -22,7 +22,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.optifine.entity.model.CustomEntityModels;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import shadersmod.client.Shaders;
 
 public abstract class RenderLivingBase<T extends EntityLivingBase> extends Render<T>
 {
@@ -359,10 +358,6 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
                 this.brightnessBuffer.put(0.0F);
                 this.brightnessBuffer.put(0.3F);
 
-                if (Config.isShaders())
-                {
-                    Shaders.setEntityColor(1.0F, 0.0F, 0.0F, 0.3F);
-                }
             }
             else
             {
@@ -375,10 +370,6 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
                 this.brightnessBuffer.put(f4);
                 this.brightnessBuffer.put(1.0F - f1);
 
-                if (Config.isShaders())
-                {
-                    Shaders.setEntityColor(f2, f3, f4, 1.0F - f1);
-                }
             }
 
             this.brightnessBuffer.flip();
@@ -439,11 +430,6 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, 5890);
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
-
-        if (Config.isShaders())
-        {
-            Shaders.setEntityColor(0.0F, 0.0F, 0.0F, 0.0F);
-        }
     }
 
     /**

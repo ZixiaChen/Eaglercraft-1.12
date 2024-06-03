@@ -23,7 +23,6 @@ import net.minecraft.world.IBlockAccess;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import org.lwjgl.opengl.GL11;
-import shadersmod.client.SVertexBuilder;
 
 public class BufferBuilder
 {
@@ -49,7 +48,6 @@ public class BufferBuilder
     private TextureAtlasSprite[] quadSprites = null;
     private TextureAtlasSprite[] quadSpritesPrev = null;
     private TextureAtlasSprite quadSprite = null;
-    public SVertexBuilder sVertexBuilder;
     public RenderEnv renderEnv = null;
 
     public BufferBuilder(int bufferSizeIn)
@@ -63,7 +61,6 @@ public class BufferBuilder
         this.rawIntBuffer = this.byteBuffer.asIntBuffer();
         this.rawShortBuffer = this.byteBuffer.asShortBuffer();
         this.rawFloatBuffer = this.byteBuffer.asFloatBuffer();
-        SVertexBuilder.initVertexBuilder(this);
     }
 
     private void growBuffer(int p_181670_1_)
@@ -281,11 +278,6 @@ public class BufferBuilder
             this.vertexFormatElement = format.getElement(this.vertexFormatIndex);
             this.noColor = false;
             this.byteBuffer.limit(this.byteBuffer.capacity());
-
-            if (Config.isShaders())
-            {
-                SVertexBuilder.endSetVertexFormat(this);
-            }
 
             if (Config.isMultiTexture())
             {
@@ -562,20 +554,10 @@ public class BufferBuilder
 
     public void addVertexData(int[] vertexData)
     {
-        if (Config.isShaders())
-        {
-            SVertexBuilder.beginAddVertexData(this, vertexData);
-        }
-
         this.growBuffer(vertexData.length * 4);
         this.rawIntBuffer.position(this.getBufferSize());
         this.rawIntBuffer.put(vertexData);
         this.vertexCount += vertexData.length / this.vertexFormat.getIntegerSize();
-
-        if (Config.isShaders())
-        {
-            SVertexBuilder.endAddVertexData(this);
-        }
     }
 
     public void endVertex()
@@ -584,20 +566,10 @@ public class BufferBuilder
         this.growBuffer(this.vertexFormat.getNextOffset());
         this.vertexFormatIndex = 0;
         this.vertexFormatElement = this.vertexFormat.getElement(this.vertexFormatIndex);
-
-        if (Config.isShaders())
-        {
-            SVertexBuilder.endAddVertex(this);
-        }
     }
 
     public BufferBuilder pos(double x, double y, double z)
     {
-        if (Config.isShaders())
-        {
-            SVertexBuilder.beginAddVertex(this);
-        }
-
         int i = this.vertexCount * this.vertexFormat.getNextOffset() + this.vertexFormat.getOffset(this.vertexFormatIndex);
 
         switch (this.vertexFormatElement.getType())

@@ -22,7 +22,7 @@ import net.minecraft.client.util.JsonException;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.IOUtils;
-import org.lwjgl.util.vector.Matrix4f;
+import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
 
 public class ShaderGroup
 {
@@ -364,11 +364,6 @@ public class ShaderGroup
         this.mainFramebufferWidth = this.mainFramebuffer.framebufferTextureWidth;
         this.mainFramebufferHeight = this.mainFramebuffer.framebufferTextureHeight;
         this.resetProjectionMatrix();
-
-        for (Shader shader : this.listShaders)
-        {
-            shader.setProjectionMatrix(this.projectionMatrix);
-        }
 
         for (Framebuffer framebuffer : this.listFramebuffers)
         {

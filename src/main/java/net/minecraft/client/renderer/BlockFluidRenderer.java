@@ -17,7 +17,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
-import shadersmod.client.SVertexBuilder;
 
 public class BlockFluidRenderer
 {
@@ -48,11 +47,6 @@ public class BlockFluidRenderer
 
         try
         {
-            if (Config.isShaders())
-            {
-                SVertexBuilder.pushEntity(blockStateIn, blockPosIn, blockAccess, worldRendererIn);
-            }
-
             BlockLiquid blockliquid = (BlockLiquid)blockStateIn.getBlock();
             boolean flag = blockStateIn.getMaterial() == Material.LAVA;
             TextureAtlasSprite[] atextureatlassprite = flag ? this.atlasSpritesLava : this.atlasSpritesWater;
@@ -328,10 +322,6 @@ public class BlockFluidRenderer
         }
         finally
         {
-            if (Config.isShaders())
-            {
-                SVertexBuilder.popEntity(worldRendererIn);
-            }
         }
 
         return flag3;

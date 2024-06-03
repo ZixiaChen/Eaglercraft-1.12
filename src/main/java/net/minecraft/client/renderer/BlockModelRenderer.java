@@ -29,7 +29,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
-import shadersmod.client.SVertexBuilder;
 
 public class BlockModelRenderer
 {
@@ -58,11 +57,6 @@ public class BlockModelRenderer
 
         try
         {
-            if (Config.isShaders())
-            {
-                SVertexBuilder.pushEntity(stateIn, posIn, worldIn, buffer);
-            }
-
             if (!Config.isAlternateBlocks())
             {
                 rand = 0L;
@@ -75,11 +69,6 @@ public class BlockModelRenderer
             if (flag1)
             {
                 this.renderOverlayModels(worldIn, modelIn, stateIn, posIn, buffer, checkSides, rand, renderenv, flag);
-            }
-
-            if (Config.isShaders())
-            {
-                SVertexBuilder.popEntity(buffer);
             }
 
             return flag1;

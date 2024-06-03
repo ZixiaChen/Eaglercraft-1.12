@@ -20,7 +20,6 @@ import net.minecraft.src.Config;
 import net.minecraft.src.TextureUtils;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
-import shadersmod.client.Shaders;
 
 public class TextureAtlasSprite
 {
@@ -696,34 +695,5 @@ public class TextureAtlasSprite
 
     private void loadShadersSprites()
     {
-        if (Shaders.configNormalMap)
-        {
-            String s = this.iconName + "_n";
-            ResourceLocation resourcelocation = new ResourceLocation(s);
-            resourcelocation = Config.getTextureMap().completeResourceLocation(resourcelocation);
-
-            if (Config.hasResource(resourcelocation))
-            {
-                this.spriteNormal = new TextureAtlasSprite(s);
-                this.spriteNormal.isShadersSprite = true;
-                this.spriteNormal.copyFrom(this);
-                Config.getTextureMap().generateMipmaps(Config.getResourceManager(), this.spriteNormal);
-            }
-        }
-
-        if (Shaders.configSpecularMap)
-        {
-            String s1 = this.iconName + "_s";
-            ResourceLocation resourcelocation1 = new ResourceLocation(s1);
-            resourcelocation1 = Config.getTextureMap().completeResourceLocation(resourcelocation1);
-
-            if (Config.hasResource(resourcelocation1))
-            {
-                this.spriteSpecular = new TextureAtlasSprite(s1);
-                this.spriteSpecular.isShadersSprite = true;
-                this.spriteSpecular.copyFrom(this);
-                Config.getTextureMap().generateMipmaps(Config.getResourceManager(), this.spriteSpecular);
-            }
-        }
     }
 }

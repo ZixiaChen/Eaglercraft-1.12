@@ -14,7 +14,6 @@ import net.minecraft.src.GuiQualitySettingsOF;
 import net.minecraft.src.GuiScreenOF;
 import net.minecraft.src.Lang;
 import net.minecraft.src.TooltipManager;
-import shadersmod.client.GuiShaders;
 
 public class GuiVideoSettings extends GuiScreenOF
 {
@@ -63,7 +62,7 @@ public class GuiVideoSettings extends GuiScreenOF
         int l = this.height / 6 + 21 * (videoOptions.length / 2) - 12;
         int i1 = 0;
         i1 = this.width / 2 - 155 + 0;
-        this.buttonList.add(new GuiOptionButton(231, i1, l, Lang.get("of.options.shaders")));
+        this.buttonList.add(new GuiOptionButton(231, i1, l, Lang.get("[UNIMPLEMENTED]")));
         i1 = this.width / 2 - 155 + 160;
         this.buttonList.add(new GuiOptionButton(202, i1, l, Lang.get("of.options.quality")));
         l = l + 21;
@@ -184,8 +183,6 @@ public class GuiVideoSettings extends GuiScreenOF
                 }
 
                 this.mc.gameSettings.saveOptions();
-                GuiShaders guishaders = new GuiShaders(this, this.guiGameSettings);
-                this.mc.displayGuiScreen(guishaders);
             }
         }
     }

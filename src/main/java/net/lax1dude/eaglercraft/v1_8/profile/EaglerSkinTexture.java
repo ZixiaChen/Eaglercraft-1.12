@@ -7,7 +7,6 @@ import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 import net.minecraft.client.resources.IResourceManager;
-import shadersmod.client.MultiTexID;
 
 /**
  * Copyright (c) 2022-2023 LAX1DUDE. All Rights Reserved.
@@ -29,7 +28,6 @@ public class EaglerSkinTexture implements ITextureObject {
 	private final int height;
 
 	private int textureId = -1;
-	private MultiTexID multiTexID;
 
 	public EaglerSkinTexture(int[] pixels, int width, int height) {
 		if(pixels.length != width * height) {
@@ -38,7 +36,6 @@ public class EaglerSkinTexture implements ITextureObject {
 		this.pixels = pixels;
 		this.width = width;
 		this.height = height;
-		this.multiTexID = new MultiTexID(0, 0, 0);
 	}
 
 	public EaglerSkinTexture(byte[] pixels, int width, int height) {
@@ -88,11 +85,6 @@ public class EaglerSkinTexture implements ITextureObject {
 	@Override
 	public void restoreLastBlurMipmap() {
 		// no
-	}
-
-	@Override
-	public MultiTexID getMultiTexID(){
-		return this.multiTexID;
 	}
 	
 	public void free() {

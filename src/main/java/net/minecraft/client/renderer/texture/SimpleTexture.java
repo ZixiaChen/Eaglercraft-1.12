@@ -11,7 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import shadersmod.client.ShadersTex;
 
 public class SimpleTexture extends AbstractTexture
 {
@@ -53,14 +52,7 @@ public class SimpleTexture extends AbstractTexture
                 }
             }
 
-            if (Config.isShaders())
-            {
-                ShadersTex.loadSimpleTexture(this.getGlTextureId(), bufferedimage, flag, flag1, resourceManager, this.textureLocation, this.getMultiTexID());
-            }
-            else
-            {
-                TextureUtil.uploadTextureImageAllocate(this.getGlTextureId(), bufferedimage, flag, flag1);
-            }
+            TextureUtil.uploadTextureImageAllocate(this.getGlTextureId(), bufferedimage, flag, flag1);
         }
         finally
         {

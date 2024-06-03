@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.src.Config;
 import net.minecraft.src.Reflector;
-import shadersmod.client.SVertexBuilder;
 
 public class WorldVertexBufferUploader
 {
@@ -65,10 +64,6 @@ public class WorldVertexBufferUploader
             if (vertexBufferIn.isMultiTexture())
             {
                 vertexBufferIn.drawMultiTexture();
-            }
-            else if (Config.isShaders())
-            {
-                SVertexBuilder.drawArrays(vertexBufferIn.getDrawMode(), 0, vertexBufferIn.getVertexCount(), vertexBufferIn);
             }
             else
             {

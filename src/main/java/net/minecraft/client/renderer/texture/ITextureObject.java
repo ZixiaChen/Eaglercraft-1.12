@@ -12,6 +12,4 @@ public interface ITextureObject
     void loadTexture(IResourceManager resourceManager) throws IOException;
 
     int getGlTextureId();
-
-    Object getMultiTexID();
 }
