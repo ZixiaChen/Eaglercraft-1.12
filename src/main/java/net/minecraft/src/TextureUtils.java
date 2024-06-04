@@ -8,7 +8,7 @@ import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.IntBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.IntBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +17,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.ITickableTextureObject;
 import net.minecraft.client.renderer.texture.SimpleTexture;
@@ -380,7 +380,7 @@ public class TextureUtils
 
     public static void applyAnisotropicLevel()
     {
-        if (GLCapabilities.getCapabilities().GL_EXT_texture_filter_anisotropic)
+        if (false)
         {
             float f = GL11.glGetFloat(34047);
             float f1 = (float)Config.getAnisotropicFilterLevel();
@@ -549,7 +549,7 @@ public class TextureUtils
             int l = j * k;
             IntBuffer intbuffer = BufferUtils.createIntBuffer(l);
             int[] aint = new int[l];
-            GL11.glGetTexImage(GL11.GL_TEXTURE_2D, i1, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, intbuffer);
+            //GL11.glGetTexImage(GL11.GL_TEXTURE_2D, i1, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, intbuffer);
             intbuffer.get(aint);
             BufferedImage bufferedimage = new BufferedImage(j, k, 2);
             bufferedimage.setRGB(0, 0, j, k, aint, 0, j);

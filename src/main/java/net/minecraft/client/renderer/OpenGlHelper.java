@@ -14,13 +14,12 @@ import net.minecraft.src.Config;
 import net.minecraft.util.Util;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import org.lwjgl.Sys;
 import org.lwjgl.opengl.ARBFramebufferObject;
 import org.lwjgl.opengl.ARBMultitexture;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.ARBVertexBufferObject;
 import org.lwjgl.opengl.ARBVertexShader;
-import org.lwjgl.opengl.ContextCapabilities;
+import org.lwjgl.opengl.GLCapabilities;
 import org.lwjgl.opengl.EXTBlendFuncSeparate;
 import org.lwjgl.opengl.EXTFramebufferObject;
 import org.lwjgl.opengl.GL11;
@@ -108,9 +107,9 @@ public class OpenGlHelper
     public static void initializeTextures()
     {
         Config.initDisplay();
-        ContextCapabilities contextcapabilities = GLCapabilities.getCapabilities();
-        arbMultitexture = contextcapabilities.GL_ARB_multitexture && !contextcapabilities.OpenGL13;
-        arbTextureEnvCombine = contextcapabilities.GL_ARB_texture_env_combine && !contextcapabilities.OpenGL13;
+        //GLCapabilities contextcapabilities = GLCapabilities.getCapabilities();
+        arbMultitexture = true;
+        arbTextureEnvCombine = true;
 
         if (arbMultitexture)
         {
@@ -174,15 +173,15 @@ public class OpenGlHelper
             GL_OPERAND2_ALPHA = 34202;
         }
 
-        extBlendFuncSeparate = contextcapabilities.GL_EXT_blend_func_separate && !contextcapabilities.OpenGL14;
-        openGL14 = contextcapabilities.OpenGL14 || contextcapabilities.GL_EXT_blend_func_separate;
-        framebufferSupported = openGL14 && (contextcapabilities.GL_ARB_framebuffer_object || contextcapabilities.GL_EXT_framebuffer_object || contextcapabilities.OpenGL30);
+        extBlendFuncSeparate = false;
+        openGL14 = false;
+        framebufferSupported = openGL14 && false;
 
         if (framebufferSupported)
         {
             logText = logText + "Using framebuffer objects because ";
 
-            if (contextcapabilities.OpenGL30)
+            if (false)
             {
                 logText = logText + "OpenGL 3.0 is supported and separate blending is supported.\n";
                 framebufferType = OpenGlHelper.FboMode.BASE;
@@ -196,7 +195,7 @@ public class OpenGlHelper
                 GL_FB_INCOMPLETE_DRAW_BUFFER = 36059;
                 GL_FB_INCOMPLETE_READ_BUFFER = 36060;
             }
-            else if (contextcapabilities.GL_ARB_framebuffer_object)
+            else if (false)
             {
                 logText = logText + "ARB_framebuffer_object is supported and separate blending is supported.\n";
                 framebufferType = OpenGlHelper.FboMode.ARB;
@@ -210,7 +209,7 @@ public class OpenGlHelper
                 GL_FB_INCOMPLETE_DRAW_BUFFER = 36059;
                 GL_FB_INCOMPLETE_READ_BUFFER = 36060;
             }
-            else if (contextcapabilities.GL_EXT_framebuffer_object)
+            else if (false)
             {
                 logText = logText + "EXT_framebuffer_object is supported.\n";
                 framebufferType = OpenGlHelper.FboMode.EXT;
@@ -228,20 +227,20 @@ public class OpenGlHelper
         else
         {
             logText = logText + "Not using framebuffer objects because ";
-            logText = logText + "OpenGL 1.4 is " + (contextcapabilities.OpenGL14 ? "" : "not ") + "supported, ";
-            logText = logText + "EXT_blend_func_separate is " + (contextcapabilities.GL_EXT_blend_func_separate ? "" : "not ") + "supported, ";
-            logText = logText + "OpenGL 3.0 is " + (contextcapabilities.OpenGL30 ? "" : "not ") + "supported, ";
-            logText = logText + "ARB_framebuffer_object is " + (contextcapabilities.GL_ARB_framebuffer_object ? "" : "not ") + "supported, and ";
-            logText = logText + "EXT_framebuffer_object is " + (contextcapabilities.GL_EXT_framebuffer_object ? "" : "not ") + "supported.\n";
+            logText = logText + "OpenGL 1.4 is " + ("not ") + "supported, ";
+            logText = logText + "EXT_blend_func_separate is " + ("not ") + "supported, ";
+            logText = logText + "OpenGL 3.0 is " + ("not ") + "supported, ";
+            logText = logText + "ARB_framebuffer_object is " + ("not ") + "supported, and ";
+            logText = logText + "EXT_framebuffer_object is " + ("not ") + "supported.\n";
         }
 
-        openGL21 = contextcapabilities.OpenGL21;
-        shadersAvailable = openGL21 || contextcapabilities.GL_ARB_vertex_shader && contextcapabilities.GL_ARB_fragment_shader && contextcapabilities.GL_ARB_shader_objects;
+        openGL21 = false;
+        shadersAvailable = false;
         logText = logText + "Shaders are " + (shadersAvailable ? "" : "not ") + "available because ";
 
         if (shadersAvailable)
         {
-            if (contextcapabilities.OpenGL21)
+            if (false)
             {
                 logText = logText + "OpenGL 2.1 is supported.\n";
                 arbShaders = false;
@@ -262,17 +261,17 @@ public class OpenGlHelper
         }
         else
         {
-            logText = logText + "OpenGL 2.1 is " + (contextcapabilities.OpenGL21 ? "" : "not ") + "supported, ";
-            logText = logText + "ARB_shader_objects is " + (contextcapabilities.GL_ARB_shader_objects ? "" : "not ") + "supported, ";
-            logText = logText + "ARB_vertex_shader is " + (contextcapabilities.GL_ARB_vertex_shader ? "" : "not ") + "supported, and ";
-            logText = logText + "ARB_fragment_shader is " + (contextcapabilities.GL_ARB_fragment_shader ? "" : "not ") + "supported.\n";
+            logText = logText + "OpenGL 2.1 is " + ("not ") + "supported, ";
+            logText = logText + "ARB_shader_objects is " + ("not ") + "supported, ";
+            logText = logText + "ARB_vertex_shader is " + ("not ") + "supported, and ";
+            logText = logText + "ARB_fragment_shader is " + ("not ") + "supported.\n";
         }
 
         shadersSupported = framebufferSupported && shadersAvailable;
         String s = GL11.glGetString(GL11.GL_VENDOR).toLowerCase(Locale.ROOT);
         nvidia = s.contains("nvidia");
-        arbVbo = !contextcapabilities.OpenGL15 && contextcapabilities.GL_ARB_vertex_buffer_object;
-        vboSupported = contextcapabilities.OpenGL15 || arbVbo;
+        arbVbo = false;
+        vboSupported = false;
         logText = logText + "VBOs are " + (vboSupported ? "" : "not ") + "available because ";
 
         if (vboSupported)
@@ -367,11 +366,11 @@ public class OpenGlHelper
     {
         if (arbShaders)
         {
-            ARBShaderObjects.glShaderSourceARB(shaderIn, string);
+            //ARBShaderObjects.glShaderSourceARB(shaderIn, string);
         }
         else
         {
-            GL20.glShaderSource(shaderIn, string);
+            //GL20.glShaderSource(shaderIn, string);
         }
     }
 

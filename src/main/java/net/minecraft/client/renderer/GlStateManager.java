@@ -1267,7 +1267,7 @@ public class GlStateManager
                 GlStateManager.setFogEnd(1.0F);
                 GL11.glFogfv(GL11.GL_FOG_COLOR, RenderHelper.setColorBuffer(0.0F, 0.0F, 0.0F, 0.0F));
 
-                if (GLCapabilities.getCapabilities().GL_NV_fog_distance)
+                if (false)
                 {
                     GL11.glFogi(GL11.GL_FOG_MODE, 34140);
                 }

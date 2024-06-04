@@ -197,17 +197,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import org.lwjgl.LWJGLException;
-import org.lwjgl.Sys;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
-import org.lwjgl.opengl.ContextCapabilities;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GLContext;
-import org.lwjgl.opengl.OpenGLException;
-import org.lwjgl.opengl.PixelFormat;
-import org.lwjgl.util.glu.GLU;
+
+import net.lax1dude.eaglercraft.v1_8.Display;
 
 public class Minecraft implements IThreadListener
 {
@@ -217,7 +210,7 @@ public class Minecraft implements IThreadListener
 
     /** A 10MiB preallocation to ensure the heap is reasonably sized. */
     public static byte[] memoryReserve = new byte[10485760];
-    private static final List<DisplayMode> MAC_DISPLAY_MODES = Lists.newArrayList(new DisplayMode(2560, 1600), new DisplayMode(2880, 1800));
+    //private static final List<Display> MAC_DISPLAY_MODES = Lists.newArrayList(new Display(2560, 1600), new Display(2880, 1800));
     private final File fileResourcepacks;
     
     private ServerData currentServerData;
@@ -506,7 +499,7 @@ public class Minecraft implements IThreadListener
     /**
      * Starts the game: initializes the canvas, the title, the settings, etcetera.
      */
-    private void init() throws LWJGLException, IOException
+    private void init() throws Exception, IOException
     {
         this.gameSettings = new GameSettings(this, this.mcDataDir);
         this.creativeSettings = new CreativeSettings(this, this.mcDataDir);
@@ -519,7 +512,7 @@ public class Minecraft implements IThreadListener
             this.displayHeight = this.gameSettings.overrideHeight;
         }
 
-        LOGGER.info("LWJGL Version: {}", (Object)Sys.getVersion());
+        LOGGER.info("LWJGL Version: LWJGL 3 or whatever Lax is using");
         this.setWindowIcon();
         this.setInitialDisplayMode();
         this.createDisplay();
@@ -614,9 +607,9 @@ public class Minecraft implements IThreadListener
 
         try
         {
-            Display.setVSyncEnabled(this.gameSettings.enableVsync);
+            //Display.setVSyncEnabled(this.gameSettings.enableVsync);
         }
-        catch (OpenGLException var2)
+        catch (Exception var2)
         {
             this.gameSettings.enableVsync = false;
             this.gameSettings.saveOptions();
@@ -674,16 +667,16 @@ public class Minecraft implements IThreadListener
         this.metadataSerializer_.registerMetadataSectionType(new LanguageMetadataSectionSerializer(), LanguageMetadataSection.class);
     }
 
-    private void createDisplay() throws LWJGLException
+    private void createDisplay() throws Exception
     {
-        Display.setResizable(true);
+        //Display.setResizable(true);
         Display.setTitle("Eaglercraft 1.12");
 
         try
         {
-            Display.create((new PixelFormat()).withDepthBits(24));
+            //Display.create((new PixelFormat()).withDepthBits(24));
         }
-        catch (LWJGLException lwjglexception)
+        catch (Exception lwjglexception)
         {
             LOGGER.error("Couldn't set pixel format", (Throwable)lwjglexception);
 
@@ -705,18 +698,18 @@ public class Minecraft implements IThreadListener
         }
     }
 
-    private void setInitialDisplayMode() throws LWJGLException
+    private void setInitialDisplayMode() throws Exception
     {
         if (this.fullscreen)
         {
-            Display.setFullscreen(true);
-            DisplayMode displaymode = Display.getDisplayMode();
+            /*Display.setFullscreen(true);
+            Display displaymode = Display.getDisplayMode();
             this.displayWidth = Math.max(1, displaymode.getWidth());
-            this.displayHeight = Math.max(1, displaymode.getHeight());
+            this.displayHeight = Math.max(1, displaymode.getHeight());*/
         }
         else
         {
-            Display.setDisplayMode(new DisplayMode(this.displayWidth, this.displayHeight));
+            //Display.setDisplayMode(new DisplayMode(this.displayWidth, this.displayHeight));
         }
     }
 
@@ -736,7 +729,7 @@ public class Minecraft implements IThreadListener
 
                 if (inputstream != null && inputstream1 != null)
                 {
-                    Display.setIcon(new ByteBuffer[] {this.readImageToBuffer(inputstream), this.readImageToBuffer(inputstream1)});
+                    //Display.setIcon(new ByteBuffer[] {this.readImageToBuffer(inputstream), this.readImageToBuffer(inputstream1)});
                 }
             }
             catch (IOException ioexception)
@@ -904,60 +897,18 @@ public class Minecraft implements IThreadListener
         return bytebuffer;
     }
 
-    private void updateDisplayMode() throws LWJGLException
+    private void updateDisplayMode() throws Exception
     {
-        Set<DisplayMode> set = Sets.<DisplayMode>newHashSet();
-        Collections.addAll(set, Display.getAvailableDisplayModes());
-        DisplayMode displaymode = Display.getDesktopDisplayMode();
+        Set<Display> set = Sets.<Display>newHashSet();
+        Collections.addAll(set, null);
+        Display displaymode = null;
 
-        if (!set.contains(displaymode) && Util.getOSType() == Util.EnumOS.OSX)
-        {
-            label52:
-
-            for (DisplayMode displaymode1 : MAC_DISPLAY_MODES)
-            {
-                boolean flag = true;
-
-                for (DisplayMode displaymode2 : set)
-                {
-                    if (displaymode2.getBitsPerPixel() == 32 && displaymode2.getWidth() == displaymode1.getWidth() && displaymode2.getHeight() == displaymode1.getHeight())
-                    {
-                        flag = false;
-                        break;
-                    }
-                }
-
-                if (!flag)
-                {
-                    Iterator iterator = set.iterator();
-                    DisplayMode displaymode3;
-
-                    while (true)
-                    {
-                        if (!iterator.hasNext())
-                        {
-                            continue label52;
-                        }
-
-                        displaymode3 = (DisplayMode)iterator.next();
-
-                        if (displaymode3.getBitsPerPixel() == 32 && displaymode3.getWidth() == displaymode1.getWidth() / 2 && displaymode3.getHeight() == displaymode1.getHeight() / 2)
-                        {
-                            break;
-                        }
-                    }
-
-                    displaymode = displaymode3;
-                }
-            }
-        }
-
-        Display.setDisplayMode(displaymode);
+        //Display.setDisplayMode(displaymode);
         this.displayWidth = displaymode.getWidth();
         this.displayHeight = displaymode.getHeight();
     }
 
-    private void drawSplashScreen(TextureManager textureManagerInstance) throws LWJGLException
+    private void drawSplashScreen(TextureManager textureManagerInstance) throws Exception
     {
         ScaledResolution scaledresolution = new ScaledResolution(this);
         int i = scaledresolution.getScaleFactor();
@@ -1099,10 +1050,10 @@ public class Minecraft implements IThreadListener
 
         if (i != 0)
         {
-            String s = GLU.gluErrorString(i);
+            //String s = GLU.gluErrorString(i);
             LOGGER.error("########## GL ERROR ##########");
             LOGGER.error("@ {}", (Object)message);
-            LOGGER.error("{}: {}", Integer.valueOf(i), s);
+            LOGGER.error("{}: {}", Integer.valueOf(i), "OpenGL Error");
         }
     }
 
@@ -1133,7 +1084,7 @@ public class Minecraft implements IThreadListener
         }
         finally
         {
-            Display.destroy();
+            //Display.destroy();
 
             if (!this.hasCrashed)
             {
@@ -1152,7 +1103,7 @@ public class Minecraft implements IThreadListener
         long i = System.nanoTime();
         this.mcProfiler.startSection("root");
 
-        if (Display.isCreated() && Display.isCloseRequested())
+        if (Display.isCloseRequested())
         {
             this.shutdown();
         }
@@ -1701,61 +1652,6 @@ public class Minecraft implements IThreadListener
      */
     public void toggleFullscreen()
     {
-        try
-        {
-            this.fullscreen = !this.fullscreen;
-            this.gameSettings.fullScreen = this.fullscreen;
-
-            if (this.fullscreen)
-            {
-                this.updateDisplayMode();
-                this.displayWidth = Display.getDisplayMode().getWidth();
-                this.displayHeight = Display.getDisplayMode().getHeight();
-
-                if (this.displayWidth <= 0)
-                {
-                    this.displayWidth = 1;
-                }
-
-                if (this.displayHeight <= 0)
-                {
-                    this.displayHeight = 1;
-                }
-            }
-            else
-            {
-                Display.setDisplayMode(new DisplayMode(this.tempDisplayWidth, this.tempDisplayHeight));
-                this.displayWidth = this.tempDisplayWidth;
-                this.displayHeight = this.tempDisplayHeight;
-
-                if (this.displayWidth <= 0)
-                {
-                    this.displayWidth = 1;
-                }
-
-                if (this.displayHeight <= 0)
-                {
-                    this.displayHeight = 1;
-                }
-            }
-
-            if (this.currentScreen != null)
-            {
-                this.resize(this.displayWidth, this.displayHeight);
-            }
-            else
-            {
-                this.updateFramebufferSize();
-            }
-
-            Display.setFullscreen(this.fullscreen);
-            Display.setVSyncEnabled(this.gameSettings.enableVsync);
-            this.updateDisplay();
-        }
-        catch (Exception exception)
-        {
-            LOGGER.error("Couldn't toggle fullscreen", (Throwable)exception);
-        }
     }
 
     /**
@@ -2833,7 +2729,7 @@ public class Minecraft implements IThreadListener
         {
             public String call() throws Exception
             {
-                return Sys.getVersion();
+                return "LWJGL3 or whatever Lax is using";
             }
         });
         theCrash.getCategory().addDetail("OpenGL", new ICrashReportDetail<String>()
@@ -3046,7 +2942,7 @@ public class Minecraft implements IThreadListener
      */
     public static long getSystemTime()
     {
-        return Sys.getTime() * 1000L / Sys.getTimerResolution();
+        return System.currentTimeMillis();
     }
 
     /**

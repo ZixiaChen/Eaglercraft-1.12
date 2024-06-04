@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer;
 
-import java.nio.FloatBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.FloatBuffer;
 import net.minecraft.util.math.Vec3d;
 
 public class RenderHelper
@@ -31,18 +31,6 @@ public class RenderHelper
         GlStateManager.enableLight(1);
         GlStateManager.enableColorMaterial();
         GlStateManager.colorMaterial(1032, 5634);
-        GlStateManager.glLight(16384, 4611, setColorBuffer(LIGHT0_POS.x, LIGHT0_POS.y, LIGHT0_POS.z, 0.0D));
-        float f = 0.6F;
-        GlStateManager.glLight(16384, 4609, setColorBuffer(0.6F, 0.6F, 0.6F, 1.0F));
-        GlStateManager.glLight(16384, 4608, setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
-        GlStateManager.glLight(16384, 4610, setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
-        GlStateManager.glLight(16385, 4611, setColorBuffer(LIGHT1_POS.x, LIGHT1_POS.y, LIGHT1_POS.z, 0.0D));
-        GlStateManager.glLight(16385, 4609, setColorBuffer(0.6F, 0.6F, 0.6F, 1.0F));
-        GlStateManager.glLight(16385, 4608, setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
-        GlStateManager.glLight(16385, 4610, setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
-        GlStateManager.shadeModel(7424);
-        float f1 = 0.4F;
-        GlStateManager.glLightModel(2899, setColorBuffer(0.4F, 0.4F, 0.4F, 1.0F));
     }
 
     /**

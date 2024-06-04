@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.nio.ByteBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.ByteBuffer;
 import java.util.Properties;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
@@ -162,7 +162,7 @@ public class TextureAnimation
             {
                 this.imageData.position(j);
                 GlStateManager.bindTexture(this.dstTextId);
-                GL11.glTexSubImage2D(GL11.GL_TEXTURE_2D, 0, this.dstX, this.dstY, this.frameWidth, this.frameHeight, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, this.imageData);
+                //GL11.glTexSubImage2D(GL11.GL_TEXTURE_2D, 0, this.dstX, this.dstY, this.frameWidth, this.frameHeight, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, this.imageData);
                 return true;
             }
         }

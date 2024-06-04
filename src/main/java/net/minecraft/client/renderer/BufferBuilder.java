@@ -1,11 +1,11 @@
 package net.minecraft.client.renderer;
 
 import com.google.common.primitives.Floats;
-import java.nio.ByteBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.nio.ShortBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.FloatBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.IntBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.ShortBuffer;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Comparator;

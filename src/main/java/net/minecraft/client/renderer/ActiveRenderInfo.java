@@ -1,7 +1,8 @@
 package net.minecraft.client.renderer;
 
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -10,21 +11,22 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.lwjgl.util.glu.GLU;
 
 public class ActiveRenderInfo
 {
     /** The current GL viewport */
-    private static final IntBuffer VIEWPORT = GLAllocation.createDirectIntBuffer(16);
-
-    /** The current GL modelview matrix */
-    private static final FloatBuffer MODELVIEW = GLAllocation.createDirectFloatBuffer(16);
-
-    /** The current GL projection matrix */
-    private static final FloatBuffer PROJECTION = GLAllocation.createDirectFloatBuffer(16);
+    private static final int[] VIEWPORT = new int[4];
+	/**+
+	 * The current GL modelview matrix
+	 */
+	private static final float[] MODELVIEW = new float[16];
+	/**+
+	 * The current GL projection matrix
+	 */
+	private static final float[] PROJECTION = new float[16];
 
     /** The computed view object coordinates */
-    private static final FloatBuffer OBJECTCOORDS = GLAllocation.createDirectFloatBuffer(3);
+    private static final float[] OBJECTCOORDS = new float[3];
     private static Vec3d position = new Vec3d(0.0D, 0.0D, 0.0D);
 
     /** The X component of the entity's yaw rotation */
@@ -53,11 +55,11 @@ public class ActiveRenderInfo
     {
         GlStateManager.getFloat(2982, MODELVIEW);
         GlStateManager.getFloat(2983, PROJECTION);
-        GlStateManager.glGetInteger(2978, VIEWPORT);
-        float f = (float)((VIEWPORT.get(0) + VIEWPORT.get(2)) / 2);
-        float f1 = (float)((VIEWPORT.get(1) + VIEWPORT.get(3)) / 2);
-        GLU.gluUnProject(f, f1, 0.0F, MODELVIEW, PROJECTION, VIEWPORT, OBJECTCOORDS);
-        position = new Vec3d((double)OBJECTCOORDS.get(0), (double)OBJECTCOORDS.get(1), (double)OBJECTCOORDS.get(2));
+        EaglercraftGPU.glGetInteger(2978, VIEWPORT);
+        float f = (float) ((VIEWPORT[0] + VIEWPORT[2]) / 2);
+		float f1 = (float) ((VIEWPORT[1] + VIEWPORT[3]) / 2);
+        GlStateManager.gluUnProject(f, f1, 0.0F, MODELVIEW, PROJECTION, VIEWPORT, OBJECTCOORDS);
+		position = new Vec3d((double) OBJECTCOORDS[0], (double) OBJECTCOORDS[1], (double) OBJECTCOORDS[2]);
         int i = p_74583_1_ ? 1 : 0;
         float f2 = entityplayerIn.rotationPitch;
         float f3 = entityplayerIn.rotationYaw;

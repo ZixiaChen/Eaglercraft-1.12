@@ -55,8 +55,7 @@ import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
+import net.lax1dude.eaglercraft.v1_8.Display;
 
 public class GameSettings
 {
@@ -493,7 +492,7 @@ public class GameSettings
                 this.guiScale = 0;
             }
 
-            DisplayMode displaymode = Config.getLargestDisplayMode();
+            Display displaymode = Config.getLargestDisplay();
             int i = displaymode.getWidth() / 320;
             int j = displaymode.getHeight() / 240;
             int k = Math.min(i, j);
@@ -608,7 +607,7 @@ public class GameSettings
         if (settingsOption == GameSettings.Options.ENABLE_VSYNC)
         {
             this.enableVsync = !this.enableVsync;
-            Display.setVSyncEnabled(this.enableVsync);
+            //Display.setVSyncEnabled(this.enableVsync);
         }
 
         if (settingsOption == GameSettings.Options.USE_VBO)
@@ -1676,7 +1675,7 @@ public class GameSettings
         if (p_setOptionFloatValueOF_1_ == GameSettings.Options.FULLSCREEN_MODE)
         {
             int i1 = (int)p_setOptionFloatValueOF_2_ - 1;
-            String[] astring = Config.getDisplayModeNames();
+            String[] astring = Config.getDisplayNames();
 
             if (i1 < 0 || i1 >= astring.length)
             {
@@ -1722,7 +1721,7 @@ public class GameSettings
             }
             else
             {
-                List list = Arrays.asList(Config.getDisplayModeNames());
+                List list = Arrays.asList(Config.getDisplayNames());
                 int i = list.indexOf(this.ofFullscreenMode);
                 return i < 0 ? 0.0F : (float)(i + 1);
             }
@@ -3325,7 +3324,7 @@ public class GameSettings
 
     public void updateVSync()
     {
-        Display.setVSyncEnabled(this.enableVsync);
+        //Display.setVSyncEnabled(this.enableVsync);
     }
 
     private void updateWaterOpacity()
@@ -3512,7 +3511,7 @@ public class GameSettings
         PROFILER("of.options.PROFILER", false, false),
         DRIPPING_WATER_LAVA("of.options.DRIPPING_WATER_LAVA", false, false),
         BETTER_SNOW("of.options.BETTER_SNOW", false, false),
-        FULLSCREEN_MODE("of.options.FULLSCREEN_MODE", true, false, 0.0F, (float)Config.getDisplayModes().length, 1.0F),
+        FULLSCREEN_MODE("of.options.FULLSCREEN_MODE", true, false, 0.0F, (float)Config.getDisplays().length, 1.0F),
         ANIMATED_TERRAIN("of.options.ANIMATED_TERRAIN", false, false),
         SWAMP_COLORS("of.options.SWAMP_COLORS", false, false),
         RANDOM_MOBS("of.options.RANDOM_MOBS", false, false),

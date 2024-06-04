@@ -18,7 +18,6 @@ import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import shadersmod.client.ShadersTex;
 
 public class TextureManager implements ITickable, IResourceManagerReloadListener
 {
@@ -49,14 +48,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
             this.loadTexture(resource, itextureobject);
         }
 
-        if (Config.isShaders())
-        {
-            ShadersTex.bindTexture(itextureobject);
-        }
-        else
-        {
-            TextureUtil.bindTexture(itextureobject.getGlTextureId());
-        }
+        TextureUtil.bindTexture(itextureobject.getGlTextureId());
     }
 
     public boolean loadTickableTexture(ResourceLocation textureLocation, ITickableTextureObject textureObj)

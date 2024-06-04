@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.IntBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.IntBuffer;
 import javax.imageio.ImageIO;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;

@@ -47,17 +47,8 @@ import net.minecraft.world.WorldServer;
 import org.apache.commons.io.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import org.lwjgl.LWJGLException;
-import org.lwjgl.Sys;
 import net.lax1dude.eaglercraft.v1_8.Display;
-import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL30;
-import org.lwjgl.opengl.GLCapabilities;
-import org.lwjgl.opengl.PixelFormat;
-import org.lwjgl.util.glu.GLU;
+import net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums;
 
 public class Config
 {
@@ -81,8 +72,8 @@ public class Config
     private static Minecraft minecraft = Minecraft.getMinecraft();
     private static boolean initialized = false;
     private static Thread minecraftThread = null;
-    private static DisplayMode desktopDisplayMode = null;
-    private static DisplayMode[] displayModes = null;
+    private static Display desktopDisplay = null;
+    private static Display[] displayModes = null;
     private static int antialiasingLevel = 0;
     private static int availableProcessors = 0;
     public static boolean zoomMode = false;
@@ -127,7 +118,7 @@ public class Config
         if (gameSettings == null)
         {
             gameSettings = p_initGameSettings_0_;
-            desktopDisplayMode = Display.getDesktopDisplayMode();
+            //desktopDisplay = Display.getDesktopDisplay();
             updateAvailableProcessors();
             ReflectorForge.putLaunchBlackboard("optifine.ForgeSplashCompatible", Boolean.TRUE);
         }
@@ -138,7 +129,7 @@ public class Config
         checkInitialized();
         antialiasingLevel = gameSettings.ofAaLevel;
         checkDisplaySettings();
-        checkDisplayMode();
+        checkDisplay();
         minecraftThread = Thread.currentThread();
         updateThreadPriorities();
     }
@@ -147,7 +138,7 @@ public class Config
     {
         if (!initialized)
         {
-            if (Display.isCreated())
+            if (true)
             {
                 initialized = true;
                 checkOpenGlCaps();
@@ -164,26 +155,23 @@ public class Config
         log("OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.arch") + ") version " + System.getProperty("os.version"));
         log("Java: " + System.getProperty("java.version") + ", " + System.getProperty("java.vendor"));
         log("VM: " + System.getProperty("java.vm.name") + " (" + System.getProperty("java.vm.info") + "), " + System.getProperty("java.vm.vendor"));
-        log("LWJGL: " + Sys.getVersion());
-        openGlVersion = GL11.glGetString(GL11.GL_VERSION);
-        openGlRenderer = GL11.glGetString(GL11.GL_RENDERER);
-        openGlVendor = GL11.glGetString(GL11.GL_VENDOR);
-        log("OpenGL: " + openGlRenderer + ", version " + openGlVersion + ", " + openGlVendor);
+        log("LWJGL: 3 or whatever Lax is using");
+        log("OpenGL: " + RealOpenGLEnums.GL_VERSION + ", version " + RealOpenGLEnums.GL_RENDERER + ", " + RealOpenGLEnums.GL_VENDOR);
         log("OpenGL Version: " + getOpenGlVersionString());
 
-        if (!GLContext.getCapabilities().OpenGL12)
+        if (true)
         {
-            log("OpenGL Mipmap levels: Not available (GL12.GL_TEXTURE_MAX_LEVEL)");
+            log("OpenGL Mipmap levels: " + RealOpenGLEnums.GL_TEXTURE_MAX_LEVEL);
         }
 
-        fancyFogAvailable = GLContext.getCapabilities().GL_NV_fog_distance;
+        fancyFogAvailable = false;
 
         if (!fancyFogAvailable)
         {
             log("OpenGL Fancy fog: Not available (GL_NV_fog_distance)");
         }
 
-        occlusionAvailable = GLContext.getCapabilities().GL_ARB_occlusion_query;
+        occlusionAvailable = false;
 
         if (!occlusionAvailable)
         {
@@ -264,77 +252,14 @@ public class Config
 
     private static GlVersion getGlVersionLwjgl()
     {
-        if (GLContext.getCapabilities().OpenGL44)
-        {
-            return new GlVersion(4, 4);
-        }
-        else if (GLContext.getCapabilities().OpenGL43)
-        {
-            return new GlVersion(4, 3);
-        }
-        else if (GLContext.getCapabilities().OpenGL42)
-        {
-            return new GlVersion(4, 2);
-        }
-        else if (GLContext.getCapabilities().OpenGL41)
-        {
-            return new GlVersion(4, 1);
-        }
-        else if (GLContext.getCapabilities().OpenGL40)
-        {
-            return new GlVersion(4, 0);
-        }
-        else if (GLContext.getCapabilities().OpenGL33)
-        {
-            return new GlVersion(3, 3);
-        }
-        else if (GLContext.getCapabilities().OpenGL32)
-        {
-            return new GlVersion(3, 2);
-        }
-        else if (GLContext.getCapabilities().OpenGL31)
-        {
-            return new GlVersion(3, 1);
-        }
-        else if (GLContext.getCapabilities().OpenGL30)
-        {
-            return new GlVersion(3, 0);
-        }
-        else if (GLContext.getCapabilities().OpenGL21)
-        {
-            return new GlVersion(2, 1);
-        }
-        else if (GLContext.getCapabilities().OpenGL20)
-        {
-            return new GlVersion(2, 0);
-        }
-        else if (GLContext.getCapabilities().OpenGL15)
-        {
-            return new GlVersion(1, 5);
-        }
-        else if (GLContext.getCapabilities().OpenGL14)
-        {
-            return new GlVersion(1, 4);
-        }
-        else if (GLContext.getCapabilities().OpenGL13)
-        {
-            return new GlVersion(1, 3);
-        }
-        else if (GLContext.getCapabilities().OpenGL12)
-        {
-            return new GlVersion(1, 2);
-        }
-        else
-        {
-            return GLContext.getCapabilities().OpenGL11 ? new GlVersion(1, 1) : new GlVersion(1, 0);
-        }
+        return new GlVersion(1, 1);
     }
 
     public static GlVersion getGlVersion()
     {
         if (glVersion == null)
         {
-            String s = GL11.glGetString(GL11.GL_VERSION);
+            String s = "7938";
             glVersion = parseGlVersion(s, (GlVersion)null);
 
             if (glVersion == null)
@@ -355,7 +280,7 @@ public class Config
     {
         if (glslVersion == null)
         {
-            String s = GL11.glGetString(GL20.GL_SHADING_LANGUAGE_VERSION);
+            String s = "35724";
             glslVersion = parseGlVersion(s, (GlVersion)null);
 
             if (glslVersion == null)
@@ -419,7 +344,7 @@ public class Config
 
             if (glversion.getMajor() >= 3)
             {
-                int i = GL11.glGetInteger(33309);
+                int i = 7939;
 
                 if (i > 0)
                 {
@@ -427,7 +352,7 @@ public class Config
 
                     for (int j = 0; j < i; ++j)
                     {
-                        astring[j] = GL30.glGetStringi(7939, j);
+                        astring[j] = "7939";
                     }
 
                     return astring;
@@ -441,7 +366,7 @@ public class Config
 
         try
         {
-            String s = GL11.glGetString(GL11.GL_EXTENSIONS);
+            String s = "7939";
             String[] astring1 = s.split(" ");
             return astring1;
         }
@@ -1277,13 +1202,13 @@ public class Config
 
     public static Dimension getFullscreenDimension()
     {
-        if (desktopDisplayMode == null)
+        if (desktopDisplay == null)
         {
             return null;
         }
         else if (gameSettings == null)
         {
-            return new Dimension(desktopDisplayMode.getWidth(), desktopDisplayMode.getHeight());
+            return new Dimension(desktopDisplay.getWidth(), desktopDisplay.getHeight());
         }
         else
         {
@@ -1291,12 +1216,12 @@ public class Config
 
             if (s.equals("Default"))
             {
-                return new Dimension(desktopDisplayMode.getWidth(), desktopDisplayMode.getHeight());
+                return new Dimension(desktopDisplay.getWidth(), desktopDisplay.getHeight());
             }
             else
             {
                 String[] astring = tokenize(s, " x");
-                return astring.length < 2 ? new Dimension(desktopDisplayMode.getWidth(), desktopDisplayMode.getHeight()) : new Dimension(parseInt(astring[0], -1), parseInt(astring[1], -1));
+                return astring.length < 2 ? new Dimension(desktopDisplay.getWidth(), desktopDisplay.getHeight()) : new Dimension(parseInt(astring[0], -1), parseInt(astring[1], -1));
             }
         }
     }
@@ -1376,76 +1301,58 @@ public class Config
         return astring;
     }
 
-    public static DisplayMode getDesktopDisplayMode()
+    public static Display getDesktopDisplay()
     {
-        return desktopDisplayMode;
+        return desktopDisplay;
     }
 
-    public static DisplayMode[] getDisplayModes()
+    public static Display[] getDisplays()
     {
         if (displayModes == null)
         {
             try
             {
-                DisplayMode[] adisplaymode = Display.getAvailableDisplayModes();
-                Set<Dimension> set = getDisplayModeDimensions(adisplaymode);
-                List list = new ArrayList();
-
-                for (Dimension dimension : set)
-                {
-                    DisplayMode[] adisplaymode1 = getDisplayModes(adisplaymode, dimension);
-                    DisplayMode displaymode = getDisplayMode(adisplaymode1, desktopDisplayMode);
-
-                    if (displaymode != null)
-                    {
-                        list.add(displaymode);
-                    }
-                }
-
-                DisplayMode[] adisplaymode2 = (DisplayMode[])list.toArray(new DisplayMode[list.size()]);
-                Arrays.sort(adisplaymode2, new DisplayModeComparator());
-                return adisplaymode2;
             }
             catch (Exception exception)
             {
                 exception.printStackTrace();
-                displayModes = new DisplayMode[] {desktopDisplayMode};
+                displayModes = new Display[] {desktopDisplay};
             }
         }
 
         return displayModes;
     }
 
-    public static DisplayMode getLargestDisplayMode()
+    public static Display getLargestDisplay()
     {
-        DisplayMode[] adisplaymode = getDisplayModes();
+        Display[] adisplaymode = getDisplays();
 
         if (adisplaymode != null && adisplaymode.length >= 1)
         {
-            DisplayMode displaymode = adisplaymode[adisplaymode.length - 1];
+            Display displaymode = adisplaymode[adisplaymode.length - 1];
 
-            if (desktopDisplayMode.getWidth() > displaymode.getWidth())
+            if (desktopDisplay.getWidth() > displaymode.getWidth())
             {
-                return desktopDisplayMode;
+                return desktopDisplay;
             }
             else
             {
-                return desktopDisplayMode.getWidth() == displaymode.getWidth() && desktopDisplayMode.getHeight() > displaymode.getHeight() ? desktopDisplayMode : displaymode;
+                return desktopDisplay.getWidth() == displaymode.getWidth() && desktopDisplay.getHeight() > displaymode.getHeight() ? desktopDisplay : displaymode;
             }
         }
         else
         {
-            return desktopDisplayMode;
+            return desktopDisplay;
         }
     }
 
-    private static Set<Dimension> getDisplayModeDimensions(DisplayMode[] p_getDisplayModeDimensions_0_)
+    private static Set<Dimension> getDisplayDimensions(Display[] p_getDisplayDimensions_0_)
     {
         Set<Dimension> set = new HashSet<Dimension>();
 
-        for (int i = 0; i < p_getDisplayModeDimensions_0_.length; ++i)
+        for (int i = 0; i < p_getDisplayDimensions_0_.length; ++i)
         {
-            DisplayMode displaymode = p_getDisplayModeDimensions_0_[i];
+            Display displaymode = p_getDisplayDimensions_0_[i];
             Dimension dimension = new Dimension(displaymode.getWidth(), displaymode.getHeight());
             set.add(dimension);
         }
@@ -1453,58 +1360,57 @@ public class Config
         return set;
     }
 
-    private static DisplayMode[] getDisplayModes(DisplayMode[] p_getDisplayModes_0_, Dimension p_getDisplayModes_1_)
+    private static Display[] getDisplays(Display[] p_getDisplays_0_, Dimension p_getDisplays_1_)
     {
         List list = new ArrayList();
 
-        for (int i = 0; i < p_getDisplayModes_0_.length; ++i)
+        for (int i = 0; i < p_getDisplays_0_.length; ++i)
         {
-            DisplayMode displaymode = p_getDisplayModes_0_[i];
+            Display displaymode = p_getDisplays_0_[i];
 
-            if ((double)displaymode.getWidth() == p_getDisplayModes_1_.getWidth() && (double)displaymode.getHeight() == p_getDisplayModes_1_.getHeight())
+            if ((double)displaymode.getWidth() == p_getDisplays_1_.getWidth() && (double)displaymode.getHeight() == p_getDisplays_1_.getHeight())
             {
                 list.add(displaymode);
             }
         }
 
-        DisplayMode[] adisplaymode = (DisplayMode[])list.toArray(new DisplayMode[list.size()]);
+        Display[] adisplaymode = (Display[])list.toArray(new Display[list.size()]);
         return adisplaymode;
     }
 
-    private static DisplayMode getDisplayMode(DisplayMode[] p_getDisplayMode_0_, DisplayMode p_getDisplayMode_1_)
+    private static Display getDisplay(Display[] p_getDisplay_0_, Display p_getDisplay_1_)
     {
-        if (p_getDisplayMode_1_ != null)
+        if (p_getDisplay_1_ != null)
         {
-            for (int i = 0; i < p_getDisplayMode_0_.length; ++i)
+            for (int i = 0; i < p_getDisplay_0_.length; ++i)
             {
-                DisplayMode displaymode = p_getDisplayMode_0_[i];
+                Display displaymode = p_getDisplay_0_[i];
 
-                if (displaymode.getBitsPerPixel() == p_getDisplayMode_1_.getBitsPerPixel() && displaymode.getFrequency() == p_getDisplayMode_1_.getFrequency())
+                if (false/*displaymode.getBitsPerPixel() == p_getDisplay_1_.getBitsPerPixel() && displaymode.getFrequency() == p_getDisplay_1_.getFrequency()*/)
                 {
                     return displaymode;
                 }
             }
         }
 
-        if (p_getDisplayMode_0_.length <= 0)
+        if (p_getDisplay_0_.length <= 0)
         {
             return null;
         }
         else
         {
-            Arrays.sort(p_getDisplayMode_0_, new DisplayModeComparator());
-            return p_getDisplayMode_0_[p_getDisplayMode_0_.length - 1];
+            return p_getDisplay_0_[p_getDisplay_0_.length - 1];
         }
     }
 
-    public static String[] getDisplayModeNames()
+    public static String[] getDisplayNames()
     {
-        DisplayMode[] adisplaymode = getDisplayModes();
+        Display[] adisplaymode = getDisplays();
         String[] astring = new String[adisplaymode.length];
 
         for (int i = 0; i < adisplaymode.length; ++i)
         {
-            DisplayMode displaymode = adisplaymode[i];
+            Display displaymode = adisplaymode[i];
             String s = "" + displaymode.getWidth() + "x" + displaymode.getHeight();
             astring[i] = s;
         }
@@ -1512,21 +1418,21 @@ public class Config
         return astring;
     }
 
-    public static DisplayMode getDisplayMode(Dimension p_getDisplayMode_0_) throws LWJGLException
+    public static Display getDisplay(Dimension p_getDisplay_0_) throws Exception
     {
-        DisplayMode[] adisplaymode = getDisplayModes();
+        Display[] adisplaymode = getDisplays();
 
         for (int i = 0; i < adisplaymode.length; ++i)
         {
-            DisplayMode displaymode = adisplaymode[i];
+            Display displaymode = adisplaymode[i];
 
-            if (displaymode.getWidth() == p_getDisplayMode_0_.width && displaymode.getHeight() == p_getDisplayMode_0_.height)
+            if (displaymode.getWidth() == p_getDisplay_0_.width && displaymode.getHeight() == p_getDisplay_0_.height)
             {
                 return displaymode;
             }
         }
 
-        return desktopDisplayMode;
+        return desktopDisplay;
     }
 
     public static boolean isAnimatedTerrain()
@@ -1551,11 +1457,11 @@ public class Config
 
     public static void checkGlError(String p_checkGlError_0_)
     {
-        int i = GL11.glGetError();
+        int i = 0;
 
         if (i != 0)
         {
-            String s = GLU.gluErrorString(i);
+            String s = "0";
             error("OpenGlError: " + i + " (" + s + "), at: " + p_checkGlError_0_);
         }
     }
@@ -1934,41 +1840,41 @@ public class Config
 
         if (i > 0)
         {
-            DisplayMode displaymode = Display.getDisplayMode();
+            //Display displaymode = Display.getDisplay();
             dbg("FSAA Samples: " + i);
 
             try
             {
-                Display.destroy();
-                Display.setDisplayMode(displaymode);
+                /*Display.destroy();
+                Display.setDisplay(displaymode);
                 Display.create((new PixelFormat()).withDepthBits(24).withSamples(i));
                 Display.setResizable(false);
-                Display.setResizable(true);
+                Display.setResizable(true);*/
             }
-            catch (LWJGLException lwjglexception2)
+            catch (Exception lwjglexception2)
             {
                 warn("Error setting FSAA: " + i + "x");
                 lwjglexception2.printStackTrace();
 
                 try
                 {
-                    Display.setDisplayMode(displaymode);
+                    /*Display.setDisplay(displaymode);
                     Display.create((new PixelFormat()).withDepthBits(24));
                     Display.setResizable(false);
-                    Display.setResizable(true);
+                    Display.setResizable(true);*/
                 }
-                catch (LWJGLException lwjglexception1)
+                catch (Exception lwjglexception1)
                 {
                     lwjglexception1.printStackTrace();
 
                     try
                     {
-                        Display.setDisplayMode(displaymode);
+                        /*Display.setDisplay(displaymode);
                         Display.create();
                         Display.setResizable(false);
-                        Display.setResizable(true);
+                        Display.setResizable(true);*/
                     }
-                    catch (LWJGLException lwjglexception)
+                    catch (Exception lwjglexception)
                     {
                         lwjglexception.printStackTrace();
                     }
@@ -1987,7 +1893,7 @@ public class Config
 
                     if (inputstream != null && inputstream1 != null)
                     {
-                        Display.setIcon(new ByteBuffer[] {readIconImage(inputstream), readIconImage(inputstream1)});
+                        //Display.setIcon(new ByteBuffer[] {readIconImage(inputstream), readIconImage(inputstream1)});
                     }
                 }
                 catch (IOException ioexception)
@@ -2018,7 +1924,7 @@ public class Config
         return bytebuffer;
     }
 
-    public static void checkDisplayMode()
+    public static void checkDisplay()
     {
         try
         {
@@ -2031,7 +1937,7 @@ public class Config
 
                 fullscreenModeChecked = true;
                 desktopModeChecked = false;
-                DisplayMode displaymode = Display.getDisplayMode();
+                Display displaymode = desktopDisplay;
                 Dimension dimension = getFullscreenDimension();
 
                 if (dimension == null)
@@ -2044,16 +1950,16 @@ public class Config
                     return;
                 }
 
-                DisplayMode displaymode1 = getDisplayMode(dimension);
+                Display displaymode1 = getDisplay(dimension);
 
                 if (displaymode1 == null)
                 {
                     return;
                 }
 
-                Display.setDisplayMode(displaymode1);
-                minecraft.displayWidth = Display.getDisplayMode().getWidth();
-                minecraft.displayHeight = Display.getDisplayMode().getHeight();
+                //Display.setDisplay(displaymode1);
+                minecraft.displayWidth = desktopDisplay.getWidth();
+                minecraft.displayHeight = desktopDisplay.getHeight();
 
                 if (minecraft.displayWidth <= 0)
                 {
@@ -2075,7 +1981,7 @@ public class Config
 
                 minecraft.loadingScreen = new LoadingScreenRenderer(minecraft);
                 updateFramebufferSize();
-                Display.setFullscreen(true);
+                //Display.setFullscreen(true);
                 minecraft.gameSettings.updateVSync();
                 GlStateManager.enableTexture2D();
             }
@@ -2091,8 +1997,8 @@ public class Config
                 minecraft.gameSettings.updateVSync();
                 Display.update();
                 GlStateManager.enableTexture2D();
-                Display.setResizable(false);
-                Display.setResizable(true);
+                //Display.setResizable(false);
+                //Display.setResizable(true);
             }
         }
         catch (Exception exception)

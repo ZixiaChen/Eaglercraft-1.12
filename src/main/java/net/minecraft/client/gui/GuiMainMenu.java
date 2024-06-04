@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -36,7 +37,6 @@ import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
 import org.lwjgl.opengl.GLCapabilities;
-import org.lwjgl.util.glu.Project;
 
 import java.awt.Desktop;
 import java.net.URI;
@@ -46,8 +46,8 @@ import net.lax1dude.eaglercraft.v1_8.profile.*;
 
 public class GuiMainMenu extends GuiScreen
 {
-    private static final Logger LOGGER = LogManager.getLogger();
-    private static final Random RANDOM = new Random();
+    private final Logger LOGGER = LogManager.getLogger();
+    private final Random RANDOM = new Random();
 
     /**
      * A random number between 0.0 and 1.0, used to determine if the title screen says <a
@@ -64,7 +64,7 @@ public class GuiMainMenu extends GuiScreen
     private String field_92025_p;
     private String field_104024_v;
 
-    public static final String field_96138_a = "";
+    public final String field_96138_a = "";
     private int field_92024_r;
     private int field_92023_s;
     private int field_92022_t;
@@ -87,7 +87,7 @@ public class GuiMainMenu extends GuiScreen
      * The Object object utilized as a thread lock when performing non thread-safe operations
      */
     private final Object threadLock = new Object();
-    public static final String MORE_INFO_TEXT = "Please click " + TextFormatting.UNDERLINE + "here" + TextFormatting.RESET + " for more information.";
+    public final String MORE_INFO_TEXT = "Please click " + TextFormatting.UNDERLINE + "here" + TextFormatting.RESET + " for more information.";
 
     /** Width of openGLWarning2 */
     private int openGLWarning2Width;
@@ -178,9 +178,9 @@ public class GuiMainMenu extends GuiScreen
         }
 
         this.minceraftRoll = RANDOM.nextFloat();
-        this.openGLWarning1 = "";
+        this.openGLWarning1 = "OpenGL Error";
 
-        if (!GLCapabilities.getCapabilities().OpenGL20 && !OpenGlHelper.areShadersSupported())
+        if (!OpenGlHelper.areShadersSupported())
         {
             this.openGLWarning1 = I18n.format("title.oldgl1");
             this.openGLWarning2 = I18n.format("title.oldgl2");
@@ -415,7 +415,7 @@ public class GuiMainMenu extends GuiScreen
         GlStateManager.matrixMode(5889);
         GlStateManager.pushMatrix();
         GlStateManager.loadIdentity();
-        Project.gluPerspective(120.0F, 1.0F, 0.05F, 10.0F);
+        GlStateManager.gluPerspective(120.0F, 1.0F, 0.05F, 10.0F);
         GlStateManager.matrixMode(5888);
         GlStateManager.pushMatrix();
         GlStateManager.loadIdentity();
@@ -426,7 +426,7 @@ public class GuiMainMenu extends GuiScreen
         GlStateManager.disableAlpha();
         GlStateManager.disableCull();
         GlStateManager.depthMask(false);
-        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         int i = 8;
         int j = 64;
         CustomPanoramaProperties custompanoramaproperties = CustomPanorama.getCustomPanoramaProperties();
@@ -515,11 +515,11 @@ public class GuiMainMenu extends GuiScreen
     private void rotateAndBlurSkybox()
     {
         this.mc.getTextureManager().bindTexture(this.backgroundTexture);
-        GlStateManager.glTexParameteri(3553, 10241, 9729);
-        GlStateManager.glTexParameteri(3553, 10240, 9729);
-        GlStateManager.glCopyTexSubImage2D(3553, 0, 0, 0, 0, 0, 256, 256);
+        EaglercraftGPU.glTexParameteri(3553, 10241, 9729);
+        EaglercraftGPU.glTexParameteri(3553, 10240, 9729);
+        EaglercraftGPU.glCopyTexSubImage2D(3553, 0, 0, 0, 0, 0, 256, 256);
         GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.colorMask(true, true, true, false);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();

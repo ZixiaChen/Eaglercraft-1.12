@@ -1,12 +1,10 @@
 package net.minecraft.src;
 
 import java.awt.Dimension;
-import java.nio.IntBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.renderer.GLAllocation;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 public class Mipmaps
 {
@@ -212,7 +210,7 @@ public class Mipmaps
             int j = dimension.width;
             int k = dimension.height;
             int l = i + 1;
-            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, l, GL11.GL_RGBA, j, k, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, (IntBuffer)null);
+            //GL11.nglTexImage2D(GL11.GL_TEXTURE_2D, l, GL11.GL_RGBA, j, k, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, (IntBuffer)null);
         }
     }
 }

@@ -92,8 +92,6 @@ import net.lax1dude.eaglercraft.v1_8.Mouse;
 import net.lax1dude.eaglercraft.v1_8.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLCapabilities;
-import org.lwjgl.util.glu.GLU;
-import org.lwjgl.util.glu.Project;
 
 public class EntityRenderer implements IResourceManagerReloadListener
 {

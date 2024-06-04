@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.model.ModelBook;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.Enchantment;
@@ -20,7 +20,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IWorldNameable;
 import net.minecraft.world.World;
-import org.lwjgl.util.glu.Project;
 
 public class GuiEnchantment extends GuiContainer
 {
@@ -117,7 +116,7 @@ public class GuiEnchantment extends GuiContainer
         ScaledResolution scaledresolution = new ScaledResolution(this.mc);
         GlStateManager.viewport((scaledresolution.getScaledWidth() - 320) / 2 * scaledresolution.getScaleFactor(), (scaledresolution.getScaledHeight() - 240) / 2 * scaledresolution.getScaleFactor(), 320 * scaledresolution.getScaleFactor(), 240 * scaledresolution.getScaleFactor());
         GlStateManager.translate(-0.34F, 0.23F, 0.0F);
-        Project.gluPerspective(90.0F, 1.3333334F, 9.0F, 80.0F);
+        GlStateManager.gluPerspective(90.0F, 1.3333334F, 9.0F, 80.0F);
         float f = 1.0F;
         GlStateManager.matrixMode(5888);
         GlStateManager.loadIdentity();
