@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.tileentity;
 
-import java.nio.FloatBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.FloatBuffer;
 import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -28,8 +28,8 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
         {
             GlStateManager.disableLighting();
             RANDOM.setSeed(31100L);
-            GlStateManager.getFloat(2982, MODELVIEW);
-            GlStateManager.getFloat(2983, PROJECTION);
+            //GlStateManager.getFloat(2982, MODELVIEW);
+            //GlStateManager.getFloat(2983, PROJECTION);
             double d0 = x * x + y * y + z * z;
             int i = this.getPasses(d0);
             float f = this.getOffset();
@@ -64,9 +64,9 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
                 GlStateManager.texGen(GlStateManager.TexGen.S, 9216);
                 GlStateManager.texGen(GlStateManager.TexGen.T, 9216);
                 GlStateManager.texGen(GlStateManager.TexGen.R, 9216);
-                GlStateManager.texGen(GlStateManager.TexGen.S, 9474, this.getBuffer(1.0F, 0.0F, 0.0F, 0.0F));
-                GlStateManager.texGen(GlStateManager.TexGen.T, 9474, this.getBuffer(0.0F, 1.0F, 0.0F, 0.0F));
-                GlStateManager.texGen(GlStateManager.TexGen.R, 9474, this.getBuffer(0.0F, 0.0F, 1.0F, 0.0F));
+                //GlStateManager.texGen(GlStateManager.TexGen.S, 9474, this.getBuffer(1.0F, 0.0F, 0.0F, 0.0F));
+                //GlStateManager.texGen(GlStateManager.TexGen.T, 9474, this.getBuffer(0.0F, 1.0F, 0.0F, 0.0F));
+                //GlStateManager.texGen(GlStateManager.TexGen.R, 9474, this.getBuffer(0.0F, 0.0F, 1.0F, 0.0F));
                 GlStateManager.enableTexGenCoord(GlStateManager.TexGen.S);
                 GlStateManager.enableTexGenCoord(GlStateManager.TexGen.T);
                 GlStateManager.enableTexGenCoord(GlStateManager.TexGen.R);
@@ -80,8 +80,8 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
                 GlStateManager.translate(17.0F / f2, (2.0F + f2 / 1.5F) * ((float)Minecraft.getSystemTime() % 800000.0F / 800000.0F), 0.0F);
                 GlStateManager.rotate((f2 * f2 * 4321.0F + f2 * 9.0F) * 2.0F, 0.0F, 0.0F, 1.0F);
                 GlStateManager.scale(4.5F - f2 / 4.0F, 4.5F - f2 / 4.0F, 1.0F);
-                GlStateManager.multMatrix(PROJECTION);
-                GlStateManager.multMatrix(MODELVIEW);
+                //GlStateManager.multMatrix(PROJECTION);
+                //GlStateManager.multMatrix(MODELVIEW);
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder bufferbuilder = tessellator.getBuffer();
                 bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);

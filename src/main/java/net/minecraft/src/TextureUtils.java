@@ -17,6 +17,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
 import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.ITickableTextureObject;
@@ -547,10 +548,10 @@ public class TextureUtils
             int j = p_saveGlTexture_3_ >> i1;
             int k = p_saveGlTexture_4_ >> i1;
             int l = j * k;
-            IntBuffer intbuffer = BufferUtils.createIntBuffer(l);
+            //IntBuffer intbuffer = BufferUtils.createIntBuffer(l);
             int[] aint = new int[l];
             //GL11.glGetTexImage(GL11.GL_TEXTURE_2D, i1, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, intbuffer);
-            intbuffer.get(aint);
+            //intbuffer.get(aint);
             BufferedImage bufferedimage = new BufferedImage(j, k, 2);
             bufferedimage.setRGB(0, 0, j, k, aint, 0, j);
 
@@ -647,18 +648,6 @@ public class TextureUtils
 
     public static int getGLMaximumTextureSize()
     {
-        for (int i = 65536; i > 0; i >>= 1)
-        {
-            GlStateManager.glTexImage2D(32868, 0, 6408, i, i, 0, 6408, 5121, (IntBuffer)null);
-            int j = GL11.glGetError();
-            int k = GlStateManager.glGetTexLevelParameteri(32868, 0, 4096);
-
-            if (k != 0)
-            {
-                return i;
-            }
-        }
-
-        return -1;
+        return EaglercraftGPU.glGetInteger(3379);
     }
 }

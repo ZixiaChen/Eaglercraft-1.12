@@ -5,6 +5,7 @@ import net.minecraft.client.resources.AbstractResourcePack;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ import java.util.Set;
 
 public class FolderResourcePack extends AbstractResourcePack {
 	public FolderResourcePack(String resourcePackFileIn, String prefix) {
-		super(resourcePackFileIn);
+		super(new File(resourcePackFileIn));
 	}
 
 	protected InputStream getInputStreamByName(String name) {

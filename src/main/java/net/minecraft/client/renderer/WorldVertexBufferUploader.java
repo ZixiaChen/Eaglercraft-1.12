@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer;
 
-import java.nio.ByteBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.ByteBuffer;
 import java.util.List;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
@@ -38,24 +38,24 @@ public class WorldVertexBufferUploader
                     switch (vertexformatelement$enumusage)
                     {
                         case POSITION:
-                            GlStateManager.glVertexPointer(vertexformatelement.getElementCount(), k, i, bytebuffer);
+                            //GlStateManager.glVertexPointer(vertexformatelement.getElementCount(), k, i, bytebuffer);
                             GlStateManager.glEnableClientState(32884);
                             break;
 
                         case UV:
                             OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit + l);
-                            GlStateManager.glTexCoordPointer(vertexformatelement.getElementCount(), k, i, bytebuffer);
+                            //GlStateManager.glTexCoordPointer(vertexformatelement.getElementCount(), k, i, bytebuffer);
                             GlStateManager.glEnableClientState(32888);
                             OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
                             break;
 
                         case COLOR:
-                            GlStateManager.glColorPointer(vertexformatelement.getElementCount(), k, i, bytebuffer);
+                            //GlStateManager.glColorPointer(vertexformatelement.getElementCount(), k, i, bytebuffer);
                             GlStateManager.glEnableClientState(32886);
                             break;
 
                         case NORMAL:
-                            GlStateManager.glNormalPointer(k, i, bytebuffer);
+                            //GlStateManager.glNormalPointer(k, i, bytebuffer);
                             GlStateManager.glEnableClientState(32885);
                     }
                 }

@@ -3,9 +3,9 @@ package net.minecraft.client.renderer;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.ByteBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.FloatBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.IntBuffer;
 import java.util.Locale;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -449,146 +449,62 @@ public class OpenGlHelper
 
     public static void glUniform1(int location, IntBuffer values)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniform1ivARB(location, values);
-        }
-        else
-        {
-            GL20.glUniform1iv(location, values);
-        }
+        
     }
 
     public static void glUniform1i(int location, int v0)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniform1iARB(location, v0);
-        }
-        else
-        {
-            GL20.glUniform1i(location, v0);
-        }
+        
     }
 
     public static void glUniform1(int location, FloatBuffer values)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniform1fvARB(location, values);
-        }
-        else
-        {
-            GL20.glUniform1fv(location, values);
-        }
+        
     }
 
     public static void glUniform2(int location, IntBuffer values)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniform2ivARB(location, values);
-        }
-        else
-        {
-            GL20.glUniform2iv(location, values);
-        }
+        
     }
 
     public static void glUniform2(int location, FloatBuffer values)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniform2fvARB(location, values);
-        }
-        else
-        {
-            GL20.glUniform2fv(location, values);
-        }
+        
     }
 
     public static void glUniform3(int location, IntBuffer values)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniform3ivARB(location, values);
-        }
-        else
-        {
-            GL20.glUniform3iv(location, values);
-        }
+        
     }
 
     public static void glUniform3(int location, FloatBuffer values)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniform3fvARB(location, values);
-        }
-        else
-        {
-            GL20.glUniform3fv(location, values);
-        }
+        
     }
 
     public static void glUniform4(int location, IntBuffer values)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniform4ivARB(location, values);
-        }
-        else
-        {
-            GL20.glUniform4iv(location, values);
-        }
+        
     }
 
     public static void glUniform4(int location, FloatBuffer values)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniform4fvARB(location, values);
-        }
-        else
-        {
-            GL20.glUniform4fv(location, values);
-        }
+        
     }
 
     public static void glUniformMatrix2(int location, boolean transpose, FloatBuffer matrices)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniformMatrix2fvARB(location, transpose, matrices);
-        }
-        else
-        {
-            GL20.glUniformMatrix2fv(location, transpose, matrices);
-        }
+        
     }
 
     public static void glUniformMatrix3(int location, boolean transpose, FloatBuffer matrices)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniformMatrix3fvARB(location, transpose, matrices);
-        }
-        else
-        {
-            GL20.glUniformMatrix3fv(location, transpose, matrices);
-        }
+        
     }
 
     public static void glUniformMatrix4(int location, boolean transpose, FloatBuffer matrices)
     {
-        if (arbShaders)
-        {
-            ARBShaderObjects.glUniformMatrix4fvARB(location, transpose, matrices);
-        }
-        else
-        {
-            GL20.glUniformMatrix4fv(location, transpose, matrices);
-        }
+        
     }
 
     public static int glGetAttribLocation(int program, CharSequence name)
@@ -615,14 +531,7 @@ public class OpenGlHelper
 
     public static void glBufferData(int target, ByteBuffer data, int usage)
     {
-        if (arbVbo)
-        {
-            ARBVertexBufferObject.glBufferDataARB(target, data, usage);
-        }
-        else
-        {
-            GL15.glBufferData(target, data, usage);
-        }
+        
     }
 
     public static void glDeleteBuffers(int buffer)

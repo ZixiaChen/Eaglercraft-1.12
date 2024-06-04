@@ -67,7 +67,7 @@ public class ShaderLoader
                 bytebuffer.put(abyte);
                 bytebuffer.position(0);
                 int i = OpenGlHelper.glCreateShader(type.getShaderMode());
-                OpenGlHelper.glShaderSource(i, bytebuffer);
+                //OpenGlHelper.glShaderSource(i, bytebuffer);
                 OpenGlHelper.glCompileShader(i);
 
                 if (OpenGlHelper.glGetShaderi(i, OpenGlHelper.GL_COMPILE_STATUS) == 0)

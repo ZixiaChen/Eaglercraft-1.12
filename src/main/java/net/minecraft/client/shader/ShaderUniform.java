@@ -255,68 +255,16 @@ public class ShaderUniform
 
     private void uploadInt()
     {
-        switch (this.uniformType)
-        {
-            case 0:
-                OpenGlHelper.glUniform1(this.uniformLocation, this.uniformIntBuffer);
-                break;
-
-            case 1:
-                OpenGlHelper.glUniform2(this.uniformLocation, this.uniformIntBuffer);
-                break;
-
-            case 2:
-                OpenGlHelper.glUniform3(this.uniformLocation, this.uniformIntBuffer);
-                break;
-
-            case 3:
-                OpenGlHelper.glUniform4(this.uniformLocation, this.uniformIntBuffer);
-                break;
-
-            default:
-                LOGGER.warn("Uniform.upload called, but count value ({}) is  not in the range of 1 to 4. Ignoring.", (int)this.uniformCount);
-        }
+        
     }
 
     private void uploadFloat()
     {
-        switch (this.uniformType)
-        {
-            case 4:
-                OpenGlHelper.glUniform1(this.uniformLocation, this.uniformFloatBuffer);
-                break;
-
-            case 5:
-                OpenGlHelper.glUniform2(this.uniformLocation, this.uniformFloatBuffer);
-                break;
-
-            case 6:
-                OpenGlHelper.glUniform3(this.uniformLocation, this.uniformFloatBuffer);
-                break;
-
-            case 7:
-                OpenGlHelper.glUniform4(this.uniformLocation, this.uniformFloatBuffer);
-                break;
-
-            default:
-                LOGGER.warn("Uniform.upload called, but count value ({}) is not in the range of 1 to 4. Ignoring.", (int)this.uniformCount);
-        }
+        
     }
 
     private void uploadFloatMatrix()
     {
-        switch (this.uniformType)
-        {
-            case 8:
-                OpenGlHelper.glUniformMatrix2(this.uniformLocation, true, this.uniformFloatBuffer);
-                break;
-
-            case 9:
-                OpenGlHelper.glUniformMatrix3(this.uniformLocation, true, this.uniformFloatBuffer);
-                break;
-
-            case 10:
-                OpenGlHelper.glUniformMatrix4(this.uniformLocation, true, this.uniformFloatBuffer);
-        }
+        
     }
 }

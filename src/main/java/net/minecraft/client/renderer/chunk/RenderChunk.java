@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.chunk;
 
 import com.google.common.collect.Sets;
-import java.nio.FloatBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.FloatBuffer;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.locks.ReentrantLock;
@@ -16,7 +16,7 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RegionRenderCacheBuilder;
 import net.minecraft.client.renderer.RenderGlobal;
@@ -52,7 +52,7 @@ public class RenderChunk
     private ChunkCompileTaskGenerator compileTask;
     private final Set<TileEntity> setTileEntities = Sets.<TileEntity>newHashSet();
     private final int index;
-    private final FloatBuffer modelviewMatrix = GLAllocation.createDirectFloatBuffer(16);
+    private final float[] modelviewMatrix = new float[16];
     private final VertexBuffer[] vertexBuffers = new VertexBuffer[BlockRenderLayer.values().length];
     public AxisAlignedBB boundingBox;
     private int frameIndex = -1;

@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.vertex;
 
-import java.nio.ByteBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.ByteBuffer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 

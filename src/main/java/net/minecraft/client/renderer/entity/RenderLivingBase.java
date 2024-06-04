@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
 import com.google.common.collect.Lists;
-import java.nio.FloatBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.FloatBuffer;
 import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -373,7 +373,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
             }
 
             this.brightnessBuffer.flip();
-            GlStateManager.glTexEnv(8960, 8705, this.brightnessBuffer);
+            //GlStateManager.glTexEnv(8960, 8705, this.brightnessBuffer);
             GlStateManager.setActiveTexture(OpenGlHelper.GL_TEXTURE2);
             GlStateManager.enableTexture2D();
             GlStateManager.bindTexture(TEXTURE_BRIGHTNESS.getGlTextureId());
