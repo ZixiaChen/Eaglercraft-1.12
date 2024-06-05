@@ -2,27 +2,12 @@ package net.catfoolyou.gui;
 
 import java.io.IOException;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.StringUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import net.minecraft.client.Minecraft;
-import net.minecraft.nbt.CompressedStreamTools;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.InventoryEffectRenderer;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.client.gui.*;
 import net.lax1dude.eaglercraft.v1_8.profile.*;
-import net.minecraft.client.gui.inventory.GuiInventory;
-
-import java.util.UUID;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.resources.*;
 
 
@@ -38,14 +23,14 @@ public class GuiScreenAuth extends GuiScreen
 
 	private GuiTextField Username;
 
-	private int whichDefaultSkin = 0;
+	private int whichSkin = DefaultPlayerSkin.id;
 	private boolean newSkinWaitSteveOrAlex = false; // The eagler equivalent
 
 	private float oldMouseX;
 	private float oldMouseY;
 
-	private static final ResourceLocation TEXTURE_STEVE = new ResourceLocation("textures/entity/steve.png");
-	private static final ResourceLocation TEXTURE_ALEX = new ResourceLocation("textures/entity/alex.png");
+	private static final ResourceLocation DEFAULT_STEVE = new ResourceLocation("textures/entity/steve.png");
+	private static final ResourceLocation DEFAULT_ALEX = new ResourceLocation("textures/entity/alex.png");
 
 	private boolean dropDownOpen = false;
 	private String[] dropDownOptions;
@@ -78,8 +63,8 @@ public class GuiScreenAuth extends GuiScreen
 		this.Username.setFocused(true);
 		this.Username.setText(super.mc.getSession().getUsername());
 
-		whichDefaultSkin = DefaultPlayerSkin.getSkin();
-		selectedSlot = whichDefaultSkin;
+		whichSkin = DefaultPlayerSkin.getSkin();
+		selectedSlot = whichSkin;
 		updateOptions();
 
 		buttonList.add(new GuiButton(1, width / 2 - 21, height / 6 + 110, 71, 20, I18n.format("Add Skin")));
@@ -91,7 +76,7 @@ public class GuiScreenAuth extends GuiScreen
 	 */
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
-		if (button.id == 0)
+		if (button.id == 0 && !dropDownOpen)
 		{
 			super.mc.getSession().overrideUsername(this.Username.getText());
 			super.mc.displayGuiScreen(new GuiMainMenu());
@@ -145,8 +130,8 @@ public class GuiScreenAuth extends GuiScreen
 
 		boolean isCustomSkin = false;
 
-		whichDefaultSkin = selectedSlot;
-		DefaultPlayerSkin.setDefaultSkin(whichDefaultSkin);
+		whichSkin = selectedSlot;
+		DefaultPlayerSkin.setDefaultSkin(whichSkin);
 
 		int skinX = width / 2 - 120;
 		int skinY = height / 6 + 8;
@@ -229,14 +214,8 @@ public class GuiScreenAuth extends GuiScreen
 
 		SkinPreviewRenderer.initialize();
 	
-		if(whichDefaultSkin == 0){
-			mc.getTextureManager().bindTexture(TEXTURE_STEVE);
-			SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, SkinModel.STEVE);
-		}
-		else{
-			mc.getTextureManager().bindTexture(TEXTURE_ALEX);
-			SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, SkinModel.ALEX);
-		}
+		mc.getTextureManager().bindTexture(DefaultSkins.defaultSkinsMap[whichSkin].location);
+		SkinPreviewRenderer.renderBiped(xx, yy, (int)mouseX, (int)mouseY, DefaultSkins.defaultSkinsMap[whichSkin].model);
 
 		//super.drawScreen(mouseX, mouseY, partialTicks);
 	}

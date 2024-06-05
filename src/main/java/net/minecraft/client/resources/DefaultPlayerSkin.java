@@ -2,16 +2,12 @@ package net.minecraft.client.resources;
 
 import java.util.UUID;
 import net.minecraft.util.ResourceLocation;
+import net.lax1dude.eaglercraft.v1_8.profile.*;
 
 public class DefaultPlayerSkin
 {
-    /** The default skin for the Steve model. */
-    private static final ResourceLocation TEXTURE_STEVE = new ResourceLocation("textures/entity/steve.png");
-
-    /** The default skin for the Alex model. */
-    private static final ResourceLocation TEXTURE_ALEX = new ResourceLocation("textures/entity/alex.png");
-
-	private static ResourceLocation Skin = TEXTURE_STEVE;
+    public static int id = 0;
+	private static ResourceLocation Skin = DefaultSkins.defaultSkinsMap[id].location;
 
     /**
      * Returns the default skind for versions prior to 1.8, which is always the Steve texture.
@@ -29,28 +25,15 @@ public class DefaultPlayerSkin
         return Skin;
     }
 
-    public static int getSkin()
-    {
-        if(Skin == TEXTURE_STEVE){
-		return 0;
-	}
-	if(Skin == TEXTURE_ALEX){
-		return 1;
-	}
-	else{
-		return 0;
-	}
-    }
-
 	public static ResourceLocation setDefaultSkin(int skin)
     {
-		if(skin == 0){
-			Skin = TEXTURE_STEVE;
-		}
-		if(skin == 1){
-			Skin = TEXTURE_ALEX;
-		}
+        id = skin;
+		Skin = DefaultSkins.defaultSkinsMap[skin].location;
         return Skin;
+    }
+
+    public static int getSkin(){
+        return id;
     }
 
     /**
@@ -66,7 +49,7 @@ public class DefaultPlayerSkin
      */
     private static boolean isSlimSkin(UUID playerUUID)
     {
-		if(Skin == TEXTURE_STEVE){
+		if(DefaultSkins.defaultSkinsMap[id].model == SkinModel.STEVE){
 			return false;
 		}
 		else{
