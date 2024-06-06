@@ -1,15 +1,10 @@
 package net.minecraft.src;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.profiler.Profiler;
-import org.lwjgl.opengl.GL11;
 
 public class Lagometer
 {
@@ -135,80 +130,7 @@ public class Lagometer
 
     public static void showLagometer(ScaledResolution p_showLagometer_0_)
     {
-        if (gameSettings != null)
-        {
-            if (gameSettings.ofLagometer || gameSettings.showLagometer)
-            {
-                long i = System.nanoTime();
-                GlStateManager.clear(256);
-                GlStateManager.matrixMode(5889);
-                GlStateManager.pushMatrix();
-                GlStateManager.enableColorMaterial();
-                GlStateManager.loadIdentity();
-                GlStateManager.ortho(0.0D, (double)mc.displayWidth, (double)mc.displayHeight, 0.0D, 1000.0D, 3000.0D);
-                GlStateManager.matrixMode(5888);
-                GlStateManager.pushMatrix();
-                GlStateManager.loadIdentity();
-                GlStateManager.translate(0.0F, 0.0F, -2000.0F);
-                GL11.glLineWidth(1.0F);
-                GlStateManager.disableTexture2D();
-                Tessellator tessellator = Tessellator.getInstance();
-                BufferBuilder bufferbuilder = tessellator.getBuffer();
-                bufferbuilder.begin(1, DefaultVertexFormats.POSITION_COLOR);
-
-                for (int j = 0; j < timesFrame.length; ++j)
-                {
-                    int k = (j - numRecordedFrameTimes & timesFrame.length - 1) * 100 / timesFrame.length;
-                    k = k + 155;
-                    float f = (float)mc.displayHeight;
-                    long l = 0L;
-
-                    if (gcs[j])
-                    {
-                        renderTime(j, timesFrame[j], k, k / 2, 0, f, bufferbuilder);
-                    }
-                    else
-                    {
-                        renderTime(j, timesFrame[j], k, k, k, f, bufferbuilder);
-                        f = f - (float)renderTime(j, timesServer[j], k / 2, k / 2, k / 2, f, bufferbuilder);
-                        f = f - (float)renderTime(j, timesTerrain[j], 0, k, 0, f, bufferbuilder);
-                        f = f - (float)renderTime(j, timesVisibility[j], k, k, 0, f, bufferbuilder);
-                        f = f - (float)renderTime(j, timesChunkUpdate[j], k, 0, 0, f, bufferbuilder);
-                        f = f - (float)renderTime(j, timesChunkUpload[j], k, 0, k, f, bufferbuilder);
-                        f = f - (float)renderTime(j, timesScheduledExecutables[j], 0, 0, k, f, bufferbuilder);
-                        float f2 = f - (float)renderTime(j, timesTick[j], 0, k, k, f, bufferbuilder);
-                    }
-                }
-
-                renderTimeDivider(0, timesFrame.length, 33333333L, 196, 196, 196, (float)mc.displayHeight, bufferbuilder);
-                renderTimeDivider(0, timesFrame.length, 16666666L, 196, 196, 196, (float)mc.displayHeight, bufferbuilder);
-                tessellator.draw();
-                GlStateManager.enableTexture2D();
-                int j2 = mc.displayHeight - 80;
-                int k2 = mc.displayHeight - 160;
-                mc.fontRenderer.drawString("30", 2, k2 + 1, -8947849);
-                mc.fontRenderer.drawString("30", 1, k2, -3881788);
-                mc.fontRenderer.drawString("60", 2, j2 + 1, -8947849);
-                mc.fontRenderer.drawString("60", 1, j2, -3881788);
-                GlStateManager.matrixMode(5889);
-                GlStateManager.popMatrix();
-                GlStateManager.matrixMode(5888);
-                GlStateManager.popMatrix();
-                GlStateManager.enableTexture2D();
-                float f1 = 1.0F - (float)((double)(System.currentTimeMillis() - memTimeStartMs) / 1000.0D);
-                f1 = Config.limit(f1, 0.0F, 1.0F);
-                int l2 = (int)(170.0F + f1 * 85.0F);
-                int i1 = (int)(100.0F + f1 * 55.0F);
-                int j1 = (int)(10.0F + f1 * 10.0F);
-                int k1 = l2 << 16 | i1 << 8 | j1;
-                int l1 = 512 / p_showLagometer_0_.getScaleFactor() + 2;
-                int i2 = mc.displayHeight / p_showLagometer_0_.getScaleFactor() - 8;
-                GuiIngame guiingame = mc.ingameGUI;
-                GuiIngame.drawRect(l1 - 1, i2 - 1, l1 + 50, i2 + 10, -1605349296);
-                mc.fontRenderer.drawString(" " + memMbSec + " MB/s", l1, i2, k1);
-                renderTimeNano = System.nanoTime() - i;
-            }
-        }
+        
     }
 
     private static long renderTime(int p_renderTime_0_, long p_renderTime_1_, int p_renderTime_3_, int p_renderTime_4_, int p_renderTime_5_, float p_renderTime_6_, BufferBuilder p_renderTime_7_)

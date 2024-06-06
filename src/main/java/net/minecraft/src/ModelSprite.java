@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.MathHelper;
-import org.lwjgl.opengl.GL11;
 
 public class ModelSprite
 {
@@ -79,14 +78,14 @@ public class ModelSprite
         double d0 = (double)(MathHelper.abs(f) * (p_renderItemIn2D_8_ / 16.0F));
         double d1 = (double)(MathHelper.abs(f1) * (p_renderItemIn2D_9_ / 16.0F));
         BufferBuilder bufferbuilder = p_renderItemIn2D_0_.getBuffer();
-        GL11.glNormal3f(0.0F, 0.0F, -1.0F);
+        //GL11.glNormal3f(0.0F, 0.0F, -1.0F);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
         bufferbuilder.pos(0.0D, d1, 0.0D).tex((double)p_renderItemIn2D_1_, (double)p_renderItemIn2D_4_).endVertex();
         bufferbuilder.pos(d0, d1, 0.0D).tex((double)p_renderItemIn2D_3_, (double)p_renderItemIn2D_4_).endVertex();
         bufferbuilder.pos(d0, 0.0D, 0.0D).tex((double)p_renderItemIn2D_3_, (double)p_renderItemIn2D_2_).endVertex();
         bufferbuilder.pos(0.0D, 0.0D, 0.0D).tex((double)p_renderItemIn2D_1_, (double)p_renderItemIn2D_2_).endVertex();
         p_renderItemIn2D_0_.draw();
-        GL11.glNormal3f(0.0F, 0.0F, 1.0F);
+        //GL11.glNormal3f(0.0F, 0.0F, 1.0F);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
         bufferbuilder.pos(0.0D, 0.0D, (double)p_renderItemIn2D_7_).tex((double)p_renderItemIn2D_1_, (double)p_renderItemIn2D_2_).endVertex();
         bufferbuilder.pos(d0, 0.0D, (double)p_renderItemIn2D_7_).tex((double)p_renderItemIn2D_3_, (double)p_renderItemIn2D_2_).endVertex();
@@ -95,7 +94,7 @@ public class ModelSprite
         p_renderItemIn2D_0_.draw();
         float f2 = 0.5F * f / (float)p_renderItemIn2D_5_;
         float f3 = 0.5F * f1 / (float)p_renderItemIn2D_6_;
-        GL11.glNormal3f(-1.0F, 0.0F, 0.0F);
+        //GL11.glNormal3f(-1.0F, 0.0F, 0.0F);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
 
         for (int i = 0; i < p_renderItemIn2D_5_; ++i)
@@ -109,7 +108,7 @@ public class ModelSprite
         }
 
         p_renderItemIn2D_0_.draw();
-        GL11.glNormal3f(1.0F, 0.0F, 0.0F);
+        //GL11.glNormal3f(1.0F, 0.0F, 0.0F);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
 
         for (int j = 0; j < p_renderItemIn2D_5_; ++j)
@@ -124,7 +123,7 @@ public class ModelSprite
         }
 
         p_renderItemIn2D_0_.draw();
-        GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+        //GL11.glNormal3f(0.0F, 1.0F, 0.0F);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
 
         for (int k = 0; k < p_renderItemIn2D_6_; ++k)
@@ -139,7 +138,7 @@ public class ModelSprite
         }
 
         p_renderItemIn2D_0_.draw();
-        GL11.glNormal3f(0.0F, -1.0F, 0.0F);
+        //GL11.glNormal3f(0.0F, -1.0F, 0.0F);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
 
         for (int l = 0; l < p_renderItemIn2D_6_; ++l)

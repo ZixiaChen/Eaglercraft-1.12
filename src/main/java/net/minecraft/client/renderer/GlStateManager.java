@@ -5,12 +5,8 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import javax.annotation.Nullable;
 import net.minecraft.src.Config;
-import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL14;
-import org.lwjgl.opengl.GLCapabilities;
+import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.*;
+import static net.lax1dude.eaglercraft.v1_8.internal.PlatformOpenGL.*;
 import net.lax1dude.eaglercraft.v1_8.vector.Quaternion;
 
 public class GlStateManager
@@ -44,7 +40,7 @@ public class GlStateManager
      */
     public static void pushAttrib()
     {
-        GL11.glPushAttrib(8256);
+        //GL11.glPushAttrib(8256);
     }
 
     /**
@@ -52,7 +48,7 @@ public class GlStateManager
      */
     public static void popAttrib()
     {
-        GL11.glPopAttrib();
+        //GL11.glPopAttrib();
     }
 
     public static void disableAlpha()
@@ -67,11 +63,11 @@ public class GlStateManager
 
     public static void alphaFunc(int func, float ref)
     {
-        if (func != alphaState.func || ref != alphaState.ref)
+        if (func != alphaState.func || ref != alphaState.ref && func != GL_GREATER)
         {
             alphaState.func = func;
             alphaState.ref = ref;
-            GL11.glAlphaFunc(func, ref);
+            //glAlphaFunc(func, ref);
         }
     }
 
@@ -111,23 +107,23 @@ public class GlStateManager
         {
             colorMaterialState.face = face;
             colorMaterialState.mode = mode;
-            GL11.glColorMaterial(face, mode);
+            //GL11.glColorMaterial(face, mode);
         }
     }
 
     public static void glLight(int light, int pname, FloatBuffer params)
     {
-        GL11.glLightfv(light, pname, params);
+        //GL11.glLightfv(light, pname, params);
     }
 
     public static void glLightModel(int pname, FloatBuffer params)
     {
-        GL11.glLightModelfv(pname, params);
+        //GL11.glLightModelfv(pname, params);
     }
 
     public static void glNormal3f(float nx, float ny, float nz)
     {
-        GL11.glNormal3f(nx, ny, nz);
+        //GL11.glNormal3f(nx, ny, nz);
     }
 
     public static void disableDepth()
@@ -145,7 +141,7 @@ public class GlStateManager
         if (depthFunc != depthState.depthFunc)
         {
             depthState.depthFunc = depthFunc;
-            GL11.glDepthFunc(depthFunc);
+            _wglDepthFunc(depthFunc);
         }
     }
 
@@ -154,7 +150,7 @@ public class GlStateManager
         if (flagIn != depthState.maskEnabled)
         {
             depthState.maskEnabled = flagIn;
-            GL11.glDepthMask(flagIn);
+            _wglDepthMask(flagIn);
         }
     }
 
@@ -179,7 +175,7 @@ public class GlStateManager
         {
             blendState.srcFactor = srcFactor;
             blendState.dstFactor = dstFactor;
-            GL11.glBlendFunc(srcFactor, dstFactor);
+            _wglBlendFunc(srcFactor, dstFactor);
         }
     }
 
@@ -202,7 +198,7 @@ public class GlStateManager
 
     public static void glBlendEquation(int blendEquation)
     {
-        GL14.glBlendEquation(blendEquation);
+        _wglBlendEquation(blendEquation);
     }
 
     public static void enableOutlineMode(int p_187431_0_)
@@ -251,8 +247,8 @@ public class GlStateManager
     {
         if (param != fogState.mode)
         {
-            fogState.mode = param;
-            GL11.glFogi(GL11.GL_FOG_MODE, param);
+            fogState.mode = param = GL_EXP;
+            //GL11.glFogi(GL11.GL_FOG_MODE, param);
         }
     }
 
@@ -261,7 +257,7 @@ public class GlStateManager
         if (param != fogState.density)
         {
             fogState.density = param;
-            GL11.glFogf(GL11.GL_FOG_DENSITY, param);
+            //GL11.glFogf(GL11.GL_FOG_DENSITY, param);
         }
     }
 
@@ -270,7 +266,7 @@ public class GlStateManager
         if (param != fogState.start)
         {
             fogState.start = param;
-            GL11.glFogf(GL11.GL_FOG_START, param);
+            //GL11.glFogf(GL11.GL_FOG_START, param);
         }
     }
 
@@ -279,18 +275,18 @@ public class GlStateManager
         if (param != fogState.end)
         {
             fogState.end = param;
-            GL11.glFogf(GL11.GL_FOG_END, param);
+            //GL11.glFogf(GL11.GL_FOG_END, param);
         }
     }
 
     public static void glFog(int pname, FloatBuffer param)
     {
-        GL11.glFogfv(pname, param);
+        //GL11.glFogfv(pname, param);
     }
 
     public static void glFogi(int pname, int param)
     {
-        GL11.glFogi(pname, param);
+        //GL11.glFogi(pname, param);
     }
 
     public static void enableCull()
@@ -313,13 +309,13 @@ public class GlStateManager
         if (mode != cullState.mode)
         {
             cullState.mode = mode;
-            GL11.glCullFace(mode);
+            _wglCullFace(mode);
         }
     }
 
     public static void glPolygonMode(int face, int mode)
     {
-        GL11.glPolygonMode(face, mode);
+        //glPolygonMode(face, mode);
     }
 
     public static void enablePolygonOffset()
@@ -338,7 +334,7 @@ public class GlStateManager
         {
             polygonOffsetState.factor = factor;
             polygonOffsetState.units = units;
-            GL11.glPolygonOffset(factor, units);
+            _wglPolygonOffset(factor, units);
         }
     }
 
@@ -362,7 +358,7 @@ public class GlStateManager
         if (opcode != colorLogicState.opcode)
         {
             colorLogicState.opcode = opcode;
-            GL11.glLogicOp(opcode);
+            //GL11.glLogicOp(opcode);
         }
     }
 
@@ -383,13 +379,14 @@ public class GlStateManager
         if (param != glstatemanager$texgencoord.param)
         {
             glstatemanager$texgencoord.param = param;
-            GL11.glTexGeni(glstatemanager$texgencoord.coord, GL11.GL_TEXTURE_GEN_MODE, param);
+            //GL11.glTexGeni(glstatemanager$texgencoord.coord, GL11.GL_TEXTURE_GEN_MODE, param);
         }
     }
 
     public static void texGen(GlStateManager.TexGen texGen, int pname, FloatBuffer params)
     {
-        GL11.glTexGenfv(texGenCoord(texGen).coord, pname, params);
+        // TODO see func_179105_a in the other GLStateManager
+        //GL11.glTexGenfv(texGenCoord(texGen).coord, pname, params);
     }
 
     private static GlStateManager.TexGenCoord texGenCoord(GlStateManager.TexGen texGen)
