@@ -30,10 +30,6 @@ import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.optifine.entity.model.CustomEntityModels;
-import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GLCapabilities;
 
 public class TextureUtils
 {
@@ -381,13 +377,7 @@ public class TextureUtils
 
     public static void applyAnisotropicLevel()
     {
-        if (false)
-        {
-            float f = GL11.glGetFloat(34047);
-            float f1 = (float)Config.getAnisotropicFilterLevel();
-            f1 = Math.min(f1, f);
-            GL11.glTexParameterf(GL11.GL_TEXTURE_2D, 34046, f1);
-        }
+        
     }
 
     public static void bindTexture(int p_bindTexture_0_)
@@ -525,47 +515,7 @@ public class TextureUtils
 
     public static void saveGlTexture(String p_saveGlTexture_0_, int p_saveGlTexture_1_, int p_saveGlTexture_2_, int p_saveGlTexture_3_, int p_saveGlTexture_4_)
     {
-        bindTexture(p_saveGlTexture_1_);
-        GL11.glPixelStorei(GL11.GL_PACK_ALIGNMENT, 1);
-        GL11.glPixelStorei(GL11.GL_UNPACK_ALIGNMENT, 1);
-        File file1 = new File(p_saveGlTexture_0_);
-        File file2 = file1.getParentFile();
-
-        if (file2 != null)
-        {
-            file2.mkdirs();
-        }
-
-        for (int i = 0; i < 16; ++i)
-        {
-            File file3 = new File(p_saveGlTexture_0_ + "_" + i + ".png");
-            file3.delete();
-        }
-
-        for (int i1 = 0; i1 <= p_saveGlTexture_2_; ++i1)
-        {
-            File file4 = new File(p_saveGlTexture_0_ + "_" + i1 + ".png");
-            int j = p_saveGlTexture_3_ >> i1;
-            int k = p_saveGlTexture_4_ >> i1;
-            int l = j * k;
-            //IntBuffer intbuffer = BufferUtils.createIntBuffer(l);
-            int[] aint = new int[l];
-            //GL11.glGetTexImage(GL11.GL_TEXTURE_2D, i1, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, intbuffer);
-            //intbuffer.get(aint);
-            BufferedImage bufferedimage = new BufferedImage(j, k, 2);
-            bufferedimage.setRGB(0, 0, j, k, aint, 0, j);
-
-            try
-            {
-                ImageIO.write(bufferedimage, "png", file4);
-                Config.dbg("Exported: " + file4);
-            }
-            catch (Exception exception)
-            {
-                Config.warn("Error writing: " + file4);
-                Config.warn("" + exception.getClass().getName() + ": " + exception.getMessage());
-            }
-        }
+        
     }
 
     public static void generateCustomMipmaps(TextureAtlasSprite p_generateCustomMipmaps_0_, int p_generateCustomMipmaps_1_)

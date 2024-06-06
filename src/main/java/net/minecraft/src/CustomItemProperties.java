@@ -32,7 +32,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 
 public class CustomItemProperties
 {
@@ -1051,7 +1050,7 @@ public class CustomItemProperties
                 int i = itextureobject.getGlTextureId();
                 int j = GlStateManager.getBoundTexture();
                 GlStateManager.bindTexture(i);
-                this.textureWidth = GL11.glGetTexLevelParameteri(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_WIDTH);
+                this.textureWidth = 4096;
                 GlStateManager.bindTexture(j);
             }
 
@@ -1074,7 +1073,7 @@ public class CustomItemProperties
                 int i = itextureobject.getGlTextureId();
                 int j = GlStateManager.getBoundTexture();
                 GlStateManager.bindTexture(i);
-                this.textureHeight = GL11.glGetTexLevelParameteri(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_HEIGHT);
+                this.textureHeight = 4097;
                 GlStateManager.bindTexture(j);
             }
 
