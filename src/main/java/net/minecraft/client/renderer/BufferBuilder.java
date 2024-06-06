@@ -22,7 +22,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import org.lwjgl.opengl.GL11;
+
+import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.*;
+import static net.lax1dude.eaglercraft.v1_8.internal.PlatformOpenGL.*;
 
 public class BufferBuilder
 {
@@ -809,7 +811,7 @@ public class BufferBuilder
 
     private int drawForIcon(TextureAtlasSprite p_drawForIcon_1_, int p_drawForIcon_2_)
     {
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, p_drawForIcon_1_.glSpriteTextureId);
+        //_wglBindTexture(GL_TEXTURE_2D, p_drawForIcon_1_.glSpriteTextureId);
         int i = -1;
         int j = -1;
         int k = this.vertexCount / 4;
@@ -864,7 +866,7 @@ public class BufferBuilder
         {
             int j = p_draw_1_ * 4;
             int k = i * 4;
-            GL11.glDrawArrays(this.drawMode, j, k);
+            _wglDrawArrays(this.drawMode, j, k);
         }
     }
 

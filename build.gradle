@@ -11,7 +11,7 @@ sourceSets {
     main {
         java {
             srcDir 'src/main/java'
-			srcDir 'src/teavm/java'
+			srcDir 'src/lwjgl/java'
         }
     }
 }
@@ -61,13 +61,13 @@ dependencies {
     //implementation files('lib/libraries/org/lwjgl/lwjgl/lwjgl_util/2.9.4-nightly-20150209/lwjgl_util-2.9.4-nightly-20150209.jar')
 
     // LWJGL for Eagler
-    /*implementation files('lib/libraries/org/lwjgl/lwjgl.jar')
+    implementation files('lib/libraries/org/lwjgl/lwjgl.jar')
     implementation files('lib/libraries/org/lwjgl/lwjgl-egl.jar')
     implementation files('lib/libraries/org/lwjgl/lwjgl-glfw.jar')
     implementation files('lib/libraries/org/lwjgl/lwjgl-jemalloc.jar')
     implementation files('lib/libraries/org/lwjgl/lwjgl-openal.jar')
     implementation files('lib/libraries/org/lwjgl/lwjgl-opengles.jar')
-    implementation files('lib/libraries/org/lwjgl/lwjgl-opengl.jar')*/
+    implementation files('lib/libraries/org/lwjgl/lwjgl-opengl.jar')
 
     // Websockets
     implementation files('lib/libraries/org/websockets/Java-WebSocket-1.5.1-with-dependencies.jar')

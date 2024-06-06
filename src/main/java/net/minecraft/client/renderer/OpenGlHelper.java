@@ -14,21 +14,9 @@ import net.minecraft.src.Config;
 import net.minecraft.util.Util;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import org.lwjgl.opengl.ARBFramebufferObject;
-import org.lwjgl.opengl.ARBMultitexture;
-import org.lwjgl.opengl.ARBShaderObjects;
-import org.lwjgl.opengl.ARBVertexBufferObject;
-import org.lwjgl.opengl.ARBVertexShader;
-import org.lwjgl.opengl.GLCapabilities;
-import org.lwjgl.opengl.EXTBlendFuncSeparate;
-import org.lwjgl.opengl.EXTFramebufferObject;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL14;
-import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
-import org.lwjgl.opengl.GLCapabilities;
+
+import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.*;
+import static net.lax1dude.eaglercraft.v1_8.internal.PlatformOpenGL.*;
 
 public class OpenGlHelper
 {
@@ -240,7 +228,7 @@ public class OpenGlHelper
 
         if (shadersAvailable)
         {
-            if (false)
+            if (true)
             {
                 logText = logText + "OpenGL 2.1 is supported.\n";
                 arbShaders = false;
@@ -268,7 +256,7 @@ public class OpenGlHelper
         }
 
         shadersSupported = framebufferSupported && shadersAvailable;
-        String s = GL11.glGetString(GL11.GL_VENDOR).toLowerCase(Locale.ROOT);
+        String s = _wglGetString(GL_VENDOR).toLowerCase(Locale.ROOT);
         nvidia = s.contains("nvidia");
         arbVbo = false;
         vboSupported = false;
@@ -327,18 +315,18 @@ public class OpenGlHelper
 
     public static int glGetProgrami(int program, int pname)
     {
-        return arbShaders ? ARBShaderObjects.glGetObjectParameteriARB(program, pname) : GL20.glGetProgrami(program, pname);
+        return 0; //arbShaders ? ARBShaderObjects.glGetObjectParameteriARB(program, pname) : _wglGetProgrami(program, pname);
     }
 
     public static void glAttachShader(int program, int shaderIn)
     {
         if (arbShaders)
         {
-            ARBShaderObjects.glAttachObjectARB(program, shaderIn);
+            //ARBShaderObjects.glAttachObjectARB(program, shaderIn);
         }
         else
         {
-            GL20.glAttachShader(program, shaderIn);
+            //_wglAttachShader(program, shaderIn);
         }
     }
 
@@ -346,11 +334,11 @@ public class OpenGlHelper
     {
         if (arbShaders)
         {
-            ARBShaderObjects.glDeleteObjectARB(shaderIn);
+            //ARBShaderObjects.glDeleteObjectARB(shaderIn);
         }
         else
         {
-            GL20.glDeleteShader(shaderIn);
+            //_wglDeleteShader(shaderIn);
         }
     }
 
@@ -359,7 +347,7 @@ public class OpenGlHelper
      */
     public static int glCreateShader(int type)
     {
-        return arbShaders ? ARBShaderObjects.glCreateShaderObjectARB(type) : GL20.glCreateShader(type);
+        return 0; //arbShaders ? ARBShaderObjects.glCreateShaderObjectARB(type) : _wglCreateShader(type);
     }
 
     public static void glShaderSource(int shaderIn, ByteBuffer string)
@@ -370,7 +358,7 @@ public class OpenGlHelper
         }
         else
         {
-            //GL20.glShaderSource(shaderIn, string);
+            //_wglShaderSource(shaderIn, string);
         }
     }
 
@@ -378,55 +366,55 @@ public class OpenGlHelper
     {
         if (arbShaders)
         {
-            ARBShaderObjects.glCompileShaderARB(shaderIn);
+            //ARBShaderObjects.glCompileShaderARB(shaderIn);
         }
         else
         {
-            GL20.glCompileShader(shaderIn);
+            //_wglCompileShader(shaderIn);
         }
     }
 
     public static int glGetShaderi(int shaderIn, int pname)
     {
-        return arbShaders ? ARBShaderObjects.glGetObjectParameteriARB(shaderIn, pname) : GL20.glGetShaderi(shaderIn, pname);
+        return 0; //arbShaders ? ARBShaderObjects.glGetObjectParameteriARB(shaderIn, pname) : _wglGetShaderi(shaderIn, pname);
     }
 
     public static String glGetShaderInfoLog(int shaderIn, int maxLength)
     {
-        return arbShaders ? ARBShaderObjects.glGetInfoLogARB(shaderIn, maxLength) : GL20.glGetShaderInfoLog(shaderIn, maxLength);
+        return ""; //arbShaders ? ARBShaderObjects.glGetInfoLogARB(shaderIn, maxLength) : _wglGetShaderInfoLog(shaderIn);
     }
 
     public static String glGetProgramInfoLog(int program, int maxLength)
     {
-        return arbShaders ? ARBShaderObjects.glGetInfoLogARB(program, maxLength) : GL20.glGetProgramInfoLog(program, maxLength);
+        return ""; //arbShaders ? ARBShaderObjects.glGetInfoLogARB(program, maxLength) : _wglGetProgramInfoLog(program, maxLength);
     }
 
     public static void glUseProgram(int program)
     {
         if (arbShaders)
         {
-            ARBShaderObjects.glUseProgramObjectARB(program);
+            //ARBShaderObjects.glUseProgramObjectARB(program);
         }
         else
         {
-            GL20.glUseProgram(program);
+            //_wglUseProgram(program);
         }
     }
 
     public static int glCreateProgram()
     {
-        return arbShaders ? ARBShaderObjects.glCreateProgramObjectARB() : GL20.glCreateProgram();
+        return 0; //arbShaders ? ARBShaderObjects.glCreateProgramObjectARB() : _wglCreateProgram();
     }
 
     public static void glDeleteProgram(int program)
     {
         if (arbShaders)
         {
-            ARBShaderObjects.glDeleteObjectARB(program);
+            //ARBShaderObjects.glDeleteObjectARB(program);
         }
         else
         {
-            GL20.glDeleteProgram(program);
+            //_wglDeleteProgram(program);
         }
     }
 
@@ -434,17 +422,17 @@ public class OpenGlHelper
     {
         if (arbShaders)
         {
-            ARBShaderObjects.glLinkProgramARB(program);
+            //ARBShaderObjects.glLinkProgramARB(program);
         }
         else
         {
-            GL20.glLinkProgram(program);
+            //_wglLinkProgram(program);
         }
     }
 
     public static int glGetUniformLocation(int programObj, CharSequence name)
     {
-        return arbShaders ? ARBShaderObjects.glGetUniformLocationARB(programObj, name) : GL20.glGetUniformLocation(programObj, name);
+        return 0; //arbShaders ? ARBShaderObjects.glGetUniformLocationARB(programObj, name) : _wglGetUniformLocation(programObj, name);
     }
 
     public static void glUniform1(int location, IntBuffer values)
@@ -509,23 +497,23 @@ public class OpenGlHelper
 
     public static int glGetAttribLocation(int program, CharSequence name)
     {
-        return arbShaders ? ARBVertexShader.glGetAttribLocationARB(program, name) : GL20.glGetAttribLocation(program, name);
+        return 0; //arbShaders ? ARBVertexShader.glGetAttribLocationARB(program, name) : _wglGetAttribLocation(program, name);
     }
 
     public static int glGenBuffers()
     {
-        return arbVbo ? ARBVertexBufferObject.glGenBuffersARB() : GL15.glGenBuffers();
+        return 0; //arbVbo ? _wglGenBuffers() : _wglGenBuffers();
     }
 
     public static void glBindBuffer(int target, int buffer)
     {
         if (arbVbo)
         {
-            ARBVertexBufferObject.glBindBufferARB(target, buffer);
+            //ARBVertexBufferObject.glBindBufferARB(target, buffer);
         }
         else
         {
-            GL15.glBindBuffer(target, buffer);
+            //_wglBindBuffer(target, buffer);
         }
     }
 
@@ -538,11 +526,11 @@ public class OpenGlHelper
     {
         if (arbVbo)
         {
-            ARBVertexBufferObject.glDeleteBuffersARB(buffer);
+            //ARBVertexBufferObject.glDeleteBuffersARB(buffer);
         }
         else
         {
-            GL15.glDeleteBuffers(buffer);
+            //_wglDeleteBuffers(buffer);
         }
     }
 
@@ -565,15 +553,15 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    GL30.glBindFramebuffer(target, framebufferIn);
+                    //_wglBindFramebuffer(target, framebufferIn);
                     break;
 
                 case ARB:
-                    ARBFramebufferObject.glBindFramebuffer(target, framebufferIn);
+                    //ARBFramebufferObject.glBindFramebuffer(target, framebufferIn);
                     break;
 
                 case EXT:
-                    EXTFramebufferObject.glBindFramebufferEXT(target, framebufferIn);
+                    //EXTFramebufferObject.glBindFramebufferEXT(target, framebufferIn);
             }
         }
     }
@@ -585,15 +573,15 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    GL30.glBindRenderbuffer(target, renderbuffer);
+                    //_wglBindRenderbuffer(target, renderbuffer);
                     break;
 
                 case ARB:
-                    ARBFramebufferObject.glBindRenderbuffer(target, renderbuffer);
+                    //ARBFramebufferObject.glBindRenderbuffer(target, renderbuffer);
                     break;
 
                 case EXT:
-                    EXTFramebufferObject.glBindRenderbufferEXT(target, renderbuffer);
+                    //EXTFramebufferObject.glBindRenderbufferEXT(target, renderbuffer);
             }
         }
     }
@@ -605,15 +593,15 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    GL30.glDeleteRenderbuffers(renderbuffer);
+                    //_wglDeleteRenderbuffers(renderbuffer);
                     break;
 
                 case ARB:
-                    ARBFramebufferObject.glDeleteRenderbuffers(renderbuffer);
+                    //ARBFramebufferObject.glDeleteRenderbuffers(renderbuffer);
                     break;
 
                 case EXT:
-                    EXTFramebufferObject.glDeleteRenderbuffersEXT(renderbuffer);
+                    //EXTFramebufferObject.glDeleteRenderbuffersEXT(renderbuffer);
             }
         }
     }
@@ -625,15 +613,15 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    GL30.glDeleteFramebuffers(framebufferIn);
+                    //_wglDeleteFramebuffer(framebufferIn);
                     break;
 
                 case ARB:
-                    ARBFramebufferObject.glDeleteFramebuffers(framebufferIn);
+                    //ARBFramebufferObject.glDeleteFramebuffers(framebufferIn);
                     break;
 
                 case EXT:
-                    EXTFramebufferObject.glDeleteFramebuffersEXT(framebufferIn);
+                    //EXTFramebufferObject.glDeleteFramebuffersEXT(framebufferIn);
             }
         }
     }
@@ -652,13 +640,13 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    return GL30.glGenFramebuffers();
+                    //return GL30.glGenFramebuffers();
 
                 case ARB:
-                    return ARBFramebufferObject.glGenFramebuffers();
+                    //return ARBFramebufferObject.glGenFramebuffers();
 
                 case EXT:
-                    return EXTFramebufferObject.glGenFramebuffersEXT();
+                    //return EXTFramebufferObject.glGenFramebuffersEXT();
 
                 default:
                     return -1;
@@ -677,13 +665,13 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    return GL30.glGenRenderbuffers();
+                    //return GL30.glGenRenderbuffers();
 
                 case ARB:
-                    return ARBFramebufferObject.glGenRenderbuffers();
+                    //return ARBFramebufferObject.glGenRenderbuffers();
 
                 case EXT:
-                    return EXTFramebufferObject.glGenRenderbuffersEXT();
+                    //return EXTFramebufferObject.glGenRenderbuffersEXT();
 
                 default:
                     return -1;
@@ -698,15 +686,15 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    GL30.glRenderbufferStorage(target, internalFormat, width, height);
+                    _wglRenderbufferStorage(target, internalFormat, width, height);
                     break;
 
                 case ARB:
-                    ARBFramebufferObject.glRenderbufferStorage(target, internalFormat, width, height);
+                    _wglRenderbufferStorage(target, internalFormat, width, height);
                     break;
 
                 case EXT:
-                    EXTFramebufferObject.glRenderbufferStorageEXT(target, internalFormat, width, height);
+                    _wglRenderbufferStorage(target, internalFormat, width, height);
             }
         }
     }
@@ -718,15 +706,15 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    GL30.glFramebufferRenderbuffer(target, attachment, renderBufferTarget, renderBuffer);
+                    //GL30.glFramebufferRenderbuffer(target, attachment, renderBufferTarget, renderBuffer);
                     break;
 
                 case ARB:
-                    ARBFramebufferObject.glFramebufferRenderbuffer(target, attachment, renderBufferTarget, renderBuffer);
+                    //ARBFramebufferObject.glFramebufferRenderbuffer(target, attachment, renderBufferTarget, renderBuffer);
                     break;
 
                 case EXT:
-                    EXTFramebufferObject.glFramebufferRenderbufferEXT(target, attachment, renderBufferTarget, renderBuffer);
+                    //EXTFramebufferObject.glFramebufferRenderbufferEXT(target, attachment, renderBufferTarget, renderBuffer);
             }
         }
     }
@@ -742,13 +730,13 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    return GL30.glCheckFramebufferStatus(target);
+                    return _wglCheckFramebufferStatus(target);
 
                 case ARB:
-                    return ARBFramebufferObject.glCheckFramebufferStatus(target);
+                    return _wglCheckFramebufferStatus(target);
 
                 case EXT:
-                    return EXTFramebufferObject.glCheckFramebufferStatusEXT(target);
+                    return _wglCheckFramebufferStatus(target);
 
                 default:
                     return -1;
@@ -763,15 +751,15 @@ public class OpenGlHelper
             switch (framebufferType)
             {
                 case BASE:
-                    GL30.glFramebufferTexture2D(target, attachment, textarget, texture, level);
+                    //GL30.glFramebufferTexture2D(target, attachment, textarget, texture, level);
                     break;
 
                 case ARB:
-                    ARBFramebufferObject.glFramebufferTexture2D(target, attachment, textarget, texture, level);
+                    //ARBFramebufferObject.glFramebufferTexture2D(target, attachment, textarget, texture, level);
                     break;
 
                 case EXT:
-                    EXTFramebufferObject.glFramebufferTexture2DEXT(target, attachment, textarget, texture, level);
+                    //EXTFramebufferObject.glFramebufferTexture2DEXT(target, attachment, textarget, texture, level);
             }
         }
     }
@@ -783,11 +771,11 @@ public class OpenGlHelper
     {
         if (arbMultitexture)
         {
-            ARBMultitexture.glActiveTextureARB(texture);
+            _wglActiveTexture(texture);
         }
         else
         {
-            GL13.glActiveTexture(texture);
+            _wglActiveTexture(texture);
         }
     }
 
@@ -798,11 +786,11 @@ public class OpenGlHelper
     {
         if (arbMultitexture)
         {
-            ARBMultitexture.glClientActiveTextureARB(texture);
+            _wglActiveTexture(texture);
         }
         else
         {
-            GL13.glClientActiveTexture(texture);
+            _wglActiveTexture(texture);
         }
     }
 
@@ -813,11 +801,11 @@ public class OpenGlHelper
     {
         if (arbMultitexture)
         {
-            ARBMultitexture.glMultiTexCoord2fARB(target, p_77475_1_, t);
+            //ARBMultitexture.glMultiTexCoord2fARB(target, p_77475_1_, t);
         }
         else
         {
-            GL13.glMultiTexCoord2f(target, p_77475_1_, t);
+            //GL13.glMultiTexCoord2f(target, p_77475_1_, t);
         }
 
         if (target == lightmapTexUnit)
@@ -833,16 +821,16 @@ public class OpenGlHelper
         {
             if (extBlendFuncSeparate)
             {
-                EXTBlendFuncSeparate.glBlendFuncSeparateEXT(sFactorRGB, dFactorRGB, sfactorAlpha, dfactorAlpha);
+                _wglBlendFuncSeparate(sFactorRGB, dFactorRGB, sfactorAlpha, dfactorAlpha);
             }
             else
             {
-                GL14.glBlendFuncSeparate(sFactorRGB, dFactorRGB, sfactorAlpha, dfactorAlpha);
+                _wglBlendFuncSeparate(sFactorRGB, dFactorRGB, sfactorAlpha, dfactorAlpha);
             }
         }
         else
         {
-            GL11.glBlendFunc(sFactorRGB, dFactorRGB);
+            _wglBlendFunc(sFactorRGB, dFactorRGB);
         }
     }
 
@@ -873,7 +861,7 @@ public class OpenGlHelper
         GlStateManager.depthMask(false);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
-        GL11.glLineWidth(4.0F);
+        _wglLineWidth(4.0F);
         bufferbuilder.begin(1, DefaultVertexFormats.POSITION_COLOR);
         bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
         bufferbuilder.pos((double)p_188785_0_, 0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
@@ -882,7 +870,7 @@ public class OpenGlHelper
         bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(0, 0, 0, 255).endVertex();
         bufferbuilder.pos(0.0D, 0.0D, (double)p_188785_0_).color(0, 0, 0, 255).endVertex();
         tessellator.draw();
-        GL11.glLineWidth(2.0F);
+        _wglLineWidth(2.0F);
         bufferbuilder.begin(1, DefaultVertexFormats.POSITION_COLOR);
         bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(255, 0, 0, 255).endVertex();
         bufferbuilder.pos((double)p_188785_0_, 0.0D, 0.0D).color(255, 0, 0, 255).endVertex();
@@ -891,7 +879,7 @@ public class OpenGlHelper
         bufferbuilder.pos(0.0D, 0.0D, 0.0D).color(127, 127, 255, 255).endVertex();
         bufferbuilder.pos(0.0D, 0.0D, (double)p_188785_0_).color(127, 127, 255, 255).endVertex();
         tessellator.draw();
-        GL11.glLineWidth(1.0F);
+        _wglLineWidth(1.0F);
         GlStateManager.depthMask(true);
         GlStateManager.enableTexture2D();
     }

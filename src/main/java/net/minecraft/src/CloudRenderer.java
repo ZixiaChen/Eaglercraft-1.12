@@ -5,7 +5,8 @@ import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
-import org.lwjgl.opengl.GL11;
+import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.*;
+import static net.lax1dude.eaglercraft.v1_8.internal.PlatformOpenGL.*;
 
 public class CloudRenderer
 {
@@ -74,12 +75,12 @@ public class CloudRenderer
 
     public void startUpdateGlList()
     {
-        GL11.glNewList(this.glListClouds, GL11.GL_COMPILE);
+        //_wglNewList(this.glListClouds, GL_COMPILE);
     }
 
     public void endUpdateGlList()
     {
-        GL11.glEndList();
+        //_wglEndList();
         this.updateRenderFancy = this.renderFancy;
         this.updateCloudTickCounter = this.cloudTickCounter;
         this.updateCloudColor = this.cloudColor;

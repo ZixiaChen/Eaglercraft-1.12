@@ -1,11 +1,9 @@
 package net.minecraft.client.shader;
 
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
+import net.lax1dude.eaglercraft.v1_8.internal.buffer.*;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
-import org.lwjgl.BufferUtils;
 import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
 
 public class ShaderUniform
@@ -14,8 +12,8 @@ public class ShaderUniform
     private int uniformLocation;
     private final int uniformCount;
     private final int uniformType;
-    private final IntBuffer uniformIntBuffer;
-    private final FloatBuffer uniformFloatBuffer;
+    private IntBuffer uniformIntBuffer = null;
+    private FloatBuffer uniformFloatBuffer = null;
     private final String shaderName;
     private boolean dirty;
     private final ShaderManager shaderManager;
@@ -29,13 +27,13 @@ public class ShaderUniform
 
         if (type <= 3)
         {
-            this.uniformIntBuffer = BufferUtils.createIntBuffer(count);
+            //this.uniformIntBuffer = BufferUtils.createIntBuffer(count);
             this.uniformFloatBuffer = null;
         }
         else
         {
             this.uniformIntBuffer = null;
-            this.uniformFloatBuffer = BufferUtils.createFloatBuffer(count);
+            //this.uniformFloatBuffer = BufferUtils.createFloatBuffer(count);
         }
 
         this.uniformLocation = -1;

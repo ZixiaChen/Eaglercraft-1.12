@@ -1,6 +1,5 @@
 package net.minecraft.advancements;
 
-import com.google.common.base.Functions;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import java.util.Iterator;
@@ -70,66 +69,7 @@ public class AdvancementList
 
     public void loadAdvancements(Map<ResourceLocation, Advancement.Builder> advancementsIn)
     {
-        Function<ResourceLocation, Advancement> function = (Function<ResourceLocation, Advancement>) Functions.<ResourceLocation, Advancement>forMap(this.advancements, null);
-        label42:
-
-        while (!advancementsIn.isEmpty())
-        {
-            boolean flag = false;
-            Iterator<Entry<ResourceLocation, Advancement.Builder>> iterator = advancementsIn.entrySet().iterator();
-
-            while (iterator.hasNext())
-            {
-                Entry<ResourceLocation, Advancement.Builder> entry = (Entry)iterator.next();
-                ResourceLocation resourcelocation = entry.getKey();
-                Advancement.Builder advancement$builder = entry.getValue();
-
-                if (advancement$builder.resolveParent(function))
-                {
-                    Advancement advancement = advancement$builder.build(resourcelocation);
-                    this.advancements.put(resourcelocation, advancement);
-                    flag = true;
-                    iterator.remove();
-
-                    if (advancement.getParent() == null)
-                    {
-                        this.roots.add(advancement);
-
-                        if (this.listener != null)
-                        {
-                            this.listener.rootAdvancementAdded(advancement);
-                        }
-                    }
-                    else
-                    {
-                        this.nonRoots.add(advancement);
-
-                        if (this.listener != null)
-                        {
-                            this.listener.nonRootAdvancementAdded(advancement);
-                        }
-                    }
-                }
-            }
-
-            if (!flag)
-            {
-                iterator = advancementsIn.entrySet().iterator();
-
-                while (true)
-                {
-                    if (!iterator.hasNext())
-                    {
-                        break label42;
-                    }
-
-                    Entry<ResourceLocation, Advancement.Builder> entry1 = (Entry)iterator.next();
-                    LOGGER.error("Couldn't load advancement " + entry1.getKey() + ": " + entry1.getValue());
-                }
-            }
-        }
-
-        LOGGER.info("Loaded " + this.advancements.size() + " advancements");
+        
     }
 
     public void clear()

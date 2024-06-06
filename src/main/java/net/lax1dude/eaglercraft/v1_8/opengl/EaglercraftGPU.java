@@ -34,7 +34,7 @@ import static net.lax1dude.eaglercraft.v1_8.internal.PlatformOpenGL.*;
  */
 public class EaglercraftGPU {
 
-	static final GLObjectMap<ITextureGL> mapTexturesGL = new GLObjectMap(32767);
+	public static final GLObjectMap<ITextureGL> mapTexturesGL = new GLObjectMap(32767);
 	static final GLObjectMap<IQueryGL> mapQueriesGL = new GLObjectMap(32767);
 	static final GLObjectMap<DisplayList> mapDisplayListsGL = new GLObjectMap(32767);
 	

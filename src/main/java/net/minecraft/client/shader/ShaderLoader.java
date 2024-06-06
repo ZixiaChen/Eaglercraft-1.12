@@ -13,7 +13,6 @@ import net.minecraft.client.util.JsonException;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.lwjgl.BufferUtils;
 
 public class ShaderLoader
 {
@@ -63,9 +62,9 @@ public class ShaderLoader
             try
             {
                 byte[] abyte = IOUtils.toByteArray(new BufferedInputStream(iresource.getInputStream()));
-                ByteBuffer bytebuffer = BufferUtils.createByteBuffer(abyte.length);
-                bytebuffer.put(abyte);
-                bytebuffer.position(0);
+                //ByteBuffer bytebuffer = BufferUtils.createByteBuffer(abyte.length);
+                //bytebuffer.put(abyte);
+                //bytebuffer.position(0);
                 int i = OpenGlHelper.glCreateShader(type.getShaderMode());
                 //OpenGlHelper.glShaderSource(i, bytebuffer);
                 OpenGlHelper.glCompileShader(i);

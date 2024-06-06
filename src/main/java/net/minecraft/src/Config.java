@@ -73,7 +73,7 @@ public class Config
     private static boolean initialized = false;
     private static Thread minecraftThread = null;
     private static Display desktopDisplay = null;
-    private static Display[] displayModes = null;
+    private static Display[] displayModes = new Display[1];
     private static int antialiasingLevel = 0;
     private static int availableProcessors = 0;
     public static boolean zoomMode = false;

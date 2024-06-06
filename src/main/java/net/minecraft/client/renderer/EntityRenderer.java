@@ -90,8 +90,9 @@ import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
 import net.lax1dude.eaglercraft.v1_8.Display;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLCapabilities;
+
+import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.*;
+import static net.lax1dude.eaglercraft.v1_8.internal.PlatformOpenGL.*;
 
 public class EntityRenderer implements IResourceManagerReloadListener
 {
@@ -1567,7 +1568,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         if (this.mc.gameSettings.ofSmoothFps && pass > 0)
         {
             this.mc.mcProfiler.endStartSection("finish");
-            GL11.glFinish();
+            //_wglFinish();
             this.mc.mcProfiler.endStartSection("terrain");
         }
 
