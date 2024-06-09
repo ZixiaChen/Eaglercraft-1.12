@@ -428,7 +428,7 @@ public class PlatformOpenGL {
 	}
 
 	public static final void _wglBindRenderbuffer(int target, IRenderbufferGL renderbuffer) {
-		glBindRenderbuffer(target, renderbuffer == null ? 0 : ((OpenGLObjects.RenderbufferGL) renderbuffer).ptr);
+		glBindRenderbuffer(target, (renderbuffer == null ? 0 : ((OpenGLObjects.RenderbufferGL) renderbuffer).ptr));
 	}
 
 	public static final void _wglRenderbufferStorage(int target, int internalformat, int width, int height) {

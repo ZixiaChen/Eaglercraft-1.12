@@ -103,4 +103,9 @@ public interface ByteBuffer extends Buffer {
 
 	ByteBuffer position(int newPosition);
 
+	static ByteBuffer allocate(int i) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'allocate'");
+	}
+
 }

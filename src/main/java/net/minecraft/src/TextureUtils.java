@@ -598,6 +598,6 @@ public class TextureUtils
 
     public static int getGLMaximumTextureSize()
     {
-        return EaglercraftGPU.glGetInteger(3379);
+        return 3379;
     }
 }
