@@ -33,6 +33,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
+import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -73,6 +74,7 @@ import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.EntityRenderer;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
 import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -199,6 +201,7 @@ import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
 
 import net.lax1dude.eaglercraft.v1_8.Display;
+import net.lax1dude.eaglercraft.v1_8.EagRuntime;
 
 public class Minecraft implements IThreadListener
 {
@@ -548,12 +551,12 @@ public class Minecraft implements IThreadListener
         this.checkGLError("Pre startup");
         GlStateManager.enableTexture2D();
         GlStateManager.shadeModel(7425);
-        GlStateManager.clearDepth(1.0D);
+        //GlStateManager.clearDepth(1.0D);
         GlStateManager.enableDepth();
         GlStateManager.depthFunc(515);
         GlStateManager.enableAlpha();
         GlStateManager.alphaFunc(516, 0.1F);
-        GlStateManager.cullFace(GlStateManager.CullFace.BACK);
+        GlStateManager.cullFace(GL_BACK);
         GlStateManager.matrixMode(5889);
         GlStateManager.loadIdentity();
         GlStateManager.matrixMode(5888);
@@ -1029,7 +1032,7 @@ public class Minecraft implements IThreadListener
      */
     private void checkGLError(String message)
     {
-        int i = GlStateManager.glGetError();
+        int i = EaglercraftGPU.glGetError();
 
         if (i != 0)
         {
@@ -1330,7 +1333,7 @@ public class Minecraft implements IThreadListener
             GlStateManager.matrixMode(5888);
             GlStateManager.loadIdentity();
             GlStateManager.translate(0.0F, 0.0F, -2000.0F);
-            GlStateManager.glLineWidth(1.0F);
+            EaglercraftGPU.glLineWidth(1.0F);
             GlStateManager.disableTexture2D();
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder bufferbuilder = tessellator.getBuffer();
@@ -2712,14 +2715,14 @@ public class Minecraft implements IThreadListener
         {
             public String call() throws Exception
             {
-                return "LWJGL3 or whatever Lax is using";
+                return EagRuntime.getVersion();
             }
         });
         theCrash.getCategory().addDetail("OpenGL", new ICrashReportDetail<String>()
         {
             public String call()
             {
-                return GlStateManager.glGetString(7937) + " GL version " + GlStateManager.glGetString(7938) + ", " + GlStateManager.glGetString(7936);
+                return EaglercraftGPU.glGetString(7937) + " GL version " + EaglercraftGPU.glGetString(7938) + ", " + EaglercraftGPU.glGetString(7936);
             }
         });
         theCrash.getCategory().addDetail("GL Caps", new ICrashReportDetail<String>()
@@ -2856,18 +2859,7 @@ public class Minecraft implements IThreadListener
      */
     public static int getGLMaximumTextureSize()
     {
-        for (int i = 16384; i > 0; i >>= 1)
-        {
-            GlStateManager.glTexImage2D(32868, 0, 6408, i, i, 0, 6408, 5121, (IntBuffer)null);
-            int j = GlStateManager.glGetTexLevelParameteri(32868, 0, 4096);
-
-            if (j != 0)
-            {
-                return i;
-            }
-        }
-
-        return -1;
+        return EaglercraftGPU.glGetInteger(GL_MAX_TEXTURE_SIZE);
     }
 
     /**
