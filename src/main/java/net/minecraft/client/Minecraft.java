@@ -67,6 +67,7 @@ import net.minecraft.client.main.GameConfiguration;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.multiplayer.ServerData;
+import net.minecraft.client.multiplayer.ServerList;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.network.NetHandlerLoginClient;
 import net.minecraft.client.network.NetHandlerPlayClient;
@@ -584,8 +585,13 @@ public class Minecraft implements IThreadListener
         this.mcResourceManager.registerReloadListener(this.searchTreeManager);
         GlStateManager.viewport(0, 0, this.displayWidth, this.displayHeight);
         this.effectRenderer = new ParticleManager(this.world, this.renderEngine);
+        SkinPreviewRenderer.initialize();
         this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
+
+        //ServerList.initServerList(this);
+		EaglerProfile.read();
+
 
         if (this.serverName != null)
         {
