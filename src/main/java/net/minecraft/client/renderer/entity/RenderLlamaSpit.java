@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelLlamaSpit;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.entity.projectile.EntityLlamaSpit;
 import net.minecraft.util.ResourceLocation;
 
@@ -29,14 +29,14 @@ public class RenderLlamaSpit extends Render<EntityLlamaSpit>
         if (this.renderOutlines)
         {
             GlStateManager.enableColorMaterial();
-            GlStateManager.enableOutlineMode(this.getTeamColor(entity));
+            //GlStateManager.enableOutlineMode(this.getTeamColor(entity));
         }
 
         this.model.render(entity, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
         if (this.renderOutlines)
         {
-            GlStateManager.disableOutlineMode();
+            //GlStateManager.disableOutlineMode();
             GlStateManager.disableColorMaterial();
         }
 

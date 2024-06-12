@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.vertex;
 
 import net.lax1dude.eaglercraft.v1_8.internal.buffer.ByteBuffer;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 
 public class VertexBuffer
@@ -31,7 +31,7 @@ public class VertexBuffer
 
     public void drawArrays(int mode)
     {
-        GlStateManager.glDrawArrays(mode, 0, this.count);
+        //GlStateManager.glDrawArrays(mode, 0, this.count);
     }
 
     public void unbindBuffer()

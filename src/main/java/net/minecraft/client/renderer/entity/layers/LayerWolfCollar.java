@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.entity.layers;
 
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderWolf;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.src.Config;

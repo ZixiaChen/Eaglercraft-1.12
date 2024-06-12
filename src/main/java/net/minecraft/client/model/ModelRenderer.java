@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.src.Config;
@@ -164,7 +165,7 @@ public class ModelRenderer
                     return;
                 }
 
-                i = GlStateManager.getBoundTexture();
+                i = GlStateManager.getTextureBound();
                 Config.getTextureManager().bindTexture(this.textureLocation);
             }
 
@@ -292,7 +293,7 @@ public class ModelRenderer
                     return;
                 }
 
-                i = GlStateManager.getBoundTexture();
+                i = GlStateManager.getTextureBound();
                 Config.getTextureManager().bindTexture(this.textureLocation);
             }
 
@@ -396,7 +397,7 @@ public class ModelRenderer
             this.displayList = GLAllocation.generateDisplayLists(1);
         }
 
-        GlStateManager.glNewList(this.displayList, 4864);
+        EaglercraftGPU.glNewList(this.displayList, 4864);
         BufferBuilder bufferbuilder = Tessellator.getInstance().getBuffer();
 
         for (int i = 0; i < this.cubeList.size(); ++i)
@@ -410,7 +411,7 @@ public class ModelRenderer
             modelsprite.render(Tessellator.getInstance(), scale);
         }
 
-        GlStateManager.glEndList();
+        EaglercraftGPU.glEndList();
         this.compiled = true;
     }
 

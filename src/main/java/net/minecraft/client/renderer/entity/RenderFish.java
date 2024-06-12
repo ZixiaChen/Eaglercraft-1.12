@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,7 +54,7 @@ public class RenderFish extends Render<EntityFishHook>
             if (this.renderOutlines)
             {
                 GlStateManager.enableColorMaterial();
-                GlStateManager.enableOutlineMode(this.getTeamColor(entity));
+                //GlStateManager.enableOutlineMode(this.getTeamColor(entity));
             }
 
             bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_NORMAL);
@@ -66,7 +66,7 @@ public class RenderFish extends Render<EntityFishHook>
 
             if (this.renderOutlines)
             {
-                GlStateManager.disableOutlineMode();
+                //GlStateManager.disableOutlineMode();
                 GlStateManager.disableColorMaterial();
             }
 

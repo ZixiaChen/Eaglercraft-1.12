@@ -3,7 +3,8 @@ package net.minecraft.client.renderer.debug;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -33,10 +34,10 @@ public class DebugRendererWater implements DebugRenderer.IDebugRenderer
         BlockPos blockpos = this.minecraft.player.getPosition();
         World world = this.minecraft.player.world;
         GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.color(0.0F, 1.0F, 0.0F, 0.75F);
         GlStateManager.disableTexture2D();
-        GlStateManager.glLineWidth(6.0F);
+        EaglercraftGPU.glLineWidth(6.0F);
 
         for (BlockPos blockpos1 : BlockPos.getAllInBox(blockpos.add(-10, -10, -10), blockpos.add(10, 10, 10)))
         {

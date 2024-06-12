@@ -3,7 +3,7 @@ package net.minecraft.client.renderer.entity;
 import javax.annotation.Nullable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -68,14 +68,14 @@ public class RenderItemFrame extends Render<EntityItemFrame>
         if (this.renderOutlines)
         {
             GlStateManager.enableColorMaterial();
-            GlStateManager.enableOutlineMode(this.getTeamColor(entity));
+            //GlStateManager.enableOutlineMode(this.getTeamColor(entity));
         }
 
         blockrendererdispatcher.getBlockModelRenderer().renderModelBrightnessColor(ibakedmodel, 1.0F, 1.0F, 1.0F, 1.0F);
 
         if (this.renderOutlines)
         {
-            GlStateManager.disableOutlineMode();
+            //GlStateManager.disableOutlineMode();
             GlStateManager.disableColorMaterial();
         }
 
@@ -139,11 +139,11 @@ public class RenderItemFrame extends Render<EntityItemFrame>
                 else
                 {
                     GlStateManager.scale(0.5F, 0.5F, 0.5F);
-                    GlStateManager.pushAttrib();
+                    //GlStateManager.pushAttrib();
                     RenderHelper.enableStandardItemLighting();
                     this.itemRenderer.renderItem(itemstack, ItemCameraTransforms.TransformType.FIXED);
                     RenderHelper.disableStandardItemLighting();
-                    GlStateManager.popAttrib();
+                    //GlStateManager.popAttrib();
                 }
             }
 

@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.entity.layers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderMooshroom;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.passive.EntityMooshroom;
@@ -24,7 +24,7 @@ public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
             BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
             this.mooshroomRenderer.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             GlStateManager.enableCull();
-            GlStateManager.cullFace(GlStateManager.CullFace.FRONT);
+            GlStateManager.cullFace(1028);
             GlStateManager.pushMatrix();
             GlStateManager.scale(1.0F, -1.0F, 1.0F);
             GlStateManager.translate(0.2F, 0.35F, 0.5F);
@@ -48,7 +48,7 @@ public class LayerMooshroomMushroom implements LayerRenderer<EntityMooshroom>
             GlStateManager.translate(-0.5F, -0.5F, 0.5F);
             blockrendererdispatcher.renderBlockBrightness(Blocks.RED_MUSHROOM.getDefaultState(), 1.0F);
             GlStateManager.popMatrix();
-            GlStateManager.cullFace(GlStateManager.CullFace.BACK);
+            GlStateManager.cullFace(1029);
             GlStateManager.disableCull();
         }
     }

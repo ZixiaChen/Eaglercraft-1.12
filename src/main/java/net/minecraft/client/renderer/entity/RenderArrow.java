@@ -1,7 +1,8 @@
 package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -54,17 +55,17 @@ public abstract class RenderArrow<T extends EntityArrow> extends Render<T>
         if (this.renderOutlines)
         {
             GlStateManager.enableColorMaterial();
-            GlStateManager.enableOutlineMode(this.getTeamColor(entity));
+            //GlStateManager.enableOutlineMode(this.getTeamColor(entity));
         }
 
-        GlStateManager.glNormal3f(0.05625F, 0.0F, 0.0F);
+        EaglercraftGPU.glNormal3f(0.05625F, 0.0F, 0.0F);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
         bufferbuilder.pos(-7.0D, -2.0D, -2.0D).tex(0.0D, 0.15625D).endVertex();
         bufferbuilder.pos(-7.0D, -2.0D, 2.0D).tex(0.15625D, 0.15625D).endVertex();
         bufferbuilder.pos(-7.0D, 2.0D, 2.0D).tex(0.15625D, 0.3125D).endVertex();
         bufferbuilder.pos(-7.0D, 2.0D, -2.0D).tex(0.0D, 0.3125D).endVertex();
         tessellator.draw();
-        GlStateManager.glNormal3f(-0.05625F, 0.0F, 0.0F);
+        EaglercraftGPU.glNormal3f(-0.05625F, 0.0F, 0.0F);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
         bufferbuilder.pos(-7.0D, 2.0D, -2.0D).tex(0.0D, 0.15625D).endVertex();
         bufferbuilder.pos(-7.0D, 2.0D, 2.0D).tex(0.15625D, 0.15625D).endVertex();
@@ -75,7 +76,7 @@ public abstract class RenderArrow<T extends EntityArrow> extends Render<T>
         for (int j = 0; j < 4; ++j)
         {
             GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
-            GlStateManager.glNormal3f(0.0F, 0.0F, 0.05625F);
+            EaglercraftGPU.glNormal3f(0.0F, 0.0F, 0.05625F);
             bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
             bufferbuilder.pos(-8.0D, -2.0D, 0.0D).tex(0.0D, 0.0D).endVertex();
             bufferbuilder.pos(8.0D, -2.0D, 0.0D).tex(0.5D, 0.0D).endVertex();
@@ -86,7 +87,7 @@ public abstract class RenderArrow<T extends EntityArrow> extends Render<T>
 
         if (this.renderOutlines)
         {
-            GlStateManager.disableOutlineMode();
+            //GlStateManager.disableOutlineMode();
             GlStateManager.disableColorMaterial();
         }
 

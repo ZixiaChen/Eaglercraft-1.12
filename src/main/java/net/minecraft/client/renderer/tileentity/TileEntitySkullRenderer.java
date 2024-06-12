@@ -9,7 +9,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelDragonHead;
 import net.minecraft.client.model.ModelHumanoidHead;
 import net.minecraft.client.model.ModelSkeletonHead;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -136,7 +136,7 @@ public class TileEntitySkullRenderer extends TileEntitySpecialRenderer<TileEntit
 
         if (skullType == 3)
         {
-            GlStateManager.enableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
+            //GlStateManager.enableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
         }
 
         modelbase.render((Entity)null, animateTicks, 0.0F, 0.0F, rotationIn, 0.0F, 0.0625F);

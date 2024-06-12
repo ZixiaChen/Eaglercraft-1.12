@@ -10,7 +10,8 @@ import java.util.Properties;
 import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.WorldRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureUtil;
@@ -304,16 +305,24 @@ public class FontRenderer implements IResourceManagerReloadListener
         this.bindTexture(this.locationFontTexture);
         float f = this.charWidthFloat[ch];
         float f1 = 7.99F;
-        GlStateManager.glBegin(5);
-        GlStateManager.glTexCoord2f((float)i / 128.0F, (float)j / 128.0F);
-        GlStateManager.glVertex3f(this.posX + (float)k, this.posY, 0.0F);
-        GlStateManager.glTexCoord2f((float)i / 128.0F, ((float)j + 7.99F) / 128.0F);
-        GlStateManager.glVertex3f(this.posX - (float)k, this.posY + 7.99F, 0.0F);
-        GlStateManager.glTexCoord2f(((float)i + f1 - 1.0F) / 128.0F, (float)j / 128.0F);
-        GlStateManager.glVertex3f(this.posX + f1 - 1.0F + (float)k, this.posY, 0.0F);
-        GlStateManager.glTexCoord2f(((float)i + f1 - 1.0F) / 128.0F, ((float)j + 7.99F) / 128.0F);
-        GlStateManager.glVertex3f(this.posX + f1 - 1.0F - (float)k, this.posY + 7.99F, 0.0F);
-        GlStateManager.glEnd();
+        Tessellator tessellator = Tessellator.getInstance();
+		BufferBuilder worldrenderer = tessellator.getBuffer();
+
+		worldrenderer.begin(Tessellator.GL_TRIANGLE_STRIP, DefaultVertexFormats.POSITION_TEX);
+
+		worldrenderer.pos(this.posX + (float) k, this.posY, 0.0F).tex((float) i / 128.0F, (float) j / 128.0F)
+				.endVertex();
+
+		worldrenderer.pos(this.posX - (float) k, this.posY + 7.99F, 0.0F)
+				.tex((float) i / 128.0F, ((float) j + 7.99F) / 128.0F).endVertex();
+
+		worldrenderer.pos(this.posX + f - 1.0F + (float) k, this.posY, 0.0F)
+				.tex(((float) i + f - 1.0F) / 128.0F, (float) j / 128.0F).endVertex();
+
+		worldrenderer.pos(this.posX + f - 1.0F - (float) k, this.posY + 7.99F, 0.0F)
+				.tex(((float) i + f - 1.0F) / 128.0F, ((float) j + 7.99F) / 128.0F).endVertex();
+
+		tessellator.draw();
         return f;
     }
 
@@ -359,16 +368,23 @@ public class FontRenderer implements IResourceManagerReloadListener
             float f3 = (float)((ch & 255) / 16 * 16);
             float f4 = f1 - f - 0.02F;
             float f5 = italic ? 1.0F : 0.0F;
-            GlStateManager.glBegin(5);
-            GlStateManager.glTexCoord2f(f2 / 256.0F, f3 / 256.0F);
-            GlStateManager.glVertex3f(this.posX + f5, this.posY, 0.0F);
-            GlStateManager.glTexCoord2f(f2 / 256.0F, (f3 + 15.98F) / 256.0F);
-            GlStateManager.glVertex3f(this.posX - f5, this.posY + 7.99F, 0.0F);
-            GlStateManager.glTexCoord2f((f2 + f4) / 256.0F, f3 / 256.0F);
-            GlStateManager.glVertex3f(this.posX + f4 / 2.0F + f5, this.posY, 0.0F);
-            GlStateManager.glTexCoord2f((f2 + f4) / 256.0F, (f3 + 15.98F) / 256.0F);
-            GlStateManager.glVertex3f(this.posX + f4 / 2.0F - f5, this.posY + 7.99F, 0.0F);
-            GlStateManager.glEnd();
+            Tessellator tessellator = Tessellator.getInstance();
+			BufferBuilder worldrenderer = tessellator.getBuffer();
+
+			worldrenderer.begin(Tessellator.GL_TRIANGLE_STRIP, DefaultVertexFormats.POSITION_TEX);
+
+			worldrenderer.pos(this.posX + f5, this.posY, 0.0F).tex(f2 / 256.0F, f3 / 256.0F).endVertex();
+
+			worldrenderer.pos(this.posX - f5, this.posY + 7.99F, 0.0F).tex(f2 / 256.0F, (f3 + 15.98F) / 256.0F)
+					.endVertex();
+
+			worldrenderer.pos(this.posX + f4 / 2.0F + f5, this.posY, 0.0F).tex((f2 + f4) / 256.0F, f3 / 256.0F)
+					.endVertex();
+
+			worldrenderer.pos(this.posX + f4 / 2.0F - f5, this.posY + 7.99F, 0.0F)
+					.tex((f2 + f4) / 256.0F, (f3 + 15.98F) / 256.0F).endVertex();
+
+			tessellator.draw();
             return (f1 - f) / 2.0F + 1.0F;
         }
     }

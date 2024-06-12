@@ -8,7 +8,7 @@ import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelShield;
 import net.minecraft.client.renderer.BannerTextures;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;

@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.texture;
 
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 
 public abstract class AbstractTexture implements ITextureObject
 {
@@ -29,8 +30,8 @@ public abstract class AbstractTexture implements ITextureObject
         }
 
         GlStateManager.bindTexture(this.getGlTextureId());
-        GlStateManager.glTexParameteri(3553, 10241, i);
-        GlStateManager.glTexParameteri(3553, 10240, j);
+        EaglercraftGPU.glTexParameteri(3553, 10241, i);
+        EaglercraftGPU.glTexParameteri(3553, 10240, j);
     }
 
     public void setBlurMipmap(boolean blurIn, boolean mipmapIn)

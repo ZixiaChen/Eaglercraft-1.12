@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelIronGolem;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerIronGolemFlower;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.util.ResourceLocation;

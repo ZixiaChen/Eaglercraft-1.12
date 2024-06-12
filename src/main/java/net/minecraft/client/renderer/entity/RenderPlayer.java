@@ -3,7 +3,7 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelPlayer;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerArrow;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerCape;
@@ -67,9 +67,9 @@ public class RenderPlayer extends RenderLivingBase<AbstractClientPlayer>
             }
 
             this.setModelVisibilities(entity);
-            GlStateManager.enableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
+            //GlStateManager.enableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
             super.doRender(entity, x, d0, z, entityYaw, partialTicks);
-            GlStateManager.disableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
+            //GlStateManager.disableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
         }
     }
 

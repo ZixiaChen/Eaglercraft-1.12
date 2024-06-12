@@ -1,6 +1,6 @@
 package net.minecraft.client.gui.inventory;
 
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerDispenser;
 import net.minecraft.inventory.IInventory;

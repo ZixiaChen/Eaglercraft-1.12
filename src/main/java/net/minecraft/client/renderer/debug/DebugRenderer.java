@@ -2,7 +2,8 @@ package net.minecraft.client.renderer.debug;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -104,7 +105,7 @@ public class DebugRenderer
             double d2 = entityplayer.lastTickPosZ + (entityplayer.posZ - entityplayer.lastTickPosZ) * (double)partialTicks;
             GlStateManager.pushMatrix();
             GlStateManager.translate((float)(x - d0), (float)(y - d1) + 0.07F, (float)(z - d2));
-            GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
+            EaglercraftGPU.glNormal3f(0.0F, 1.0F, 0.0F);
             GlStateManager.scale(0.02F, -0.02F, 0.02F);
             RenderManager rendermanager = minecraft.getRenderManager();
             GlStateManager.rotate(-rendermanager.playerViewY, 0.0F, 1.0F, 0.0F);

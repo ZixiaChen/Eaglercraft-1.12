@@ -1,5 +1,7 @@
 package net.minecraft.client.renderer;
 
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.chunk.ListedRenderChunk;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.src.Config;
@@ -21,14 +23,14 @@ public class RenderList extends ChunkRenderContainer
                 ListedRenderChunk listedrenderchunk = (ListedRenderChunk)renderchunk;
                 GlStateManager.pushMatrix();
                 this.preRenderChunk(renderchunk);
-                GlStateManager.callList(listedrenderchunk.getDisplayList(layer, listedrenderchunk.getCompiledChunk()));
+                EaglercraftGPU.glCallList(listedrenderchunk.getDisplayList(layer, listedrenderchunk.getCompiledChunk()));
                 GlStateManager.popMatrix();
             }
 
-            if (Config.isMultiTexture())
+            /*if (Config.isMultiTexture())
             {
                 GlStateManager.bindCurrentTexture();
-            }
+            }*/
 
             GlStateManager.resetColor();
             this.renderChunks.clear();

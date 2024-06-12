@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -37,14 +37,14 @@ public class RenderPainting extends Render<EntityPainting>
         if (this.renderOutlines)
         {
             GlStateManager.enableColorMaterial();
-            GlStateManager.enableOutlineMode(this.getTeamColor(entity));
+            //GlStateManager.enableOutlineMode(this.getTeamColor(entity));
         }
 
         this.renderPainting(entity, entitypainting$enumart.sizeX, entitypainting$enumart.sizeY, entitypainting$enumart.offsetX, entitypainting$enumart.offsetY);
 
         if (this.renderOutlines)
         {
-            GlStateManager.disableOutlineMode();
+            //GlStateManager.disableOutlineMode();
             GlStateManager.disableColorMaterial();
         }
 

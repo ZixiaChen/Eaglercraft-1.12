@@ -2,6 +2,8 @@ package net.minecraft.client.renderer;
 
 import com.google.common.base.MoreObjects;
 import java.util.Objects;
+
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -564,7 +566,7 @@ public class ItemRenderer
             float f = this.mc.player.getBrightness();
             GlStateManager.color(f, f, f, 0.5F);
             GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             GlStateManager.pushMatrix();
             float f1 = 4.0F;
             float f2 = -1.0F;
@@ -597,7 +599,7 @@ public class ItemRenderer
         GlStateManager.depthFunc(519);
         GlStateManager.depthMask(false);
         GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         float f = 1.0F;
 
         for (int i = 0; i < 2; ++i)

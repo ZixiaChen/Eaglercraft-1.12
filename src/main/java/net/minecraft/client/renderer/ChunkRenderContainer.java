@@ -2,6 +2,8 @@ package net.minecraft.client.renderer;
 
 import com.google.common.collect.Lists;
 import java.util.List;
+
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;

@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.init.Blocks;
@@ -46,9 +46,9 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
         if (this.renderOutlines)
         {
             GlStateManager.enableColorMaterial();
-            GlStateManager.enableOutlineMode(this.getTeamColor(entity));
+            //GlStateManager.enableOutlineMode(this.getTeamColor(entity));
             blockrendererdispatcher.renderBlockBrightness(Blocks.TNT.getDefaultState(), 1.0F);
-            GlStateManager.disableOutlineMode();
+            //GlStateManager.disableOutlineMode();
             GlStateManager.disableColorMaterial();
         }
         else if (entity.getFuse() / 5 % 2 == 0)
@@ -56,7 +56,7 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
             GlStateManager.disableTexture2D();
             GlStateManager.disableLighting();
             GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
+            GlStateManager.blendFunc(770, 772);
             GlStateManager.color(1.0F, 1.0F, 1.0F, f2);
             GlStateManager.doPolygonOffset(-3.0F, -3.0F);
             GlStateManager.enablePolygonOffset();

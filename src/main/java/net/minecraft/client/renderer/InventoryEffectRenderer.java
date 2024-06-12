@@ -2,6 +2,8 @@ package net.minecraft.client.renderer;
 
 import com.google.common.collect.Ordering;
 import java.util.Collection;
+
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;

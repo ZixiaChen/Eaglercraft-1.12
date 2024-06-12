@@ -5,7 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiUtilRenderComponents;
 import net.minecraft.client.model.ModelSign;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.src.Config;
 import net.minecraft.src.CustomColors;
@@ -82,7 +83,7 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
         float f3 = 0.010416667F;
         GlStateManager.translate(0.0F, 0.33333334F, 0.046666667F);
         GlStateManager.scale(0.010416667F, -0.010416667F, 0.010416667F);
-        GlStateManager.glNormal3f(0.0F, 0.0F, -0.010416667F);
+        EaglercraftGPU.glNormal3f(0.0F, 0.0F, -0.010416667F);
         GlStateManager.depthMask(false);
         int i = 0;
 

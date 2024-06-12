@@ -3,7 +3,7 @@ package net.minecraft.client.renderer.entity;
 import java.util.Random;
 import javax.annotation.Nullable;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -26,7 +26,7 @@ public class RenderLightningBolt extends Render<EntityLightningBolt>
         GlStateManager.disableTexture2D();
         GlStateManager.disableLighting();
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
+        GlStateManager.blendFunc(770, 1);
         double[] adouble = new double[8];
         double[] adouble1 = new double[8];
         double d0 = 0.0D;

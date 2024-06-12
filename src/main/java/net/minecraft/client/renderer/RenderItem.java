@@ -2,6 +2,8 @@ package net.minecraft.client.renderer;
 
 import java.util.List;
 import javax.annotation.Nullable;
+
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
@@ -156,7 +158,7 @@ public class RenderItem implements IResourceManagerReloadListener
         if (flag1)
         {
             bufferbuilder.setBlockLayer((BlockRenderLayer)null);
-            GlStateManager.bindCurrentTexture();
+            //GlStateManager.bindCurrentTexture();
         }
     }
 
@@ -202,7 +204,7 @@ public class RenderItem implements IResourceManagerReloadListener
                 GlStateManager.depthMask(false);
                 GlStateManager.depthFunc(514);
                 GlStateManager.disableLighting();
-                GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE);
+                GlStateManager.blendFunc(769, 1);
                 this.textureManager.bindTexture(RES_ITEM_GLINT);
 
                 GlStateManager.matrixMode(5890);
@@ -221,7 +223,7 @@ public class RenderItem implements IResourceManagerReloadListener
                 this.renderModel(model, -8372020);
                 GlStateManager.popMatrix();
                 GlStateManager.matrixMode(5888);
-                GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+                GlStateManager.blendFunc(770, 771);
                 GlStateManager.enableLighting();
                 GlStateManager.depthFunc(515);
                 GlStateManager.depthMask(true);
@@ -360,7 +362,7 @@ public class RenderItem implements IResourceManagerReloadListener
             GlStateManager.enableRescaleNormal();
             GlStateManager.alphaFunc(516, 0.1F);
             GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             GlStateManager.pushMatrix();
 
             if (Reflector.ForgeHooksClient_handleCameraTransforms.exists())
@@ -374,14 +376,14 @@ public class RenderItem implements IResourceManagerReloadListener
 
                 if (this.isThereOneNegativeScale(itemcameratransforms.getTransform(transform)))
                 {
-                    GlStateManager.cullFace(GlStateManager.CullFace.FRONT);
+                    GlStateManager.cullFace(1028);
                 }
             }
 
             CustomItems.setRenderOffHand(leftHanded);
             this.renderItem(stack, bakedmodel);
             CustomItems.setRenderOffHand(false);
-            GlStateManager.cullFace(GlStateManager.CullFace.BACK);
+            GlStateManager.cullFace(1029);
             GlStateManager.popMatrix();
             GlStateManager.disableRescaleNormal();
             GlStateManager.disableBlend();
@@ -413,7 +415,7 @@ public class RenderItem implements IResourceManagerReloadListener
         GlStateManager.enableAlpha();
         GlStateManager.alphaFunc(516, 0.1F);
         GlStateManager.enableBlend();
-        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.blendFunc(770, 771);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.setupGuiTransform(x, y, bakedmodel.isGui3d());
 

@@ -4,7 +4,8 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,8 +34,8 @@ public class DebugRendererSolidFace implements DebugRenderer.IDebugRenderer
         World world = this.minecraft.player.world;
         Iterable<BlockPos> iterable = BlockPos.getAllInBox(MathHelper.floor(entityplayer.posX - 6.0D), MathHelper.floor(entityplayer.posY - 6.0D), MathHelper.floor(entityplayer.posZ - 6.0D), MathHelper.floor(entityplayer.posX + 6.0D), MathHelper.floor(entityplayer.posY + 6.0D), MathHelper.floor(entityplayer.posZ + 6.0D));
         GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        GlStateManager.glLineWidth(2.0F);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        EaglercraftGPU.glLineWidth(2.0F);
         GlStateManager.disableTexture2D();
         GlStateManager.depthMask(false);
 

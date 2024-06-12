@@ -2,7 +2,9 @@ package net.minecraft.client.util;
 
 import com.google.gson.JsonObject;
 import java.util.Locale;
-import net.minecraft.client.renderer.GlStateManager;
+
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.util.JsonUtils;
 
 public class JsonBlendingMode
@@ -59,7 +61,7 @@ public class JsonBlendingMode
                 GlStateManager.enableBlend();
             }
 
-            GlStateManager.glBlendEquation(this.blendFunction);
+            EaglercraftGPU.glBlendEquation(this.blendFunction);
 
             if (this.separateBlend)
             {

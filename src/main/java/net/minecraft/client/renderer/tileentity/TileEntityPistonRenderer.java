@@ -8,7 +8,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -34,7 +34,7 @@ public class TileEntityPistonRenderer extends TileEntitySpecialRenderer<TileEnti
             BufferBuilder bufferbuilder = tessellator.getBuffer();
             this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             RenderHelper.disableStandardItemLighting();
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+            GlStateManager.blendFunc(770, 771);
             GlStateManager.enableBlend();
             GlStateManager.disableCull();
 

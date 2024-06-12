@@ -1,6 +1,8 @@
 package net.minecraft.client.renderer;
 
 import net.lax1dude.eaglercraft.v1_8.internal.buffer.ByteBuffer;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
+
 import java.util.List;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
@@ -39,24 +41,24 @@ public class WorldVertexBufferUploader
                     {
                         case POSITION:
                             //GlStateManager.glVertexPointer(vertexformatelement.getElementCount(), k, i, bytebuffer);
-                            GlStateManager.glEnableClientState(32884);
+                            //GlStateManager.glEnableClientState(32884);
                             break;
 
                         case UV:
                             OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit + l);
                             //GlStateManager.glTexCoordPointer(vertexformatelement.getElementCount(), k, i, bytebuffer);
-                            GlStateManager.glEnableClientState(32888);
+                            //GlStateManager.glEnableClientState(32888);
                             OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
                             break;
 
                         case COLOR:
                             //GlStateManager.glColorPointer(vertexformatelement.getElementCount(), k, i, bytebuffer);
-                            GlStateManager.glEnableClientState(32886);
+                            //GlStateManager.glEnableClientState(32886);
                             break;
 
                         case NORMAL:
                             //GlStateManager.glNormalPointer(k, i, bytebuffer);
-                            GlStateManager.glEnableClientState(32885);
+                            //GlStateManager.glEnableClientState(32885);
                     }
                 }
             }
@@ -67,7 +69,7 @@ public class WorldVertexBufferUploader
             }
             else
             {
-                GlStateManager.glDrawArrays(vertexBufferIn.getDrawMode(), 0, vertexBufferIn.getVertexCount());
+                //GlStateManager.glDrawArrays(vertexBufferIn.getDrawMode(), 0, vertexBufferIn.getVertexCount());
             }
 
             int j1 = 0;
@@ -88,22 +90,22 @@ public class WorldVertexBufferUploader
                     switch (vertexformatelement$enumusage1)
                     {
                         case POSITION:
-                            GlStateManager.glDisableClientState(32884);
+                            //GlStateManager.glDisableClientState(32884);
                             break;
 
                         case UV:
                             OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit + i1);
-                            GlStateManager.glDisableClientState(32888);
+                            //GlStateManager.glDisableClientState(32888);
                             OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
                             break;
 
                         case COLOR:
-                            GlStateManager.glDisableClientState(32886);
+                            //GlStateManager.glDisableClientState(32886);
                             GlStateManager.resetColor();
                             break;
 
                         case NORMAL:
-                            GlStateManager.glDisableClientState(32885);
+                            //GlStateManager.glDisableClientState(32885);
                     }
                 }
             }

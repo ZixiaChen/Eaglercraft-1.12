@@ -5,7 +5,7 @@ import com.google.common.collect.Maps;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.src.Config;
 import net.minecraft.src.Lagometer;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
@@ -82,11 +82,11 @@ public class Profiler
 
             if (j == HASH_RENDER && name.equals("render"))
             {
-                GlStateManager.clearEnabled = false;
+                //GlStateManager.clearEnabled = false;
             }
             else if (j == HASH_DISPLAY && name.equals("display"))
             {
-                GlStateManager.clearEnabled = true;
+                //GlStateManager.clearEnabled = true;
             }
         }
 

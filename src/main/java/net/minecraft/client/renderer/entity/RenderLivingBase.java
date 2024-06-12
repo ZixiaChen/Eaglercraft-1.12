@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -183,7 +183,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
                 {
                     boolean flag1 = this.setScoreTeamColor(entity);
                     GlStateManager.enableColorMaterial();
-                    GlStateManager.enableOutlineMode(this.getTeamColor(entity));
+                    //GlStateManager.enableOutlineMode(this.getTeamColor(entity));
 
                     if (!this.renderMarker)
                     {
@@ -195,7 +195,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
                         this.renderLayers(entity, f6, f5, partialTicks, f8, f2, f7, f4);
                     }
 
-                    GlStateManager.disableOutlineMode();
+                    //GlStateManager.disableOutlineMode();
                     GlStateManager.disableColorMaterial();
 
                     if (flag1)
@@ -286,14 +286,14 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
 
             if (flag1)
             {
-                GlStateManager.enableBlendProfile(GlStateManager.Profile.TRANSPARENT_MODEL);
+                GlStateManager.enableBlend();
             }
 
             this.mainModel.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
 
             if (flag1)
             {
-                GlStateManager.disableBlendProfile(GlStateManager.Profile.TRANSPARENT_MODEL);
+                GlStateManager.disableBlend();
             }
         }
     }
@@ -327,7 +327,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
         {
             GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
             GlStateManager.enableTexture2D();
-            GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
+            /*GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_RGB, 8448);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_RGB, OpenGlHelper.defaultTexUnit);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE1_RGB, OpenGlHelper.GL_PRIMARY_COLOR);
@@ -335,10 +335,10 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND1_RGB, 768);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_ALPHA, 7681);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, OpenGlHelper.defaultTexUnit);
-            GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);
+            GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);*/
             GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
             GlStateManager.enableTexture2D();
-            GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
+            /*GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_RGB, OpenGlHelper.GL_INTERPOLATE);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_RGB, OpenGlHelper.GL_CONSTANT);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE1_RGB, OpenGlHelper.GL_PREVIOUS);
@@ -348,7 +348,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND2_RGB, 770);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_ALPHA, 7681);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, OpenGlHelper.GL_PREVIOUS);
-            GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);
+            GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);*/
             this.brightnessBuffer.position(0);
 
             if (flag1)
@@ -377,7 +377,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
             GlStateManager.setActiveTexture(OpenGlHelper.GL_TEXTURE2);
             GlStateManager.enableTexture2D();
             GlStateManager.bindTexture(TEXTURE_BRIGHTNESS.getGlTextureId());
-            GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
+            /*GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_RGB, 8448);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_RGB, OpenGlHelper.GL_PREVIOUS);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE1_RGB, OpenGlHelper.lightmapTexUnit);
@@ -385,7 +385,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND1_RGB, 768);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_ALPHA, 7681);
             GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, OpenGlHelper.GL_PREVIOUS);
-            GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);
+            GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);*/
             GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
             return true;
         }
@@ -395,7 +395,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
     {
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
         GlStateManager.enableTexture2D();
-        GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
+        /*GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_RGB, 8448);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_RGB, OpenGlHelper.defaultTexUnit);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE1_RGB, OpenGlHelper.GL_PRIMARY_COLOR);
@@ -405,9 +405,9 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, OpenGlHelper.defaultTexUnit);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE1_ALPHA, OpenGlHelper.GL_PRIMARY_COLOR);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);
-        GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND1_ALPHA, 770);
+        GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND1_ALPHA, 770);*/
         GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
+        /*GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_RGB, 8448);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_RGB, 768);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND1_RGB, 768);
@@ -415,12 +415,12 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE1_RGB, OpenGlHelper.GL_PREVIOUS);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_ALPHA, 8448);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);
-        GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, 5890);
+        GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, 5890);*/
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.setActiveTexture(OpenGlHelper.GL_TEXTURE2);
         GlStateManager.disableTexture2D();
         GlStateManager.bindTexture(0);
-        GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
+        /*GlStateManager.glTexEnvi(8960, 8704, OpenGlHelper.GL_COMBINE);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_RGB, 8448);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_RGB, 768);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND1_RGB, 768);
@@ -428,7 +428,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE1_RGB, OpenGlHelper.GL_PREVIOUS);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_COMBINE_ALPHA, 8448);
         GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);
-        GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, 5890);
+        GlStateManager.glTexEnvi(8960, OpenGlHelper.GL_SOURCE0_ALPHA, 5890);*/
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
     }
 

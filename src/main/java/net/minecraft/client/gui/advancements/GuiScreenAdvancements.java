@@ -9,7 +9,7 @@ import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.ClientAdvancementManager;
 import net.minecraft.client.network.NetHandlerPlayClient;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.network.play.client.CPacketSeenAdvancements;
@@ -181,7 +181,7 @@ public class GuiScreenAdvancements extends GuiScreen implements ClientAdvancemen
             }
 
             GlStateManager.enableRescaleNormal();
-            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             RenderHelper.enableGUIStandardItemLighting();
 
             for (GuiAdvancementTab guiadvancementtab1 : this.tabs.values())

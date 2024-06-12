@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelShulker;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.monster.EntityShulker;

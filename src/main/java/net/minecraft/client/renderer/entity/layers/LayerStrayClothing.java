@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.entity.layers;
 
 import net.minecraft.client.model.ModelSkeleton;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.monster.EntityStray;
 import net.minecraft.util.ResourceLocation;

@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.entity.layers;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.entity.monster.EntitySpider;
@@ -22,7 +22,7 @@ public class LayerSpiderEyes<T extends EntitySpider> implements LayerRenderer<T>
         this.spiderRenderer.bindTexture(SPIDER_EYES);
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
-        GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+        GlStateManager.blendFunc(1, 1);
 
         if (entitylivingbaseIn.isInvisible())
         {

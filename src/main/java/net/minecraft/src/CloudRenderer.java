@@ -2,7 +2,7 @@ package net.minecraft.src;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
 import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.*;

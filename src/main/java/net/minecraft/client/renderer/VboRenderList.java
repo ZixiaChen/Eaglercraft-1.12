@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.src.Config;
 import net.minecraft.util.BlockRenderLayer;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 
 public class VboRenderList extends ChunkRenderContainer
 {
@@ -31,11 +32,11 @@ public class VboRenderList extends ChunkRenderContainer
 
     private void setupArrayPointers()
     {
-        GlStateManager.glVertexPointer(3, 5126, 28, 0);
-        GlStateManager.glColorPointer(4, 5121, 28, 12);
-        GlStateManager.glTexCoordPointer(2, 5126, 28, 16);
+        //GlStateManager.glVertexPointer(3, 5126, 28, 0);
+        //GlStateManager.glColorPointer(4, 5121, 28, 12);
+        //GlStateManager.glTexCoordPointer(2, 5126, 28, 16);
         OpenGlHelper.setClientActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GlStateManager.glTexCoordPointer(2, 5122, 28, 24);
+        //GlStateManager.glTexCoordPointer(2, 5122, 28, 24);
         OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
     }
 }

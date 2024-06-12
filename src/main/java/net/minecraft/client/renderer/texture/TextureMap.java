@@ -17,7 +17,7 @@ import java.util.TreeSet;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.StitcherException;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
@@ -843,7 +843,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
     public boolean isTextureBound()
     {
-        int k3 = GlStateManager.getBoundTexture();
+        int k3 = GlStateManager.getTextureBound();
         int l3 = this.getGlTextureId();
         return k3 == l3;
     }

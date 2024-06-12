@@ -6,7 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.util.math.MathHelper;
 import net.lax1dude.eaglercraft.v1_8.vector.Quaternion;
 
@@ -81,7 +81,9 @@ public class ItemCameraTransforms
                 f2 = -f2;
             }
 
-            GlStateManager.rotate(makeQuaternion(f, f1, f2));
+            GlStateManager.rotate(f1, 0.0F, 1.0F, 0.0F);
+			GlStateManager.rotate(f, 1.0F, 0.0F, 0.0F);
+			GlStateManager.rotate(f2, 0.0F, 0.0F, 1.0F);
             GlStateManager.scale(offsetScaleX + vec.scale.x, offsetScaleY + vec.scale.y, offsetScaleZ + vec.scale.z);
         }
     }

@@ -14,7 +14,8 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RegionRenderCacheBuilder;
 import net.minecraft.client.renderer.VertexBufferUploader;
@@ -302,12 +303,12 @@ public class ChunkRenderDispatcher
 
     private void uploadDisplayList(BufferBuilder vertexBufferIn, int list, RenderChunk chunkRenderer)
     {
-        GlStateManager.glNewList(list, 4864);
+        EaglercraftGPU.glNewList(list, 4864);
         GlStateManager.pushMatrix();
         chunkRenderer.multModelviewMatrix();
         this.worldVertexUploader.draw(vertexBufferIn);
         GlStateManager.popMatrix();
-        GlStateManager.glEndList();
+        EaglercraftGPU.glEndList();
     }
 
     private void uploadVertexBuffer(BufferBuilder p_178506_1_, VertexBuffer vertexBufferIn)

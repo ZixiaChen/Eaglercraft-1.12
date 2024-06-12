@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.entity.layers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelCreeper;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderCreeper;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.ResourceLocation;
@@ -34,7 +34,7 @@ public class LayerCreeperCharge implements LayerRenderer<EntityCreeper>
             float f1 = 0.5F;
             GlStateManager.color(0.5F, 0.5F, 0.5F, 1.0F);
             GlStateManager.disableLighting();
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+            GlStateManager.blendFunc(1, 1);
             this.creeperModel.setModelAttributes(this.creeperRenderer.getMainModel());
             Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
             this.creeperModel.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);

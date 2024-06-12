@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer;
 
 import net.lax1dude.eaglercraft.v1_8.internal.buffer.FloatBuffer;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.util.math.Vec3d;
 
 public class RenderHelper
@@ -16,8 +17,8 @@ public class RenderHelper
     public static void disableStandardItemLighting()
     {
         GlStateManager.disableLighting();
-        GlStateManager.disableLight(0);
-        GlStateManager.disableLight(1);
+        GlStateManager.disableMCLight(0);
+        GlStateManager.disableMCLight(1);
         GlStateManager.disableColorMaterial();
     }
 
@@ -27,10 +28,10 @@ public class RenderHelper
     public static void enableStandardItemLighting()
     {
         GlStateManager.enableLighting();
-        GlStateManager.enableLight(0);
-        GlStateManager.enableLight(1);
+		GlStateManager.enableMCLight(0, 0.6f, LIGHT0_POS.x, LIGHT0_POS.y, LIGHT0_POS.z, 0.0D);
+		GlStateManager.enableMCLight(1, 0.6f, LIGHT1_POS.x, LIGHT1_POS.y, LIGHT1_POS.z, 0.0D);
         GlStateManager.enableColorMaterial();
-        GlStateManager.colorMaterial(1032, 5634);
+        //GlStateManager.colorMaterial(1032, 5634);
     }
 
     /**

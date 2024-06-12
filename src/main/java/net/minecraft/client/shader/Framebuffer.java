@@ -2,7 +2,8 @@ package net.minecraft.client.shader;
 
 import net.lax1dude.eaglercraft.v1_8.internal.buffer.*;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureUtil;
@@ -108,7 +109,7 @@ public class Framebuffer
 
             this.setFramebufferFilter(9728);
             GlStateManager.bindTexture(this.framebufferTexture);
-            GlStateManager.glTexImage2D(3553, 0, 32856, this.framebufferTextureWidth, this.framebufferTextureHeight, 0, 6408, 5121, (IntBuffer)null);
+            EaglercraftGPU.glTexImage2D(3553, 0, 32856, this.framebufferTextureWidth, this.framebufferTextureHeight, 0, 6408, 5121, (IntBuffer)null);
             OpenGlHelper.glBindFramebuffer(OpenGlHelper.GL_FRAMEBUFFER, this.framebufferObject);
             OpenGlHelper.glFramebufferTexture2D(OpenGlHelper.GL_FRAMEBUFFER, OpenGlHelper.GL_COLOR_ATTACHMENT0, 3553, this.framebufferTexture, 0);
 
@@ -130,10 +131,10 @@ public class Framebuffer
         {
             this.framebufferFilter = framebufferFilterIn;
             GlStateManager.bindTexture(this.framebufferTexture);
-            GlStateManager.glTexParameteri(3553, 10241, framebufferFilterIn);
-            GlStateManager.glTexParameteri(3553, 10240, framebufferFilterIn);
-            GlStateManager.glTexParameteri(3553, 10242, 10496);
-            GlStateManager.glTexParameteri(3553, 10243, 10496);
+            EaglercraftGPU.glTexParameteri(3553, 10241, framebufferFilterIn);
+            EaglercraftGPU.glTexParameteri(3553, 10240, framebufferFilterIn);
+            EaglercraftGPU.glTexParameteri(3553, 10242, 10496);
+            EaglercraftGPU.glTexParameteri(3553, 10243, 10496);
             GlStateManager.bindTexture(0);
         }
     }
@@ -269,7 +270,7 @@ public class Framebuffer
 
         if (this.useDepth)
         {
-            GlStateManager.clearDepth(1.0D);
+            GlStateManager.clearDepth(1.0f);
             i |= 256;
         }
 

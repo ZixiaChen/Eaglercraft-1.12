@@ -8,7 +8,8 @@ import net.lax1dude.eaglercraft.v1_8.internal.buffer.IntBuffer;
 import javax.imageio.ImageIO;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.src.Config;
@@ -172,10 +173,10 @@ public class TextureUtil
 
         if (mipmapLevels >= 0)
         {
-            GlStateManager.glTexParameteri(3553, 33085, mipmapLevels);
-            GlStateManager.glTexParameteri(3553, 33082, 0);
-            GlStateManager.glTexParameteri(3553, 33083, mipmapLevels);
-            GlStateManager.glTexParameterf(3553, 34049, 0.0F);
+            EaglercraftGPU.glTexParameteri(3553, 33085, mipmapLevels);
+            EaglercraftGPU.glTexParameteri(3553, 33082, 0);
+            EaglercraftGPU.glTexParameteri(3553, 33083, mipmapLevels);
+            EaglercraftGPU.glTexParameterf(3553, 34049, 0.0F);
         }
 
         for (int i = 0; i <= mipmapLevels; ++i)
@@ -215,13 +216,13 @@ public class TextureUtil
     {
         if (p_110997_0_)
         {
-            GlStateManager.glTexParameteri(3553, 10242, 33071);
-            GlStateManager.glTexParameteri(3553, 10243, 33071);
+            EaglercraftGPU.glTexParameteri(3553, 10242, 33071);
+            EaglercraftGPU.glTexParameteri(3553, 10243, 33071);
         }
         else
         {
-            GlStateManager.glTexParameteri(3553, 10242, 10497);
-            GlStateManager.glTexParameteri(3553, 10243, 10497);
+            EaglercraftGPU.glTexParameteri(3553, 10242, 10497);
+            EaglercraftGPU.glTexParameteri(3553, 10243, 10497);
         }
     }
 
@@ -234,14 +235,14 @@ public class TextureUtil
     {
         if (p_147954_0_)
         {
-            GlStateManager.glTexParameteri(3553, 10241, p_147954_1_ ? 9987 : 9729);
-            GlStateManager.glTexParameteri(3553, 10240, 9729);
+            EaglercraftGPU.glTexParameteri(3553, 10241, p_147954_1_ ? 9987 : 9729);
+            EaglercraftGPU.glTexParameteri(3553, 10240, 9729);
         }
         else
         {
             int i = Config.getMipmapType();
-            GlStateManager.glTexParameteri(3553, 10241, p_147954_1_ ? i : 9728);
-            GlStateManager.glTexParameteri(3553, 10240, 9728);
+            EaglercraftGPU.glTexParameteri(3553, 10241, p_147954_1_ ? i : 9728);
+            EaglercraftGPU.glTexParameteri(3553, 10240, 9728);
         }
     }
 

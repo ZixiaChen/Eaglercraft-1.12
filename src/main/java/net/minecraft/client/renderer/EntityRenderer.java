@@ -90,6 +90,8 @@ import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 import net.lax1dude.eaglercraft.v1_8.Mouse;
 import net.lax1dude.eaglercraft.v1_8.Display;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 
 import static net.lax1dude.eaglercraft.v1_8.opengl.RealOpenGLEnums.*;
 import static net.lax1dude.eaglercraft.v1_8.internal.PlatformOpenGL.*;
@@ -1038,10 +1040,10 @@ public class EntityRenderer implements IResourceManagerReloadListener
         GlStateManager.translate(8.0F, 8.0F, 8.0F);
         GlStateManager.matrixMode(5888);
         this.mc.getTextureManager().bindTexture(this.locationLightMap);
-        GlStateManager.glTexParameteri(3553, 10241, 9729);
-        GlStateManager.glTexParameteri(3553, 10240, 9729);
-        GlStateManager.glTexParameteri(3553, 10242, 10496);
-        GlStateManager.glTexParameteri(3553, 10243, 10496);
+        EaglercraftGPU.glTexParameteri(3553, 10241, 9729);
+        EaglercraftGPU.glTexParameteri(3553, 10240, 9729);
+        EaglercraftGPU.glTexParameteri(3553, 10242, 10496);
+        EaglercraftGPU.glTexParameteri(3553, 10243, 10496);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.enableTexture2D();
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
@@ -1632,17 +1634,17 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         if (this.mc.debugRenderer.shouldRender())
         {
-            boolean flag2 = GlStateManager.isFogEnabled();
+            boolean flag2 = GlStateManager.stateFog;
             GlStateManager.disableFog();
             this.mc.debugRenderer.renderDebug(partialTicks, finishTimeNano);
-            GlStateManager.setFogEnabled(flag2);
+            GlStateManager.stateFog = flag2;
         }
 
         if (!renderglobal.damagedBlocks.isEmpty())
         {
             this.mc.mcProfiler.endStartSection("destroyProgress");
             GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+            GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
             this.mc.getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
             renderglobal.drawBlockDamageTexture(Tessellator.getInstance(), Tessellator.getInstance().getBuffer(), entity, partialTicks);
             this.mc.getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).restoreLastBlurMipmap();
@@ -1677,7 +1679,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         GlStateManager.disableBlend();
         GlStateManager.enableCull();
-        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.alphaFunc(516, 0.1F);
         this.setupFog(0, partialTicks);
         GlStateManager.enableBlend();
@@ -1694,7 +1696,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.mc.mcProfiler.endStartSection("entities");
             Reflector.callVoid(Reflector.ForgeHooksClient_setRenderPass, Integer.valueOf(1));
             this.mc.renderGlobal.renderEntities(entity, icamera, partialTicks);
-            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             Reflector.callVoid(Reflector.ForgeHooksClient_setRenderPass, Integer.valueOf(-1));
             RenderHelper.disableStandardItemLighting();
         }
@@ -1868,9 +1870,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder bufferbuilder = tessellator.getBuffer();
             GlStateManager.disableCull();
-            GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
+            EaglercraftGPU.glNormal3f(0.0F, 1.0F, 0.0F);
             GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             GlStateManager.alphaFunc(516, 0.1F);
             double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
             double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
@@ -2231,7 +2233,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         this.fogStandard = false;
         Entity entity = this.mc.getRenderViewEntity();
         this.setupFogColor(false);
-        GlStateManager.glNormal3f(0.0F, -1.0F, 0.0F);
+        EaglercraftGPU.glNormal3f(0.0F, -1.0F, 0.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         IBlockState iblockstate = ActiveRenderInfo.getBlockStateAtEntityViewpoint(this.mc.world, entity, partialTicks);
         float f = -1.0F;
@@ -2255,7 +2257,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 f2 = 5.0F + (this.farPlaneDistance - 5.0F) * (1.0F - (float)i / 20.0F);
             }
 
-            GlStateManager.setFog(GlStateManager.FogMode.LINEAR);
+            GlStateManager.setFog(9729);
             
 
             if (startCoords == -1)
@@ -2271,19 +2273,19 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
             if (false && Config.isFogFancy())
             {
-                GlStateManager.glFogi(34138, 34139);
+                EaglercraftGPU.glFogi(34138, 34139);
             }
         }
         else if (this.cloudFog)
         {
-            GlStateManager.setFog(GlStateManager.FogMode.EXP);
+            GlStateManager.setFog(2048);
             
 
             GlStateManager.setFogDensity(0.1F);
         }
         else if (iblockstate.getMaterial() == Material.WATER)
         {
-            GlStateManager.setFog(GlStateManager.FogMode.EXP);
+            GlStateManager.setFog(2048);
 
             if (entity instanceof EntityLivingBase)
             {
@@ -2308,7 +2310,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
         else if (iblockstate.getMaterial() == Material.LAVA)
         {
-            GlStateManager.setFog(GlStateManager.FogMode.EXP);
+            GlStateManager.setFog(2048);
 
             GlStateManager.setFogDensity(2.0F);
         }
@@ -2317,7 +2319,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             float f1 = this.farPlaneDistance;
             this.fogStandard = true;
 
-            GlStateManager.setFog(GlStateManager.FogMode.LINEAR);
+            GlStateManager.setFog(9729);
 
             if (startCoords == -1)
             {
@@ -2330,16 +2332,16 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 GlStateManager.setFogEnd(f1);
             }
 
-            if (false)
+            if (true)
             {
                 if (Config.isFogFancy())
                 {
-                    GlStateManager.glFogi(34138, 34139);
+                    EaglercraftGPU.glFogi(34138, 34139);
                 }
 
                 if (Config.isFogFast())
                 {
-                    GlStateManager.glFogi(34138, 34140);
+                    EaglercraftGPU.glFogi(34138, 34140);
                 }
             }
 
@@ -2357,7 +2359,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         GlStateManager.enableColorMaterial();
         GlStateManager.enableFog();
-        GlStateManager.colorMaterial(1028, 4608);
+        //GlStateManager.colorMaterial(1028, 4608);
     }
 
     public void setupFogColor(boolean black)
@@ -2461,7 +2463,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             if (i > this.lastErrorCheckTimeMs + 10000L)
             {
                 this.lastErrorCheckTimeMs = i;
-                int j = GlStateManager.glGetError();
+                int j = EaglercraftGPU.glGetError();
 
                 if (j != 0)
                 {
@@ -2618,7 +2620,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
-        GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
+        EaglercraftGPU.glNormal3f(0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(-viewerYaw, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate((float)(isThirdPersonFrontal ? -1 : 1) * viewerPitch, 1.0F, 0.0F, 0.0F);
         GlStateManager.scale(-0.025F, -0.025F, 0.025F);
@@ -2631,7 +2633,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
 
         GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         int i = fontRendererIn.getStringWidth(str) / 2;
         GlStateManager.disableTexture2D();
         Tessellator tessellator = Tessellator.getInstance();
@@ -2680,7 +2682,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             float f6 = this.itemActivationOffY * (float)(p_190563_2_ / 4);
             GlStateManager.enableAlpha();
             GlStateManager.pushMatrix();
-            GlStateManager.pushAttrib();
+            //.pushAttrib();
             GlStateManager.enableDepth();
             GlStateManager.disableCull();
             RenderHelper.enableStandardItemLighting();
@@ -2691,7 +2693,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             GlStateManager.rotate(6.0F * MathHelper.cos(f * 8.0F), 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(6.0F * MathHelper.cos(f * 8.0F), 0.0F, 0.0F, 1.0F);
             this.mc.getRenderItem().renderItem(this.itemActivationItem, ItemCameraTransforms.TransformType.FIXED);
-            GlStateManager.popAttrib();
+            //GlStateManager.popAttrib();
             GlStateManager.popMatrix();
             RenderHelper.disableStandardItemLighting();
             GlStateManager.enableCull();

@@ -5,7 +5,8 @@ import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.src.Config;
@@ -45,7 +46,7 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
                     this.bindTexture(END_SKY_TEXTURE);
                     f1 = 0.15F;
                     GlStateManager.enableBlend();
-                    GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+                    GlStateManager.blendFunc(770, 771);
                 }
 
                 if (j >= 1)
@@ -58,7 +59,7 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
                 if (j == 1)
                 {
                     GlStateManager.enableBlend();
-                    GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+                    GlStateManager.blendFunc(1, 1);
                 }
 
                 GlStateManager.texGen(GlStateManager.TexGen.S, 9216);
@@ -67,9 +68,9 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
                 //GlStateManager.texGen(GlStateManager.TexGen.S, 9474, this.getBuffer(1.0F, 0.0F, 0.0F, 0.0F));
                 //GlStateManager.texGen(GlStateManager.TexGen.T, 9474, this.getBuffer(0.0F, 1.0F, 0.0F, 0.0F));
                 //GlStateManager.texGen(GlStateManager.TexGen.R, 9474, this.getBuffer(0.0F, 0.0F, 1.0F, 0.0F));
-                GlStateManager.enableTexGenCoord(GlStateManager.TexGen.S);
-                GlStateManager.enableTexGenCoord(GlStateManager.TexGen.T);
-                GlStateManager.enableTexGenCoord(GlStateManager.TexGen.R);
+                //GlStateManager.enableTexGenCoord(GlStateManager.TexGen.S);
+                //GlStateManager.enableTexGenCoord(GlStateManager.TexGen.T);
+                //GlStateManager.enableTexGenCoord(GlStateManager.TexGen.R);
                 GlStateManager.popMatrix();
                 GlStateManager.matrixMode(5890);
                 GlStateManager.pushMatrix();
@@ -144,9 +145,9 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
             }
 
             GlStateManager.disableBlend();
-            GlStateManager.disableTexGenCoord(GlStateManager.TexGen.S);
-            GlStateManager.disableTexGenCoord(GlStateManager.TexGen.T);
-            GlStateManager.disableTexGenCoord(GlStateManager.TexGen.R);
+            //EaglercraftGPU.disableTexGenCoord(GlStateManager.TexGen.S);
+            //EaglercraftGPU.disableTexGenCoord(GlStateManager.TexGen.T);
+            //EaglercraftGPU.disableTexGenCoord(GlStateManager.TexGen.R);
             GlStateManager.enableLighting();
 
             if (flag)

@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelEnderCrystal;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.util.ResourceLocation;
@@ -36,7 +36,7 @@ public class RenderEnderCrystal extends Render<EntityEnderCrystal>
         if (this.renderOutlines)
         {
             GlStateManager.enableColorMaterial();
-            GlStateManager.enableOutlineMode(this.getTeamColor(entity));
+            //GlStateManager.enableOutlineMode(this.getTeamColor(entity));
         }
 
         if (entity.shouldShowBottom())
@@ -50,7 +50,7 @@ public class RenderEnderCrystal extends Render<EntityEnderCrystal>
 
         if (this.renderOutlines)
         {
-            GlStateManager.disableOutlineMode();
+            //GlStateManager.disableOutlineMode();
             GlStateManager.disableColorMaterial();
         }
 

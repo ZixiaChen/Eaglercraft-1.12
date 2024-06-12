@@ -3,7 +3,7 @@ package net.minecraft.client.renderer.entity.layers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelIronGolem;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderIronGolem;
 import net.minecraft.client.renderer.texture.TextureMap;

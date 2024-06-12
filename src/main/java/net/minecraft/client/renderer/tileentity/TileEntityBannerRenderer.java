@@ -3,7 +3,7 @@ package net.minecraft.client.renderer.tileentity;
 import javax.annotation.Nullable;
 import net.minecraft.client.model.ModelBanner;
 import net.minecraft.client.renderer.BannerTextures;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.util.ResourceLocation;

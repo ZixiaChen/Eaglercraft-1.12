@@ -3,7 +3,7 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.entity.item.EntityMinecartTNT;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.MathHelper;
@@ -37,7 +37,7 @@ public class RenderTntMinecart extends RenderMinecart<EntityMinecartTNT>
             GlStateManager.disableTexture2D();
             GlStateManager.disableLighting();
             GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
+            GlStateManager.blendFunc(770, 772);
             GlStateManager.color(1.0F, 1.0F, 1.0F, (1.0F - ((float)i - partialTicks + 1.0F) / 100.0F) * 0.8F);
             GlStateManager.pushMatrix();
             blockrendererdispatcher.renderBlockBrightness(Blocks.TNT.getDefaultState(), 1.0F);

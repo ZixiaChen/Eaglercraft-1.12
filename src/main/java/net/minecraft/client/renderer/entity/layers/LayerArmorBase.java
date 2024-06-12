@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -168,7 +168,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
             for (int i = 0; i < 2; ++i)
             {
                 GlStateManager.disableLighting();
-                GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE);
+                GlStateManager.blendFunc(768, 1);
                 float f2 = 0.76F;
                 GlStateManager.color(0.38F, 0.19F, 0.608F, 1.0F);
                 GlStateManager.matrixMode(5890);
@@ -179,7 +179,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
                 GlStateManager.translate(0.0F, f * (0.001F + (float)i * 0.003F) * 20.0F, 0.0F);
                 GlStateManager.matrixMode(5888);
                 model.render(p_188364_1_, p_188364_3_, p_188364_4_, p_188364_6_, p_188364_7_, p_188364_8_, p_188364_9_);
-                GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+                GlStateManager.blendFunc(1, 0);
             }
 
             GlStateManager.matrixMode(5890);

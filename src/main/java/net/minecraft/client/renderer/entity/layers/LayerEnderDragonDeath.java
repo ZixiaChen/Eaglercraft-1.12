@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.entity.layers;
 
 import java.util.Random;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -29,7 +29,7 @@ public class LayerEnderDragonDeath implements LayerRenderer<EntityDragon>
             GlStateManager.disableTexture2D();
             GlStateManager.shadeModel(7425);
             GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
+            GlStateManager.blendFunc(770, 1);
             GlStateManager.disableAlpha();
             GlStateManager.enableCull();
             GlStateManager.depthMask(false);

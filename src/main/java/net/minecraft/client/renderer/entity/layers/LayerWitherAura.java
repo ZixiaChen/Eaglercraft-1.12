@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.entity.layers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelWither;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderWither;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.util.ResourceLocation;
@@ -36,7 +36,7 @@ public class LayerWitherAura implements LayerRenderer<EntityWither>
             float f3 = 0.5F;
             GlStateManager.color(0.5F, 0.5F, 0.5F, 1.0F);
             GlStateManager.disableLighting();
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+            GlStateManager.blendFunc(1, 1);
             this.witherModel.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks);
             this.witherModel.setModelAttributes(this.witherRenderer.getMainModel());
             Minecraft.getMinecraft().entityRenderer.setupFogColor(true);

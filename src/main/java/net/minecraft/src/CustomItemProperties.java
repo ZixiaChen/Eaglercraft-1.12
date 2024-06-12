@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
-import net.minecraft.client.renderer.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockPart;
 import net.minecraft.client.renderer.block.model.BlockPartFace;
@@ -1048,7 +1048,7 @@ public class CustomItemProperties
             {
                 ITextureObject itextureobject = p_getTextureWidth_1_.getTexture(this.textureLocation);
                 int i = itextureobject.getGlTextureId();
-                int j = GlStateManager.getBoundTexture();
+                int j = GlStateManager.getTextureBound();
                 GlStateManager.bindTexture(i);
                 this.textureWidth = 4096;
                 GlStateManager.bindTexture(j);
@@ -1071,7 +1071,7 @@ public class CustomItemProperties
             {
                 ITextureObject itextureobject = p_getTextureHeight_1_.getTexture(this.textureLocation);
                 int i = itextureobject.getGlTextureId();
-                int j = GlStateManager.getBoundTexture();
+                int j = GlStateManager.getTextureBound();
                 GlStateManager.bindTexture(i);
                 this.textureHeight = 4097;
                 GlStateManager.bindTexture(j);
