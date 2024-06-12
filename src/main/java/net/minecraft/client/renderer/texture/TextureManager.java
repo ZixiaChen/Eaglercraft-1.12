@@ -144,7 +144,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
     {
         ITextureObject itextureobject = this.getTexture(textureLocation);
 
-        if (itextureobject != null)
+        if (itextureobject != null && textureLocation != null)
         {
             this.mapTextureObjects.remove(textureLocation);
             TextureUtil.deleteTexture(itextureobject.getGlTextureId());

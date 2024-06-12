@@ -120,8 +120,8 @@ public class FallbackResourceManager implements IResourceManager
         {
             this.inputStream = p_i46093_1_;
             ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream();
-            (new Exception()).printStackTrace(new PrintStream(bytearrayoutputstream));
-            this.message = "Leaked resource: '" + location + "' loaded from pack: '" + resourcePack + "'\n" + bytearrayoutputstream;
+            //(new Exception()).printStackTrace(new PrintStream(bytearrayoutputstream));
+            this.message = "";
         }
 
         public void close() throws IOException
@@ -134,7 +134,7 @@ public class FallbackResourceManager implements IResourceManager
         {
             if (!this.isClosed)
             {
-                FallbackResourceManager.LOGGER.warn(this.message);
+                //FallbackResourceManager.LOGGER.warn(this.message);
             }
 
             super.finalize();

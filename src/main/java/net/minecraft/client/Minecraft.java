@@ -49,6 +49,7 @@ import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMemoryErrorScreen;
 import net.lax1dude.eaglercraft.v1_8.profile.*;
+import net.lax1dude.eaglercraft.v1_8.socket.AddressResolver;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.client.gui.GuiScreen;
@@ -66,6 +67,7 @@ import net.minecraft.client.gui.toasts.GuiToast;
 import net.minecraft.client.main.GameConfiguration;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.client.multiplayer.ServerAddress;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.ServerList;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -203,6 +205,7 @@ import net.lax1dude.eaglercraft.v1_8.Mouse;
 
 import net.lax1dude.eaglercraft.v1_8.Display;
 import net.lax1dude.eaglercraft.v1_8.EagRuntime;
+import net.lax1dude.eaglercraft.v1_8.EagUtils;
 
 public class Minecraft implements IThreadListener
 {
@@ -411,13 +414,12 @@ public class Minecraft implements IThreadListener
         this.tempDisplayHeight = gameConfig.displayInfo.height;
         this.fullscreen = gameConfig.displayInfo.fullscreen;
         this.jvm64bit = isJvm64bit();
-        //this.integratedServer = null;
-
-        if (gameConfig.serverInfo.serverName != null)
-        {
-            this.serverName = gameConfig.serverInfo.serverName;
-            this.serverPort = gameConfig.serverInfo.serverPort;
-        }
+        String serverToJoin = EagRuntime.getConfiguration().getServerToJoin();
+		if (serverToJoin != null) {
+			ServerAddress addr = AddressResolver.resolveAddressFromURI(serverToJoin);
+			this.serverName = addr.getIP();
+			this.serverPort = addr.getPort();
+		}
 
         ImageIO.setUseCache(false);
         Locale.setDefault(Locale.ROOT);
@@ -513,8 +515,10 @@ public class Minecraft implements IThreadListener
             this.displayWidth = this.gameSettings.overrideWidth;
             this.displayHeight = this.gameSettings.overrideHeight;
         }
-
+		Display.create();
         LOGGER.info("LWJGL Version: LWJGL 3 or whatever Lax is using");
+		LOGGER.info("EagRuntime Version: " + EagRuntime.getVersion());
+        EagRuntime.create();
         this.setWindowIcon();
         this.setInitialDisplayMode();
         this.createDisplay();
@@ -681,7 +685,7 @@ public class Minecraft implements IThreadListener
 
         try
         {
-            //Display.create((new PixelFormat()).withDepthBits(24));
+            Display.create();
         }
         catch (Exception lwjglexception)
         {
@@ -1057,35 +1061,25 @@ public class Minecraft implements IThreadListener
      * Shuts down the minecraft applet by stopping the resource downloads, and clearing up GL stuff; called when the
      * application (or web page) is exited.
      */
-    public void shutdownMinecraftApplet()
-    {
-        try
-        {
-            LOGGER.info("Stopping!");
+    public void shutdownMinecraftApplet() {
+		try {
+			LOGGER.info("Stopping!");
 
-            try
-            {
-                this.loadWorld((WorldClient)null);
-            }
-            catch (Throwable var5)
-            {
-                ;
-            }
+			try {
+				this.loadWorld((WorldClient) null);
+			} catch (Throwable var5) {
+				;
+			}
 
-            this.mcSoundHandler.unloadSounds();
-        }
-        finally
-        {
-            //Display.destroy();
+			this.mcSoundHandler.unloadSounds();
+		} finally {
+			EagRuntime.destroy();
+			if (!this.hasCrashed) {
+				EagRuntime.exit();
+			}
 
-            if (!this.hasCrashed)
-            {
-                System.exit(0);
-            }
-        }
-
-        System.gc();
-    }
+		}
+	}
 
     /**
      * Called repeatedly from run()

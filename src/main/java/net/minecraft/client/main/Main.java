@@ -49,7 +49,6 @@ public class Main
 				new GameConfiguration.GameInformation(false, "1.12", "release"),
                 new GameConfiguration.ServerInformation(null, 25565));
 		PlatformRuntime.setThreadName("Client thread");
-		PlatformRuntime.create();
         Runtime.getRuntime().addShutdownHook(new Thread("Client Shutdown Thread")
         {
             public void run()
