@@ -41,24 +41,12 @@ distributions {
 }
 
 dependencies {
-    implementation files('lib/libraries/net/java/dev/jna/jna/4.4.0/jna-4.4.0.jar') // Stuff for working with native libs
-    implementation files('lib/libraries/net/java/dev/jna/platform/3.4.0/platform-3.4.0.jar')
-
     implementation files('lib/libraries/com/paulscode/codecjorbis/20101023/codecjorbis-20101023.jar')
     implementation files('lib/libraries/com/paulscode/codecwav/20101023/codecwav-20101023.jar')
-    implementation files('lib/libraries/com/paulscode/libraryjavasound/20101123/libraryjavasound-20101123.jar')
-    implementation files('lib/libraries/com/paulscode/librarylwjglopenal/20100824/librarylwjglopenal-20100824.jar')
     implementation files('lib/libraries/com/paulscode/soundsystem/20120107/soundsystem-20120107.jar')
 
-    implementation files('lib/libraries/io/netty/netty-all/4.1.9.Final/netty-all-4.1.9.Final.jar')
-        
-    implementation files('lib/libraries/commons-io/commons-io/2.5/commons-io-2.5.jar') // IO stuff (no shit!)
-    implementation files('lib/libraries/commons-codec/commons-codec/1.10/commons-codec-1.10.jar') // Encoding/decoding
-
+    //implementation files('lib/libraries/io/netty/netty-all/4.1.9.Final/netty-all-4.1.9.Final.jar')
     implementation files('lib/libraries/it/unimi/dsi/fastutil/7.1.0/fastutil-7.1.0.jar')
-
-    //implementation files('lib/libraries/org/lwjgl/lwjgl/lwjgl/2.9.4-nightly-20150209/lwjgl-2.9.4-nightly-20150209.jar') // LWJGL
-    //implementation files('lib/libraries/org/lwjgl/lwjgl/lwjgl_util/2.9.4-nightly-20150209/lwjgl_util-2.9.4-nightly-20150209.jar')
 
     // LWJGL for Eagler
     implementation files('lib/libraries/org/lwjgl/lwjgl.jar')
@@ -67,7 +55,6 @@ dependencies {
     implementation files('lib/libraries/org/lwjgl/lwjgl-jemalloc.jar')
     implementation files('lib/libraries/org/lwjgl/lwjgl-openal.jar')
     implementation files('lib/libraries/org/lwjgl/lwjgl-opengles.jar')
-    implementation files('lib/libraries/org/lwjgl/lwjgl-opengl.jar')
 
     // Websockets
     implementation files('lib/libraries/org/websockets/Java-WebSocket-1.5.1-with-dependencies.jar')

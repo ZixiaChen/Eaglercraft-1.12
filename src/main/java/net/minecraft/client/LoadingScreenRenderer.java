@@ -58,6 +58,20 @@ public class LoadingScreenRenderer implements IProgressUpdate
         this.displayString(message);
     }
 
+    public void eaglerShow(String line1, String line2) {
+		if (!this.mc.running) {
+			if (!this.loadingSuccess) {
+				throw new MinecraftError();
+			}
+		} else {
+			this.systemTime = 0L;
+			this.currentlyDisplayedText = line1;
+			this.message = line2;
+			this.setLoadingProgress(-1);
+			this.systemTime = 0L;
+		}
+	}
+
     private void displayString(String message)
     {
         this.currentlyDisplayedText = message;

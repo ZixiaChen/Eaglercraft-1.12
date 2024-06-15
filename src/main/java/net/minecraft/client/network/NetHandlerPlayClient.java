@@ -1877,7 +1877,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                 if (serverdata != null && serverdata.getResourceMode() == ServerData.ServerResourceMode.ENABLED)
                 {
                     this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.ACCEPTED));
-                    Futures.addCallback(this.gameController.getResourcePackRepository().downloadResourcePack(s, s1), this.createDownloadCallback());
+                    //Futures.addCallback(this.gameController.getResourcePackRepository().downloadResourcePack(s, s1), this.createDownloadCallback());
                 }
                 else if (serverdata != null && serverdata.getResourceMode() != ServerData.ServerResourceMode.PROMPT)
                 {
@@ -1904,7 +1904,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                                         }
 
                                         NetHandlerPlayClient.this.netManager.sendPacket((net.lax1dude.eaglercraft.v1_8.netty.Packet) new CPacketResourcePackStatus(CPacketResourcePackStatus.Action.ACCEPTED));
-                                        Futures.addCallback(NetHandlerPlayClient.this.gameController.getResourcePackRepository().downloadResourcePack(s, s1), NetHandlerPlayClient.this.createDownloadCallback());
+                                        //Futures.addCallback(NetHandlerPlayClient.this.gameController.getResourcePackRepository().downloadResourcePack(s, s1), NetHandlerPlayClient.this.createDownloadCallback());
                                     }
                                     else
                                     {

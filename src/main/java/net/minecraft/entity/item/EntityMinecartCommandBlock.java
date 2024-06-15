@@ -1,6 +1,6 @@
 package net.minecraft.entity.item;
 
-import io.netty.buffer.ByteBuf;
+import net.lax1dude.eaglercraft.v1_8.netty.ByteBuf;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -63,11 +63,6 @@ public class EntityMinecartCommandBlock extends EntityMinecart
         public MinecraftServer getServer()
         {
             return EntityMinecartCommandBlock.this.world.getMinecraftServer();
-        }
-        @Override
-        public void fillInInfo(net.lax1dude.eaglercraft.v1_8.netty.ByteBuf buf) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'fillInInfo'");
         }
     };
 

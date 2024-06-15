@@ -14,7 +14,6 @@ import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 import net.lax1dude.eaglercraft.v1_8.opengl.FixedFunctionShader.FixedFunctionConstants;
 import net.lax1dude.eaglercraft.v1_8.vector.Matrix3f;
-import net.minecraft.util.ResourceLocation;
 
 /**
  * Copyright (c) 2022-2023 LAX1DUDE. All Rights Reserved.
@@ -33,8 +32,8 @@ public class SpriteLevelMixer {
 
 	private static final Logger LOGGER = LogManager.getLogger("SpriteLevelMixer");
 
-	public static final ResourceLocation vertexShaderPath = new ResourceLocation("eagler/glsl/local.vsh");
-	public static final ResourceLocation fragmentShaderPath = new ResourceLocation("eagler/glsl/texture_mix.fsh");
+	public static final String vertexShaderPath = "/assets/eagler/glsl/local.vsh";
+	public static final String fragmentShaderPath = "/assets/eagler/glsl/texture_mix.fsh";
 
 	public static IShaderGL vshLocal = null;
 
@@ -68,12 +67,12 @@ public class SpriteLevelMixer {
 
 	static void initialize() {
 
-		String vertexSource = vertexShaderPath.getResourcePath();
+		String vertexSource = EagRuntime.getResourceString(vertexShaderPath);
 		if(vertexSource == null) {
 			throw new RuntimeException("SpriteLevelMixer shader \"" + vertexShaderPath + "\" is missing!");
 		}
 
-		String fragmentSource = fragmentShaderPath.getResourcePath();
+		String fragmentSource = EagRuntime.getResourceString(fragmentShaderPath);
 		if(fragmentSource == null) {
 			throw new RuntimeException("SpriteLevelMixer shader \"" + fragmentShaderPath + "\" is missing!");
 		}

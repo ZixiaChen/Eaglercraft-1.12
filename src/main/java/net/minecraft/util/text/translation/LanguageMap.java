@@ -34,31 +34,24 @@ public class LanguageMap
 
     public LanguageMap()
     {
-        try
+        InputStream inputstream = LanguageMap.class.getResourceAsStream("/assets/minecraft/lang/en_us.lang");
+
+        for (String s : IOUtils.readLines(inputstream, StandardCharsets.UTF_8))
         {
-            InputStream inputstream = LanguageMap.class.getResourceAsStream("/assets/minecraft/lang/en_us.lang");
-
-            for (String s : IOUtils.readLines(inputstream, StandardCharsets.UTF_8))
+            if (!s.isEmpty() && s.charAt(0) != '#')
             {
-                if (!s.isEmpty() && s.charAt(0) != '#')
-                {
-                    String[] astring = (String[])Iterables.toArray(EQUAL_SIGN_SPLITTER.split(s), String.class);
+                String[] astring = (String[])Iterables.toArray(EQUAL_SIGN_SPLITTER.split(s), String.class);
 
-                    if (astring != null && astring.length == 2)
-                    {
-                        String s1 = astring[0];
-                        String s2 = NUMERIC_VARIABLE_PATTERN.matcher(astring[1]).replaceAll("%$1s");
-                        this.languageList.put(s1, s2);
-                    }
+                if (astring != null && astring.length == 2)
+                {
+                    String s1 = astring[0];
+                    String s2 = NUMERIC_VARIABLE_PATTERN.matcher(astring[1]).replaceAll("%$1s");
+                    this.languageList.put(s1, s2);
                 }
             }
+        }
 
-            this.lastUpdateTimeInMilliseconds = System.currentTimeMillis();
-        }
-        catch (IOException var7)
-        {
-            System.err.println(var7);
-        }
+        this.lastUpdateTimeInMilliseconds = System.currentTimeMillis();
     }
 
     /**
