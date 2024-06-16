@@ -1,6 +1,6 @@
 package net.minecraft.network;
 
-import net.lax1dude.eaglercraft.v1_8.netty.ByteBuf;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import javax.crypto.Cipher;
 import javax.crypto.ShortBufferException;
