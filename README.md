@@ -11,11 +11,12 @@ Because of the fact that a desktop client does not have the same limitations as 
 
 | Features implemented               | Desktop client | Web client |
 |------------------------------------|:--------------:|:----------:|
-| Ability to connect to 1.12 servers |        X       |      X     |
-| All 1.12 features                  |        X       |      X     |
-| Websocket connections              |                |      X     |
-| Optifine                           |        X       |            |
-| Shadersmod                         |        X       |            |
+| Ability to connect to 1.12 servers |       yes      |     yes    |
+| 1.12 features                      |       yes      |     yes    |
+| Websocket connections              |       no       |     yes    |
+| TCP/IP connections                 |       yes      |     no     |
+| Optifine                           |       yes      |     no     |
+| Shadersmod                         |       yes      |     no     |
 
 ## Getting Started:
 
