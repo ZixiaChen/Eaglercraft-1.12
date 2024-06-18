@@ -74,8 +74,8 @@ public class GuiScreenCreateWorldSelection extends GuiScreen {
 		}else if(par1GuiButton.id == 1) {
 			this.mc.displayGuiScreen(new GuiCreateWorld(mainmenu));
 		}else if(par1GuiButton.id == 2) {
-			//isImportingEPK = FileCopyUtils.copyEPK();
-			this.mc.displayGuiScreen(new GuiPakErrorScreen());
+			isImportingEPK = FileCopyUtils.copyEPK();
+			this.mc.displayGuiScreen(mainmenu);
 		}else if(par1GuiButton.id == 3) {
 			isImportingMCA = FileCopyUtils.copyZip();
 			this.mc.displayGuiScreen(mainmenu);
