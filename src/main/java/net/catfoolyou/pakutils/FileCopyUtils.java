@@ -9,6 +9,7 @@ import java.util.zip.ZipInputStream;
 
 import com.jcraft.jzlib.InflaterInputStream;
 import net.lax1dude.eaglercraft.v1_8.*;
+import net.lax1dude.eaglercraft.bintools.EPKDecompiler;
 
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
@@ -34,20 +35,20 @@ public class FileCopyUtils {
 
     if (selectedFilePath != null && selectedDirectoryPath != null) {
             File selectedFile = new File(selectedDirectoryPath, selectedFilePath);
-            String destinationDirectory = "." + File.separator + "saves" + File.separator;
+            String destinationDirectory = "." + File.separator + "saves" + File.separator + selectedFile.getName();
             File destFile = new File(destinationDirectory + selectedFile.getName());
 
             try {
                 copyFile(selectedFile, destFile);
-                //extractZip(destFile, destinationDirectory);
+                EPKDecompiler.unpack(destFile, new File(destinationDirectory));
 
-                /*if (!destFile.delete()) {
-                    System.err.println("Warning: Failed to delete the zip file.");
-                }*/
+                if (!destFile.delete()) {
+                    System.err.println("Warning: Failed to delete the EPK file.");
+                }
 
                 return true;
             } catch (IOException e) {
-                System.err.println("Error copying or extracting zip file: " + e.getMessage());
+                System.err.println("Error copying or extracting EPK file: " + e.getMessage());
             }
         }
         return false;

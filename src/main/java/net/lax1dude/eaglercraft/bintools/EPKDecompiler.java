@@ -23,20 +23,23 @@ import net.lax1dude.eaglercraft.bintools.utils.EPKDecompilerSP;
  * POSSIBILITY OF SUCH DAMAGE.
  * 
  */
+
+//Sorry Lax, had to mess around with this one
+
 public class EPKDecompiler {
 
-	public static void _main(String[] args) throws IOException {
-		if (args.length != 2) {
+	public static void unpack(File PAKin, File outDir) throws IOException {
+		if (false) {
 			System.out.print("Usage: epkdecompiler <input epk> <output folder>");
 			return;
 		}
-		File input = new File(args[0]);
+		File input = PAKin;
 		if(!input.isFile()) {
 			System.err.println("Input file does not exist!");
 			return;
 		}
 		System.out.println("Decompiling: " + input.getAbsolutePath());
-		File output = new File(args[1]);
+		File output = outDir;
 		byte[] inputBytes = new byte[(int)input.length()];
 		try(FileInputStream fis = new FileInputStream(input)) {
 			fis.read(inputBytes);
