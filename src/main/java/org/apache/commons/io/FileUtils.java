@@ -1297,9 +1297,7 @@ public class FileUtils {
    }
 
    public static boolean isSymlink(File file) throws IOException {
-      if (Java7Support.isAtLeastJava7()) {
-         return Java7Support.isSymLink(file);
-      } else if (file == null) {
+      if (file == null) {
          throw new NullPointerException("File must not be null");
       } else if (FilenameUtils.isSystemWindows()) {
          return false;
