@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
-import net.lax1dude.eaglercraft.v1_8.FileUtils;
+import org.apache.commons.io.FileUtils;
 import net.lax1dude.eaglercraft.v1_8.Keyboard;
 
 public class GuiWorldEdit extends GuiScreen

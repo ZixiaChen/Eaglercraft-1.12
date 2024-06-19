@@ -195,7 +195,7 @@ import net.minecraft.world.chunk.storage.AnvilSaveConverter;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
-import net.lax1dude.eaglercraft.v1_8.Charsets;
+import org.apache.commons.io.Charsets;
 import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import org.apache.commons.lang3.Validate;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
