@@ -17,7 +17,7 @@ import net.minecraft.src.CrashReporter;
 import net.minecraft.src.Reflector;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.gen.layer.IntCache;
-import org.apache.commons.io.IOUtils;
+import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;

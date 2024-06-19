@@ -23,7 +23,7 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.util.JsonException;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
-import org.apache.commons.io.IOUtils;
+import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.vector.Matrix4f;
 
 public class ShaderGroup
@@ -61,7 +61,7 @@ public class ShaderGroup
         try
         {
             iresource = this.resourceManager.getResource(p_152765_2_);
-            JsonObject jsonobject = jsonparser.parse(IOUtils.toString(iresource.getInputStream(), StandardCharsets.UTF_8)).getAsJsonObject();
+            JsonObject jsonobject = jsonparser.parse(IOUtils.inputStreamToString(iresource.getInputStream(), StandardCharsets.UTF_8)).getAsJsonObject();
 
             if (JsonUtils.isJsonArray(jsonobject, "targets"))
             {

@@ -4,9 +4,6 @@ plugins {
     id 'org.teavm' version '0.10.0'
 }
 
-group = 'org.eagswebtest'
-version = '1.0.0'
-
 sourceSets {
     main {
         java {

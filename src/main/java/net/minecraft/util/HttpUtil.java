@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.annotation.Nullable;
 import net.minecraft.util.text.translation.I18n;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 
@@ -266,7 +266,7 @@ public class HttpUtil
 
                             try
                             {
-                                HttpUtil.LOGGER.error(IOUtils.toString(inputstream1));
+                                HttpUtil.LOGGER.error(IOUtils.inputStreamToString(inputstream1, null));
                             }
                             catch (IOException ioexception)
                             {

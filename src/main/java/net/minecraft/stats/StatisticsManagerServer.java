@@ -18,7 +18,7 @@ import net.minecraft.network.play.server.SPacketStatistics;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IJsonSerializable;
 import net.minecraft.util.TupleIntJsonSerializable;
-import org.apache.commons.io.FileUtils;
+import net.lax1dude.eaglercraft.v1_8.FileUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 

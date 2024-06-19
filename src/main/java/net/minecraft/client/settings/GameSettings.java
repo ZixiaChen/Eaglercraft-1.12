@@ -49,7 +49,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
-import org.apache.commons.io.IOUtils;
+import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;

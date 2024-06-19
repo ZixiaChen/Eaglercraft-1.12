@@ -24,7 +24,7 @@ import net.minecraft.src.Config;
 import net.minecraft.src.CustomColors;
 import net.minecraft.src.FontUtils;
 import net.minecraft.util.ResourceLocation;
-import org.apache.commons.io.IOUtils;
+import net.lax1dude.eaglercraft.v1_8.IOUtils;
 
 public class FontRenderer implements IResourceManagerReloadListener
 {

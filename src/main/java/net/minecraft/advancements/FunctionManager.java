@@ -14,8 +14,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
+import net.lax1dude.eaglercraft.v1_8.FileUtils;
+import net.lax1dude.eaglercraft.v1_8.FilenameUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 

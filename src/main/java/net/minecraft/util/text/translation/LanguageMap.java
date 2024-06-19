@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.IllegalFormatException;
 import java.util.Map;
 import java.util.regex.Pattern;
-import org.apache.commons.io.IOUtils;
+import net.lax1dude.eaglercraft.v1_8.IOUtils;
 
 public class LanguageMap
 {

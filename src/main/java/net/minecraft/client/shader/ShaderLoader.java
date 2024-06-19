@@ -11,7 +11,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.util.JsonException;
 import net.minecraft.util.ResourceLocation;
-import org.apache.commons.io.IOUtils;
+import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class ShaderLoader
@@ -61,7 +61,7 @@ public class ShaderLoader
 
             try
             {
-                byte[] abyte = IOUtils.toByteArray(new BufferedInputStream(iresource.getInputStream()));
+                //byte[] abyte = IOUtils.toByteArray(new BufferedInputStream(iresource.getInputStream()));
                 //ByteBuffer bytebuffer = BufferUtils.createByteBuffer(abyte.length);
                 //bytebuffer.put(abyte);
                 //bytebuffer.position(0);
