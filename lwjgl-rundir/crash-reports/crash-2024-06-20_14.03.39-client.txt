@@ -1,0 +1,70 @@
+---- Minecraft Crash Report ----
+// Hey, that tickles! Hehehe!
+
+Time: 2024-06-20 14:03
+Description: Initializing game
+
+java.lang.IllegalStateException: A display list is already being compiled you eagler!
+	at net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU.glNewList(EaglercraftGPU.java:70)
+	at net.minecraft.client.renderer.RenderGlobal.generateSky(RenderGlobal.java:397)
+	at net.minecraft.client.renderer.RenderGlobal.<init>(RenderGlobal.java:254)
+	at net.minecraft.client.Minecraft.init(Minecraft.java:586)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:439)
+	at net.minecraft.client.main.Main.main(Main.java:60)
+	at net.lax1dude.eaglercraft.v1_8.internal.lwjgl.LWJGLEntryPoint.main_(LWJGLEntryPoint.java:52)
+	at net.lax1dude.eaglercraft.v1_8.internal.lwjgl.MainClass.main(MainClass.java:6)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU.glNewList(EaglercraftGPU.java:70)
+	at net.minecraft.client.renderer.RenderGlobal.generateSky(RenderGlobal.java:397)
+	at net.minecraft.client.renderer.RenderGlobal.<init>(RenderGlobal.java:254)
+	at net.minecraft.client.Minecraft.init(Minecraft.java:586)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at net.minecraft.client.Minecraft.run(Minecraft.java:439)
+	at net.minecraft.client.main.Main.main(Main.java:60)
+	at net.lax1dude.eaglercraft.v1_8.internal.lwjgl.LWJGLEntryPoint.main_(LWJGLEntryPoint.java:52)
+	at net.lax1dude.eaglercraft.v1_8.internal.lwjgl.MainClass.main(MainClass.java:6)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12
+	Operating System: Linux (amd64) version 6.5.0-41-generic
+	Java Version: 17.0.11, Ubuntu
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Ubuntu
+	Memory: 840586208 bytes (801 MB) / 1073741824 bytes (1024 MB) up to 1073741824 bytes (1024 MB)
+	JVM Flags: 2 total; -Xmx1G -Xms1G
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	Launched Version: 1.12
+	LWJGL: EagRuntimeX 1.0
+	OpenGL: Mesa Intel(R) UHD Graphics (ADL-S GT1) GL version OpenGL ES 3.2 Mesa 23.2.1-1ubuntu3.1~22.04.2, Intel
+	GL Caps: Using ARB_multitexture.
+Using ARB_texture_env_combine.
+Not using framebuffer objects because OpenGL 1.4 is not supported, EXT_blend_func_separate is not supported, OpenGL 3.0 is not supported, ARB_framebuffer_object is not supported, and EXT_framebuffer_object is not supported.
+Shaders are not available because OpenGL 2.1 is not supported, ARB_shader_objects is not supported, ARB_vertex_shader is not supported, and ARB_fragment_shader is not supported.
+VBOs are not available because 
+	Using VBOs: Yes
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: ~~ERROR~~ NullPointerException: Cannot invoke "net.minecraft.client.resources.Language.toString()" because the return value of "net.minecraft.client.resources.LanguageManager.getCurrentLanguage()" is null
+	Profiler Position: N/A (disabled)
+	CPU: <unknown>
+	OptiFine Version: OptiFine_1.12_HD_U_C4
+	Render Distance Chunks: 8
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	OpenGlVersion: null
+	OpenGlRenderer: null
+	OpenGlVendor: null
+	CpuCount: 24

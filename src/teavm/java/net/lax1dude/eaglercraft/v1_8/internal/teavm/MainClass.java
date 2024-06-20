@@ -241,7 +241,7 @@ public class MainClass {
 			str.append(t);
 			str.append('\n').append('\n');
 			str.append("eaglercraft.version = \"").append(EaglercraftVersion.projectForkVersion).append("\"\n");
-			str.append("eaglercraft.minecraft = \"1.8.8\"\n");
+			str.append("eaglercraft.minecraft = \"1.12\"\n");
 			str.append("eaglercraft.brand = \"" + EaglercraftVersion.projectForkVendor + "\"\n");
 			str.append("eaglercraft.username = \"").append(EaglerProfile.getName()).append("\"\n");
 			str.append('\n');

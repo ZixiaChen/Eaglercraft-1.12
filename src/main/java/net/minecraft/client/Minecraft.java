@@ -518,7 +518,7 @@ public class Minecraft implements IThreadListener
 		Display.create();
         LOGGER.info("LWJGL Version: LWJGL 3 or whatever Lax is using");
 		LOGGER.info("EagRuntime Version: " + EagRuntime.getVersion());
-        EagRuntime.create();
+        //EagRuntime.create();
         this.setWindowIcon();
         this.setInitialDisplayMode();
         this.createDisplay();

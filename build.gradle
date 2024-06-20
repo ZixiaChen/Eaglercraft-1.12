@@ -23,7 +23,7 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainClass = 'Start'
+    mainClass = 'net.lax1dude.eaglercraft.v1_8.internal.lwjgl.MainClass'
     applicationDefaultJvmArgs = ['-Djava.library.path=versions/1.12/1.12-natives']
 }
 
@@ -72,7 +72,7 @@ teavm.js {
     fastGlobalAnalysis = false
     processMemory = 1024
     entryPointName = 'main'
-    mainClass = 'Start'
+    mainClass = 'net.lax1dude.eaglercraft.v1_8.internal.teavm.MainClass'
     outputDir = file("javascript")
     properties = null
     sourceMap = true
