@@ -5,6 +5,8 @@ build/
 !**/src/test/**/build/
 src/main/assets/logs/
 lwjgl-rundir/eaglercraft.jar
+lwjgl-rundir/crash-reports/
+lwjgl-rundir/*.log
 UnpackDebugJar.sh
 logs/
 

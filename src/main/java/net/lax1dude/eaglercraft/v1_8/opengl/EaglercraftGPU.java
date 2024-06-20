@@ -62,7 +62,7 @@ public class EaglercraftGPU {
 		_wglCopyTexSubImage2D(target, level, sx, sy, dx, dy, w, h);
 	}
 	
-	private static DisplayList currentList = null;
+	public static DisplayList currentList = null;
 	private static ByteBuffer displayListBuffer = EagRuntime.allocateByteBuffer(0x100000);
 
 	public static final void glNewList(int target, int op) {
