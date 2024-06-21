@@ -518,7 +518,6 @@ public class Minecraft implements IThreadListener
 		Display.create();
         LOGGER.info("LWJGL Version: LWJGL 3 or whatever Lax is using");
 		LOGGER.info("EagRuntime Version: " + EagRuntime.getVersion());
-        //EagRuntime.create();
         this.setWindowIcon();
         this.setInitialDisplayMode();
         this.createDisplay();
@@ -534,7 +533,6 @@ public class Minecraft implements IThreadListener
         this.renderEngine = new TextureManager(this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.renderEngine);
         this.drawSplashScreen(this.renderEngine);
-        //this.skinManager = new SkinManager(this.renderEngine, new File(this.fileAssets, "skins"), this.sessionService);
         this.saveLoader = new AnvilSaveConverter(new File(this.mcDataDir, "saves"), this.dataFixer);
         this.mcSoundHandler = new SoundHandler(this.mcResourceManager, this.gameSettings);
         this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
@@ -606,7 +604,10 @@ public class Minecraft implements IThreadListener
             this.displayGuiScreen(new GuiScreenEditProfile(currentScreen)); // Init main menu screen
         }
 
-        this.renderEngine.deleteTexture(this.mojangLogo);
+        if(this.mojangLogo != null){
+            //this.renderEngine.deleteTexture(this.mojangLogo);
+        }
+        
         this.mojangLogo = null;
         this.loadingScreen = new LoadingScreenRenderer(this);
         this.debugRenderer = new DebugRenderer(this);

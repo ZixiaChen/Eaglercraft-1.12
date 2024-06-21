@@ -275,62 +275,17 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
      */
     public void makeEntityOutlineShader()
     {
-        if (OpenGlHelper.shadersSupported)
-        {
-            if (ShaderLinkHelper.getStaticShaderLinkHelper() == null)
-            {
-                ShaderLinkHelper.setNewStaticShaderLinkHelper();
-            }
-
-            ResourceLocation resourcelocation = new ResourceLocation("shaders/post/entity_outline.json");
-
-            try
-            {
-                this.entityOutlineShader = new ShaderGroup(this.mc.getTextureManager(), this.mc.getResourceManager(), this.mc.getFramebuffer(), resourcelocation);
-                this.entityOutlineShader.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
-                this.entityOutlineFramebuffer = this.entityOutlineShader.getFramebufferRaw("final");
-            }
-            catch (IOException ioexception)
-            {
-                LOGGER.warn("Failed to load shader: {}", resourcelocation, ioexception);
-                this.entityOutlineShader = null;
-                this.entityOutlineFramebuffer = null;
-            }
-            catch (JsonSyntaxException jsonsyntaxexception)
-            {
-                LOGGER.warn("Failed to load shader: {}", resourcelocation, jsonsyntaxexception);
-                this.entityOutlineShader = null;
-                this.entityOutlineFramebuffer = null;
-            }
-        }
-        else
-        {
-            this.entityOutlineShader = null;
-            this.entityOutlineFramebuffer = null;
-        }
+        
     }
 
     public void renderEntityOutlineFramebuffer()
     {
-        if (this.isRenderEntityOutlines())
-        {
-            GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(770, 771, 0, 1);
-            this.entityOutlineFramebuffer.framebufferRenderExt(this.mc.displayWidth, this.mc.displayHeight, false);
-            GlStateManager.disableBlend();
-        }
+        
     }
 
     protected boolean isRenderEntityOutlines()
     {
-        if (!Config.isFastRender() && !Config.isShaders() && !Config.isAntialiasing())
-        {
-            return this.entityOutlineFramebuffer != null && this.entityOutlineShader != null && this.mc.player != null;
-        }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     private void generateSky2()
