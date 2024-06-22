@@ -273,7 +273,7 @@ public class TextureUtil {
 		dataBuffer.position(0).limit(parInt2);
 	}
 
-	static void bindTexture(int parInt1) {
+	public static void bindTexture(int parInt1) {
 		GlStateManager.bindTexture(parInt1);
 	}
 

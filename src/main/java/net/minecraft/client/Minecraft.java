@@ -605,7 +605,7 @@ public class Minecraft implements IThreadListener
         }
 
         if(this.mojangLogo != null){
-            //this.renderEngine.deleteTexture(this.mojangLogo);
+            this.renderEngine.deleteTexture(this.mojangLogo);
         }
         
         this.mojangLogo = null;

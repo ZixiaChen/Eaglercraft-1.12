@@ -16,6 +16,7 @@ import net.minecraft.src.Config;
 import net.minecraft.src.RandomMobs;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
 
@@ -79,7 +80,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
                 LOGGER.warn("Failed to load texture: {}", textureLocation, ioexception);
             }
 
-            textureObj = TextureUtil.MISSING_TEXTURE;
+            textureObj = TextureUtil.missingTexture;
             this.mapTextureObjects.put(textureLocation, textureObj);
             flag = false;
         }
@@ -183,7 +184,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
             Entry<ResourceLocation, ITextureObject> entry = (Entry)iterator1.next();
             ITextureObject itextureobject1 = entry.getValue();
 
-            if (itextureobject1 == TextureUtil.MISSING_TEXTURE)
+            if (itextureobject1 == TextureUtil.missingTexture)
             {
                 iterator1.remove();
             }

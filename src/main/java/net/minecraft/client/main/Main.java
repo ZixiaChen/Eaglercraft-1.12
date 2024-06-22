@@ -16,7 +16,7 @@ public class Main
     {
 
 		String username = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader("./usercache.json"))) {
+        /*try (BufferedReader reader = new BufferedReader(new FileReader("./usercache.json"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 int index = line.indexOf("\"name\":");
@@ -31,7 +31,7 @@ public class Main
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }	
+        }*/	
 	
 		if(username == null){
 			String[] defaultNames = new String[] {
