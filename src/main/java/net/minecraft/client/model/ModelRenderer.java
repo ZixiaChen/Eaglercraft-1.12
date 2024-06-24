@@ -397,7 +397,10 @@ public class ModelRenderer
             this.displayList = GLAllocation.generateDisplayLists(1);
         }
 
-        EaglercraftGPU.glNewList(this.displayList, 4864);
+        if(EaglercraftGPU.currentList == null){
+            EaglercraftGPU.glNewList(this.displayList, 4864);
+        }
+        
         BufferBuilder bufferbuilder = Tessellator.getInstance().getBuffer();
 
         for (int i = 0; i < this.cubeList.size(); ++i)

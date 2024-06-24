@@ -591,43 +591,21 @@ public class Minecraft implements IThreadListener
         this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
 
-        //ServerList.initServerList(this);
+		ServerList.initServerList(this);
 		EaglerProfile.read();
 
+		GuiScreen mainMenu = new GuiMainMenu();
 
-        if (this.serverName != null)
-        {
-            this.displayGuiScreen(new GuiConnecting(new GuiMainMenu(), this, this.serverName, this.serverPort));
-        }
-        else
-        {
-            this.displayGuiScreen(new GuiScreenEditProfile(currentScreen)); // Init main menu screen
-        }
+		if (this.serverName != null) {
+			mainMenu = new GuiConnecting(mainMenu, this, this.serverName, this.serverPort);
+		}
 
-        if(this.mojangLogo != null){
-            this.renderEngine.deleteTexture(this.mojangLogo);
-        }
-        
-        this.mojangLogo = null;
-        this.loadingScreen = new LoadingScreenRenderer(this);
-        this.debugRenderer = new DebugRenderer(this);
+		this.displayGuiScreen(new GuiScreenEditProfile(mainMenu));
 
-        if (this.gameSettings.fullScreen && !this.fullscreen)
-        {
-            this.toggleFullscreen();
-        }
+		//this.renderEngine.deleteTexture(this.mojangLogo);
+		this.mojangLogo = null;
+		this.loadingScreen = new LoadingScreenRenderer(this);
 
-        try
-        {
-            //Display.setVSyncEnabled(this.gameSettings.enableVsync);
-        }
-        catch (Exception var2)
-        {
-            this.gameSettings.enableVsync = false;
-            this.gameSettings.saveOptions();
-        }
-
-        this.renderGlobal.makeEntityOutlineShader();
     }
 
     /**
