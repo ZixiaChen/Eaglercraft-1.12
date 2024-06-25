@@ -533,7 +533,7 @@ public class Minecraft implements IThreadListener
         this.renderEngine = new TextureManager(this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.renderEngine);
         this.drawSplashScreen(this.renderEngine);
-        this.saveLoader = new AnvilSaveConverter(new File(this.mcDataDir, "saves"), this.dataFixer);
+        //this.saveLoader = new AnvilSaveConverter(new File(this.mcDataDir, "saves"), this.dataFixer);
         this.mcSoundHandler = new SoundHandler(this.mcResourceManager, this.gameSettings);
         this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
         this.mcMusicTicker = new MusicTicker(this);
@@ -552,19 +552,19 @@ public class Minecraft implements IThreadListener
         this.mcResourceManager.registerReloadListener(new FoliageColorReloadListener());
         this.mouseHelper = new MouseHelper();
         this.checkGLError("Pre startup");
-        GlStateManager.enableTexture2D();
-        GlStateManager.shadeModel(7425);
-        //GlStateManager.clearDepth(1.0D);
-        GlStateManager.enableDepth();
-        GlStateManager.depthFunc(515);
-        GlStateManager.enableAlpha();
-        GlStateManager.alphaFunc(516, 0.1F);
-        GlStateManager.cullFace(GL_BACK);
-        GlStateManager.matrixMode(5889);
-        GlStateManager.loadIdentity();
-        GlStateManager.matrixMode(5888);
-        this.checkGLError("Startup");
-        this.textureMapBlocks = new TextureMap("textures");
+		GlStateManager.enableTexture2D();
+		GlStateManager.shadeModel(GL_SMOOTH);
+		GlStateManager.clearDepth(1.0f);
+		GlStateManager.enableDepth();
+		GlStateManager.depthFunc(GL_LEQUAL);
+		GlStateManager.enableAlpha();
+		GlStateManager.alphaFunc(GL_GREATER, 0.1F);
+		GlStateManager.cullFace(GL_BACK);
+		GlStateManager.matrixMode(GL_PROJECTION);
+		GlStateManager.loadIdentity();
+		GlStateManager.matrixMode(GL_MODELVIEW);
+		this.checkGLError("Startup");
+		this.textureMapBlocks = new TextureMap("textures");
         this.textureMapBlocks.setMipmapLevels(this.gameSettings.mipmapLevels);
         this.renderEngine.loadTickableTexture(TextureMap.LOCATION_BLOCKS_TEXTURE, this.textureMapBlocks);
         this.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
@@ -588,19 +588,18 @@ public class Minecraft implements IThreadListener
         GlStateManager.viewport(0, 0, this.displayWidth, this.displayHeight);
         this.effectRenderer = new ParticleManager(this.world, this.renderEngine);
         SkinPreviewRenderer.initialize();
-        this.checkGLError("Post startup");
+		this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
 
 		ServerList.initServerList(this);
 		EaglerProfile.read();
 
-		GuiScreen mainMenu = new GuiMainMenu();
-
 		if (this.serverName != null) {
-			mainMenu = new GuiConnecting(mainMenu, this, this.serverName, this.serverPort);
+			this.displayGuiScreen(new GuiScreenEditProfile(
+					new GuiConnecting(new GuiMainMenu(), this, this.serverName, this.serverPort)));
+		} else {
+			this.displayGuiScreen(new GuiScreenEditProfile(new GuiMainMenu()));
 		}
-
-		this.displayGuiScreen(new GuiScreenEditProfile(mainMenu));
 
 		//this.renderEngine.deleteTexture(this.mojangLogo);
 		this.mojangLogo = null;
