@@ -66,6 +66,10 @@ public class EaglercraftGPU {
 	private static ByteBuffer displayListBuffer = EagRuntime.allocateByteBuffer(0x100000);
 
 	public static final void glNewList(int target, int op) {
+		StackTraceElement ste = Thread.currentThread().getStackTrace()[2];
+		String callerClass = ste.getClassName();
+		String callerMethod = ste.getMethodName();
+		System.out.printf("[CallerClazz: %s, CallerMethod: %s] %n", callerClass, callerMethod);
 		if(currentList != null) {
 			throw new IllegalStateException("A display list is already being compiled you eagler!");
 		}
