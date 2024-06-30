@@ -277,6 +277,7 @@ public class GuiScreenEditProfile extends GuiScreen {
 		if(!dropDownOpen) {
 			if(par1GuiButton.id == 0) {
 				safeProfile();
+				System.out.println(usernameField.getText().trim());
 				this.mc.displayGuiScreen((GuiScreen) parent);
 			}else if(par1GuiButton.id == 1) {
 				EagRuntime.displayFileChooser("image/png", "png");

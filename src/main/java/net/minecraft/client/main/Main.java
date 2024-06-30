@@ -15,24 +15,7 @@ public class Main
     public static void main(String[] p_main_0_)
     {
 
-		String username = null;
-        /*try (BufferedReader reader = new BufferedReader(new FileReader("./usercache.json"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                int index = line.indexOf("\"name\":");
-                if (index != -1) {
-                    int start = index + "\"name\":".length();
-                    int end = line.indexOf('"', start + 1);
-                    if (end != -1) {
-                        username = line.substring(start + 1, end);
-                        break;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/	
-	
+		/*String username = null;
 		if(username == null){
 			String[] defaultNames = new String[] {
 				"Yeeish", "Yeeish", "Yee", "Yee", "Yeer", "Yeeler", "Eagler", "Eagl",
@@ -40,7 +23,7 @@ public class Main
 			};
 			Random rand = new Random();
 			username = defaultNames[rand.nextInt(defaultNames.length)] + defaultNames[rand.nextInt(defaultNames.length)] + (100 + rand.nextInt(900));
-		}
+		}*/
 
         GameConfiguration gameconfiguration = new GameConfiguration(
 				new GameConfiguration.UserInformation(new Session()),
@@ -49,14 +32,14 @@ public class Main
 				new GameConfiguration.GameInformation(false, "1.12", "release"),
                 new GameConfiguration.ServerInformation(null, 25565));
 		PlatformRuntime.setThreadName("Client thread");
-        Runtime.getRuntime().addShutdownHook(new Thread("Client Shutdown Thread")
+        /*Runtime.getRuntime().addShutdownHook(new Thread("Client Shutdown Thread")
         {
             public void run()
             {
                 Minecraft.stopIntegratedServer();
             }
         });
-        Thread.currentThread().setName("Client thread");
+        Thread.currentThread().setName("Client thread");*/
         (new Minecraft(gameconfiguration)).run();
     }
 

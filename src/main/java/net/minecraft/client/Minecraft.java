@@ -658,33 +658,8 @@ public class Minecraft implements IThreadListener
 
     private void createDisplay() throws Exception
     {
-        //Display.setResizable(true);
+        Display.create();
         Display.setTitle("Eaglercraft 1.12");
-
-        try
-        {
-            Display.create();
-        }
-        catch (Exception lwjglexception)
-        {
-            LOGGER.error("Couldn't set pixel format", (Throwable)lwjglexception);
-
-            try
-            {
-                Thread.sleep(1000L);
-            }
-            catch (InterruptedException var3)
-            {
-                ;
-            }
-
-            if (this.fullscreen)
-            {
-                this.updateDisplayMode();
-            }
-
-            Display.create();
-        }
     }
 
     private void setInitialDisplayMode() throws Exception
