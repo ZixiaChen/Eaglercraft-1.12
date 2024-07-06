@@ -38,23 +38,23 @@ distributions {
 }
 
 dependencies {
-    implementation files('lib/libraries/com/paulscode/codecjorbis/20101023/codecjorbis-20101023.jar')
-    implementation files('lib/libraries/com/paulscode/codecwav/20101023/codecwav-20101023.jar')
-    implementation files('lib/libraries/com/paulscode/soundsystem/20120107/soundsystem-20120107.jar')
+    implementation files('lwjgl-rundir/codecjorbis-20101023.jar')
+    implementation files('lwjgl-rundir/codecwav-20101023.jar')
+    implementation files('lwjgl-rundir/soundsystem-20120107.jar')
 
-    implementation files('lib/libraries/io/netty/netty-all/4.1.9.Final/netty-all-4.1.9.Final.jar')
-    implementation files('lib/libraries/it/unimi/dsi/fastutil/7.1.0/fastutil-7.1.0.jar')
+    implementation files('lwjgl-rundir/netty-all-4.1.9.Final.jar')
+    implementation files('lwjgl-rundir/fastutil-7.1.0.jar')
 
     // LWJGL for Eagler
-    implementation files('lib/libraries/org/lwjgl/lwjgl.jar')
-    implementation files('lib/libraries/org/lwjgl/lwjgl-egl.jar')
-    implementation files('lib/libraries/org/lwjgl/lwjgl-glfw.jar')
-    implementation files('lib/libraries/org/lwjgl/lwjgl-jemalloc.jar')
-    implementation files('lib/libraries/org/lwjgl/lwjgl-openal.jar')
-    implementation files('lib/libraries/org/lwjgl/lwjgl-opengles.jar')
+    implementation files('lwjgl-rundir/lwjgl.jar')
+    implementation files('lwjgl-rundir/lwjgl-egl.jar')
+    implementation files('lwjgl-rundir/lwjgl-glfw.jar')
+    implementation files('lwjgl-rundir/lwjgl-jemalloc.jar')
+    implementation files('lwjgl-rundir/lwjgl-openal.jar')
+    implementation files('lwjgl-rundir/lwjgl-opengles.jar')
 
     // Websockets
-    implementation files('lib/libraries/org/websockets/Java-WebSocket-1.5.1-with-dependencies.jar')
+    implementation files('lwjgl-rundir/Java-WebSocket-1.5.1-with-dependencies.jar')
     
     //TeaVM
     implementation 'org.teavm:teavm-jso:0.7.0'
