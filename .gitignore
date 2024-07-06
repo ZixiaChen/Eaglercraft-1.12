@@ -8,7 +8,6 @@ lwjgl-rundir/eaglercraft.jar
 lwjgl-rundir/crash-reports/
 lwjgl-rundir/*.log
 lwjgl-rundir/*.dat
-UnpackDebugJar.sh
 logs/
 
 ### IntelliJ IDEA ###
