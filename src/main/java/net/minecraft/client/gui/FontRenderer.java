@@ -1,6 +1,6 @@
 package net.minecraft.client.gui;
 
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.lax1dude.eaglercraft.v1_8.opengl.WorldRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
@@ -168,7 +168,7 @@ public class FontRenderer implements IResourceManagerReloadListener
     public void readFontTexture()
     {
         IResource iresource = null;
-        BufferedImage bufferedimage;
+        ImageData bufferedimage;
 
         try
         {
@@ -185,8 +185,8 @@ public class FontRenderer implements IResourceManagerReloadListener
         }
 
         Properties props = FontUtils.readFontProperties(this.locationFontTexture);
-        int imgWidth = bufferedimage.getWidth();
-        int imgHeight = bufferedimage.getHeight();
+        int imgWidth = bufferedimage.width;
+        int imgHeight = bufferedimage.height;
         int charW = imgWidth / 16;
         int charH = imgHeight / 16;
         float kx = (float)imgWidth / 128.0F;

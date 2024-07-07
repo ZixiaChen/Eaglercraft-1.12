@@ -2,6 +2,7 @@ package net.minecraft.client.renderer.texture;
 
 import net.lax1dude.eaglercraft.v1_8.opengl.EaglercraftGPU;
 import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 
 public abstract class AbstractTexture implements ITextureObject
 {

@@ -1,9 +1,10 @@
 package net.minecraft.client.renderer.texture;
 
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.IOException;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.src.Config;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 
 public class DynamicTexture extends AbstractTexture
 {
@@ -16,10 +17,10 @@ public class DynamicTexture extends AbstractTexture
     private final int height;
     private boolean shadersInitialized;
 
-    public DynamicTexture(BufferedImage bufferedImage)
+    public DynamicTexture(ImageData bufferedImage)
     {
-        this(bufferedImage.getWidth(), bufferedImage.getHeight());
-        bufferedImage.getRGB(0, 0, bufferedImage.getWidth(), bufferedImage.getHeight(), this.dynamicTextureData, 0, bufferedImage.getWidth());
+        this(bufferedImage.width, bufferedImage.height);
+        bufferedImage.getRGB(0, 0, bufferedImage.width, bufferedImage.height, this.dynamicTextureData, 0, bufferedImage.width);
         this.updateDynamicTexture();
     }
 

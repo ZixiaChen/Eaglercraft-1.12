@@ -1,7 +1,7 @@
 package net.minecraft.client.resources;
 
 import com.google.common.collect.ImmutableSet;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Set;
 import javax.annotation.Nullable;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.MetadataSerializer;
 import net.minecraft.src.ReflectorForge;
@@ -110,7 +110,7 @@ public class DefaultResourcePack implements IResourcePack
         }
     }
 
-    public BufferedImage getPackImage() throws IOException
+    public ImageData getPackImage() throws IOException
     {
         return TextureUtil.readBufferedImage(DefaultResourcePack.class.getResourceAsStream("/" + (new ResourceLocation("pack.png")).getResourcePath()));
     }

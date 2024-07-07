@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.texture;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,6 +20,7 @@ import net.minecraft.src.Config;
 import net.minecraft.src.TextureUtils;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 
 public class TextureAtlasSprite
 {
@@ -345,17 +346,17 @@ public class TextureAtlasSprite
 
     public void loadSpriteFrames(IResource resource, int mipmaplevels) throws IOException
     {
-        BufferedImage bufferedimage = TextureUtil.readBufferedImage(resource.getInputStream());
+        ImageData bufferedimage = TextureUtil.readBufferedImage(resource.getInputStream());
 
-        if (this.width != bufferedimage.getWidth())
+        if (this.width != bufferedimage.width)
         {
-            bufferedimage = TextureUtils.scaleImage(bufferedimage, this.width);
+            //bufferedimage = TextureUtils.scaleImage(bufferedimage, this.width);
         }
 
         AnimationMetadataSection animationmetadatasection = (AnimationMetadataSection)resource.getMetadata("animation");
         int[][] aint = new int[mipmaplevels][];
-        aint[0] = new int[bufferedimage.getWidth() * bufferedimage.getHeight()];
-        bufferedimage.getRGB(0, 0, bufferedimage.getWidth(), bufferedimage.getHeight(), aint[0], 0, bufferedimage.getWidth());
+        aint[0] = new int[bufferedimage.width * bufferedimage.height];
+        bufferedimage.getRGB(0, 0, bufferedimage.width, bufferedimage.height, aint[0], 0, bufferedimage.width);
 
         if (animationmetadatasection == null)
         {
@@ -363,7 +364,7 @@ public class TextureAtlasSprite
         }
         else
         {
-            int i = bufferedimage.getHeight() / this.width;
+            int i = bufferedimage.height / this.width;
 
             if (animationmetadatasection.getFrameCount() > 0)
             {

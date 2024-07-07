@@ -5,7 +5,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.base64.Base64;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -15,7 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.lax1dude.eaglercraft.v1_8.opengl.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -253,15 +253,15 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
         {
             ByteBuf bytebuf = Unpooled.copiedBuffer((CharSequence)this.server.getBase64EncodedIconData(), StandardCharsets.UTF_8);
             ByteBuf bytebuf1 = null;
-            BufferedImage bufferedimage;
+            ImageData bufferedimage;
             label99:
             {
                 try
                 {
                     bytebuf1 = Base64.decode(bytebuf);
                     bufferedimage = TextureUtil.readBufferedImage(new ByteBufInputStream(bytebuf1));
-                    Validate.validState(bufferedimage.getWidth() == 64, "Must be 64 pixels wide");
-                    Validate.validState(bufferedimage.getHeight() == 64, "Must be 64 pixels high");
+                    Validate.validState(bufferedimage.width == 64, "Must be 64 pixels wide");
+                    Validate.validState(bufferedimage.height == 64, "Must be 64 pixels high");
                     break label99;
                 }
                 catch (Throwable throwable)
@@ -284,11 +284,11 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
 
             if (this.icon == null)
             {
-                this.icon = new DynamicTexture(bufferedimage.getWidth(), bufferedimage.getHeight());
+                this.icon = new DynamicTexture(bufferedimage.width, bufferedimage.height);
                 this.mc.getTextureManager().loadTexture(this.serverIcon, this.icon);
             }
 
-            bufferedimage.getRGB(0, 0, bufferedimage.getWidth(), bufferedimage.getHeight(), this.icon.getTextureData(), 0, bufferedimage.getWidth());
+            bufferedimage.getRGB(0, 0, bufferedimage.width, bufferedimage.height, this.icon.getTextureData(), 0, bufferedimage.width);
             this.icon.updateDynamicTexture();
         }
     }

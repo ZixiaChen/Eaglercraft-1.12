@@ -1,8 +1,7 @@
 package net.minecraft.client.renderer.texture;
 
 import com.google.common.collect.Lists;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
@@ -12,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 
 public class LayeredTexture extends AbstractTexture
 {
@@ -26,7 +26,7 @@ public class LayeredTexture extends AbstractTexture
     public void loadTexture(IResourceManager resourceManager) throws IOException
     {
         this.deleteGlTexture();
-        BufferedImage bufferedimage = null;
+        ImageData bufferedimage = null;
 
         for (String s : this.layeredTextureNames)
         {
@@ -37,14 +37,14 @@ public class LayeredTexture extends AbstractTexture
                 if (s != null)
                 {
                     iresource = resourceManager.getResource(new ResourceLocation(s));
-                    BufferedImage bufferedimage1 = TextureUtil.readBufferedImage(iresource.getInputStream());
+                    ImageData bufferedimage1 = TextureUtil.readBufferedImage(iresource.getInputStream());
 
                     if (bufferedimage == null)
                     {
-                        bufferedimage = new BufferedImage(bufferedimage1.getWidth(), bufferedimage1.getHeight(), 2);
+                        bufferedimage = new ImageData(bufferedimage1.width, bufferedimage1.height, true);
                     }
 
-                    bufferedimage.getGraphics().drawImage(bufferedimage1, 0, 0, (ImageObserver)null);
+                    bufferedimage.drawLayer(bufferedimage1, 0, 0, 0, 0, 0, 0, 0, 0);
                 }
 
                 continue;

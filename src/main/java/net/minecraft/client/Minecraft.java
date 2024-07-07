@@ -8,7 +8,7 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
 import net.lax1dude.eaglercraft.v1_8.mojang.authlib.GameProfile;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;

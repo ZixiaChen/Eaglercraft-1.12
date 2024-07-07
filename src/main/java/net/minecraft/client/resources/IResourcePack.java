@@ -1,6 +1,6 @@
 package net.minecraft.client.resources;
 
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
@@ -20,7 +20,7 @@ public interface IResourcePack
     @Nullable
     <T extends IMetadataSection> T getPackMetadata(MetadataSerializer metadataSerializer, String metadataSectionName) throws IOException;
 
-    BufferedImage getPackImage() throws IOException;
+    ImageData getPackImage() throws IOException;
 
     String getPackName();
 }

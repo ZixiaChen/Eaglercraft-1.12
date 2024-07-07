@@ -1,10 +1,10 @@
 package net.minecraft.client.renderer;
 
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 
 public interface IImageBuffer
 {
-    BufferedImage parseUserSkin(BufferedImage image);
+    ImageData parseUserSkin(ImageData image);
 
     void skinAvailable();
 }

@@ -7,7 +7,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.SettableFuture;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileFilter;
@@ -27,7 +27,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreenWorking;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 import net.minecraft.client.resources.data.MetadataSerializer;
 import net.minecraft.client.resources.data.PackMetadataSection;
 import net.minecraft.client.settings.GameSettings;
@@ -123,7 +123,7 @@ public class ResourcePackRepository
 
         public void bindTexturePackIcon(TextureManager textureManagerIn)
         {
-            BufferedImage bufferedimage = null;
+            ImageData bufferedimage = null;
 
             if (this.locationTexturePackIcon == null)
             {

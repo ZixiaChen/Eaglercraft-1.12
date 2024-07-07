@@ -1,6 +1,6 @@
 package net.minecraft.client.resources;
 
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
@@ -63,7 +63,7 @@ public class LegacyV2Adapter implements IResourcePack
         return (T)this.pack.getPackMetadata(metadataSerializer, metadataSectionName);
     }
 
-    public BufferedImage getPackImage() throws IOException
+    public ImageData getPackImage() throws IOException
     {
         return this.pack.getPackImage();
     }

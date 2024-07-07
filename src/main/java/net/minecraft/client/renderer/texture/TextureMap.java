@@ -38,6 +38,7 @@ import net.minecraft.util.math.MathHelper;
 import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 
 public class TextureMap extends AbstractTexture implements ITickableTextureObject
 {
@@ -834,7 +835,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
     private int[] getMissingImageData(int p_getMissingImageData_1_)
     {
         BufferedImage bufferedimage = new BufferedImage(16, 16, 2);
-        bufferedimage.setRGB(0, 0, 16, 16, TextureUtil.MISSING_TEXTURE_DATA, 0, 16);
+        bufferedimage.setRGB(0, 0, 16, 16, TextureUtil.missingTextureData, 0, 16);
         BufferedImage bufferedimage1 = TextureUtils.scaleToPowerOfTwo(bufferedimage, p_getMissingImageData_1_);
         int[] aint = new int[p_getMissingImageData_1_ * p_getMissingImageData_1_];
         bufferedimage1.getRGB(0, 0, p_getMissingImageData_1_, p_getMissingImageData_1_, aint, 0, p_getMissingImageData_1_);

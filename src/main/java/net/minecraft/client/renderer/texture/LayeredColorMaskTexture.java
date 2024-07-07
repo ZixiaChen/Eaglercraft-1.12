@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.texture;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.awt.image.ImageObserver;
 import java.io.Closeable;
 import java.io.IOException;
@@ -14,6 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 
 public class LayeredColorMaskTexture extends AbstractTexture
 {
@@ -36,13 +37,13 @@ public class LayeredColorMaskTexture extends AbstractTexture
     {
         this.deleteGlTexture();
         IResource iresource = null;
-        BufferedImage bufferedimage;
+        ImageData bufferedimage;
         label255:
         {
             try
             {
                 iresource = resourceManager.getResource(this.textureLocation);
-                BufferedImage bufferedimage1 = TextureUtil.readBufferedImage(iresource.getInputStream());
+                ImageData bufferedimage1 = TextureUtil.readBufferedImage(iresource.getInputStream());
                 int i = bufferedimage1.getType();
 
                 if (i == 0)
@@ -50,7 +51,7 @@ public class LayeredColorMaskTexture extends AbstractTexture
                     i = 6;
                 }
 
-                bufferedimage = new BufferedImage(bufferedimage1.getWidth(), bufferedimage1.getHeight(), i);
+                bufferedimage = new ImageData(bufferedimage1.getWidth(), bufferedimage1.getHeight(), i);
                 Graphics graphics = bufferedimage.getGraphics();
                 graphics.drawImage(bufferedimage1, 0, 0, (ImageObserver)null);
                 int j = 0;
@@ -72,13 +73,13 @@ public class LayeredColorMaskTexture extends AbstractTexture
                         if (s != null)
                         {
                             iresource1 = resourceManager.getResource(new ResourceLocation(s));
-                            BufferedImage bufferedimage2 = TextureUtil.readBufferedImage(iresource1.getInputStream());
+                            ImageData bufferedimage2 = TextureUtil.readBufferedImage(iresource1.getInputStream());
 
-                            if (bufferedimage2.getWidth() == bufferedimage.getWidth() && bufferedimage2.getHeight() == bufferedimage.getHeight() && bufferedimage2.getType() == 6)
+                            if (bufferedimage2.width == bufferedimage.width && bufferedimage2.height == bufferedimage.height && bufferedimage2.type == 6)
                             {
-                                for (int l = 0; l < bufferedimage2.getHeight(); ++l)
+                                for (int l = 0; l < bufferedimage2.height; ++l)
                                 {
-                                    for (int i1 = 0; i1 < bufferedimage2.getWidth(); ++i1)
+                                    for (int i1 = 0; i1 < bufferedimage2.width; ++i1)
                                     {
                                         int j1 = bufferedimage2.getRGB(i1, l);
 

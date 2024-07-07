@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 import java.awt.Dimension;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -1911,8 +1911,8 @@ public class Config
 
     private static ByteBuffer readIconImage(InputStream p_readIconImage_0_) throws IOException
     {
-        BufferedImage bufferedimage = ImageIO.read(p_readIconImage_0_);
-        int[] aint = bufferedimage.getRGB(0, 0, bufferedimage.getWidth(), bufferedimage.getHeight(), (int[])null, 0, bufferedimage.getWidth());
+        /*ImageData bufferedimage = ImageIO.read(p_readIconImage_0_);
+        int[] aint = bufferedimage.getRGB(0, 0, bufferedimage.width, bufferedimage.height, (int[])null, 0, bufferedimage.height);
         ByteBuffer bytebuffer = ByteBuffer.allocate(4 * aint.length);
 
         for (int i : aint)
@@ -1921,7 +1921,8 @@ public class Config
         }
 
         bytebuffer.flip();
-        return bytebuffer;
+        return bytebuffer;*/
+        return null;
     }
 
     public static void checkDisplay()
@@ -2181,7 +2182,7 @@ public class Config
             }
             else
             {
-                BufferedImage bufferedimage = ImageIO.read(inputstream);
+                ImageData bufferedimage = null;
 
                 if (bufferedimage == null)
                 {

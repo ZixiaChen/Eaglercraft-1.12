@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
@@ -11,7 +11,8 @@ import java.util.regex.Pattern;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -200,15 +201,15 @@ public class CustomColormap implements CustomColors.IColorizer
                 return;
             }
 
-            BufferedImage bufferedimage = TextureUtil.readBufferedImage(inputstream);
+            ImageData bufferedimage = TextureUtil.readBufferedImage(inputstream);
 
             if (bufferedimage == null)
             {
                 return;
             }
 
-            int i = bufferedimage.getWidth();
-            int j = bufferedimage.getHeight();
+            int i = bufferedimage.width;
+            int j = bufferedimage.height;
             boolean flag = this.width < 0 || this.width == i;
             boolean flag1 = this.height < 0 || this.height == j;
 

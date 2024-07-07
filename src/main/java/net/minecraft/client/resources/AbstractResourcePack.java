@@ -3,7 +3,7 @@ package net.minecraft.client.resources;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.MetadataSerializer;
 import net.minecraft.util.ResourceLocation;
@@ -85,7 +85,7 @@ public abstract class AbstractResourcePack implements IResourcePack
         return (T)metadataSerializer.parseMetadataSection(sectionName, jsonobject);
     }
 
-    public BufferedImage getPackImage() throws IOException
+    public ImageData getPackImage() throws IOException
     {
         return TextureUtil.readBufferedImage(this.getInputStreamByName("pack.png"));
     }

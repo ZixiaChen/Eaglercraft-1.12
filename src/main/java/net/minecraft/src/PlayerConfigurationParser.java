@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -73,7 +73,7 @@ public class PlayerConfigurationParser
                                         s2 = "items/" + s + "/users/" + this.player + ".png";
                                     }
 
-                                    BufferedImage bufferedimage = this.downloadTextureImage(s2);
+                                    ImageData bufferedimage = this.downloadTextureImage(s2);
 
                                     if (bufferedimage == null)
                                     {
@@ -96,15 +96,15 @@ public class PlayerConfigurationParser
         }
     }
 
-    private BufferedImage downloadTextureImage(String p_downloadTextureImage_1_)
+    private ImageData downloadTextureImage(String p_downloadTextureImage_1_)
     {
         String s = "http://s.optifine.net/" + p_downloadTextureImage_1_;
 
         try
         {
             byte[] abyte = HttpPipeline.get(s, Minecraft.getMinecraft().getProxy());
-            BufferedImage bufferedimage = ImageIO.read(new ByteArrayInputStream(abyte));
-            return bufferedimage;
+            //ImageData bufferedimage = ImageIO.read(new ByteArrayInputStream(abyte));
+            return null;
         }
         catch (IOException ioexception)
         {

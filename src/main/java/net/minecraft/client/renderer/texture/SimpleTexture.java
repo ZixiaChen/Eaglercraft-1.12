@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.texture;
 
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.Closeable;
 import java.io.IOException;
 import net.minecraft.client.resources.IResource;
@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.lax1dude.eaglercraft.v1_8.IOUtils;
 import net.lax1dude.eaglercraft.v1_8.log4j.LogManager;
 import net.lax1dude.eaglercraft.v1_8.log4j.Logger;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 
 public class SimpleTexture extends AbstractTexture
 {
@@ -30,7 +31,7 @@ public class SimpleTexture extends AbstractTexture
         try
         {
             iresource = resourceManager.getResource(this.textureLocation);
-            BufferedImage bufferedimage = TextureUtil.readBufferedImage(iresource.getInputStream());
+            ImageData bufferedimage = TextureUtil.readBufferedImage(iresource.getInputStream());
             boolean flag = false;
             boolean flag1 = false;
 

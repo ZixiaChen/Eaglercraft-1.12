@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer;
 
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.src.Config;
 import net.minecraft.src.HttpPipeline;
@@ -34,7 +34,7 @@ public class ThreadDownloadImageData extends SimpleTexture
     @Nullable
     private final IImageBuffer imageBuffer;
     @Nullable
-    private BufferedImage bufferedImage;
+    private ImageData bufferedImage;
     @Nullable
     private Thread imageThread;
     private boolean textureUploaded;
@@ -70,7 +70,7 @@ public class ThreadDownloadImageData extends SimpleTexture
         return super.getGlTextureId();
     }
 
-    public void setBufferedImage(BufferedImage bufferedImageIn)
+    public void setBufferedImage(ImageData bufferedImageIn)
     {
         this.bufferedImage = bufferedImageIn;
 
@@ -151,7 +151,7 @@ public class ThreadDownloadImageData extends SimpleTexture
                             return;
                         }
 
-                        BufferedImage bufferedimage;
+                        ImageData bufferedimage;
 
                         if (ThreadDownloadImageData.this.cacheFile != null)
                         {
@@ -226,7 +226,7 @@ public class ThreadDownloadImageData extends SimpleTexture
 
             byte[] abyte = httpresponse.getBody();
             ByteArrayInputStream bytearrayinputstream = new ByteArrayInputStream(abyte);
-            BufferedImage bufferedimage;
+            ImageData bufferedimage;
 
             if (this.cacheFile != null)
             {

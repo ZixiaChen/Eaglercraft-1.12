@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 import java.awt.Dimension;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
@@ -17,7 +17,7 @@ public class PlayerItemModel
     private boolean usePlayerTexture = false;
     private PlayerItemRenderer[] modelRenderers = new PlayerItemRenderer[0];
     private ResourceLocation textureLocation = null;
-    private BufferedImage textureImage = null;
+    private ImageData textureImage = null;
     private DynamicTexture texture = null;
     private ResourceLocation locationMissing = new ResourceLocation("textures/blocks/wool_colored_red.png");
     public static final int ATTACH_BODY = 0;
@@ -100,12 +100,12 @@ public class PlayerItemModel
         }
     }
 
-    public BufferedImage getTextureImage()
+    public ImageData getTextureImage()
     {
         return this.textureImage;
     }
 
-    public void setTextureImage(BufferedImage p_setTextureImage_1_)
+    public void setTextureImage(ImageData p_setTextureImage_1_)
     {
         this.textureImage = p_setTextureImage_1_;
     }

@@ -4,7 +4,7 @@ import com.google.gson.JsonParseException;
 import java.io.IOException;
 import net.minecraft.client.gui.GuiScreenResourcePacks;
 import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.lax1dude.eaglercraft.v1_8.minecraft.TextureUtil;
 import net.minecraft.client.resources.data.PackMetadataSection;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -29,7 +29,7 @@ public class ResourcePackListEntryServer extends ResourcePackListEntry
         }
         catch (IOException var5)
         {
-            dynamictexture = TextureUtil.MISSING_TEXTURE;
+            dynamictexture = TextureUtil.missingTexture;
         }
 
         this.resourcePackIcon = this.mc.getTextureManager().getDynamicTextureLocation("texturepackicon", dynamictexture);
