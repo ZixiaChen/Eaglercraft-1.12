@@ -95,22 +95,12 @@ public class ThreadDownloadImageData extends SimpleTexture
             {
                 LOGGER.debug("Loading http texture from local cache ({})", (Object)this.cacheFile);
 
-                try
+                if (this.imageBuffer != null)
                 {
-                    this.bufferedImage = ImageIO.read(this.cacheFile);
-
-                    if (this.imageBuffer != null)
-                    {
-                        this.setBufferedImage(this.imageBuffer.parseUserSkin(this.bufferedImage));
-                    }
-
-                    this.imageFound = this.bufferedImage != null;
+                    this.setBufferedImage(this.imageBuffer.parseUserSkin(this.bufferedImage));
                 }
-                catch (IOException ioexception)
-                {
-                    LOGGER.error("Couldn't load skin {}", this.cacheFile, ioexception);
-                    this.loadTextureFromServer();
-                }
+
+                this.imageFound = this.bufferedImage != null;
             }
             else
             {
@@ -153,15 +143,8 @@ public class ThreadDownloadImageData extends SimpleTexture
 
                         ImageData bufferedimage;
 
-                        if (ThreadDownloadImageData.this.cacheFile != null)
-                        {
-                            FileUtils.copyInputStreamToFile(httpurlconnection.getInputStream(), ThreadDownloadImageData.this.cacheFile);
-                            bufferedimage = ImageIO.read(ThreadDownloadImageData.this.cacheFile);
-                        }
-                        else
-                        {
-                            bufferedimage = TextureUtil.readBufferedImage(httpurlconnection.getInputStream());
-                        }
+                        bufferedimage = TextureUtil.readBufferedImage(httpurlconnection.getInputStream());
+                        
 
                         if (ThreadDownloadImageData.this.imageBuffer != null)
                         {
@@ -228,15 +211,8 @@ public class ThreadDownloadImageData extends SimpleTexture
             ByteArrayInputStream bytearrayinputstream = new ByteArrayInputStream(abyte);
             ImageData bufferedimage;
 
-            if (this.cacheFile != null)
-            {
-                FileUtils.copyInputStreamToFile(bytearrayinputstream, this.cacheFile);
-                bufferedimage = ImageIO.read(this.cacheFile);
-            }
-            else
-            {
-                bufferedimage = TextureUtil.readBufferedImage(bytearrayinputstream);
-            }
+            bufferedimage = TextureUtil.readBufferedImage(bytearrayinputstream);
+            
 
             if (this.imageBuffer != null)
             {

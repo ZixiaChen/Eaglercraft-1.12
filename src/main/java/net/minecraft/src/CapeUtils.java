@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+import net.lax1dude.eaglercraft.v1_8.opengl.ImageData;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import net.minecraft.client.Minecraft;
@@ -46,7 +46,7 @@ public class CapeUtils
             IImageBuffer iimagebuffer = new IImageBuffer()
             {
                 ImageBufferDownload ibd = new ImageBufferDownload();
-                public BufferedImage parseUserSkin(BufferedImage image)
+                public ImageData parseUserSkin(ImageData image)
                 {
                     return CapeUtils.parseCape(image);
                 }
@@ -61,21 +61,21 @@ public class CapeUtils
         }
     }
 
-    public static BufferedImage parseCape(BufferedImage p_parseCape_0_)
+    public static ImageData parseCape(ImageData p_parseCape_0_)
     {
-        int i = 64;
+        /*int i = 64;
         int j = 32;
-        int k = p_parseCape_0_.getWidth();
+        int k = p_parseCape_0_.width;
 
-        for (int l = p_parseCape_0_.getHeight(); i < k || j < l; j *= 2)
+        for (int l = p_parseCape_0_.height; i < k || j < l; j *= 2)
         {
             i *= 2;
         }
 
-        BufferedImage bufferedimage = new BufferedImage(i, j, 2);
-        Graphics graphics = bufferedimage.getGraphics();
+        ImageData ImageData = new ImageData(i, j, true);
+        Graphics graphics = ImageData.getGraphics();
         graphics.drawImage(p_parseCape_0_, 0, 0, (ImageObserver)null);
-        graphics.dispose();
-        return bufferedimage;
+        graphics.dispose();*/
+        return p_parseCape_0_;
     }
 }

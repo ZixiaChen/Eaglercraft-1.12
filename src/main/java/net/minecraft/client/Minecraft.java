@@ -878,7 +878,7 @@ public class Minecraft implements IThreadListener
         try
         {
             inputstream = this.mcDefaultResourcePack.getInputStream(LOCATION_MOJANG_PNG);
-            this.mojangLogo = textureManagerInstance.getDynamicTextureLocation("logo", new DynamicTexture(ImageIO.read(inputstream)));
+            this.mojangLogo = textureManagerInstance.getDynamicTextureLocation("logo", new DynamicTexture(ImageData.loadImageFile(inputstream)));
             textureManagerInstance.bindTexture(this.mojangLogo);
         }
         catch (IOException ioexception)
