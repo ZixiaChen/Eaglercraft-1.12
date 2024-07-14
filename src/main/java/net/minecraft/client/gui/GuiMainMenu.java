@@ -714,7 +714,7 @@ public class GuiMainMenu extends GuiScreen
         else
         {
             this.drawString(this.fontRenderer, s, 2, this.height - 20, -1);
-	    this.drawString(this.fontRenderer, "Eaglercraft v0.1.66 (cracked)", 2, this.height - 10, -1);
+	    this.drawString(this.fontRenderer, "Eaglercraft v0.1.7 (cracked)", 2, this.height - 10, -1);
         }
 
         this.drawString(this.fontRenderer, "Resources Copyright Mojang AB", this.widthCopyrightRest, this.height - 10, -1);
