@@ -15,13 +15,6 @@ import net.minecraft.client.resources.*;
 import net.minecraft.server.management.PlayerProfileCache;
 import net.minecraft.server.MinecraftServer;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.GameProfileRepository;
-import com.mojang.authlib.minecraft.MinecraftSessionService;
-import com.mojang.authlib.properties.PropertyMap;
-import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
-
-
 /*
  * For once I have actually written some code myself
  * This file contains code written by Lax1dude
@@ -53,11 +46,6 @@ public class GuiScreenAuth extends GuiScreen
 	private int mousex = 0;
 	private int mousey = 0;
 
-	public YggdrasilAuthenticationService yggdrasilauthenticationservice = new YggdrasilAuthenticationService(Proxy.NO_PROXY, UUID.randomUUID().toString());
-	public MinecraftSessionService minecraftsessionservice = yggdrasilauthenticationservice.createMinecraftSessionService();
-	public GameProfileRepository gameprofilerepository = yggdrasilauthenticationservice.createProfileRepository();
-	public PlayerProfileCache playerprofilecache;
-
 	private static final ResourceLocation eaglerGui = new ResourceLocation("textures/gui/eagler_gui.png");
 
 	private void updateOptions() {
@@ -72,7 +60,6 @@ public class GuiScreenAuth extends GuiScreen
 
 	public void initGui()
 	{
-		playerprofilecache = new PlayerProfileCache(gameprofilerepository, new File(super.mc.mcDataDir, MinecraftServer.USER_CACHE_FILE.getName()));
 		Keyboard.enableRepeatEvents(true);
 		this.buttonList.clear();
 		this.buttonList.add(new GuiButton(0, width / 2 - 100, height / 6 + 168, I18n.format("gui.done")));
@@ -96,10 +83,6 @@ public class GuiScreenAuth extends GuiScreen
 		if (button.id == 0 && !dropDownOpen)
 		{
 			super.mc.getSession().overrideUsername(this.Username.getText());
-
-			GameProfile gp = this.playerprofilecache.getGameProfileForUsername(this.Username.getText());
-			playerprofilecache.addEntry(gp);
-
 			super.mc.displayGuiScreen(new GuiMainMenu());
 		}
 	}

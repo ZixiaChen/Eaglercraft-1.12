@@ -191,40 +191,6 @@ public class PlayerProfileCache
         return playerprofilecache$profileentry == null ? null : playerprofilecache$profileentry.getGameProfile();
     }
 
-	public GameProfile getProfileForUsername(String username)
-    {
-        String s = username;
-        PlayerProfileCache.ProfileEntry playerprofilecache$profileentry = this.usernameToProfileEntryMap.get(s);
-
-        if (playerprofilecache$profileentry != null && (new Date()).getTime() >= playerprofilecache$profileentry.expirationDate.getTime())
-        {
-            this.uuidToProfileEntryMap.remove(playerprofilecache$profileentry.getGameProfile().getId());
-            this.usernameToProfileEntryMap.remove(playerprofilecache$profileentry.getGameProfile().getName().toLowerCase(Locale.ROOT));
-            this.gameProfiles.remove(playerprofilecache$profileentry.getGameProfile());
-            playerprofilecache$profileentry = null;
-        }
-
-        if (playerprofilecache$profileentry != null)
-        {
-            GameProfile gameprofile = playerprofilecache$profileentry.getGameProfile();
-            this.gameProfiles.remove(gameprofile);
-            this.gameProfiles.addFirst(gameprofile);
-        }
-        else
-        {
-            GameProfile gameprofile1 = lookupProfile(this.profileRepo, s);
-
-            if (gameprofile1 != null)
-            {
-                this.addEntry(gameprofile1);
-                playerprofilecache$profileentry = this.usernameToProfileEntryMap.get(s);
-            }
-        }
-
-        this.save();
-        return playerprofilecache$profileentry == null ? null : playerprofilecache$profileentry.getGameProfile();
-    }
-
     /**
      * Get an array of the usernames that are cached in this cache
      */
