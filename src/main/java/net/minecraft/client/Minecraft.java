@@ -601,7 +601,7 @@ public class Minecraft implements IThreadListener
 			this.displayGuiScreen(new GuiScreenEditProfile(new GuiMainMenu()));
 		}
 
-		//this.renderEngine.deleteTexture(this.mojangLogo);
+		this.renderEngine.deleteTexture(this.mojangLogo);
 		this.mojangLogo = null;
 		this.loadingScreen = new LoadingScreenRenderer(this);
 

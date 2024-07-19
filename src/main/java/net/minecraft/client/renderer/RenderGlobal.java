@@ -315,9 +315,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         else
         {
             this.glSkyList2 = GLAllocation.generateDisplayLists(1);
-            if(EaglercraftGPU.currentList == null){
-                EaglercraftGPU.glNewList(this.glSkyList2, 4864);
-            }
+            EaglercraftGPU.glNewList(this.glSkyList2, 4864);
             this.renderSky(bufferbuilder, -16.0F, true);
             tessellator.draw();
             EaglercraftGPU.glEndList();
@@ -351,9 +349,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         else
         {
             this.glSkyList = GLAllocation.generateDisplayLists(1);
-            if(EaglercraftGPU.currentList == null){
-                EaglercraftGPU.glNewList(this.glSkyList, 4864);
-            }
+            EaglercraftGPU.glNewList(this.glSkyList, 4864);
             this.renderSky(bufferbuilder, 16.0F, false);
             tessellator.draw();
             EaglercraftGPU.glEndList();
@@ -415,9 +411,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         {
             this.starGLCallList = GLAllocation.generateDisplayLists(1);
             GlStateManager.pushMatrix();
-            if(EaglercraftGPU.currentList == null){
-                EaglercraftGPU.glNewList(this.starGLCallList, 4864);
-            }
+            EaglercraftGPU.glNewList(this.starGLCallList, 4864);
             this.renderStars(bufferbuilder);
             tessellator.draw();
             EaglercraftGPU.glEndList();
