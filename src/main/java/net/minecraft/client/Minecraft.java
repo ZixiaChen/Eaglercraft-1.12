@@ -546,6 +546,7 @@ public class Minecraft implements IThreadListener
 		GlStateManager.matrixMode(GL_PROJECTION);
 		GlStateManager.loadIdentity();
 		GlStateManager.matrixMode(GL_MODELVIEW);
+        //GlStateManager.clear(GL_COLOR_BUFFER_BIT);
 		this.checkGLError("Startup");
 		this.textureMapBlocks = new TextureMap("textures");
         this.textureMapBlocks.setMipmapLevels(this.gameSettings.mipmapLevels);
