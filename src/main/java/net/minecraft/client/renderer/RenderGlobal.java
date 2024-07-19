@@ -3,9 +3,7 @@ package net.minecraft.client.renderer;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.google.gson.JsonSyntaxException;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +56,6 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.client.shader.ShaderGroup;
-import net.minecraft.client.shader.ShaderLinkHelper;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.crash.ICrashReportDetail;
@@ -81,7 +78,6 @@ import net.minecraft.src.Lagometer;
 import net.minecraft.src.RandomMobs;
 import net.minecraft.src.Reflector;
 import net.minecraft.src.RenderEnv;
-import net.minecraft.src.RenderInfoLazy;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
@@ -758,7 +754,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                     GlStateManager.disableFog();
                     this.entityOutlineFramebuffer.bindFramebuffer(false);
                     RenderHelper.disableStandardItemLighting();
-                    this.renderManager.setRenderOutlines(true);
+                    this.renderManager.setRenderOutlines(false);
 
                     for (int k = 0; k < list1.size(); ++k)
                     {
@@ -798,7 +794,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                     GlStateManager.disableDepth();
                     this.mc.entityRenderer.disableLightmap();
                     RenderHelper.disableStandardItemLighting();
-                    this.renderManager.setRenderOutlines(true);
+                    this.renderManager.setRenderOutlines(false);
 
                     for (int l = 0; l < list1.size(); ++l)
                     {

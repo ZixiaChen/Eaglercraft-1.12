@@ -70,9 +70,9 @@ public class EaglercraftGPU {
 		String callerClass = ste.getClassName();
 		String callerMethod = ste.getMethodName();
 		System.out.printf("[CallerClazz: %s, CallerMethod: %s] %n", callerClass, callerMethod);
-		if(currentList != null) {
+		/*if(currentList != null) {
 			throw new IllegalStateException("A display list is already being compiled you eagler!");
-		}
+		}*/
 		if(op != GL_COMPILE) {
 			throw new UnsupportedOperationException("Only GL_COMPILE is supported by glNewList");
 		}
