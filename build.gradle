@@ -24,17 +24,6 @@ tasks.withType(JavaCompile) {
 
 application {
     mainClass = 'net.lax1dude.eaglercraft.v1_8.internal.lwjgl.MainClass'
-    applicationDefaultJvmArgs = ['-Djava.library.path=versions/1.12/1.12-natives']
-}
-
-distributions {
-    main {
-        contents {
-            from file("$projectDir/src/main/assets")
-            into('/')
-        }
-    }
-
 }
 
 dependencies {

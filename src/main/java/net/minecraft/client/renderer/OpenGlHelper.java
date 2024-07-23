@@ -257,7 +257,7 @@ public class OpenGlHelper
         }
 
         shadersSupported = framebufferSupported && shadersAvailable;
-        String s = "GL_VENDOR 7936"; //_wglGetString(GL_VENDOR).toLowerCase(Locale.ROOT);
+        String s = _wglGetString(GL_VENDOR).toLowerCase(Locale.ROOT);
         nvidia = s.contains("nvidia");
         arbVbo = false;
         vboSupported = false;
